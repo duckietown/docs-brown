@@ -1,0 +1,21 @@
+version: 2
+jobs:
+    build:
+        docker:
+        - image: andreacensi/mcdp_books:duckuments
+        resource_class: large
+        steps:
+        - checkout
+        - run:
+            name: Download resources
+            command: |
+              git submodule sync --recursive
+              git submodule update --init --recursive
+
+        - run:
+            name: Compile
+            command: make compile-native-ci
+
+        - store_artifacts:
+              path: duckuments-dist
+              destination: duckuments-dist
