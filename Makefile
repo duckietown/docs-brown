@@ -1,5 +1,5 @@
 BASE:=book
-BOOKNAME:=`ls -1 $(BASE) | head -n 1`
+BOOKNAME:=$(shell ls -1 $(BASE) | head -n 1)
 SRC:=book/$(BOOKNAME)
 
 all:
