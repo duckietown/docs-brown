@@ -1,3 +1,5 @@
 [submodule "resources"]
 	path = resources
-	url = git@github.com:duckietown/docs-resources.git
+	url = https://github.com/duckietown/docs-resources.git
+
+    # https://github.com/duckietown/docs-resources.git
