@@ -6,6 +6,7 @@ jobs:
           environment:
               COLUMNS: 160
               TERM: xterm
+              EXTRA_MCDP_RENDER_OPTIONS: --ignore_ref_errors
 
         resource_class: large
         steps:
