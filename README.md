@@ -1,5 +1,9 @@
+## Fork this repo
+
+Fork this repo to edit it.
+
 ## Running using Docker
-    
+
 First run:
 
     $ git submodule sync --recursive
@@ -10,12 +14,11 @@ First run:
 Then install Docker:
 
     $ make install-docker-ubuntu16
-    
+
 *Note*: you need to be in group `docker`. The script adds you, but it does not take effect immediately. You need to exit the console and re-enter.
 
-# Compiling 
+# Compiling
 
 Then compile using:
 
     $ make compile-docker
-
