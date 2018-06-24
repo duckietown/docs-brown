@@ -2,7 +2,6 @@
 
 Fork this repo to edit it.
 
-
 ## Running using Docker
 
 First run:
