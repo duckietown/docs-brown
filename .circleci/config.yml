@@ -22,6 +22,11 @@ jobs:
             command: make compile-native-ci
 
         - run:
+            name: Link check
+            command: |
+                make linkcheck || true
+
+        - run:
             when: always
             name: Package artifacts
             command:  |
