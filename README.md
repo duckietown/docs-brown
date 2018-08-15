@@ -1,3 +1,8 @@
+## Duckiesky 
+
+This is the documentation repository for Duckiesky.  It contains
+   materials for teaching Introduction to Robotics: Duckiesky.
+
 ## Fork this repo
 
 Fork this repo to edit it.
@@ -23,3 +28,8 @@ Then install Docker:
 Then compile using:
 
     $ make compile-docker
+
+
+# Viewing
+
+Point your web browser to 
