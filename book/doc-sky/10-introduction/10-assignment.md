@@ -1,4 +1,4 @@
-# Assignment {#assignment status=ready}
+# Assignment {#introduction-assignment status=ready}
 
 This assignment gives an introduction to our course and reviews some
 basic material you will need.
@@ -19,19 +19,21 @@ Please read and sign the [collaboration policy for CS1951R](collab_policy.pdf). 
 ## Safety Policy
 Please read and sign the [safety policy for CS1951R](safety_policy.pdf). You must turn in the signed pdf with the assignment if you wish to be graded.
 
-## Problem 1 (20 points)
+## Problem: Motivations (20 points)
 Before you start putting a lot of time into this course, it is
 important to figure out what you will get out of the course.  Think
 about what you expect to learn from this course and why it is worth
 investing a lot of time.  What do you hope to learn that you can take
 away for the next ten or twenty years of your career?   
 
-I. What is a robot? What is a machine? What is a vehicle? \\
-II. Is a car a robot? How is my drone a robot?\\
-III. If I can fly a drone by remote, what can I get out of programming it?\\
+<ol>
+<li>What is a robot? What is a machine? What is a vehicle? </li>
+<li>Is a car a robot? How is my drone a robot?</li>
+<li>If I can fly a drone by remote, what can I get out of programming it?</li>
+</ol>
 
 
-## Problem 2 (20 points)
+## Problem: Matrices and Transformations (20 points)
 
 For this problem we strongly recommend you do these calculations by
 hand, because they are warmup questions designed to remind you of some
@@ -70,7 +72,7 @@ The obstacle is at $$(5\sqrt{2},5\sqrt{2})$$.
 </ol>
 
 
-## Problem 3 (20 points)
+## FAA Rules (20 points)
 
 Read the <a href="https://www.faa.gov/uas/">FAA website</a> on
 Unmanned Aircraft Systems.  Provide short answers to the following
@@ -134,7 +136,7 @@ People can get hurt when it falls on them.  A propeller hits them.  A propeller 
 </li>
 </ol>
 
-## Problem 4 (20 points)
+## Problem: Case Study (20 points)
 
 Pick a robot that was used to solve a real-world problem.  You might
 choose the Baxter robot, the <a
@@ -208,7 +210,7 @@ reasoning behind your estimate.
 
 
 
-## Problem 5 (20 points)
+## Problem: Law of Leaky Abstractions (20 points)
 
 Read the <a
 href="https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/">The
