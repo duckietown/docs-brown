@@ -1,5 +1,3 @@
-# Safety {#part:safety status=ready}
-
 # Building {#part:building status=ready}
 
 # Networking {#part:networking status=ready}
