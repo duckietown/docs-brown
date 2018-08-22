@@ -1,5 +1,3 @@
-[submodule "resources"]
+[submodule "resource2http"]
 	path = resources
-	url = https://github.com/duckietown/docs-resources.git
-
-    # https://github.com/duckietown/docs-resources.git
+	url = https://github.com/AndreaCensi/docs-resources2.git
