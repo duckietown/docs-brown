@@ -16,7 +16,16 @@
 
 # Applications {#part:applications status=ready}
 
-
-
-
 # References {#part:references status=ready}
+
+
+
+# Example of questions {#example-questions status=ready}
+
+
+## The meaning of life {#q-meaning-of-life}
+
+What is the meaning of life?
+
+
+<move-here src='#subsub:q-meaning-of-life-answer'/>
