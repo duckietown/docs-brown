@@ -21,7 +21,7 @@ CS1951R](collab_policy.pdf).*Submit the signed pdf with filename
 Please read and sign the [safety policy for CS1951R](safety_policy.pdf).
 *Submit the signed pdf with filename `safety_policy.pdf`*
 
-## Problem 1: Motivations (20 points)
+## Problem: Motivations (20 points)
 
 *Submit the answers to these questions in `answers.txt`*
 
@@ -35,7 +35,7 @@ your career?
 2. Is a car a robot? How is my drone a robot?
 3. If I can fly a drone by remote, what can I get out of programming it?
 
-## Problem 2: Matrices and Transformations (20 points)
+## Problem: Matrices and Transformations (20 points)
 
 *Write the answers to these questions in the corresponding section of `answers.txt`.*
 
@@ -67,7 +67,7 @@ prerequisite material for the class.
    degrees increase when turning clockwise. Where is the obstacle relative to
    the robot? Give coordinates and draw your answer on a map.
 
-## Problem 3: FAA Rules (20 points)
+## Problem: FAA Rules (20 points)
 
 Read the [FAA website](https://www.faa.gov/uas/) on Unmanned Aircraft Systems.
 Provide short answers to the following questions.
@@ -86,7 +86,7 @@ Provide short answers to the following questions.
 4. What are some risks of drone flight? How could people get hurt with the
    robot?
 
-## Problem 4: Case Study (20 points)
+## Problem: Case Study (20 points)
 
 *Write your answers in the corresponding section in `answers.txt`*
 
@@ -113,7 +113,7 @@ the questions below.
 6. How much does the robot cost? If you find a price, cite your source. If you
    cannot find a direct source, give an estimate and some reasoning.
 
-## Problem 5: Law of Leaky Abstractions (20 points)
+## Problem: Law of Leaky Abstractions (20 points)
 
 *Write your answers in the corresponding section of `answers.txt`*
 
