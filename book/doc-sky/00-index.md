@@ -1,4 +1,4 @@
-# Duckiesky {#book:duckiesky status=ready}
+# Duckiesky Learning Materials {#book:duckiesky status=ready}
 
 Flight has fascinated humans for millenia.  This module aims to teach
 you everything you need to know to build and fly an autonomous flying
