@@ -30,7 +30,7 @@ Write the answers there in sections with ID.
 
 Then use the syntax:
 
-<pre><code>&ltmove-here src='#ID'/&ht;</code></pre>
+<pre><code>&lt;move-here src='#ID'/&gt;</code></pre>
 
 to move the content where it should appear.
 
