@@ -2,7 +2,7 @@ version: 2
 jobs:
     build:
         docker:
-        - image: andreacensi/mcdp_books:duckuments@sha256:cf9bc2766ca1901f5553aaca1f515a39e2744a2d69de3fba0e384038e97f41cf
+        - image: andreacensi/mcdp_books:duckuments@sha256:5e149f33837f999e0aa5233a77f8610baf3c3fc1a2f1bfb500756b427cf52dbe
           environment:
               COLUMNS: 160
               TERM: xterm-256color
