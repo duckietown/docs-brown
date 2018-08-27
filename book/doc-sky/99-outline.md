@@ -14,7 +14,9 @@
 
 # Motion Planning {#part:planning status=ready}
 
-# Applications {#part:applications status=ready}
+# PID and Controls {#part:planning status=ready}
+
+# Localization and SLAM {#part:planning status=ready}
 
 # References {#part:references status=ready}
 
@@ -43,5 +45,6 @@ What is the meaning of life?
 
 
 <move-here src='#subsub:q-meaning-of-life-answer'/>
+
 
 
