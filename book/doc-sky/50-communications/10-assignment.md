@@ -1,0 +1,65 @@
+# Assignment {#communications-assignment status=ready}
+
+## Creating a Publisher and Subscriber (50 points)
+
+*Fill in the corresponding sections in the `answers.txt` in your handin
+repository and submit the ROS package you create.*
+
+1. Read [understanding
+   nodes](http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes).
+
+2. Use `rosnode list` to display what nodes are running when you start the
+
+3. Use `rosnode info` to find out more about each node. What topics does
+   `/flow_pub` publish?
+
+4. Do the ROS tutorial to [create
+   a package](http://wiki.ros.org/ROS/Tutorials/CreatingPackage). Name your
+   package `ros_assignment_pkg`.
+
+5. Do the [building
+   packages](http://wiki.ros.org/ROS/Tutorials/BuildingPackages) tutorial.
+
+
+6. Follow the [ROS publisher/subscriber
+   tutorial](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29)
+   using the workspace and package you created above. *Hand in the entire
+   package.*
+
+7. Start the `screen` session we use to fly the drone. Use `rostopic echo` and
+   `rostopic hz` to examine the results of various topics. What is the frame
+   rate we are publishing images from the camera?
+
+## Messages (5 points)
+
+*Make all modifications in your ROS package from Problem 1 and hand in the
+package*
+
+1. Read [Creating a ROS
+   msg](https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv). You do not need
+   to read the section on services.
+
+2. In your package from question 1, create a ROS message called `MyMessage`
+   with a field for a `string`, called `name`, and a field for an array of
+   `float64`, called `contents`. Edit files such as `CMakeLists.txt` to ensure
+   your message is compiled and available for use. *Make these modifications in
+   the package from problem 1 and hand it in.*
+
+## Reading the IR Sensor (15 points)
+
+1. Write a ROS subscriber on your drone to read the values from the infrared
+   sensor topic and print them to `stdout`. *Name the file `my_echo.py` and
+   submit it.*
+
+2. Write a second ROS subscriber that listens to the infrared sensor topic and
+   calculates the mean and variance over a ten second window using
+   [NumPy](http://www.numpy.org). Print these values to `stdout`. *Name the
+   file `mean_and_variance.py` and submit it.*
+
+## Handin
+
+Hand in your answers using [this link](). Make sure you hand in:
+- `answers.txt`
+- `my_echo.py`
+- `mean_and_variance.py`
+- `ros_assignment_pkg`: the ROS package you created

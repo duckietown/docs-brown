@@ -13,12 +13,12 @@ in order to apply for admission to the course.
 ## Collaboration Policy
 
 Please read and sign the [collaboration policy for
-CS1951R](collab_policy.pdf).*Submit the signed pdf with filename
+CS1951R](10-introduction/collab_policy.pdf). *Submit the signed pdf with filename
 `collaboration_policy.pdf`.*
 
 ## Safety Policy
 
-Please read and sign the [safety policy for CS1951R](safety_policy.pdf).
+Please read and sign the [safety policy for CS1951R](10-introduction/safety_policy.pdf).
 *Submit the signed pdf with filename `safety_policy.pdf`*
 
 ## Motivations (20 points)
