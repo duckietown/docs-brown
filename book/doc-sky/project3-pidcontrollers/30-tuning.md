@@ -1,4 +1,4 @@
-# Tuning
+# Part 2: Tuning
 In this portion of the project, you will be tuning the planar pid controllers that we have implemented for you, and then transferring the altitude pid you created onto your drone and will be tuning your pid gains on your drone as you did in the simulator.
 
 ## Trimming your Drone
