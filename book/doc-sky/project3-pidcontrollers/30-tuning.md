@@ -1,10 +1,10 @@
 # Tuning
-In this portion of the project, you will be tuning the planar pid controllers that we have implemented for you, and then transfering the altitude pid you created onto your drone and will be tuning your pid gains on your drone as you did in the simulator.
+In this portion of the project, you will be tuning the planar pid controllers that we have implemented for you, and then transferring the altitude pid you created onto your drone and will be tuning your pid gains on your drone as you did in the simulator.
 
 ## Trimming your Drone
 Each drone is built a little differently. Due to differences in the weight distribution and other factors, the drone will tend to initially drift in a particular direction.
 
-In order to tune the altitude pid, the planar motion of the drone needs to be controlled. This is important so that the drone does not fly uncontrollably across the room while you're trying to tune it's altitude controller. To control the drone's planar motion while you're tuning the altitude, we've created and tuned pids to do this for you, but you will need to tune the initial low-rate i-terms to account for the uneven weight distrubution specific to your drone. You will use our altitude pid to tune the planar controllers, and then you will tune your altitude pid with the tuned planar controllers.
+In order to tune the altitude pid, the planar motion of the drone needs to be controlled. This is important so that the drone does not fly uncontrollably across the room while you're trying to tune it's altitude controller. To control the drone's planar motion while you're tuning the altitude, we've created and tuned pids to do this for you, but you will need to tune the initial low-rate i-terms to account for the uneven weight distribution specific to your drone. You will use our altitude pid to tune the planar controllers, and then you will tune your altitude pid with the tuned planar controllers.
 
 ## Problem 1: Understanding the Controller
 Our controller is a dual I term PID controller. The high-rate I term changes quickly, allowing fast response to changes. The low-rate I term changes slowly, allowing the drone to adjust to systemic sources of error such as poor weight distribution or a damaged propeller. The pids have been tuned by us and should not need significant modification for your specific drone, but the initial low i terms do need to be adjusted based on your specific drone. In the next part of the course we will go into more detail with this structure. For now we are just asking you to be responsible for the intuition.
@@ -24,12 +24,12 @@ Test out different values for `throttle_low.init_i`, but be cautious because the
 
 
 ## Problem 3: Set the Trim
-Next you will set the trim on roll and pitch. You will do this by tuning the low i terms to adjust for the static errors that exist on your drone. The default value is 0, and postive values will move the drone to the right or forward, and negative to the left or backward, depending on the axis you're modifying. Note that you may need to repeat this process periodically, for example after a crash or the like.
+Next you will set the trim on roll and pitch. You will do this by tuning the low i terms to adjust for the static errors that exist on your drone. The default value is 0, and positive values will move the drone to the right or forward, and negative to the left or backward, depending on the axis you're modifying. Note that you may need to repeat this process periodically, for example after a crash or the like.
 When performing this process, each time make sure that you:
 * Place the battery in the same place each time as much as possible so the weight is distributed the same
 * Tape or velcro the battery so it does not move
 * Plug the flight controller while the struts are fully engaged and the drone is level, so the gyros are well calibrated.
-* Calibrate the accellerometer
+* Calibrate the accelerometer
 * Always place the drone so that the camera is closer to you and the skyline is farther away
 
 ### Exercises
@@ -59,25 +59,25 @@ Now that the planar pids are tuned, and you have found a value for 'throttle_low
 4. Fly your drone!
 5. Empirically tune your altitude pid gains on your drone as you did in the simulator portion of this project <sup id="a3">[3](#f3)</sup>
 
-Take a video of your drone flying first using our altidude pid by running pid_controller.py in \`4, then take a video of your tuned pid by running student_pid_controller.py in '4. See if you can get yours to track the altitude setpoint better than ours! The drone should get to the setpoint quickly and stay there without bouncing up and down. *Submit these videos in Github Classroom as 2.4.1 and 2.4.2*
+Take a video of your drone flying first using our altitude pid by running pid_controller.py in \`4, then take a video of your tuned pid by running student_pid_controller.py in '4. See if you can get yours to track the altitude setpoint better than ours! The drone should get to the setpoint quickly and stay there without bouncing up and down. *Submit these videos in Github Classroom as 2.4.1 and 2.4.2*
 
 ## Problem 5: Position Control
 Once you have achieved good trim, you can try position control. Try to fly your drone for an entire battery without touching the controls! Do not try this until your I term preloads have been tuned as described above.
 
 This video demonstrates the drone doing a zero velocity hover and drifting in the scene. Then we turn on position hold (you can tell because it drops the throttle as it takes over, and holds its position for several minutes.
 
-Then we turn off the positon hold so you can see it drift again, and then turn it on again at the end and land. You can tell when it is turned on because we move the drone back to the center of the flight area before each hold.
+Then we turn off the position hold so you can see it drift again, and then turn it on again at the end and land. You can tell when it is turned on because we move the drone back to the center of the flight area before each hold.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/WTohnsKs7dU" frameborder="0" allowfullscreen></iframe>
 
 ### Exercises
 
-Engage position control in two steps. First you have to tell the drone to “remember” a frame. You can do this using the “r” key. This will save the frame at the drone’s current location. Next you have to engage or disengage position control. You can engage this mode with the “p” key, and disengage with 'v' for velocity contorl. So the procedure is to first save a frame (target location for the position hold) using “r” and then shortly after (before drifting too much) type “p”.
+Engage position control in two steps. First you have to tell the drone to “remember” a frame. You can do this using the “r” key. This will save the frame at the drone’s current location. Next you have to engage or disengage position control. You can engage this mode with the “p” key, and disengage with 'v' for velocity control. So the procedure is to first save a frame (target location for the position hold) using “r” and then shortly after (before drifting too much) type “p”.
 
 Position hold works best over a textured surface with lots of visual contrast. Even when doing position hold, always be ready to kill in case of a mishap. Especially be careful when looking at other windows.
 
 ### Try the following:
-1. Engage position hold using the procedure decribed above. Observe the drone's behavior. How is it different from velocity mode?
+1. Engage position hold using the procedure described above. Observe the drone's behavior. How is it different from velocity mode?
 
 2. How long are you able to hold position? Ideally you should be able to do this in one spot for an entire battery. If not, try retuning your I term preloads above.
 
@@ -98,4 +98,4 @@ Take a video of your drone flying in velocity control, and then engage position 
 
 [<b id="f2">2</b>](#a2) You can make your future life easier by modifying pi.screenrc to always run your script by changing ```python pid_controller.py\n``` to ```python student_pid_controller.py\n```
 
-[<b id="f3">3</b>](#a3) Try to just focus on the the altitude while doing this and ignore the planar motion becuase it is easiest to focus on one axis at a time when tuning the pids. The planar axes can be re-tuned after you tune your altitude pid if need be.
+[<b id="f3">3</b>](#a3) Try to just focus on the the altitude while doing this and ignore the planar motion because it is easiest to focus on one axis at a time when tuning the pids. The planar axes can be re-tuned after you tune your altitude pid if need be.
