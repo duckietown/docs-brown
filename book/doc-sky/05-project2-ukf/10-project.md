@@ -1,9 +1,6 @@
 # Project {#ukf-project status=notready}
 
-## UKF in One Spatial Dimension
-You will start by implementing this state estimation algorithm with a simple one-dimensional model of the drone's motion to estimate its position and velocity along the vertical axis. Later on in the project, we will expand the model to three spatial dimensions.
-
-### Outline of Background Information to Cover
+## Background
 Before we dive into the UKF, there are some foundations that we should build up:
 
 1. The Bayes Filter
@@ -27,18 +24,18 @@ The Kalman Filter's main goal is to fuse measurement readings with predicted sta
 
 ![residual_chart](residual_chart.png)
 
-***Figure 1. Interaction of the Prediction and Measurement in a Kalman Filter[](#bib:labbe_kalman)***
+*Figure 1. Interaction of the Prediction and Measurement in a Kalman Filter [](#bib:labbe_kalman)*
 
 ##### State Vector and Covariance Matrix
 
-The KF accomplishes its state estimate by tracking certain **state variables** in a state vector, such as position and velocity along an axis, and the **covariance matrix** corresponding to the state vector. In the first part of this project, we define the state vector as:
+The KF accomplishes its state estimate by tracking certain **state variables** in a state vector, such as position and velocity along an axis, and the **covariance matrix** corresponding to the state vector. For example, a state vector that tracks the drone's position and velocity along the z-axis would look like:
 
 $$\mathbf{x}=\begin{bmatrix}
 z \\
 \dot z
 \end{bmatrix}$$
 
-where $z$ and $\dot z$ are the position and velocity of the drone along the z-axis, respectively. The state vector tracks the mean $\mu$ of each state variable, which we assume is normally distributed about $\mu$. For this state vector, then, we define the covariance matrix as:
+where $z$ and $\dot z$ are the position and velocity of the drone along the z-axis, respectively. The state vector tracks the mean $\mu$ of each state variable, which we assume is normally distributed about $\mu$. To characterize the uncertainty in this state estimate, we use an $n \times n$ covariance matrix where $n$ is the size of the state vector. For this state vector, then, we define the covariance matrix as:
 
 $$\mathbf{P}=\begin{bmatrix}
 \sigma^2_z & \sigma_{z,\dot z} \\
@@ -47,17 +44,53 @@ $$\mathbf{P}=\begin{bmatrix}
 
 where $\sigma^2_z = \text{Var}\left( z \right)$, for example, denotes the variance in the position estimates and $\sigma_{\dot z,z} = \sigma_{z,\dot z} = \text{Cov}\left( z, \dot z \right)$ denotes the covariance between the position and velocity estimates. Typically, position and velocity are positively correlated, as a positive velocity indicates that the drone will likely be at a more positive position at the next time step.
 
-**TODO: Write out the recursive algorithm**
+**TODO: Write out the recursive algorithm. Probably refer to and cite** ***Probabilistic Robotics***
 
 #### A Closer Look at Some of the Math of the Kalman Filter
 
 **TODO: Figure out what to put here**
 
-### Designing a Kalman Filter
+---
 
-To apply a Kalman Filter to a specific robot, there are certain parts of the algorithm that we need to define. The first aspect of the KF design process specific to the robot application is the selection of state variables to track in the state vector. Additionally, the motion model of the robot and its sensor suite demand careful thought when designing a KF: the former determines the state transition function, and the latter specifies the measurement function. We will be going over these design decisions in this section.
+## Designing and Implementing a Kalman Filter
 
-#### State Vector Design
+To apply a Kalman Filter to a specific robot, there are certain parts of the algorithm that we need to define. The first aspect of the KF design process specific to the robot application is the selection of state variables to track in the state vector. Additionally, the motion model of the robot and its sensor suite demand careful thought when designing a KF: the former determines the state transition function, and the latter specifies the measurement function. Furthermore, the process noise and measurement covariance matrices must be determined. The filter must then be initialized and sometimes adapted to handle asynchronous inputs from real-world sensors. Finally, once a filter is implemented, it is a good idea to tune and test it in simulation and then on the real robot, quantifying its performance if possible. We will be going over these design decisions and implementation details in this section.
+
+#### State Vector
+**TODO**
+
+#### State Transition Function
+**TODO**
+
+#### Measurement Function
+**TODO**
+
+#### Process Noise and Measurement Covariance Matrices
+**TODO**
+
+#### Initialize the Filter
+**TODO**
+
+#### Asynchronous Inputs
+**TODO**
+
+#### Tune and Test the Filter
+**TODO: Write this section and include description on quantitatively evaluating the performance of the filter**
+
+---
+
+## The Unscented Kalman Filter: Nonlinear State Estimation
+**TODO**
+
+---
+
+## Our Implementation: UKF in One Spatial Dimension
+**TODO**
+
+---
+
+## Our Implementation: UKF in Three Spatial Dimensions
+**TODO**
 
 
 
