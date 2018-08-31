@@ -32,7 +32,7 @@ collisions between the arm and the station would be catastrophic.
 Implement the skeleton methods for a 2d RRT in python following [this
 paper](rrtpaper.pdf) and [rrt.py](rrt.py).
 
-![](rrt.png)
+<!-- ![](rrt.png) -->
 
 Use the RRT to find a motion plan for a 2d robot for the same point as above.
 The `r` key starts running the RRT to expand it, and then pressing `r` again
