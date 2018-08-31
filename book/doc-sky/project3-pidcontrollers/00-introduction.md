@@ -6,14 +6,14 @@ A PID (proportional, integral, derivative) controller is a control algorithm ext
 ## Characteristics of the Controller
 
 ### Key Terms and Definitions
-* **Process Variable**: The parameter of the system that is being monitored and controlled.  
-* **Setpoint**: The desired value of the process variable.  
-* **Control Variable/Manipulated Variable**: The output of the controller that serves as input to the system in order to minimize error between the setpoint and the process variable.  
-* **Steady-State Value**: The final value of the process variable as time goes to infinity.  
-* **Steady-State Error**: The difference between the setpoint and the steady-state value.  
-* **Rise Time**: The time required for the process variable to rise from 10 percent to 90 percent of the steady-state value.  
-* **Settling Time**: The time required for the process variable to settle within a certain percentage of the steady-state value.  
-* **Overshoot**: The amount the process variable exceeds the setpoint (expressed as a percentage).  
+* **Process Variable**: The parameter of the system that is being monitored and controlled.
+* **Setpoint**: The desired value of the process variable.
+* **Control Variable/Manipulated Variable**: The output of the controller that serves as input to the system in order to minimize error between the setpoint and the process variable.
+* **Steady-State Value**: The final value of the process variable as time goes to infinity.
+* **Steady-State Error**: The difference between the setpoint and the steady-state value.
+* **Rise Time**: The time required for the process variable to rise from 10 percent to 90 percent of the steady-state value.
+* **Settling Time**: The time required for the process variable to settle within a certain percentage of the steady-state value.
+* **Overshoot**: The amount the process variable exceeds the setpoint (expressed as a percentage).
 
 ### General Algorithm
 The error of the system $e(t)$, is calculated as the difference between the setpoint $r(t)$ and the process variable $y(t)$. That is:
@@ -64,28 +64,28 @@ The integral term takes into account past error, as well as the duration of the 
 #### Effects of $K_d$
 By calculating the instantaneous rate of change of the system's error and using this slope for linear extrapolation, the derivative term anticipates future error. While the proportional and integral terms both act to move the process variable to the setpoint, the derivative term seeks to dampen their efforts and decrease the amount the system overshoots in response to a large change in error (which would greatly affect the magnitude of the proportional and integral contributions to the overall control output). If set at an appropriate level, the derivative term reduces oscillations, which decreases the settling time and improves the stability of the system. The derivative term has negligible effects on steady-state error and only decreases the rise time by a minor amount.
 
-#### Summary of Control Terms  
+#### Summary of Control Terms
 ![Effect of Control Terms](control_term_effects_table.png)
 
 ### Potential Problems
 In real-world applications, the PID controller exhibits issues that require modifications to the general algorithm. In certain situations, one may find that a P-Controller, PD-Controller (eliminating the integral term), or a PI-Controller (eliminating the derivative term) are more advantageous controllers for the system. Alternatively, different techniques can be employed to counteract the problems that may affect the usability of a control term.
 
 #### Integral Windup
-Integral wind-up occurs when, due to a large change in setpoint, the control output causes the system's actuator to become saturated. At this point, the integrated error between the process variable and the setpoint will continue to grow (because the actuator is at its limit and cannot drive the process variable any closer to the setpoint). In turn, the control output will continue to grow and will no longer have any effect on the system. When the setpoint finally changes and the error changes sign (meaning the new setpoint is now below the value of the process variable), the integral term will take a while to "unwind" all of the error that it has accumulated before producing a reverse control action that will move the process variable in the correct direction towards the setpoint.  
+Integral wind-up occurs when, due to a large change in setpoint, the control output causes the system's actuator to become saturated. At this point, the integrated error between the process variable and the setpoint will continue to grow (because the actuator is at its limit and cannot drive the process variable any closer to the setpoint). In turn, the control output will continue to grow and will no longer have any effect on the system. When the setpoint finally changes and the error changes sign (meaning the new setpoint is now below the value of the process variable), the integral term will take a while to "unwind" all of the error that it has accumulated before producing a reverse control action that will move the process variable in the correct direction towards the setpoint.
 
 There exist numerous ways to address integral wind-up. One way is to keep the integral term within predefined upper and lower bounds. Another way is to set the integral term to zero if the control output will cause the system's actuator to saturate. Yet another way is to reduce the integral term by a constant multiplied by the difference between the actual output and the commanded output. If the actuator is not saturated, then the difference between the actual and commanded output will be zero and will not affect the integral term. If the actuator is saturated, then the additional feedback in the control loop will drive the commanded output closer to the saturation limit. If the setpoint changes and causes the error to change sign, then the integral term will not need to unwind in order to produce an appropriate control action. Setpoint ramping &mdash; in which the setpoint is increased or decreased incrementally to reach the desired value &mdash; may also help prevent integral wind-up.
 
 #### Derivative Noise
 Since the derivative term is proportional to the change in error, it is consequently highly sensitive to noise (which would produce drastic changes in error). Using a low-pass filter on the derivative term, or finding the derivative of the process variable (as opposed to the error), or taking a weighted mean of previous derivative terms could help ensure that high-frequency noise does not cause the derivative term to adversely affect the control output.
 
-### Cascaded Controllers  
-In cascaded PID control, two PID controllers are used conjointly to yield a better control response. The output of the PID controller for the outer control loop determines the setpoint for the PID controller of the inner control loop. The outer loop controller controls the primary process variable of the system, while the inner loop controller controls a system parameter that tends to change more rapidly in order to minimize the error of the outer control loop. The two controllers have separate tuning values, which can be optimized for the part of the system that they control. This enables an overall better control response for the system as a whole.
+### Cascaded Controllers
+When multiple measurements can be used to control a single process variable, these measurements can be combined using a cascaded PID controller. In cascaded PID control, two PID controllers are used conjointly to yield a better control response. The output of the PID controller for the outer control loop determines the setpoint for the PID controller of the inner control loop. The outer loop controller controls the primary process variable of the system, while the inner loop controller controls a system parameter that tends to change more rapidly in order to minimize the error of the outer control loop. The two controllers have separate tuning values, which can be optimized for the part of the system that they control. This enables an overall better control response for the system as a whole.
 
 ## High-Level Description of the Pi Drone PID Stack
 The drone platform utilizes a number of PID controllers to autonomously control its motion. The standard PID class implements the discrete version of the ideal PID control function. The control output returned is the sum of the proportional, integral, and derivative terms, as well as an offset constant term, which is the base control output before being corrected in response to the calculated error. A specified control range keeps the control output within predefined bounds.
 
 ### Cascaded Position and Velocity Controllers
-The flight command for the drone consists of four pulse-width modulation values that are sent to the flight controller and translated into motor speeds to set the drone's roll, pitch, yaw, and throttle, respectively. When the drone attempts to hover with zero velocity, or when a velocity command is sent from the web interface, the error between the commanded velocity and the actual velocity of the drone (determined by optical flow) is calculated. The x-velocity error serves as input to the roll PID controllers, the y-velocity error serves as input to the pitch PID controllers, and the z-velocity error serves as input to the throttle PID controllers. The output of each controller is then used to set the roll, pitch, and throttle commands to achieve the desired velocity.  
+The flight command for the drone consists of four pulse-width modulation (pwm) values that are sent to the flight controller and translated into motor speeds to set the drone's roll, pitch, yaw, and throttle, respectively. When the drone attempts to hover with zero velocity, or when a velocity command is sent from the web interface, the error between the commanded velocity and the actual velocity of the drone (determined by optical flow) is calculated. The x-velocity error serves as input to the roll PID controllers and the y-velocity error serves as input to the pitch PID controllers. We do not use the z-velocity error because the z-position is directly measured by the infrared sensor, and is thus easier to control, and the camera estimation of the z-velocity is not as accurate. The output of each controller is then used to set the roll, pitch, and throttle commands to achieve the desired velocity.
 
 To accomplish position hold on the drone, cascaded PID controllers are utilized. The outer control loop is concerned with the position of the drone, and the inner control loop changes the velocity of the drone in order to attain the desired position. The two position PID controllers (one for front-back planar motion and the other for left-right planar motion) each calculate a setpoint velocity based on position error, which serves as input to the velocity PID controller. The roll, pitch, and throttle PID controllers then compute the appropriate flight commands based on the difference between the current velocity and this setpoint velocity.  
 
