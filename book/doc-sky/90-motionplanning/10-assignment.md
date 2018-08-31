@@ -30,7 +30,7 @@ collisions between the arm and the station would be catastrophic.
 ## Implementing the RRT
 
 Implement the skeleton methods for a 2d RRT in python following [this
-paper](rrtpaper.pdf) and rrt.py(found in the Github Classroom).
+paper](https://cs.brown.edu/courses/cs1951r/assignments/motionplanning/rrtpaper.pdf) and rrt.py(found in the Github Classroom).
 
 <!-- ![](rrt.png) -->
 
