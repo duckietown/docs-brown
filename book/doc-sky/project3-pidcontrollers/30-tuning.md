@@ -6,7 +6,7 @@ Each drone is built a little differently. Due to differences in the weight distr
 
 In order to tune the altitude pid, the planar motion of the drone needs to be controlled. This is important so that the drone does not fly uncontrollably across the room while you're trying to tune its altitude controller. To control the drone's planar motion while you're tuning the altitude, we've created and tuned PIDs to do this for you, but you will need to tune the initial low-rate I-terms to account for the uneven weight distribution specific to your drone. You will use our altitude pid to tune the planar controllers, and then you will tune your altitude pid with the tuned planar controllers.
 
-Write brief answers to all exercises in <i>answers_pid.md</i>.   
+Write brief answers to all exercises in <i>answers_pid.md</i>.
 
 ## Problem 1: Understanding the Controller
 Our controller is a dual I-term PID controller. The high-rate I-term changes quickly, allowing fast response to changes. The low-rate I-term changes slowly, allowing the drone to adjust to systemic sources of error such as poor weight distribution or a damaged propeller. The PIDs have been tuned by us and should not need significant modification for your specific drone, but the initial low I-terms do need to be adjusted based on your specific drone.
@@ -25,10 +25,10 @@ The first step in the tuning process is finding an initial throttle value that a
 ## Problem 3: Set the Trim
 Next you will set the trim on roll and pitch. You will do this by tuning the low I-terms to adjust for the static errors that exist on your drone. The default value is 0, and positive values will move the drone to the right or forward, and negative to the left or backward, depending on the axis you're modifying. Note that you may need to repeat this process periodically, for example after a crash or the like.
 When performing this process, each time make sure that you:
-* Place the battery in the same place each time as much as possible so the weight is distributed the same  
-* Tape or velcro the battery so it does not move  
-* Plug the flight controller while the struts are fully engaged and the drone is level, so the gyros are well calibrated.   
-* Always place the drone so that the camera is closer to you and the skyline is farther away  
+* Place the battery in the same place each time as much as possible so the weight is distributed the same
+* Tape or velcro the battery so it does not move
+* Plug the flight controller while the struts are fully engaged and the drone is level, so the gyros are well calibrated.
+* Always place the drone so that the camera is closer to you and the skyline is farther away
 
 ### Exercises
   1. Modify <i>pid_class.py</i> to print out the low and high rate integral terms of the roll and pitch PIDs. Find the block of code shown below and uncomment the print statements.
@@ -52,12 +52,14 @@ Now that the planar PIDs are tuned, and you have found a value for `throttle_low
 ### Exercises
 1. Prepare your drone to fly. Go to \`4 in the screen, and press ctrl-c to kill the script currently running. Run `python student_pid_controller.py` and then fly your drone! Empirically tune your altitude pid gains on your drone as you did in the simulator portion of this project <sup id="a3">[3](#f3)</sup> and report your final tuning values.
 
-Take a video of your drone flying first using our altitude pid by running <i>pid_controller.py</i> in \`4, then take a video of your tuned pid by running <i>student_pid_controller.py</i> in \`4. See if you can get yours to track the altitude setpoint better than ours! The drone should get to the setpoint quickly and stay there without bouncing up and down. *Submit these videos in Github Classroom as 2.4.1 and 2.4.2*
+Take a video of your drone flying first using our altitude pid by running <i>pid_controller.py</i> in \`4, then take a video of your tuned pid by running <i>student_pid_controller.py</i> in \`4. See if you can get yours to track the altitude setpoint better than ours! The drone should get to the setpoint quickly and stay there without bouncing up and down. *Submit these videos in Github Classroom as 'original_controller' and 'student_controller'*
 
 ## Problem 5: Position Control
-Once you have achieved good trim, you can try position control. Try to fly your drone for an entire battery without touching the controls! Do not try this until your I-term preloads have been tuned as described above.
+As described in the introduction, when switching from velocity control to position control, a cascaded PID controller is used. The position controller forms the outer loop which provides setpoints for the inner loop velocity controller.
 
-This video demonstrates the drone doing a zero velocity hover and drifting in the scene. Then we turn on position hold (you can tell because it drops the throttle as it takes over, and holds its position for several minutes.
+Once you have achieved good trim and can fly steady with velocity control, you can try position control. Try to fly your drone for an entire battery without touching the controls! Do not try this until your I-term preloads have been tuned as described above.
+
+This video demonstrates the drone doing a zero velocity hover and drifting in the scene. Then we turn on position hold (you can tell when it is engaged when the drone's throttle drops) and it holds its position for several minutes.
 
 Then we turn off the position hold so you can see it drift again, and then turn it on again at the end and land. You can tell when it is turned on because we move the drone back to the center of the flight area before each hold.
 
@@ -74,13 +76,18 @@ Position hold works best over a textured surface with lots of visual contrast. E
 
 3. Look in the vision tab in the screen. You should see it printing `max_first_counter` (and some other stuff). Pay attention to `max_first_counter` and observe whether/when it is seeing the first frame. Higher is better! Typical values are around 30 or 40, but a very good run might be 100 frames. Report your best max counts!
 
-4. Turn off position hold with _v_ and describe how the drone's behavior changes with position vs. velocity hold.
+4. Turn off position hold with _v_ and make sure there is room to fly to the right. Press and hold 'L' and observe the drone's motion, and release 'L' to stop the drone from moving. Explain what happens to the following key terms that causes the drone to move when you press 'L' and stop when you release: setpoint, error, control variable, process variable, proportional term, integral term, derivative term. We are looking only for a higher level description to demonstrate understanding of the PID controllers.
 
-5. Try flying in velocity mode over a blank white poster board (there is one in 121). Be careful! How does the drone's behavior change?
+5. While flying in position control, make sure there is room for the drone to fly to the right and then take note of the desired position in \`4 of the screen. Now press the 'L' key in the user interface and note the new desired x-position of the drone; it should be 0.1m to the right of the drone's last position. Explain what happens to the following key terms of the outer control loop, the position PID, that causes the drone to move and stop 0.1m to the right after you press 'L' in position control: setpoint, error, control variable, process variable, proportional term, integral term, derivative term. We are looking only for a higher level description to demonstrate understanding of cascaded PID controllers.
 
-6. Now try over a uniform textured surface such as the floor in 121. Try a position hold. How well does it work? How long is it able to hold position?
+6. When the 'L' is first pressed, the setpoint changes drastically causing the derivative term to spike. Briefly explain why the derivative term spikes, and one possible way to prevent this spike.
 
-Take a video of your drone flying in velocity control, and then engage position control. *Submit this video in Github Classroom as 2.5.1*
+Take a video of your drone flying in velocity control, and then engage position control. *Submit this video in Github Classroom as 'postion_control'*
+
+### Optional Exercises (not graded, but cool to try!)
+7. Try flying in velocity mode over a blank white poster board (there is one in 121). Be careful! How does the drone's behavior change?
+
+8. Now try over a uniform textured surface such as the floor in 121. Try a position hold. How well does it work? How long is it able to hold position?
 
 ###### Footnotes
 [<b id="f1">1</b>](#a1) It is important to do these tests over a textured surface so that the planar motion of the drone can be properly sensed using the optical flow vecotors of the camera (more on this in another section)
