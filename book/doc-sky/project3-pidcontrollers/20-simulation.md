@@ -19,8 +19,12 @@ To test your PID, run `python sim.py` on your base station or a department compu
 
 You will need _numpy_, _matplotlib_, and _yaml_ to run the simulation. To install these dependencies, run `pip install numpy matplotlib pyyaml`.  
 
+Write brief answers to all exercises in <i>answers_pid.md</i>.   
+
 ## Problem 1:  Implement an Idealized PID
-Write brief (one sentence is fine) answers to the following questions in <i>altitude_answers.pdf</i>.  
+
+### Exercises
+
   1. Implement the step method to return the constant $K$. At what value of
   $K$ does the drone takeoff? What could happen if $K$ were set too high on a real drone? Set $K$ to 1300 for the remainder of the questions.
   2. Implement the P term. What happens when the absolute value of $K_p$ is very large? What happens when its absolute value is very small? Can you tune the P term to stop oscillations? Why or why not?  
@@ -34,21 +38,26 @@ Write brief (one sentence is fine) answers to the following questions in <i>alti
 
 Now, we introduce latency!  Run the simulation as `python sim.py -l 6` to
 introduce 24 milliseconds of latency (six steps of latency running at
-25 hz).  Tune the constants in your PID controller to the best of your
-abilities. The drone should chase the setpoint very closely, but will
-converge more slowly when the setpoint is still. Report your tuning values and compare them to the values you obtained in problem 1. Explain the effect of latency on each control term.  
+25 hz).  
+
+### Exercises
+
+  1. Tune the constants in your PID controller to the best of your abilities. The drone should chase the setpoint very closely, but will converge more slowly when the setpoint is still. Report your tuning values.  
+  2. Compare your tuning values to the values you obtained in problem 1.  
+  3. Explain the effect of latency on each control term.  
 
 ## Problem 3: Tuning a PID with Latency, Noise, and Drag
 
 In the most realistic mode, you will tune a controller with latency,
 noise, and a drag coefficient.  You can do this with the command line
 arguments `python sim.py -l 3 -n 0.5 -d 0.02` to be most realistic to
-real-world flight. Tune with these arguments to be as good as
-possible. Report your tuning values and compare them to the values from problems 1 and 2.  
+real-world flight.
+
+### Exercises
+
+  1. Tune with these arguments to be as good as possible. Report your tuning values.  
+  2. Compare your tuning values to the values from problems 1 and 2.  
 
 Run `python sim.py -h` to see the other simulator parameters. We
 encourage you to experiment with those and observe their
 effects on your controller.
-
-## Checkoff:
-Come see a TA to show off your PID controller using the tuning values from problems 1, 2, and 3!  We will assess the speed the drone converges to the setpoint and the steady-state performance.  
