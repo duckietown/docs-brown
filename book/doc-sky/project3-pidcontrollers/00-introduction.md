@@ -68,8 +68,7 @@ By calculating the instantaneous rate of change of the system's error and using 
 ![Effect of Control Terms](control_term_effects_table.png)
 
 #### Ziegler-Nichols Closed-Loop Tuning Method
-Ziegler and Nichols developed two techniques for tuning PID controllers, a closed-loop tuning method and an open-loop tuning method. With the closed-loop tuning method, the PID
-controller is initially turned into a P controller with $K_p$ set to zero. $K_p$ is slowly increased until the system exhibits stable oscillatory behavior, at which point it is denoted $K_u$, the ultimate or critical gain. As such, $K_u$ should be the smallest $K_p$ value that causes the control loop to have regular oscillations. The ultimate or critical period $T_u$ of the oscillations needs to be measured. Then, using the constants determined experimentally by Ziegler and Nichols, the controller gain values can be computed as follows:  
+Ziegler and Nichols developed two techniques for tuning PID controllers, a closed-loop tuning method and an open-loop tuning method. With the closed-loop tuning method, the PID controller is initially turned into a P controller with $K_p$ set to zero. $K_p$ is slowly increased until the system exhibits stable oscillatory behavior, at which point it is denoted $K_u$, the ultimate or critical gain. As such, $K_u$ should be the smallest $K_p$ value that causes the control loop to have regular oscillations. The ultimate or critical period $T_u$ of the oscillations needs to be measured. Then, using the constants determined experimentally by Ziegler and Nichols, the controller gain values can be computed as follows:  
 
 $$ K_p = 0.6K_u $$
 $$ K_i = 2K_p / (T_u) $$
