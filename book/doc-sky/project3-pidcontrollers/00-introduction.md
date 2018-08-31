@@ -67,6 +67,16 @@ By calculating the instantaneous rate of change of the system's error and using 
 #### Summary of Control Terms  
 ![Effect of Control Terms](control_term_effects_table.png)
 
+#### Ziegler-Nichols Closed-Loop Tuning Method
+Ziegler and Nichols developed two techniques for tuning PID controllers, a closed-loop tuning method and an open-loop tuning method. With the closed-loop tuning method, the PID
+controller is initially turned into a P controller with $K_p$ set to zero. $K_p$ is slowly increased until the system exhibits stable oscillatory behavior, at which point it is denoted $K_u$, the ultimate or critical gain. As such, $K_u$ should be the smallest $K_p$ value that causes the control loop to have regular oscillations. The ultimate or critical period $T_u$ of the oscillations needs to be measured. Then, using the constants determined experimentally by Ziegler and Nichols, the controller gain values can be computed as follows:  
+
+$$ K_p = 0.6K_u $$
+$$ K_i = 2K_p / (T_u) $$
+$$ K_d = K_p(T_u) / 8 $$
+
+Although the Ziegler-Nichols method may yield initial tuning values that work relatively well, the system's control loop can be tuned further by adjusting the controller gain values based on the general effects of each control term as explained above.
+
 ### Potential Problems
 In real-world applications, the PID controller exhibits issues that require modifications to the general algorithm. In certain situations, one may find that a P-Controller, PD-Controller (eliminating the integral term), or a PI-Controller (eliminating the derivative term) are more advantageous controllers for the system. Alternatively, different techniques can be employed to counteract the problems that may affect the usability of a control term.
 

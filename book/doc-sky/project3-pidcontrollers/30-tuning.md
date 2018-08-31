@@ -83,8 +83,8 @@ Position hold works best over a textured surface with lots of visual contrast. E
 Take a video of your drone flying in velocity control, and then engage position control. *Submit this video in Github Classroom as 2.5.1*
 
 ###### Footnotes
-[<b id="f1">1</b>](#a1) It is important to do these tests over a textured surface so that the planar motion of the drone can be properly sensed using the optical flow vecotors of the camera (more on this in another section)
+[<b id="f1">1</b>](#a1) It is important to do these tests over a textured surface so that the planar motion of the drone can be properly sensed using the optical flow vectors of the camera (more on this in another section)
 
-[<b id="f2">2</b>](#a2) You can make your future life easier by modifying pi.screenrc to always run your script by changing ```python pid_controller.py\n``` to ```python student_pid_controller.py\n```
+[<b id="f2">2</b>](#a2) You can make your future life easier by modifying _pi.screenrc_ to always run your script by changing `python pid_controller.py\n` to `python student_pid_controller.py\n`
 
-[<b id="f3">3</b>](#a3) Try to just focus on the the altitude while doing this and ignore the planar motion because it is easiest to focus on one axis at a time when tuning the pids. The planar axes can be re-tuned after you tune your altitude pid if need be.
+[<b id="f3">3</b>](#a3) Try to just focus on the the altitude while doing this and ignore the planar motion because it is easiest to focus on one axis at a time when tuning the PIDs. The planar axes can be re-tuned after you tune your altitude pid if need be.
