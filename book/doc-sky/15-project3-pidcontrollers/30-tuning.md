@@ -56,7 +56,7 @@ Now that the planar PIDs are tuned, and you have found a value for `throttle_low
 
 To do this, we'll quit the <i>pid_controller.py</i> that runs in \`4 of the screen, and we'll instead run <i>student_pid_controller.py</i><sup id="a2">[2](#f2)</sup>. This will allow your PID to run alongside our planar PIDs, and on top of our throttle low-rate I-term which you found previously. Your PID will be responsible for keeping the drone flying steady vertically.  
 
-**Exercises**
+**Exercises**  
 Change directories to `~/ws/src`. Run `git clone https://github.com/h2r/project3pid-yourGithubName.git`. Then change directories back to `~/ws/` and run `catkin_make --pkg project3pid-yourGitHubName`.
 
 Prepare your drone to fly and then navigate to \`4 of the screen. Press ctrl-c to quit the pid_controller.  
