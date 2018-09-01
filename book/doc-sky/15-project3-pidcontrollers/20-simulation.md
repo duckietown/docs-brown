@@ -13,6 +13,8 @@ $$K_p, K_i, K_d, K = Constants \; and \; Offset \; Term$$
 $$e(t_k) = Error \; at \; Time \; t_k$$
 $$\Delta t = Time \; Elapsed \; from \; Previous \; Iteration$$
 
+Notice that there is an extra offset term $K$ added to the control function. This is the base PWM value/throttle command before the three control terms are applied to correct the error in the system.
+
 To tune your PID, set the parameters ($K_p, K_i, K_d, K$) in <i>z_pid.yaml</i>.  
 
 To test your PID, run `python sim.py` on your base station or a department computer but not on your drone, since it requires a graphical user interface to visualize the output. The PID class in <i>student_pid_class.py</i> will automatically be used to control the simulated drone. The _up_ and _down_ arrow keys will change the setpoint, and _r_ resets the simulation.  
