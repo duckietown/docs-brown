@@ -1,4 +1,5 @@
 # Part 2: Tuning {#pid-assignment status=ready}
+
 In this portion of the project, you will be tuning the planar pid controllers that we have implemented for you, and then transferring the altitude pid you created onto your drone. You will then tune the pid gains on your drone as you did in the simulator.
 
 ## Trimming your Drone
@@ -38,21 +39,21 @@ When performing this process, each time make sure that you:
   print "Roll  low, hi:", self.roll_low._i, self.roll._i
   print "Pitch low, hi:", self.pitch_low._i, self.pitch._i
   ```
-  Perform one flight. After the drone takes off, do not give it movement commands but allow it to drift. (Don’t allow it to hit anything though! You might have to kill or take over if it drifts a lot.) Note the following from this flight (you do not need to record answers to these questions):
-      * Which way does it drift?
-      * How much does it drift? (Or in other words, roughly how long could you stay within a square meter of where you started?)
-      * What are the low frequency I terms for roll and pitch after your flight?
-      * Were they moving up or down?
+  Perform one flight. After the drone takes off, do not give it movement commands but allow it to drift. (Don’t allow it to hit anything though! You might have to kill or take over if it drifts a lot.) Note the following from this flight (you do not need to record answers to these questions):  
+  * Which way does it drift?  
+  * How much does it drift? (Or in other words, roughly how long could you stay within a square meter of where you started?)  
+  * What are the low frequency I terms for roll and pitch after your flight?  
+  * Were they moving up or down?  
 
   At the end of the flight, the low-rate I-terms will have moved. Check what these values are by looking at \`4 in the screen. Set `self.roll_low._i` and `self.pitch_low._i` to these new values. Repeat this process until these values converge. Note that differences in the battery placement will cause enough change in the weight distribution to need very different initial values. You might need three or four flights until you converge. Typical values range between -20 and 20, but can also have a greater magnitude depending on the weight distribution. Report your **final** roll and pitch low-rate I-terms.
 
 ## Problem 4: Flying with Your Altitude PID!
 Now that the planar PIDs are tuned, and you have found a value for `throttle_low.init_i` that allows the drone to take off at a reasonable rate, you will be using your altitude PID to control the height of the drone. To tune your altitude PID, you will first use the Ziegler-Nichols tuning method to generate an initial set of tuning values. You will then fine tune these values similar to how you tuned the drone in simulation.
 
-To do this, we'll quit the <i>pid_controller.py</i> that runs in \`4 of the screen, and we'll instead run <i>student_pid_controller.py</i><sup id="a2">[2](#f2)</sup>. This will allow your PID to run alongside our planar PIDs, and on top of our throttle low-rate I-term which you found previously. Your PID will be responsible for keeping the drone flying steady vertically.
+To do this, we'll quit the <i>pid_controller.py</i> that runs in \`4 of the screen, and we'll instead run <i>student_pid_controller.py</i> <sup id="a2">[2](#f2)</sup>. This will allow your PID to run alongside our planar PIDs, and on top of our throttle low-rate I-term which you found previously. Your PID will be responsible for keeping the drone flying steady vertically.
 
 ### Exercises
-  1. Use the `scp` command to transfer <i>student_pid_controller.py</i>, <i>student_pid_class.py</i>, and <i>z_pid.yaml</i> to the scripts folder of the pidrone_pkg on your drone (the command should be `scp  <PATH TO FILE> pi@<DRONE HOSTNAME>:/home/pi/ws/src/pidrone_pkg/scripts/`).    
+  1. Use the `scp` command to transfer <i>student_pid_controller.py</i>, <i>student_pid_class.py</i>, and <i>z_pid.yaml</i> to the scripts folder of the pidrone_pkg on your drone.
   On your drone, in _z_pid.yaml_, set $K$ to 1250 and the rest of the gain constants to 0. Now, go to \`4 in the screen, and press ctrl-c to kill the script currently running. Run `python student_pid_controller.py` and then fly your drone! Slowly increase $K_p$ until you can see the drone moving up and down with uniform oscillations. Record your final $K_p$ value as $K_u$, the ultimate gain.
 
   2. Fly your drone and pause the altitude graph on the web interface when you see two peaks. Find the time difference between these two peaks and record this value as $T_u$, the ultimate period.
@@ -68,11 +69,9 @@ As described in the introduction, when switching from velocity control to positi
 
 Once you have achieved good trim and can fly steady with velocity control, you can try position control. Try to fly your drone for an entire battery without touching the controls! Do not try this until your I-term preloads have been tuned as described above.
 
-This video demonstrates the drone doing a zero velocity hover and drifting in the scene. Then we turn on position hold (you can tell when it is engaged when the drone's throttle drops) and it holds its position for several minutes.
+This [video](https://www.youtube.com/embed/WTohnsKs7dU) demonstrates the drone doing a zero velocity hover and drifting in the scene. Then we turn on position hold (you can tell when it is engaged when the drone's throttle drops) and it holds its position for several minutes.
 
 Then we turn off the position hold so you can see it drift again, and then turn it on again at the end and land. You can tell when it is turned on because we move the drone back to the center of the flight area before each hold.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/WTohnsKs7dU" frameborder="0" allowfullscreen></iframe>
 
 Engage position control in two steps. First you have to tell the drone to “remember” a frame. You can do this using the _r_ key. This will save the frame at the drone’s current location. Next you have to engage or disengage position control. You can engage this mode with the _p_ key, and disengage with _v_ for velocity control. So the procedure is to first save a frame (target location for the position hold) using _r_ and then shortly after (before drifting too much) type _p_.
 

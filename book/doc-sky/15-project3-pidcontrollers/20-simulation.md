@@ -9,9 +9,9 @@ You should implement the discretized version of the PID control function in <i>s
 
 $$u(t) = K_pe(t_k) + K_i\sum_{i=0}^k e(t_i)\Delta t + K_d\frac{e(t_k)-e(t_{k-1})}{\Delta t} + K$$
 
-$$K_p, K_i, K_d, K = Constants and Offset Term$$
-$$e(t_k) = Error at Time t_k$$
-$$\Delta t = Time Elapsed from Previous Iteration$$
+$$K_p, K_i, K_d, K = Constants \; and \; Offset \; Term$$
+$$e(t_k) = Error \; at \; Time \; t_k$$
+$$\Delta t = Time \; Elapsed \; from \; Previous \; Iteration$$
 
 To tune your PID, set the parameters ($K_p, K_i, K_d, K$) in <i>z_pid.yaml</i>.  
 

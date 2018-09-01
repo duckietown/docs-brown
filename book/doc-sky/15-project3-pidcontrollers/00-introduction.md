@@ -50,7 +50,10 @@ $$u(t) = K_pe(t_k) + K_i\sum_{i=0}^k e(t_i)\Delta t + K_d\frac{e(t_k)-e(t_{k-1})
 
 The figure below summarizes the inclusion of a PID controller within a basic control loop.
 
-![PID Controller Block Diagram](pid_controller_block_diagram.png)
+<figure>
+    <figcaption>PID Controller Block Diagram</figcaption>
+    <img style='width:35em' src="pid_controller_block_diagram.png"/>
+</figure>
 
 ### Tuning
 Tuning a PID controller refers to setting the control parameters $K_p$, $K_i$, and $K_d$ to optimal values in order to obtain the ideal control response. After understanding the general effects of each control term on the control response, tuning can be accomplished through trial-and-error or by other specialized tuning schemes, such as the Ziegler-Nichols tuning method. A graph of the process variable or system error can display the effects of the controller terms on the system; the control parameters can then be modified appropriately to optimize the control response. Although the independent effects of each parameter are explained below, the three control terms may be correlated and so changing one parameter may impact the influence of another. The general effects of each term are therefore useful as reference, but the actual effects will vary depending on the specific control system.
@@ -65,7 +68,10 @@ The integral term takes into account past error, as well as the duration of the 
 By calculating the instantaneous rate of change of the system's error and using this slope for linear extrapolation, the derivative term anticipates future error. While the proportional and integral terms both act to move the process variable to the setpoint, the derivative term seeks to dampen their efforts and decrease the amount the system overshoots in response to a large change in error (which would greatly affect the magnitude of the proportional and integral contributions to the overall control output). If set at an appropriate level, the derivative term reduces oscillations, which decreases the settling time and improves the stability of the system. The derivative term has negligible effects on steady-state error and only decreases the rise time by a minor amount.
 
 #### Summary of Control Terms
-![Effect of Control Terms](control_term_effects_table.png)
+<figure>
+    <figcaption>General Effects of Control Terms</figcaption>
+    <img style='width:35em' src="control_term_effects_table.png"/>
+</figure>
 
 #### Ziegler-Nichols Closed-Loop Tuning Method
 Ziegler and Nichols developed two techniques for tuning PID controllers, a closed-loop tuning method and an open-loop tuning method. With the closed-loop tuning method, the PID controller is initially turned into a P controller with $K_p$ set to zero. $K_p$ is slowly increased until the system exhibits stable oscillatory behavior, at which point it is denoted $K_u$, the ultimate or critical gain. As such, $K_u$ should be the smallest $K_p$ value that causes the control loop to have regular oscillations. The ultimate or critical period $T_u$ of the oscillations needs to be measured. Then, using the constants determined experimentally by Ziegler and Nichols, the controller gain values can be computed as follows:  
