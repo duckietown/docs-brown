@@ -25,7 +25,7 @@ Write brief answers to all exercises in <i>answers_pid.md</i>.
 
 ## Problem 1:  Implement an Idealized PID
 
-### Exercises
+**Exercises**
 
   1. Implement the step method to return the constant $K$. At what value of
   $K$ does the drone takeoff? What could happen if $K$ were set too high on a real drone? Set $K$ to 1300 for the remainder of the questions.
@@ -42,7 +42,7 @@ Now, we introduce latency!  Run the simulation as `python sim.py -l 6` to
 introduce 24 milliseconds of latency (six steps of latency running at
 25 hz).  
 
-### Exercises
+**Exercises**
 
   1. Tune the constants in your PID controller to the best of your abilities. The drone should chase the setpoint very closely, but will converge more slowly when the setpoint is still. Report your tuning values.  
   2. Compare your tuning values to the values you obtained in problem 1.  
@@ -55,7 +55,7 @@ noise, and a drag coefficient.  You can do this with the command line
 arguments `python sim.py -l 3 -n 0.5 -d 0.02` to be most realistic to
 real-world flight.
 
-### Exercises
+**Exercises**
 
   1. Tune with these arguments to be as good as possible. Report your tuning values.  
   2. Compare your tuning values to the values from problems 1 and 2.  
