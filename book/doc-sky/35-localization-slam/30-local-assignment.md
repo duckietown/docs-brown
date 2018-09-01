@@ -19,7 +19,7 @@ Implement a method for the ParticleFilter class which adds some random Gaussian 
 Implement a method for the ParticleFilter class which sets the weight of each particle inversely proportional to the particle's distance from the desired pose.
 
 **Problem 4: Resampling**
-Implement a method for the ParticleFilter class which uses the particle weights to resample the particles and create a new set of particles. The goal is for each particle to be resampled with a probability that corresponds to its weight, therefore the particle set converges on the desired pose. You will want to use copy.deepcopy to create a copy of each re-sampled particle.
+Implement a method for the ParticleFilter class which uses the particle weights to resample the particles and create a new set of particles. The goal is for each particle to be resampled with a probability that corresponds to its weight, therefore the particle set converges on the desired pose (particles closest to the target pose are more likely to be resampled). You will want to use copy.deepcopy to create a copy of each re-sampled particle.
 
 *Hint:* try using numpy.random.multinomial to generate the set of new samples.
 
@@ -29,7 +29,7 @@ Finally, implement a method for the ParticleFilter class which updates the filte
 **Problem 6: Optimization**
 Now that your filter is running, let's consider how we can optimize this process so that localization will run quickly in real time on the PiDrone.
 
-Python data structures and their operations are relatively slow compared to their Numpy counterparts. You will use Numpy arrays to avoid storing the set of particle poses and their weights as lists of Python objects. Remove your Particle class, and replace it with Numpy arrays to hold the sets of all particle poses and weights. Adjust the rest of your code accordingly.
+Python data structures and their operations are relatively slow compared to their Numpy counterparts because Numpy is written in C which is a fast language. You will use Numpy arrays to avoid storing the set of particle poses and their weights as lists of Python objects. Remove your Particle class, and replace it with two Numpy arrays which hold the sets of all particle poses and weights. Adjust the rest of your code accordingly.
 
 Once the particle filter animation is working properly, you are ready to implement localization on the drone!
 
@@ -47,7 +47,7 @@ localization_helper contains the particle filter class and its methods. Many of 
 ## Testing
 To test the functionality of your localization code, you may fly the drone while running vision_localization_onboard in the vision window with your localization_helper code in the scripts folder. Follow the Pidrone Vision Instructions to see how to change the map. You should see poses printed out which correspond to the drone's position over the map.
 
-You may also use animate_particle_filter.py to view the animation of your particle filter. Print the (x,y) pose of each particle on separate lines in a text file to be read by animate_particle_filter (x and y on separate lines). Make sure you adjust animate_particle_filter.py to reflect the number of particles you are using!
+You may also use animate_particle_filter.py to view the animation of your particle filter. Print the (x,y) pose of each particle on separate lines in a text file to be read by animate_particle_filter, put x and y pose coordinates on separate lines. Make sure you adjust animate_particle_filter.py to reflect the number of particles you are using!
 
 ## Checkoff
 Before you come to TA hours to have your project graded, you should verify that your code has the following functionality:

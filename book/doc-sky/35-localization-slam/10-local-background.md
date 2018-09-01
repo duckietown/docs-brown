@@ -1,8 +1,9 @@
 # Localization Background {#localization-slam-assignment status=ready}
 
+## Bayes Filter
 Monte Carlo Localization is a type of Bayes filter. You'll remember the general Bayes Filter algorithm from the UKF project earlier in the course, but an overview is reproduced here for your convenience.
 
-The Bayes Filter incorporates information available to the robot at each point in time to produce an accurate estimate of the robot's position. Its core idea is to take advantage of data from two sources of information: the controls given to the robot and the measurements detected by the robot's sensors.
+The Bayes Filter incorporates information available to the robot at each point in time to produce an accurate estimate of the robot's position. Its core idea is to take advantage of data from two sources: the controls given to the robot and the measurements detected by the robot's sensors.
 
 At each new time step, the Bayes filter recursively produces a state estimate, represented as a probability density function called the *belief.* The belief assigns to every possible pose in the state space of the robot the probability that it is the robot's true location. This probability is found in two steps called **prediction** and **update**.
 
@@ -23,7 +24,7 @@ ie. the probability that the current measurement $z_t$ is observed given the sta
 You may have noticed that each of the above steps required computing a probability stated like "the probability of x given y." Such a probability is denoted $p(X|Y)$ and may be calculated by the famous Bayes Theorem for conditional probabilities, hence the name of the algorithm.
 
 Now, let's take a look at the Bayes Filter:  
-$\hspace{5mm} \text{Bayes\_Filter}(bel(x_{t-1}), u_{t}, z_{t}):$  
+$\hspace{5mm} \text{Bayes_Filter}(bel(x_{t-1}), u_{t}, z_{t}):$  
 $\hspace{10mm} \text{for all } x_t \text{ do}:$  
 $\hspace{15mm} \bar{bel}(x_t) = \int p(x_{t}|u_{t},x_{t-1})bel(x_{t-1})dx$  
 $\hspace{15mm} bel(x_t) = \eta p(z_{t}|x_{t})\bar{bel}(x_t)$  
@@ -54,7 +55,7 @@ The takeaway from the above? Motion *decreases* certainty and measurement *incre
 ## Monte-Carlo Localization
 The phrase "Monte Carlo" refers to the principle of using random sampling to model a complicated deterministic process. MC localization has become a very popular algorithm in robotics. Rather than represent the belief as a probability distribution over the entire state space, MC localization randomly samples from the belief to save computational time. This method is well suited to our scenario since the Raspberry Pi is a rather weak computer.
 
-MC localization is a *particle filter* algorithm. In our implementation, we will use several **particles** which each represent a possible position of the drone. In each time step (for us defined as a new frame captured by the drone's camera) we will apply a *motion prediction* to adjust the poses of the particles, as well as a *measurement update* to assign a probability to each particle. This process is analogous to Bayes Filtering.
+MC localization is a *particle filter* algorithm. In our implementation, we will use several **particles** which each represent a possible position of the drone. In each time step (for us defined as a new frame captured by the drone's camera) we will apply a *motion prediction* to adjust the poses of the particles, as well as a *measurement update* to assign a probability or *weight* to each particle. This process is analogous to Bayes Filtering.
 
 Finally, at each time step we *resample* the particles. Each particle has a probability of being resampled that is proportional to its weight. Over time, particles with less accurate positions are weeded out, and the particles should converge on the true location of the drone!
 
@@ -67,8 +68,8 @@ The following diagram shows the operation of MC Localization:
 
 LEGAL IMAGE FREM STEFANIE'S SLIDES HERE
 
- a. Initialize a set of particles in random positions.
- b. Weight the set of particles based on their nearness to the doors
- c. Resample a new set of particles around the most likely positions, apply motion prediction
- d. Weight particles based on their nearness to the doors
- e. Resample and motion prediction
+ a. Initialize a set of particles in random positions.  
+ b. Weight the set of particles based on their nearness to the doors  
+ c. Resample a new set of particles around the most likely positions, apply motion prediction  
+ d. Weight particles based on their nearness to the doors  
+ e. Resample and motion prediction  
