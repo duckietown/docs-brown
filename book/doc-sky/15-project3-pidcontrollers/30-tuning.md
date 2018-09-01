@@ -1,6 +1,6 @@
 # Part 2: Tuning {#pid-assignment status=ready}
 
-In this portion of the project, you will be tuning the planar PID controllers that we have implemented for you, and then transferring the altitude pid you created onto your drone. You will then tune the PID gains on your drone as you did in the simulator.
+In this portion of the project, you will be tuning the planar PID controllers that we have implemented for you, and then transferring the altitude PID you created onto your drone. You will then tune the PID gains on your drone as you did in the simulator.
 
 ## Trimming your Drone
 Each drone is built a little differently. Due to differences in the weight distribution and other factors, the drone will tend to initially drift in a particular direction.
@@ -43,7 +43,7 @@ Modify <i>pid_controller.py</i> to print out the low and high rate integral term
 
 You will also need to set the `verbose` variable to zero so that these print statements will not be overridden by the other print statements: `verbose = 0`  
 
-While flying, the low-rate I-terms will change to account for the static flight error, and when you disarm the drone, the initial low-rate I terms will be set to these changed values, thus allowing the low-rate I terms to start at this corrected value. Eventually, these values will converge, and your drone will no longer drift. Once converged, you will save the values by modify the variables `self.roll_low.init_i` and `self.pitch_low.init_i` in `pid_class.py` to the corresponding value printed in \`4 of the screen after disarming. This will store the initial low-rate I-terms between flights.  
+While flying, the low-rate I-terms will change to account for the static flight error, and when you disarm the drone, the initial low-rate I terms will be set to these changed values, thus allowing the low-rate I terms to start at this corrected value. Eventually, these values will converge, and your drone will no longer drift. Once converged, you will save the values by modifying the variables `self.roll_low.init_i` and `self.pitch_low.init_i` in `pid_class.py` to the corresponding value printed in \`4 of the screen after disarming. This will store the initial low-rate I-terms between flights.  
 
   1. Perform one flight. After the drone takes off, do not give it movement commands but allow it to drift.  
   2. Disarm the drone before it flies too far in any direction, and move the drone back to the center of the flying area.  
