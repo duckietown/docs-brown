@@ -1,26 +1,26 @@
-# Building {#part:building status=ready}
+<!-- # Building {#part:building status=ready} -->
 
-# Networking {#part:networking status=ready}
+<!-- # Networking {#part:networking status=ready} -->
 
-# Physics {#part:physics status=ready}
+<!-- # Physics {#part:physics status=ready} -->
 
-# Debugging {#part:debugging status=ready}
+<!-- # Debugging {#part:debugging status=ready} -->
 
-# Communications {#part:communications status=ready}
+<!-- # Communications {#part:communications status=ready} -->
 
-# Transforms {#part:transforms status=ready}
+<!-- # Transforms {#part:transforms status=ready} -->
 
-# Sensors {#part:sensors status=ready}
+<!-- # Sensors {#part:sensors status=ready} -->
 
-# Estimation {#part:estimation status=ready}
+<!-- # Estimation {#part:estimation status=ready} -->
 
-# Motion Planning {#part:planning status=ready}
+<!-- # Motion Planning {#part:planning status=ready} -->
 
-# PID and Controls {#part:planning status=ready}
+<!-- # PID and Controls {#part:planning status=ready} -->
 
-# Localization and SLAM {#part:planning status=ready}
+<!-- # Localization and SLAM {#part:localizaion_slam status=ready} -->
 
-# References {#part:references status=ready}
+<!-- # References {#part:references status=ready} -->
 
 
 

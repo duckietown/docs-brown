@@ -93,7 +93,7 @@ A 2D linear robot has three joints as depicted below. The distance between the
 first and second joint is 1m, the second and third is 3m, and the third and end
 is 2m.
 
-6.1. Implement the transformations in the [skeleton code](arm.py), so that the
+6.1. Implement the transformations in the skeleton code(provided in the Github Classroom), so that the
    arm joints move correctly and the base transformations are drawn. After you
    have implemented the transforms correctly, you should be able to see the
    arm's state as shown in the example image below. You should be able to move

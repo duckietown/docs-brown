@@ -14,7 +14,7 @@
 
 ## Manual Motion Planning
 
-The following problems will use the [arm.py code](arm.py). First we ask you to
+The following problems will use the arm.py code(in the Github Classroom). First we ask you to
 perform motion planning manually. This is surprisingly useful for understanding
 the robot's degrees of freedom and what it can do. It is also notable that
 manual motion planning is how the Canada Arm on the International Space Station
@@ -30,9 +30,9 @@ collisions between the arm and the station would be catastrophic.
 ## Implementing the RRT
 
 Implement the skeleton methods for a 2d RRT in python following [this
-paper](rrtpaper.pdf) and [rrt.py](rrt.py).
+paper](https://cs.brown.edu/courses/cs1951r/assignments/motionplanning/rrtpaper.pdf) and rrt.py(found in the Github Classroom).
 
-![](rrt.png)
+<!-- ![](rrt.png) -->
 
 Use the RRT to find a motion plan for a 2d robot for the same point as above.
 The `r` key starts running the RRT to expand it, and then pressing `r` again
