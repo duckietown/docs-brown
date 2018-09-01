@@ -1,4 +1,4 @@
-﻿# SLAM Assignment {#localization-slam-assignment status=ready}
+# SLAM Assignment {#localization-slam-assignment status=ready}
 
 The assignment is slightly different than the localization project due to some computational constraints. Unfortunately, SLAM is not fast enough to run in real time on board the raspberry pi. Instead, you will implement SLAM to run on some pre-recorded flight data (lists of keypoints, descriptors, and IR data). Your SLAM will run offline on the data, and you can judge the correctness of your implementation using animate_particle_filter.py to view the animation of the flight. We will provide you with an animation produced by our solution code for comparison.
 
@@ -40,3 +40,4 @@ You should follow the directions in PiDrone Vision Instructions to test your SLA
 ## Checkoff
 
 The checkoff for this project is simple, run your slam_helper.py implementation on the sample data for a TA. Show the TA the corresponding animation. If you would like to test your implementation in real time using an offboard computer, let your TA know during checkoff, and they will show you how to run SLAM offboard with your implementation.
+
