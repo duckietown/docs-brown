@@ -62,7 +62,7 @@ Prepare your drone to fly and then navigate to \`4 of the screen. Press ctrl-c t
 In this screen, change directories to `~/ws/src/project3pid` and modify `z_pid.yaml` by setting $K$ to 1250 and the rest of the gain constants to 0. Now run `python student_pid_controller.py`
 to fly with your altitude pid.
 
-Fly your drone and observe it's flight. Tune $K_p$ by slowly increasing it's value between flights until you can see the drone moving up and down with uniform oscillations. Each time you will need to quit the controller, edit `z_pid.yaml`, and then run `student_pid_controller.py` again to use the new pid terms.
+Fly your drone and observe its flight. Tune $K_p$ by slowly increasing its value between flights until you can see the drone moving up and down with uniform oscillations. Each time you will need to quit the controller, edit `z_pid.yaml`, and then run `student_pid_controller.py` again to use the new pid terms.
 
   1. Record your final $K_p$ value that causes uniform oscillations as $K_u$, the ultimate gain.
   2. Fly your drone and pause the altitude graph on the web interface when you see two peaks. Find the time difference between these two peaks and record this value as $T_u$, the ultimate period.
@@ -104,4 +104,4 @@ Take a one minute video of your drone flying in velocity control, and then engag
 
 [<b id="f2">2</b>](#a2) You can make your future life easier by modifying _pi.screenrc_ to always run your script by changing `python pid_controller.py\n` to `python student_pid_controller.py\n`
 
-[<b id="f3">3</b>](#a3) Try to just focus on the the altitude while doing this and ignore the planar motion because it is easiest to focus on one axis at a time when tuning the PIDs. The planar axes can be re-tuned after you tune your altitude pid if need be. It can be extremely useful to use graph on the web interface to visiualize the drone's ability to hover at the setpoint which starts as 0.3m
+[<b id="f3">3</b>](#a3) Try to just focus on the the altitude while doing this and ignore the planar motion because it is easiest to focus on one axis at a time when tuning the PIDs. The planar axes can be re-tuned after you tune your altitude pid if need be. It can be extremely useful to use graph on the web interface to visualize the drone's ability to hover at the setpoint which starts as 0.3m

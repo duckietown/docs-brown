@@ -63,3 +63,5 @@ real-world flight.
 Run `python sim.py -h` to see the other simulator parameters. We
 encourage you to experiment with those and observe their
 effects on your controller.
+
+**After you finish this part of the project, make sure that you push the final versions of the files that you modified to your Github repo.**
