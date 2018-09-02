@@ -1,5 +1,6 @@
 # Localization Assignment {#localization-slam-assignment status=ready}
 
+## Particle Filter
 First, you will complete a series of quick exercises which will guide you through implementing a simplified particle filter. You will be given two files:
 
     particle_filter.py
@@ -31,10 +32,19 @@ Now that your filter is running, let's consider how we can optimize this process
 
 Python data structures and their operations are relatively slow compared to their Numpy counterparts because Numpy is written in C which is a fast language. You will use Numpy arrays to avoid storing the set of particle poses and their weights as lists of Python objects. Remove your Particle class, and replace it with two Numpy arrays which hold the sets of all particle poses and weights. Adjust the rest of your code accordingly.
 
-Once the particle filter animation is working properly, you are ready to implement localization on the drone!
+## OpenCV
 
+Now we that know the basics of how a particle filter uses weights and resampling to converge on a target, we need to address how to use OpenCV to estimate the motion and global position of the flying drone. To do this, you will complete a short assignment using OpenCV functions to compute the translation in the plane between two drone poses, represented by two overlapping images taken on a real drone. You will be provided with the following files:
 
-**Implement Localization on the PiDrone**
+    image_A.png
+    image_B.png
+    compute_displacement.py
+
+compute_displacement.py will indicate the infrared reading taken by the drone at the time images A and B were taken. This is important because the real-world dimensions of a pixel in the image will vary based on the height of the drone. Why is this?
+
+Your job is to write code in compute_displacement.py that will extract features from both images and compute a transformation between them. Use this transformation to compute the x,y, and yaw displacement in *meters* between the two images. This is exactly how you will implement the motion model for localization: we consider the meter displacement between two drone images to be the motion of the drone between the poses at which the images were taken.
+
+## Implement Localization on the PiDrone
 You will be given two files:
 
     vision_localization_onboard.py
