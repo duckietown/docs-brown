@@ -10,7 +10,7 @@ Now that the planar PIDs are tuned, and you have found a value for `throttle_low
 **Exercises**  
 Change directories to `~/ws/src`. Run `git clone https://github.com/h2r/project3pid-yourGithubName.git`. Then change directories back to `~/ws/` and run `catkin_make --pkg project3pid-yourGitHubName`.
 
-Change directories into `~/ws/src/pidrone_pkg` and modify _pi.screenrc_ to start up with your altitude pid by changing `python pid_controller.py\n` to `rosrun project3pid-yourGitHubName student_pid_controller.py`. Prepare your drone to fly and then navigate to \`4 of the screen. Press ctrl-c to quit student_pid_controller.
+Change directories into `~/ws/src/pidrone_pkg` and modify _pi.screenrc_ to start up with your altitude pid by changing `python pid_controller.py\n` to `rosrun project3pid-yourGitHubName student_pid_controller.py\n`. Prepare your drone to fly and then navigate to \`4 of the screen. Press ctrl-c to quit student_pid_controller.
 
 In this screen, modify `~/ws/src/project3pid-yourGitHubName/z_pid.yaml` by setting $K$ to 1250 and the rest of the gain constants to 0. Now run `rosrun project3pid-yourGitHubName student_pid_controller.py` to fly with your altitude PID.  
 
