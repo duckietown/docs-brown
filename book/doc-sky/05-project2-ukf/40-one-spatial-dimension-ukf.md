@@ -65,9 +65,11 @@ TODO: Make sure students get FilterPy and matplotlib packages, for example, on t
 
 TODO: Include the `ir_sample_variance_calculation.py` script in the students' GitHub repo. Test that it works. Change ir_test.txt to ir_data.txt.
 
-**Task:** Record the resulting sample variance value in Section 1.3.3 of `ukf2d_written_solutions.tex`.
+When running `ir_sample_variance_calculation.py`, you can pass in command-line arguments of `-l` to plot a line chart instead of a bar chart and `-n` followed by a positive integer to indicate the number of intervals to use for the histogram (defaults to 100 intervals).
 
-**Task:** Enter this value into the code for `self.ukf.R` in the `initialize_ukf_matrices()` method.
+**Task:** Record the resulting sample variance value in Section 1.3.3 of `ukf2d_written_solutions.tex`. Also include an image of your histogram in `ukf2d_written_solutions.tex`.
+
+**Task:** Enter this sample variance value into the code for `self.ukf.R` in the `initialize_ukf_matrices()` method.
 
 ## Initialize the Filter
 
@@ -97,6 +99,41 @@ Note that these callbacks get called in new threads; therefore, there is the pot
 
 ## Tune and Test the Filter
 TODO: Write this section and include description on quantitatively evaluating the performance of the filter
+
+In this problem, you will be testing your UKF that you have implemented thus far. You will start by testing on simulated drone data. We have set up the simulation to publish its data on ROS topics so that your UKF program interfaces with the drone’s ROS environment and will be able to be applied directly to real, live data coming from the drone during flight. The output from the UKF can be evaluated in the JavaScript web interface (see pidrone_pkg/web/index.html).
+
+To run your UKF with simulated drone data, run ROS as usual with the `pi.screenrc` file in `pidrone_pkg`. Upon start-up, go ahead and terminate the IR and flight controller nodes, as these would conflict with the drone simulator's simulated sensors. In a free screen, navigate to the `pidrone_project2_ukf` repository and run the following command:
+
+    duckiebot $ python state_estimator.py --primary ukf2d --others simulator
+
+This command will automatically run your 2D UKF as the primary state estimator, along with the drone simulator. The EMA filter will also be run automatically with the 2D UKF, since the 2D UKF does not provide a very complete state vector in three-dimensional flight scenarios.
+
+Now in the web interface, once you connect to your drone, you should see four curves in the **Standard View** of the Height Readings chart as in [](#height_readings_standard_view).
+
+<figure id="height_readings_standard_view">
+    <figcaption>Standard View of the Height Readings Chart with Drone Simulated Data</figcaption>
+    <img style='width:30em' src="height_readings_standard_view.png"/>
+</figure>
+
+1. Raw IR Readings: the orange curve that shows the drone simulator's simulated noisy IR readings
+2. UKF Filtered Height: the blue curve that shows your UKF's height estimates, along with a shaded region indicating plus and minus one standard deviation, which is derived from the $z$ position variance in the covariance matrix
+3. EMA-Smoothed Altitude: the pink curve that shows the EMA filter's estimates
+4. Ground Truth Height: the black curve that is the simulated drone's actual height that we are trying to track with the UKF
+
+If you click on the **UKF Analysis** button, the chart will change over to reveal different datasets, shown in [](#height_readings_ukf_analysis).
+
+<figure id="height_readings_ukf_analysis">
+    <figcaption>UKF Analysis View of the Height Readings Chart with Drone Simulated Data</figcaption>
+    <img style='width:30em' src="height_readings_ukf_analysis.png"/>
+</figure>
+
+With this chart, we can analyze the performance of the UKF. The orange curve represents the error between the UKF and ground truth from the simulation; the closer to zero this value, the better the UKF estimates are tracking the actual altitude of the simulated drone. The blue shaded region indicates plus and minus one standard deviation of the UKF's $z$ position estimates. If the system is indeed behaving in a nice Gaussian manner and the UKF is well tuned, then we expect to see about 68% of the points in the orange dataset. Also note that on the left side of [](#height_readings_ukf_analysis), the standard deviation and error start off relatively high; this is because the filter is starting out, improving its estimates from initial values.
+
+TODO: Make sure the state_estimator.py script that the students have is up-to-date and set up to run *their* UKF script
+
+TODO: Make sure cross-package running of ROS nodes works (e.g., `rosrun` command in screen instead of `python`)
+
+TODO: Consider having the student input their value for the variance of the IR sensor into the drone simulator so that they can test on their own values
 
 **Task:** Describe how a (well-tuned) Kalman Filter outperforms an exponential moving average (EMA) filter applied to raw sensor data. Attach an image of the Height Readings graph showing the difference between your UKF and the EMA, and briefly describe the different features.
 
