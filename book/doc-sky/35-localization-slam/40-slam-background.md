@@ -10,16 +10,16 @@ The algorithm that accomplishes this is called FastSLAM. A map in FastSLAM is re
 
 Most SLAM algorithms seek to approximate the following probability distribution:
 
-$p(\Theta, x^t | z^t, u^t)$
+$p(\Theta, x^t | z^t, u^t)$  
 
-where $\Theta$ is the map consisting of N landmarks $\Theta=\theta_1,...\theta_N$
-$x^t$ is the path of the robot $x^t= x_1,...,x_t$
-$z^t$ is the sequence of measurements $z^t= z_1,...,z_t$
-$u^t$ is the sequence of controls, $u^t= u_1,...,u_t$
+where $\Theta$ is the map consisting of N landmarks $\Theta=\theta_1,...\theta_N$  
+$x^t$ is the path of the robot $x^t= x_1,...,x_t$  
+$z^t$ is the sequence of measurements $z^t= z_1,...,z_t$  
+$u^t$ is the sequence of controls, $u^t= u_1,...,u_t$  
 
 ie approximate the path of the drone and the map of its environment given all past measurements and controls.
 
-The main mathematical insight of FastSLAM is the ability to factor the above belief distribution by landmark:
+The main mathematical insight of FastSLAM is the ability to factor the above belief distribution by landmark:  
 $p(\Theta, x^t | z^t, u^t)=p(x^t | z^t, u^t)\Pi_n{p(\theta_n |x^t, z^t, u^t)}$
 
 This factorization asserts the fact that landmark positions in the map are *conditionally independent* of one another if the path of the robot is known. Hence the product over n for each landmark $\theta_n$.
@@ -28,6 +28,12 @@ With this insight, we can represent the map with many 2-dimensional Gaussians, o
 
 The basic steps of FastSLAM will closely resemble those of MC Localization: generate a set of particles and in each time step: update their positions with motion data, weight them based on their accuracy, and resample.
 
-The following animation shows the operation of FastSLAM:
-![enter image description here](full-slam-looped.gif)
-The blue corners of the rectangles are landmarks. As the robot perceives them, it plots a 2 dimensional gaussian (blue ellipse) around its belief of the landmark's position. Notice that as the robot revisits landmarks, the ellipses shrink (uncertainty decreases).
+The following animation shows FastSLAM running on the PiDrone:    
+MY ANIMATION GOES HERE
+
+<figure id="example-embed">
+    <figcaption>Cool Duckietown by night</figcaption>
+    <dtvideo src="vimeo:152825632"/>
+</figure>
+In grey are all of the landmarks in the map, in blue are the features being observed by the drone during each
+moment in time, and in red are the poses of the FastSLAm particles.
