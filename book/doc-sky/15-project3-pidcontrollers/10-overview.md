@@ -11,6 +11,9 @@ When you submit your assignment, your folder should contain the following files 
 * _answers_pid.md_
 * _student_pid_class.py_
 * _z_pid.yaml_
+* <i>original_controller</i>
+* <i>student_controller</i>
+* <i>position_controller</i>
 
 Commit and push your changes before the assignment is due. This will allow us to access the files you pushed to Github and grade them accordingly. If you commit and push after the assignment deadline, we will use your latest commit as your final submission, and you will be marked late.
 
