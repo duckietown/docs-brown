@@ -63,8 +63,6 @@ Your plot should look somewhat Gaussian, as in [](#ir_sample_distribution).
 
 TODO: Make sure students get FilterPy and matplotlib packages, for example, on their drone (pip install). Perhaps see about getting these dependencies included in the image that students flash on their SD cards.
 
-TODO: Include the `ir_sample_variance_calculation.py` script in the students' GitHub repo. Test that it works. Change ir_test.txt to ir_data.txt.
-
 When running `ir_sample_variance_calculation.py`, you can pass in command-line arguments of `-l` to plot a line chart instead of a bar chart and `-n` followed by a positive integer to indicate the number of intervals to use for the histogram (defaults to 100 intervals).
 
 **Task:** Record the resulting sample variance value in Section 1.3.3 of `ukf2d_written_solutions.tex`. Also include an image of your histogram in `ukf2d_written_solutions.tex`.
@@ -89,24 +87,25 @@ It is unlikely that the filter initialization will be perfect. Fret not---the Ka
 
 ## Asynchronous Inputs
 
-The traditional Kalman Filter is described as a loop alternating between predictions and measurement updates. In the real world, however, we might receive control inputs more frequently than we receive measurement updates; as such, instead of throwing away information, we would prefer to perform multiple consecutive predictions. Additionally, our inputs (i.e., control inputs and sensor data) generally arrive asynchronously, yet the traditional Kalman Filter algorithm has the prediction and update steps happen at the same point in time. Furthermore, the sample rates of our inputs are typically not constant, and so we cannot design our filter to be time invariant.
+The traditional Kalman Filter is described as a loop alternating between predictions and measurement updates. In the real world, however, we might receive control inputs more frequently than we receive measurement updates; as such, instead of throwing away information, we would prefer to perform multiple consecutive predictions. Additionally, our inputs (i.e., control inputs and sensor data) generally arrive asynchronously, yet the traditional Kalman Filter algorithm has the prediction and update steps happen at the same point in time. Furthermore, the sample rates of our inputs are typically not constant, and so we cannot design our filter to be time invariant. These are all problems that should be considered when transitioning from the theoretical algorithm to the practical application.
 
-**Task:** Describe why, in a real-world Kalman Filter implementation, it makes sense to be able to perform multiple consecutive predictions before performing a new measurement update, whereas it does not make sense algorithmically to perform multiple consecutive measurement updates before forming a new prediction. It might be helpful to think about the differences between what happens to the state estimate in the prediction versus the update step. Write your answer in `ukf2d_written_solutions.tex`.
+**Task:** Describe why, in a real-world Kalman Filter implementation, it generally makes sense to be able to perform multiple consecutive predictions before performing a new measurement update, whereas it does not make sense algorithmically to perform multiple consecutive measurement updates before forming a new prediction. It might be helpful to think about the differences between what happens to the state estimate in the prediction versus the update step. Write your answer in `ukf2d_written_solutions.tex`.
 
 **Task:** Implement the predicting and updating of your UKF, keeping in mind the issue of asynchronous inputs. These steps will occur in two ROS subscriber callbacks: 1) `imu_data_callback` when an IMU control input is received and 2) `ir_data_callback` when an IR measurement is received. Remember that we want to perform a prediction not only when we receive a new control input but also when we receive a new measurement in order to propagate the state estimate forward to the time of the measurement. One way to do this prediction without a new control input is to interpolate and assume that the control input remains the same as last time (which is what we suggest); another potential approach might be to not include a control input in those instances (i.e., set it to zeros). The method for our FilterPy UKF object that you want to use to perform the prediction is `self.ukf.predict()`, which takes in a keyword argument `dt` that is the time step since the last state estimate and a keyword argument `u`, corresponding to the argument `u` of `state_transition_function()`, that is a NumPy array with the control input(s). The method to do a measurement update is `self.ukf.update()`, which requires a positional argument consisting of a measurement vector as a NumPy array. Call `self.publish_current_state()` at the end of each callback to publish the new state estimate to a ROS topic.
 
 Note that these callbacks get called in new threads; therefore, there is the potential for collisions when, say, both IMU and IR data come in almost at the same time and one thread has not had the opportunity to finish its UKF computations. We don't want both threads trying to simultaneously alter the values of certain variables, such as the $\mathbf{P}$ matrix when doing a prediction, as this can cause the filter to output nonsensical results and break. Therefore, we have implemented a simple callback blocking scheme---using the `self.in_callback` variable---that ignores a new callback if another callback is going on, essentially dropping packets if there are collisions. While this may not be the optimal or most stable way to handle the issue (one could imagine the IMU callback, for example, always blocking the IR callback and hence preventing measurement updates), it at least gets rid of the errors that would occur with collisions. If you so desire, feel free to implement your own callback management system that perhaps balances the time allocated to different callbacks.
 
 ## Tune and Test the Filter
-TODO: Write this section and include description on quantitatively evaluating the performance of the filter
 
-In this problem, you will be testing your UKF that you have implemented thus far. You will start by testing on simulated drone data. We have set up the simulation to publish its data on ROS topics so that your UKF program interfaces with the drone’s ROS environment and will be able to be applied directly to real, live data coming from the drone during flight. The output from the UKF can be evaluated in the JavaScript web interface (see pidrone_pkg/web/index.html).
+In this problem, you will be testing your UKF that you have implemented thus far. You will start by testing on simulated drone data. We have set up the simulation to publish its data on ROS topics so that your UKF program interfaces with the drone’s ROS environment and will be able to be applied directly to real, live data coming from the drone during flight. The output from the UKF can be evaluated in the JavaScript web interface (see `pidrone_pkg/web/index.html`).
+
+### In Simulation
 
 To run your UKF with simulated drone data, run ROS as usual with the `pi.screenrc` file in `pidrone_pkg`. Upon start-up, go ahead and terminate the IR and flight controller nodes, as these would conflict with the drone simulator's simulated sensors. In a free screen, navigate to the `pidrone_project2_ukf` repository and run the following command:
 
     duckiebot $ python state_estimator.py --primary ukf2d --others simulator
 
-This command will automatically run your 2D UKF as the primary state estimator, along with the drone simulator. The EMA filter will also be run automatically with the 2D UKF, since the 2D UKF does not provide a very complete state vector in three-dimensional flight scenarios.
+This command will automatically run your 2D UKF as the primary state estimator, along with the drone simulator. The EMA filter will also be run automatically with the 2D UKF, since the 2D UKF does not provide a very complete state vector in three-dimensional flight scenarios. This will also by default allow you to compare the output of your UKF to the EMA filter on altitude.
 
 Now in the web interface, once you connect to your drone, you should see four curves in the **Standard View** of the Height Readings chart as in [](#height_readings_standard_view).
 
@@ -127,7 +126,11 @@ If you click on the **UKF Analysis** button, the chart will change over to revea
     <img style='width:30em' src="height_readings_ukf_analysis.png"/>
 </figure>
 
-With this chart, we can analyze the performance of the UKF. The orange curve represents the error between the UKF and ground truth from the simulation; the closer to zero this value, the better the UKF estimates are tracking the actual altitude of the simulated drone. The blue shaded region indicates plus and minus one standard deviation of the UKF's $z$ position estimates. If the system is indeed behaving in a nice Gaussian manner and the UKF is well tuned, then we expect to see about 68% of the points in the orange dataset. Also note that on the left side of [](#height_readings_ukf_analysis), the standard deviation and error start off relatively high; this is because the filter is starting out, improving its estimates from initial values.
+With this chart, we can analyze the performance of the UKF. The orange curve represents the error between the UKF and ground truth from the simulation; the closer to zero this value, the better the UKF estimates are tracking the actual altitude of the simulated drone. The blue shaded region indicates plus and minus one standard deviation of the UKF's $z$ position estimates. If the system is indeed behaving in a nice Gaussian manner and the UKF is well tuned, then we expect to see about 68% of the points in the orange dataset lying in the blue shaded region. Also note that on the left side of [](#height_readings_ukf_analysis), the standard deviation and error start off relatively high; this is because the filter is starting out, improving its estimates from initial values.
+
+If you are seeing that your UKF altitude estimates are lagging significantly behind the simulated data in the Height Readings chart, then this is likely due to computation overhead. The UKF takes time to compute, and if it tries to compute a prediction and/or update for each sensor value that it receives, it can sometimes fall behind real time. In this case, you should run the state estimator with the IR and IMU data streams throttled:
+
+    duckiebot $ python state_estimator.py --primary ukf2d --others simulator --ir_throttled --imu_throttled
 
 TODO: Make sure the state_estimator.py script that the students have is up-to-date and set up to run *their* UKF script
 
@@ -135,10 +138,39 @@ TODO: Make sure cross-package running of ROS nodes works (e.g., `rosrun` command
 
 TODO: Consider having the student input their value for the variance of the IR sensor into the drone simulator so that they can test on their own values
 
-**Task:** Describe how a (well-tuned) Kalman Filter outperforms an exponential moving average (EMA) filter applied to raw sensor data. Attach an image of the Height Readings graph showing the difference between your UKF and the EMA, and briefly describe the different features.
+**Task:** Make sure your UKF is producing reasonable outputs that seem to track ground truth pretty well. In the UKF Analytics view of the chart, you should see about two-thirds of the points in the error dataset lying within one standard deviation, based on your UKF's state covariance, relative to ground truth.
 
-**Task:** To test out your UKF's robustness in the face of poor initialization, compare how long it takes the state estimates to converge to accurate values with good initial conditions and with poor initial conditions.
-TODO: Look into the best way in which students should be characterizing filter performance. Perhaps by evaluating state estimates against MoCap ground truth and seeing if the filter's covariance matrix $\mathbf{P}$ reports accurate variances. This seems like an intuitive and mathematically rigorous enough method. Or, if students are developing their UKF on simulated data, then ground truth would be the mean values in the simulation about which we are generating noise.
+**Task:** To test out your UKF's robustness in the face of poor initialization, compare how long it takes the state estimates to converge to accurate values with good initial conditions and with poor initial conditions. You do not have to report or hand in anything for this task; it is just for your understanding of the capabilities of the UKF.
+
+### Manually Moving the Drone Up and Down
+
+Next, you will step out of the realm of simulation and test your UKF on your drone, manually moving it along the vertical axis to test out the response you get with your IR sensor. For this step, the command you want to use is:
+
+    duckiebot $ python state_estimator.py --primary ukf2d
+
+with the `--ir_throttled` and `--imu_throttled` flags as needed. You want to make sure your IR sensor and flight controller nodes are actually running. First, though, you should calibrate your accelerometer with:
+
+    duckiebot $ rosrun calibrateAcc.py
+
+**Debugging Task:** Test out your UKF by moving your drone up and down and examining the Height Readings chart. Does it behave as you expect? Does the estimated height seem to have more or less noise than the raw IR sensor reading? If there are unexpected deviations or spikes from the measurements, consider why this might be, especially in comparison to the results you saw when running the UKF in simulation. A possible cause is that the prediction step without a measurement update is not being modeled well or is getting poor/noisy control inputs to the point where the process noise that we assigned was too low. Try tuning the scalar that multiplies the values of the $\mathbf{Q}$ matrix `self.ukf.Q` in the `initialize_ukf_matrices()` method to better reflect the variance of the process. You should see a greater standard deviation as well as smaller spikes in the estimates.
+
+Another aspect that you should consider is the prediction that occurs in your IMU callback. Note that the unthrottled sample rate of the IR sensor is around 80 Hz, while the IMU only comes in at about 30 Hz. Therefore, the control input is being changed less frequently than the predictions and measurement updates occur in the IR callback. While in the Asynchronous Inputs section we indicated that you should do a prediction whenever you get a new control input, in this application, it might make sense to save computation and only do predictions right before measurement updates. Plus, the accelerometers are noisy, and it can be difficult in a discrete domain to integrate these accelerations and expect accurate position estimates reported before including the measurement update. To keep our estimates reasonable, we can wait for the measurement update step to fuse the noisy prior prediction with the new measurement---and since this step can actually occur more frequently than the control input, we can maintain good measurement-informed estimates while saving on prediction computation.
+
+**Task:** Modify your UKF to only do predictions when IR measurements come in, before performing the measurement update. Note that you should not be discarding the IMU control inputs, as they should still be used in the IR callback to perform predictions with approximate acceleration values from the most recent time that a control input was received. Visually compare your UKF output to the EMA output.
+
+**Task:** Visually compare the UKF output with and without the IMU running. You should notice a difference in how well/quickly the UKF tracks the measurements when there is no control input to better inform the prediction step.
+
+**Task:** In `ukf2d_written_solutions.tex`, describe how a (well-tuned) Kalman Filter outperforms an exponential moving average (EMA) filter applied to raw sensor data. Test this out by moving your drone up and down and comparing the UKF and EMA estimates. Once your UKF seems to outperform the EMA, attach an image of the Height Readings graph to your `ukf2d_written_solutions.tex` document showing this difference between your UKF and the EMA, and briefly describe the different features.
+
+### In Flight
+
+It's time to fly your drone with the UKF providing it with real-time filtered estimates of its position and velocity along the $z$-axis.
+
+**Task:** Fly your drone while running:
+
+    duckiebot $ python state_estimator.py --primary ukf2d
+
+again, with the `--ir_throttled` and `--imu_throttled` flags as needed. Evaluate its performance using the web interface as you did for the manual motion testing.
 
 ## Exercise: Designing a UKF for a Ground Robot
 
@@ -159,9 +191,9 @@ Come to TA hours to get checked off when you have fulfilled the following:
 
 - Relevant solutions are written up in `ukf2d_written_solutions.tex`. $\LaTeX$ source is pushed to GitHub.
 - UKF is implemented in code in `student_state_estimator_ukf_2d.py` and pushed to GitHub. Your UKF can run:
-    1. On simulated data. You can quantify its performance relative to simulated ground truth and see it working better than the EMA
-    2. On your drone while manually moving it up and down. You can see in the web interface Height Readings chart that it performs better than the EMA when moving the drone
-    3. On your drone while it is in flight, with comparable or better performance than when running the EMA filter for state estimation
+    1. On simulated data. You can quantify its performance relative to simulated ground truth (i.e., your UKF Analytics chart reports accurate altitude errors and standard deviations)
+    2. On your drone while manually moving it up and down. You can see in the web interface Standard View of the Height Readings chart that it performs better than the EMA when moving the drone
+    3. On your drone while it is in flight, with comparable or better performance than when running the EMA filter for state estimation along the $z$-axis
 - Relevant solutions are written up in `ground_robot_ukf.tex`.
 
 Now that you have derived the mathematical design for your 2D UKF and implemented it, come to TA hours with your $\LaTeX$ document and code pushed to GitHub to get checked off. In addition to these deliverables, we will be asking you to verbally describe some of the answers you wrote up in your $\LaTeX$ document, which will enable us to better assess your understanding of the work in the project so far and your readiness for the next stage of the project. Feel free to also ask the TAs questions about the next part of the project during your check-off.
