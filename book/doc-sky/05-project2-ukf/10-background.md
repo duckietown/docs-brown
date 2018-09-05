@@ -39,14 +39,16 @@ z \\
 
 where $z$ and $\dot z$ are the position and velocity of the drone along the z-axis, respectively. A quick note on symbology: in [](#ukf_predict_update_diagram), we are demonstrating a simple example in which we only track one variable (vertical position), so instead of using boldface vectors, we chose to use scalars. Note that the variable $z$ in [](#ukf_predict_update_diagram) is different than the variable $z$ in this two-dimensional state vector tracking motion along the $z$ axis. In literature, the letter $z$ in some typeface and possibly with a subscript is typically used to denote the measurement (as in [](#ukf_predict_update_diagram)). We will go into more detail about the measurement vector later.
 
-Now, back to our two-dimensional state vector. The state vector tracks the mean $\mu$ of each state variable, which we assume is normally distributed about $\mu$. To characterize the uncertainty in this state estimate, we use an $n \times n$ covariance matrix where $n$ is the size of the state vector. For this state vector, then, we define the covariance matrix as:
+Now, back to our two-dimensional state vector. Why did we decide to track not only position but also velocity? What if we were only interested in the drone's position along the $z$-axis? Well, while in some cases we might only be immediately interested in, say, knowing the robot's position, the addition of $\dot z$ is also important. $\dot z$ is known as a *hidden variable*: we do not have a sensor that allows us to measure this quantity directly. That said, keeping track of this variable allows us to form better estimates about $z$. Why? Since position and velocity are correlated quantities, information about one quantity can inform the other. If the drone has a high positive velocity, for instance, we can be fairly confident that its position at the next time step will be somewhere in the positive direction relative to its previous position. The covariances between position and velocity allow for a reasonable estimate of velocity to be formed---as does any information about acceleration, for example. Chapter 5.7 of Labbe's textbook [](#bib:labbe_kalman) describes the importance of this correlation between state variables such as position and velocity.
+
+The state vector tracks the mean $\mu$ of each state variable, which we assume is normally distributed about $\mu$. To characterize the uncertainty in this state estimate, we use an $n \times n$ covariance matrix where $n$ is the size of the state vector. For this state vector, then, we define the covariance matrix as:
 
 $$\mathbf{P}=\begin{bmatrix}
 \sigma^2_z & \sigma_{z,\dot z} \\
 \sigma_{\dot z,z} & \sigma^2_{\dot z}
 \end{bmatrix}$$
 
-where $\sigma^2_z = \text{Var}\left( z \right)$, for example, denotes the variance in the position estimates and $\sigma_{\dot z,z} = \sigma_{z,\dot z} = \text{Cov}\left( z, \dot z \right)$ denotes the covariance between the position and velocity estimates. Typically, position and velocity are positively correlated, as a positive velocity indicates that the drone will likely be at a more positive position at the next time step.
+where $\sigma^2_z = \text{Var}\left( z \right)$, for example, denotes the variance in the position estimates and $\sigma_{\dot z,z} = \sigma_{z,\dot z} = \text{Cov}\left( z, \dot z \right)$ denotes the covariance between the position and velocity estimates. As mentioned above, position and velocity are typically positively correlated, as a positive velocity indicates that the drone will likely be at a more positive position at the next time step.
 
 The first frame of [](#ukf_predict_update_diagram) illustrates a state estimate and the standard deviation of that height estimate.
 
