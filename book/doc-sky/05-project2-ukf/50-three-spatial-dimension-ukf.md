@@ -68,7 +68,7 @@ TODO: Make sure such `rospy` rate-usage and sleeping works well
 It is now time to put your 7D UKF to the test.
 
 ### In Simulation
-TODO: Make sure the 2D simulation works well and that the 7D UKF works well with it.
+TODO: Ensure that the 2D simulation works well and that the 7D UKF works well with it.
 
 To run your 7D UKF with simulated data, you need to run ROS on your Raspberry Pi and terminate certain nodes upon running the `pi.screenrc` file:
 
@@ -77,9 +77,9 @@ To run your 7D UKF with simulated data, you need to run ROS on your Raspberry Pi
 
 The simulation is only in two dimensions in the $xy$-plane, so to also test $z$ position estimates, you should keep the `infrared_pub.py` node running to see your filter work on real IR data.
 
-Next, in a free screen, navigate to the `pidrone_project2_ukf` repository and run the following command:
+Next, in the `` `5`` state estimator screen, terminate the current process and then run the following command:
 
-    duckiebot $ python state_estimator.py -p ukf7d -o simulator ema --sdim 2
+    duckiebot $ python state_estimator.py --student -p ukf7d -o simulator ema --sdim 2
 
 If performance is clearly sub-optimal, consider using the following flags:
 - `--ir_throttled`
@@ -89,13 +89,7 @@ If performance is clearly sub-optimal, consider using the following flags:
 
 This command will run your 7D UKF as the primary state estimator, along with the 2D drone simulator and the EMA filter for comparison. If you do not want to run the EMA filter, simply omit the `ema` argument when running the `state_estimator.py` script.
 
-TODO: Consider instead having them run it from `pidrone_pkg` (or from their package) but use the `pidrone_pkg`'s `state_estimator.py` script. Have the `state_estimator.py` script take in a `--student` flag, for example?
-
-TODO: Test out 7D UKF unthrottled
-
 **Task:** Make sure your UKF is producing reasonable outputs, especially in the **Top View** chart in which the simulation and its nonlinear behavior are occurring. You should qualitatively feel confident that your UKF marker (the blue marker) is more closely tracking the Ground Truth marker (black) with less noise than the Raw Pose Measurement marker (orange). We will ask you to show us your UKF's simulation performance at the final check-off.
-
-TODO (NOTE): Don't require students to test out with localization, as they will not have implemented localization at this point so we don't necessarily want to get ahead of ourselves. Also, running both localization and the 7D UKF onboard at the same time might be too much CPU load to be able to get accurate estimates, either from localization or perhaps from the UKF. This was roughly tested out, and the UKF estimates were tracking the localization pose estimates pretty smoothly, but the drone was not too stable, perhaps because running both localization (which is already a CPU-intensive process to run onboard) and the UKF onboard at the same time might be a lot for the CPU to handle. More integration testing should be done if we want to successfully run both a three-spatial-dimension UKF and localization onboard.
 
 # Check-Off {#ukf-three-spatial-dimensions-checkoff status=draft}
 Come to TA hours to get checked off when you have fulfilled the following:

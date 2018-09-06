@@ -101,11 +101,15 @@ In this problem, you will be testing your UKF that you have implemented thus far
 
 ### In Simulation
 
-To run your UKF with simulated drone data, run ROS as usual with the `pi.screenrc` file in `pidrone_pkg`. Upon start-up, go ahead and terminate the IR and flight controller nodes, as these would conflict with the drone simulator's simulated sensors. In a free screen, navigate to the `pidrone_project2_ukf` repository and run the following command:
+To run your UKF with simulated drone data, you first have to make sure that your `pidrone_project2_ukf` package is in the `~/ws/src` directory on your drone. Then, in `~/ws`, run `catkin_make` to build your package. By running this command, you will be able to run ROS and access nodes from your package. If you experience issues with `catkin`, please do not hesitate to reach out to the TAs.
 
-    duckiebot $ python state_estimator.py --primary ukf2d --others simulator
+Then, in `~/ws/src/pidrone_project2_ukf/StateEstimators`, run the command `chmod +x *`, which will make all of your state estimators executable and capable of being run with the `rosrun` command.
 
-This command will automatically run your 2D UKF as the primary state estimator, along with the drone simulator. The EMA filter will also be run automatically with the 2D UKF, since the 2D UKF does not provide a very complete state vector in three-dimensional flight scenarios. This will also by default allow you to compare the output of your UKF to the EMA filter on altitude.
+Next, run ROS as usual with the `pi.screenrc` file in `~/ws/src/pidrone_pkg`. Upon start-up, go ahead and terminate the IR and flight controller nodes, as these would conflict with the drone simulator's simulated sensors. In the `` `5`` state estimator screen, terminate the current process and then run the following command:
+
+    duckiebot $ python state_estimator.py --student --primary ukf2d --others simulator --ir_var IR_VARIANCE_ESTIMATE
+
+with your computed estimate of your IR sensor's variance that you used to determine the $\mathbf{R}$ matrix in your UKF in place of `IR_VARIANCE_ESTIMATE`. This command will automatically run your 2D UKF as the primary state estimator, along with the drone simulator. The EMA filter will also be run automatically with the 2D UKF, since the 2D UKF does not provide a very complete state vector in three-dimensional flight scenarios. This will also by default allow you to compare the output of your UKF to the EMA filter on altitude. Note the `--student` flag, which ensures that your UKF script is run.
 
 Now in the web interface, once you connect to your drone, you should see four curves in the **Standard View** of the Height Readings chart as in [](#height_readings_standard_view).
 
@@ -130,13 +134,7 @@ With this chart, we can analyze the performance of the UKF. The orange curve rep
 
 If you are seeing that your UKF altitude estimates are lagging significantly behind the simulated data in the Height Readings chart, then this is likely due to computation overhead. The UKF takes time to compute, and if it tries to compute a prediction and/or update for each sensor value that it receives, it can sometimes fall behind real time. In this case, you should run the state estimator with the IR and IMU data streams throttled:
 
-    duckiebot $ python state_estimator.py --primary ukf2d --others simulator --ir_throttled --imu_throttled
-
-TODO: Make sure the state_estimator.py script that the students have is up-to-date and set up to run *their* UKF script
-
-TODO: Make sure cross-package running of ROS nodes works (e.g., `rosrun` command in screen instead of `python`)
-
-TODO: Consider having the student input their value for the variance of the IR sensor into the drone simulator so that they can test on their own values
+    duckiebot $ python state_estimator.py --student --primary ukf2d --others simulator --ir_var IR_VARIANCE_ESTIMATE --ir_throttled --imu_throttled
 
 **Task:** Make sure your UKF is producing reasonable outputs that seem to track ground truth pretty well. In the UKF Analytics view of the chart, you should see about two-thirds of the points in the error dataset lying within one standard deviation, based on your UKF's state covariance, relative to ground truth.
 
