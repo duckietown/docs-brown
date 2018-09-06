@@ -1,7 +1,7 @@
 # Introduction {#part:introduction status=ready}
 
 
-Robots are the decathalon of computer science: to make
+Robots are the decathlon of computer science: to make
 a robot work, you need to understand robotics, which we
 define as a program that includes a sensor and an actuator.
 Additionally though, you typically need to understand
