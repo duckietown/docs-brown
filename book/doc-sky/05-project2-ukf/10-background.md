@@ -56,7 +56,7 @@ The first frame of [](#ukf_predict_update_diagram) illustrates a state estimate 
 
 The part of the KF that computes a predicted state $\mathbf{\bar x}$ is known as the state transition function. The prediction step of the UKF uses the state transition function to propagate the current state to a prediction of the state at the next time step. In standard Kalman Filter literature for linear systems, this transition function can be expressed with two matrices: a state transition matrix $\mathbf{A}$ and a control function $\mathbf{B}$ that, when multiplied with the current state vector $\mathbf{x}$ and with the control input vector $\mathbf{u}$, respectively, sum together to output the prediction of the next state.
 
-More generally, in nonlinear systems---where the UKF is useful, which we will describe later---a single transition function $g(\mathbf{x}, \mathbf{u}, \Delta t)$ can express the prediction of what the next state will be given the current state estimate $\mathbf{x}$, the control input $\mathbf{u}$, and the time step $\Delta t$. [_TODO: Cite Tellex et al. from the Estimation for Quadrotors paper? (should be published on arXiv soon)_] For robotic systems such as the PiDrone, the state transition function often involves using kinematic equations to form numerical approximations of the robot's motion in space.
+More generally, in nonlinear systems---where the UKF is useful, which we will describe later---a single transition function $g(\mathbf{x}, \mathbf{u}, \Delta t)$ can express the prediction of what the next state will be given the current state estimate $\mathbf{x}$, the control input $\mathbf{u}$, and the time step $\Delta t$ [](#bib:tellex). For robotic systems such as the PiDrone, the state transition function often involves using kinematic equations to form numerical approximations of the robot's motion in space.
 
 $$
 \mathbf{\bar x} = g(\mathbf{x}, \mathbf{u}, \Delta t)
@@ -104,4 +104,4 @@ The fourth frame of [](#ukf_predict_update_diagram) illustrates this fusion of p
 
 At a high level, that's the Kalman Filter algorithm!
 
-TODO: Write out the recursive algorithm. Probably refer to and cite *Probabilistic Robotics* and/or Tellex et al. from the Estimation for Quadrotors paper (should be published on arXiv soon). Perhaps compare to Bayes Filter algorithm, too.
+TODO: Write out the recursive algorithm. Probably refer to and cite *Probabilistic Robotics* and/or Tellex et al. in [](#bib:tellex). Perhaps compare to Bayes Filter algorithm, too.

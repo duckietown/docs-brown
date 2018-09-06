@@ -2,10 +2,13 @@
 
 While tracking the drone's $z$ position and velocity is helpful, it is a simplified model of the drone and does not encapsulate as many of the degrees of freedom of the drone as we might like. For this reason, you are now going to develop a UKF that tracks the drone in three spatial dimensions with a 7D state vector. A lot of your code from your 2D UKF will remain the same in the 7D UKF.
 
-This part of the project has **two deliverables** in the `pidrone_project2_ukf` repository, which are to be accessed and submitted via GitHub Classroom:
+This part of the project has **three deliverables** in the `pidrone_project2_ukf` repository, which are to be accessed and submitted via GitHub Classroom:
 
 1. A $\LaTeX$ document `ukf7d_written_solutions.tex` with the answers to the UKF design and implementation questions.
 2. Your implementation of the UKF written in the `StateEstimators/student_state_estimator_ukf_7d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
+3. Videos demonstrating your testing of your 7D UKF.
+
+TODO: Should we have students hand in the video through GitHub Classroom?
 
 ## State Vector
 
@@ -82,6 +85,7 @@ Next, in the `` `5`` state estimator screen, terminate the current process and t
     duckiebot $ python state_estimator.py --student -p ukf7d -o simulator ema --sdim 2
 
 If performance is clearly sub-optimal, consider using the following flags:
+
 - `--ir_throttled`
 - `--imu_throttled`
 - `--optical_flow_throttled`
@@ -89,17 +93,51 @@ If performance is clearly sub-optimal, consider using the following flags:
 
 This command will run your 7D UKF as the primary state estimator, along with the 2D drone simulator and the EMA filter for comparison. If you do not want to run the EMA filter, simply omit the `ema` argument when running the `state_estimator.py` script.
 
-**Task:** Make sure your UKF is producing reasonable outputs, especially in the **Top View** chart in which the simulation and its nonlinear behavior are occurring. You should qualitatively feel confident that your UKF marker (the blue marker) is more closely tracking the Ground Truth marker (black) with less noise than the Raw Pose Measurement marker (orange). We will ask you to show us your UKF's simulation performance at the final check-off.
+**Task:** Make sure your UKF is producing reasonable outputs, especially in the **Top View** chart in which the simulation and its nonlinear behavior are occurring. You should qualitatively feel confident that your UKF marker (the blue marker) is more closely tracking the Ground Truth marker (black) with less noise than the Raw Pose Measurement marker (orange).
 
-# Check-Off {#ukf-three-spatial-dimensions-checkoff status=draft}
-Come to TA hours to get checked off when you have fulfilled the following:
+**Task:** Take a video of the web interface to demonstrate your 7D UKF's capabilities in the 2D simulation.
 
-- Relevant solutions are written up in `ukf7d_written_solutions.tex`. $\LaTeX$ source is pushed to GitHub.
-- UKF is implemented in code in `student_state_estimator_ukf_7d.py` and pushed to GitHub. Your UKF can run:
-    1. On simulated data. We will ask you to show us your drone's UKF in simulation and make sure that it tracks ground truth reasonably well [_TODO: Can we make this more quantitative? UKF-ground-truth errors for x and y position, perhaps?_]
-    2. On your drone while manually moving it up and down, forward and back, left and right, and giving it a yaw angle. You can see in the web interface Standard View of the Height Readings chart that it performs better than the EMA when moving the drone up and down and that it performs better than raw camera pose data (from `vision_flow_and_phase.py`) in the **Top View** chart
-    3. On your drone while it is in flight in velocity control mode and position hold mode
+TODO: Should we have students hand in the video through GitHub Classroom?
 
-TODO: Consider, instead of doing a check-off for the end of the project, having students submit videos of the functionality of their drones running the 7D UKF.
+### Manually Moving the Drone
 
-Again, make sure your code and `.tex` file are submitted in GitHub Classroom.
+In this part of the project, you will move your drone around with your hand, holding it above a highly-textured planar surface so that the downward-facing camera can use its optical flow and position estimation to provide information about the drone's pose and twist in space. You should ensure that the following nodes are running:
+
+- `flight_controller_node.py`
+- `infrared_pub.py`
+- `vision_flow_and_phase.py`
+
+Then, you should run your UKF with this command:
+
+    duckiebot $ python state_estimator.py --student -p ukf7d -o ema --ir_throttled --optical_flow_throttled --imu_throttled --camera_pose_throttled
+
+**Task:** Use the web interface to verify visually that the height estimates and the $x$, $y$, and yaw estimates appear to have less noise than the sensor readings, and that these estimates appear to track your drone's actual pose in space. Compare your UKF to the EMA estimates for altitude and the raw camera pose data in the **Top View** chart.
+
+**Task:** Take a video of your drone and the web interface to demonstrate your 7D UKF's capabilities.
+
+TODO: Should we have students hand in the video through GitHub Classroom?
+
+### In Flight
+
+Now you are going to fly with your 7D UKF, using both velocity control and position hold.
+
+**Task:** Take a video (or two) demonstrating your drone's stability in position hold and velocity control 1) while running just the EMA filter for state estimation and 2) while running your 7D UKF. You can use the web interface to move your drone around and send it other commands. Ensure that the video clearly demonstrates the performance improvements provided by the 7D UKF that you worked hard to implement!
+
+TODO: Should we have students hand in the video through GitHub Classroom?
+
+# Final Hand-In {#ukf-project-final-handin status=draft}
+Before the project deadline, you must ensure that final versions of your solution files and code are handed in via GitHub Classroom. These files are:
+
+**From the 2D UKF section:**
+
+- `ukf2d_written_solutions.tex`
+- `student_state_estimator_ukf_2d.py` in the `StateEstimators` directory
+- `ground_robot_ukf.tex`
+
+**From the 7D UKF section:**
+
+- `ukf7d_written_solutions.tex`
+- `student_state_estimator_ukf_7d.py` in the `StateEstimators` directory
+- Videos for the simulation, manual, and in-flight testing of your drone's UKF. To help us identify which video files correspond to which tests, please also include a `README` in your repository that describes the test(s) performed in each video file.
+
+TODO: Include a grade breakdown / rubric?
