@@ -1,11 +1,14 @@
 # Project 2: Sensor Interfacing {#sensors-velocity status=draft}
 
 ## Velocity Estimation via Optical Flow
-In this part of the project you will create a class that interfaces with the picamera to extract planar velocities from optical flow vectors. You will first write a class to analyze the sensor data, and then you will write a ROS node to instantiate the class and begin the data analysis.
+In this part of the project you will create a class that interfaces with the picamera to extract planar velocities from optical flow vectors.
 
 ## Camera Calibration
 **Exercises**
   1. Describe the orientation of the camera relative to the drone using a [3d rotation matrix](https://en.wikipedia.org/wiki/Rotation_matrix)
+
+## Code Structure
+To interface with the camera, you will be using picamera library. This library allows you to use classes which inherit from [<i>picamera.array.PiMotionAnalysis</i>](https://picamera.readthedocs.io/en/release-1.10/api_array.html#pimotionanalysis) to receive and analyze frames from the video stream. In the sensors project repo, we've include a script called student_vision_flow_and_phase.py which instantiates objects of your analyze classes that inherit <i>picamera.array.PiMotionAnalysis</i> to allow the objects to receive and analyze frames from the video stream. This script creates what we call a <i>vision</i> node which is a ROS node that provides data from the camera. This node is called flow_and_phase becuase it uses the two classes you'll be creating to analyze the camera data and provide velocity and position estimates. Later on in the course, you'll be creating a vision_localization node that uses localization to analyze the camera data and provide position estimates.
 
 ## Analyze and Publish the Sensor Data
 On your drones, the chip on the Raspberry Pi dedicated to video processing from the camera calculates motion vectors ([optical flow](https://en.wikipedia.org/wiki/Optical_flow)) automatically for H.264 video encoding. [Click here to learn more](https://www.raspberrypi.org/blog/vectors-from-coarse-motion-estimation/). You will be analyzing these motion vectors in order to estimate the velocity of your drone.
@@ -16,12 +19,26 @@ You will now implement your velocity estimation using optical flow by completing
 The first method is `setup`, which will be called to initialize the instance variables.
   1. Initialize the variables that you will use to scale the raw motion vectors from the camera
   2. Create a ROS publisher to publish the velocity values
+
+The perspicacious roboticist may have noticed that magnitude of the velocity in global coordinates is dependent on the height of the drone. Add a subscriber to the topic /pidrone/state to your AnalyzeFlow class and save the z position value to a class variable in the callback. Use this variable to scale the velocity measurements by the height of the drone (the distance the camera is from what it is perceiving).
   3. Create a ROS subscriber to obtain the altitude (z-position) of the drone for scaling the motion vecotrs
 
 The second method is `analyze`, which is called every time that the camera gets an image, and is used to analyze the flow vectors to estimate the x and y velocities of your drone
   1. Estimate the velocities
   2. Publish the velocities
 
+# TODO: DO WE WANT THIS PART OF THE PROJECT? ADD THE SPECIAL SSH COMMAND TO VIEW GRAPHS
+## Measurement Visualization
+Debugging your measurement code becomes much easier when you can visualize what's going on with the data. Taking the time to create a script to visualize your measurement data involves a time tradeoff of initial investment, but long term gain. A couple examples of utility are to ensure that the sign of your measurements are correct, and to ensure the magnitudes are reasonable. You are now going to write a script to visualize your x and y velocity measurements as a function of time. Note that this data is raw data that has not been smoothed, so it is expected that it will be noisy (the values will move around a lot).
 
-<!-- ## Create the ROS Node
-In order for your utilize the methods you wrote on the camera data, an `AnalyzeFlow` object needs to be instantiated, and the `start_recording` method of the [PiCamera class](https://picamera.readthedocs.io/en/release-1.12/api_camera.html?highlight=start_recording) needs to be called with the `AnalyzeFlow` object as the `motion_output` parameter. This will redirect the camera output to your `AnalyzeFlow` object. Another arguement, `format`, must also be set to `h264` to extract the motion vectors from the formatting. In addition, the camera recording will also be used to extract position data, so the argument, `splitter_port` but be set equal to a port number, we'll use `1`. When you quit the script, the camera will need to `stop_recording` on that port. -->
+**Exercises**
+Write a data visualizer
+1. Create a file, 'velocity_visualizer.py' in your sensors project repository.
+2. Initialize a ROS node
+3. Subscribe to `/pidrone/picamera/twist` and store the x and y velocities
+4. Use matplotlib to plot the velocities on the either separate or the same graph as functions of time
+
+## Checkoff
+1. Verify that the velocity values are reasonable (roughly in the range of -1m/s to 1m/s) and have the correct sign (positive when the drone is moving to the right or up, and negative to the left or down).
+2. Submit a video, `x_velocity_visualization` of your visualizer running while moving your drone left and right
+3. Submit a video, `y_velocity_visualization` of your visualizer running while moving your drone forward and backward
