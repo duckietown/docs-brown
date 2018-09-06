@@ -11,4 +11,5 @@ An IMU is an electronic device that uses accelerometers and gyroscopes to measur
 
 ### Camera
 Since perceived velocities are based on the distance from which they are perceived, the height of the drone must be known to scale the motion vectors. To get this data, you will subscribe to the state of the drone which will be published by
+
 ### Infrared
