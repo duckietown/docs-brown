@@ -4,7 +4,7 @@
 In this part of the project you will create a class that interfaces with the picamera to extract planar positions of the drone relative to the first image taken using OpenCV's estimateRigidTransform function.
 
 ## Code Structure
-You have two options for this portion of the project, you can either create a blank file and save it as `student_analyze_phase.py` to write your AnalyzePhase class from scratch, or you can use the existing `student_analyze_phase.py` and the included stencil code. The choice is up to you, but we will say that there is something quite rewarding about creating a complete script from scratch. If you choose to use the stencil code, skip steps 1-4 directly below.
+By now, you've become a pro at extracting sensor data, so you have two options for this portion of the project: you can either create a blank file and save it as `student_analyze_phase.py` to write your AnalyzePhase class from scratch, or you can use the existing `student_analyze_phase.py` and the included stencil code. The choice is up to you, but we will say that there is something quite rewarding about creating a complete script from scratch. If you choose to use the stencil code, skip steps 1-4 below.
 
 **Exercises**
 1. Create a new file, `student_analyze_flow.py` in your sensors project repository.
