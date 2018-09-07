@@ -68,11 +68,10 @@ Print out your position estimate in the write function and submit a video entitl
 Debugging position measurments can also be made easier through the use of a visualizer. A few things to look for are sign of the position, magnitude of the postition, and the position staying steady when the drone isn't moving. Note again that these measurements are unfiltered and will thus be noisy; don't be alarmed if the position jumps when it goes from not seeing the first frame to seeing it again.
 
 **Exercises**
-Write a data visualizer
+Use the rqt_plot package to visualize your x and y position estimates
 1. Create a file, 'position_visualizer.py' in your sensors project repository.
-2. Initialize a ROS node
-3. Subscribe to `/pidrone/picamera/pose` and store the x and y positions
-4. Use matplotlib to plot the positions on the either separate or the same graph as functions of time
+2. Connect to your drone using `ssh -Y pi@yourhostname` so that you can use graphical clients in your ssh session
+3. In any window of the screen (except \`0 which is roscore), quit the current program that's running, and run `rqt_plot /pidrone/picamera/pose/x:y` to subscribe to topic `/pidrone/picamera/pose` and plot the x and y positions
 
 ## Checkoff 2
 1. Verify that the position values are reasonable (roughly in the range of -1m to 1m) and have the correct sign (positive when the drone is moving to the right or up, and negative to the left or down).

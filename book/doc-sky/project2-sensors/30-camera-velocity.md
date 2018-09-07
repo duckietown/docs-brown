@@ -27,18 +27,15 @@ The second method is `analyze`, which is called every time that the camera gets 
   1. Estimate the velocities
   2. Publish the velocities
 
-# TODO: DO WE WANT THIS PART OF THE PROJECT? ADD THE SPECIAL SSH COMMAND TO VIEW GRAPHS
 ## Measurement Visualization
-Debugging your measurement code becomes much easier when you can visualize what's going on with the data. Taking the time to create a script to visualize your measurement data involves a time tradeoff of initial investment, but long term gain. A couple examples of utility are to ensure that the sign of your measurements are correct, and to ensure the magnitudes are reasonable. You are now going to write a script to visualize your x and y velocity measurements as a function of time. Note that this data is raw data that has not been smoothed, so it is expected that it will be noisy (the values will move around a lot).
+Debugging your measurement code becomes much easier when you can visualize what's going on with the data. Taking the time to create a script to visualize your measurement data involves a time tradeoff of initial investment, but long term gain. A couple examples of utility are to ensure that the sign of your measurements are correct, and to ensure the magnitudes are reasonable. Fortunately for robotocists using ROS, there is already a package that subscribes to topics and plots the data for you, known as [<i>rqt_plot</i>](http://wiki.ros.org/rqt_plot). You are now going to use this package to visualize your x and y velocity measurements as a function of time. Note that this data is raw data that has not been smoothed, so it is expected that it will be noisy (the values will move around a lot).
 
 **Exercises**
-Write a data visualizer
-1. Create a file, 'velocity_visualizer.py' in your sensors project repository.
-2. Initialize a ROS node
-3. Subscribe to `/pidrone/picamera/twist` and store the x and y velocities
-4. Use matplotlib to plot the velocities on the either separate or the same graph as functions of time
+Use the rqt_plot package to visualize your x and y velocity estimates
+1. Connect to your drone using `ssh -Y pi@yourhostname` so that you can use graphical clients in your ssh session
+2. In any window of the screen (except \`0), quit the current program that's running, and run `rqt_plot /pidrone/picamera/twist/linear/x:y` to subscribe to topic `/pidrone/picamera/twist` and plot the x and y linear velocities
 
-## Checkoff
+## Checkouff
 1. Verify that the velocity values are reasonable (roughly in the range of -1m/s to 1m/s) and have the correct sign (positive when the drone is moving to the right or up, and negative to the left or down).
 2. Submit a video, `x_velocity_visualization` of your visualizer running while moving your drone left and right
 3. Submit a video, `y_velocity_visualization` of your visualizer running while moving your drone forward and backward
