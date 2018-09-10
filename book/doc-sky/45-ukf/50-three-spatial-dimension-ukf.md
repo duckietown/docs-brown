@@ -102,6 +102,8 @@ Then, you should run your UKF with this command:
 
     duckiebot $ python state_estimator.py --student -p ukf7d -o ema
 
+using the `-hz` flag as needed.
+
 **Task:** Use the web interface to verify visually that the height estimates and the $x$, $y$, and yaw estimates appear to have less noise than the sensor readings, and that these estimates appear to track your drone's actual pose in space. Compare your UKF to the EMA estimates for altitude and the raw camera pose data in the **Top View** chart.
 
 **Task:** Take a video of your drone and the web interface to demonstrate your 7D UKF's capabilities.

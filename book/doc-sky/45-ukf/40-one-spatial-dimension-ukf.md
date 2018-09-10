@@ -144,7 +144,7 @@ If you are seeing that your UKF altitude estimates are lagging significantly beh
 
 Next, you will step out of the realm of simulation and test your UKF on your drone, manually moving it along the vertical axis to test out the response you get with your IR sensor. For this step, the command you want to use is:
 
-    duckiebot $ python state_estimator.py --primary ukf2d
+    duckiebot $ python state_estimator.py --student --primary ukf2d
 
 with the `--ir_throttled` and `--imu_throttled` flags as needed. You want to make sure your IR sensor and flight controller nodes are actually running. First, though, you should calibrate your accelerometer with:
 
@@ -166,7 +166,7 @@ It's time to fly your drone with the UKF providing it with real-time filtered es
 
 **Task:** Fly your drone while running:
 
-    duckiebot $ python state_estimator.py --primary ukf2d
+    duckiebot $ python state_estimator.py --student --primary ukf2d
 
 with the `-hz` flag as needed. Evaluate its performance using the web interface as you did for the manual motion testing.
 
