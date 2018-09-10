@@ -37,11 +37,7 @@ The measurements $\mathbf{z}_t$ that are considered are the IR slant range readi
 
 At the start of your 2D UKF implementation, we asked you to take into account the notion of asynchronous inputs and to do predictions and updates when these values came in. As you later found out, this approach might not yield the best results in our particular application, due to computation limitations and also poor estimates when doing dead reckoning (i.e., predicting based on the current state estimate and motion of the drone) alone in a time step. In this 7D UKF, a similar issue can arise if trying to do a prediction and update cycle in each callback. The sporadic updates, although theoretically feasible, impose the added burden of CPU load inherent in the UKF predict and update steps. A possible solution to this issue is to drop packets of data by throttling down the sensor inputs to the UKF, which will degrade our estimates across the board. Also, by implementing callbacks that block one another, there is the potential that important updates are not being executed as often as they should be, and the system can become unreliable.
 
-The alternative solution to this issue that we have found works better and that you will implement is to reduce the amount of computation done with each sensor input. Instead of throttling the data as it comes in, you will essentially be throttling the predict-update loop. When new data comes in, you should store these values as the most recent values for the relevant measurement variables. Then, in a single thread, a predict-update loop will be running and using these measurements. This approach suffers from the fact that the measurements will not be incorporated into the state estimate at the *exact* time at which the inputs were received, but the predict-update loop will be running at a fast rate anyway as it will only run in one thread, so the latency should be negligible. In addition, this approach should make the algorithm simpler to implement, as you will be following the standard predict-update loop model using a single measurement function and measurement noise covariance matrix. An asynchronous approach requires that specific versions of the measurement function and covariance matrix be used for each specific sensor update, as stated by Labbe in chapter 8.10.1 of [](#bib:labbe_kalman).
-
-TODO: Make sure that the 7D UKF works well when actually removing the IMU yaw variable from the measurement vector/function. It has worked well when not used to update `last_measurement_vector[5]`, but it is worth making sure that amending the structure will not have adverse effects.
-
-TODO: Implement the predict-update loop in the main thread with a while loop that uses rospy Rate and sleep, probably. Test this out and then write about it in this project description for the students to implement.
+The alternative solution to this issue that we have found works better and that you will implement is to reduce the amount of computation done with each sensor input. Instead of throttling the data as it comes in, you will essentially be throttling the predict-update loop---as you ended up doing in the 2D UKF---using the `-hz` flag. When new data comes in, you should store these values as the most recent values for the relevant measurement variables. Then, in a single thread, a predict-update loop will be running and using these measurements. This approach suffers from the fact that the measurements will not be incorporated into the state estimate at the *exact* time at which the inputs were received, but the predict-update loop will be running at a fast rate anyway as it will only run in one thread, so the latency should be negligible. In addition, this approach should make the algorithm simpler to implement, as you will be following the standard predict-update loop model using a single measurement function and measurement noise covariance matrix. An asynchronous approach requires that specific versions of the measurement function and covariance matrix be used for each specific sensor update, as stated by Labbe in chapter 8.10.1 of [](#bib:labbe_kalman).
 
 **Task (Written Section 1.3.2):** In `ukf7d_written_solutions.tex`, implement the measurement function $h(\mathbf{\bar x})$ to transform the prior state estimate into measurement space for the given measurement vector.
 
@@ -84,12 +80,7 @@ Next, in the `` `5`` state estimator screen, terminate the current process and t
 
     duckiebot $ python state_estimator.py --student -p ukf7d -o simulator ema --sdim 2
 
-If performance is clearly sub-optimal, consider using the following flags:
-
-- `--ir_throttled`
-- `--imu_throttled`
-- `--optical_flow_throttled`
-- `--camera_pose_throttled`
+If performance is clearly sub-optimal, consider using the `-hz` flag.
 
 This command will run your 7D UKF as the primary state estimator, along with the 2D drone simulator and the EMA filter for comparison. If you do not want to run the EMA filter, simply omit the `ema` argument when running the `state_estimator.py` script.
 
@@ -109,7 +100,7 @@ In this part of the project, you will move your drone around with your hand, hol
 
 Then, you should run your UKF with this command:
 
-    duckiebot $ python state_estimator.py --student -p ukf7d -o ema --ir_throttled --optical_flow_throttled --imu_throttled --camera_pose_throttled
+    duckiebot $ python state_estimator.py --student -p ukf7d -o ema
 
 **Task:** Use the web interface to verify visually that the height estimates and the $x$, $y$, and yaw estimates appear to have less noise than the sensor readings, and that these estimates appear to track your drone's actual pose in space. Compare your UKF to the EMA estimates for altitude and the raw camera pose data in the **Top View** chart.
 
