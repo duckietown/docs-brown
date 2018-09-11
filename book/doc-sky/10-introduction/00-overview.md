@@ -1,6 +1,5 @@
 # Introduction {#part:introduction status=ready}
 
-
 Robots are the decathlon of computer science: to make
 a robot work, you need to understand robotics, which we
 define as a program that includes a sensor and an actuator.
@@ -13,3 +12,14 @@ resources and prove bounds on your robot's behavior; and you
 need to understand hardware, because hardware limits affect
 all aspects of the robot behavior, and if your CPU overheats,
 your robot isn't going anywhere.
+
+This textbook contains assignments, projects, and technical material
+related to the Duckie Drone, a small autonomous Raspberry Pi drone.
+After taking this course, students will be able to:
+
+* Explain the space of designs for robotic communications, safety,
+  state estimation, and control.
+
+* Apply that knowledge to construct programs for communications, safety, state estimation, and control.
+
+* Build, program, and operate an autonomous robot drone. 

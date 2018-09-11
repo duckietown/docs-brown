@@ -31,9 +31,9 @@ learn from this course and why it is worth investing a lot of time.  What do
 you hope to learn that you can take away for the next ten or twenty years of
 your career?
 
-1. What is a robot? What is a machine? What is a vehicle?
-2. Is a car a robot? How is my drone a robot?
-3. If I can fly a drone by remote, what can I get out of programming it?
+1. What is a robot? 
+1. If I can fly a drone by remote, what can I get out of programming it?
+
 
 ## Matrices and Transformations (20 points)
 
@@ -61,11 +61,13 @@ prerequisite material for the class.
                   0 & 1 & 10\\
                   0 & 0 & 1\end{bmatrix} $$
 
-3. Imagine a robot is at $$(0x,0y)$$. It uses a sensor to detect an object on
-   a distance of $$6\mbox{m}$$ and a heading of $$30^{\circ}$$. The facing
-   toward positive numbers on the Y axis would be $$0^{\circ}$$, and the
-   degrees increase when turning clockwise. Where is the obstacle relative to
-   the robot? Give coordinates and draw your answer on a map.
+3. Imagine a robot is located in the plan at location $ (x, y) $, at the
+   origin $ (0,0)$. It uses a sensor to detect an object on a distance
+   of $ 6\mbox{m} $ and a heading of $ 30^{\circ} $. The facing toward
+   positive numbers on the Y axis would be $ 0^{\circ} $, and the
+   degrees increase when turning clockwise. Where is the obstacle
+   relative to the robot? Give coordinates and draw your answer on a
+   map.
 
 ## FAA Rules (20 points)
 
@@ -74,16 +76,14 @@ Provide short answers to the following questions.
 
 *Write the answers to these questions in the corresponding sections in `answers.txt`*
 
-1. What class of airspace is the area around the CIT? (You might find it
-   easiest to use the [B4UFLY Smartphone
+1. What procedures should you follow when flying your drone outside
+   the CIT?  (You might find it easiest to use the [B4UFLY Smartphone
    App](https://www.faa.gov/uas/where_to_fly/b4ufly/).
 
 2. What is the closest airport to the CIT? Hint: Make sure to check for
    heliports as well.
 
-3. Is it okay to fly your drone outside the CIT? Why or why not? 
-
-4. What are some risks of drone flight? How could people get hurt with the
+3. What are some risks of drone flight? How could people get hurt with the
    robot?
 
 ## Case Study (20 points)
@@ -120,8 +120,9 @@ the questions below.
 Read [The Law of Leaky
 Abstractions](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/).
 How might this be especially relevant to robotics? Make sure you address:
-- How might implemented systems not be true to their modeled behavior?
-- How can we use abstractions in light of these challenges?
+
+1. How might implemented systems not be true to their modeled behavior?
+1. How can we use abstractions in light of these challenges?
 
 ## Handin
 
