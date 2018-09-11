@@ -1,8 +1,9 @@
 # Assignment {#introduction-assignment status=ready}
 
-This assignment gives an introduction to our course and
-reviews some basic material you will need. *Hand ins will be
-noted in italics.*
+This assignment gives an introduction to our course and reviews some basic
+material you will need. *Hand ins will be noted in italics. Create an
+`answers.txt` file in your Github repository (see handin instructions at the
+bottom of this page) in which to write your answers.*
 
 ## Course Form
 
@@ -141,11 +142,11 @@ link](https://github.com). We will be using git repos throughout the course for
 versioning, moving code around, and submitting assignments.
 
 Once you have a github account, click on [this
-link](https://classroom.github.com/a/Yc9ObA6D) to join our Github classroom.
+link](https://classroom.github.com/a/5D9_VZJ8) to join our Github classroom.
 This should ask you to select your name from the list and create a repository
 for you. Clone the directory to your computer
 
-`git clone https://github.com/h2r/introduction-yourGithubName.git`
+`git clone https://github.com/h2r/assignment-introduction-yourGithubName.git`
 
 This will create a new folder. Before you submit your assignment, your folder
 should contain
@@ -160,7 +161,7 @@ and push after the assignment deadline, we will use your latest commit as your
 final submission, and you will be marked late.
 
 ```
-cd introduction-yourGitHubName
+cd assignment-introduction-yourGitHubName
 git add collaboration_policy.pdf safety_policy.pdf answers.txt
 git commit -a -m 'some commit message. maybe handin, maybe update'
 git push
