@@ -9,7 +9,7 @@ bottom of this page) in which to write your answers.*
 
 Fill out the
 [form](https://docs.google.com/forms/d/1H9RmjkpoRjVK3JAbkEogyKDuwZQWIR6a7M4KQng4Tf0/viewform?edit_requested=true)
-in order to apply for admission to the course. 
+in order to apply for admission to the course.
 
 ## Collaboration Policy
 
@@ -32,7 +32,7 @@ learn from this course and why it is worth investing a lot of time.  What do
 you hope to learn that you can take away for the next ten or twenty years of
 your career?
 
-1. What is a robot? 
+1. What is a robot?
 1. If I can fly a drone by remote, what can I get out of programming it?
 
 
@@ -52,11 +52,11 @@ For this problem we strongly recommend you do these calculations by hand,
 because they are warmup questions designed to remind you of some of the
 prerequisite material for the class.
 
-1. Multiply the matrix by the following vector: 
+1. Multiply the matrix by the following vector:
   $$\begin{bmatrix}1 & 0 & 1\\
                  0 & 1 & 2\\
-                 0 & 0 & 1\end{bmatrix} 
-  \times 
+                 0 & 0 & 1\end{bmatrix}
+  \times
   \begin{bmatrix}0\\
                  0\\
                  1\end{bmatrix}$$
@@ -64,13 +64,13 @@ prerequisite material for the class.
 2. Multiply the matrix by the following vector:
    $$\begin{bmatrix}0\\
                   0\\
-                  1\end{bmatrix} 
-   \times 
+                  1\end{bmatrix}
+   \times
    \begin{bmatrix}1 & 0 & 4\\
                   0 & 1 & 10\\
                   0 & 0 & 1\end{bmatrix} $$
 
-3. Imagine a robot is located in the plan at location $ (x, y) $, at the
+3. Imagine a robot is located in the plane at location $ (x, y) $, at the
    origin $ (0,0)$. It uses a sensor to detect an object on a distance
    of $ 6\mbox{m} $ and a heading of $ 30^{\circ} $. The facing toward
    positive numbers on the Y axis would be $ 0^{\circ} $, and the
@@ -108,7 +108,7 @@ the questions below.
 - [Waymo](https://waymo.com)
 
 1. What problem is the robot solving? Your answer should be focused on the
-   problem people had, why it was hard, and why it was important to solve. 
+   problem people had, why it was hard, and why it was important to solve.
 
 2. What sensors does the robot use to solve the problem? What does it need to
    know about its environment, and how does it find out?
@@ -168,7 +168,7 @@ git push
 ```
 
 Note that assignments will be graded anonymously, so don't put your name or any
-other identifying information on the files you hand in. 
+other identifying information on the files you hand in.
 
 If your name is not in the list of names, please email
 cs1951rheadtas@lists.brown.edu and we will make sure your name is added to the
