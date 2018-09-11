@@ -39,6 +39,14 @@ your career?
 
 *Write the answers to these questions in the corresponding section of `answers.txt`.*
 
+Transformation matrices are fundamental to reasoning about sensors and
+actuators.  For example, the robot might detect a landmark with its
+camera, and we might want to know the location of the landmark
+relative to the robot's base.  Or we might want to know where we can
+expect the landmark to be located after the robot has moved forward.
+We will cover this in detail but for know are asking you to do a
+warmup on these topics.
+
 For this problem we strongly recommend you do these calculations by hand,
 because they are warmup questions designed to remind you of some of the
 prerequisite material for the class.
@@ -70,11 +78,13 @@ prerequisite material for the class.
    map.
 
 ## FAA Rules (20 points)
+*Write the answers to these questions in the corresponding sections in `answers.txt`*
 
-Read the [FAA website](https://www.faa.gov/uas/) on Unmanned Aircraft Systems.
+In the United States, the Federal Aviation Administration regulates
+outdoor flight.  (It does not regulate flight indoors.)  Read the [FAA
+website](https://www.faa.gov/uas/) on Unmanned Aircraft Systems.
 Provide short answers to the following questions.
 
-*Write the answers to these questions in the corresponding sections in `answers.txt`*
 
 1. What procedures should you follow when flying your drone outside
    the CIT?  (You might find it easiest to use the [B4UFLY Smartphone
