@@ -70,13 +70,13 @@ prerequisite material for the class.
                   0 & 1 & 10\\
                   0 & 0 & 1\end{bmatrix} $$
 
-3. Imagine a robot is located in the plane at location $ (x, y) $, at the
-   origin $ (0,0)$. It uses a sensor to detect an object on a distance
-   of $ 6\mbox{m} $ and a heading of $ 30^{\circ} $. The facing toward
-   positive numbers on the Y axis would be $ 0^{\circ} $, and the
-   degrees increase when turning clockwise. Where is the obstacle
-   relative to the robot? Give coordinates and draw your answer on a
-   map.
+3. Imagine a robot is located in the $(x, y)$ coordinate plane at the
+   origin $(0,0)$. It uses a sensor to detect an obstacle at a distance
+   of $ 6\mbox{m} $ and a heading of $ 30^{\circ} $. The positive y-axis
+   represents $ 0^{\circ} $, and the degrees increase when turning clockwise.
+   What are the $(x, y)$ coordinates of the obstacle? Give the coordinates
+   in _answers.txt_. Then draw your answer on a map and add it to your repo as
+   _map.png_.
 
 ## FAA Rules (20 points)
 *Write the answers to these questions in the corresponding sections in `answers.txt`*
@@ -154,15 +154,16 @@ should contain
 * collaboration_policy.pdf
 * safety_policy.pdf
 * answers.txt
+* map.png
 
-Commit and push your changes before the assignemt is due. This will allow us to
+Commit and push your changes before the assignment is due. This will allow us to
 access the files you pushed to Github and grade them accordingly. If you commit
 and push after the assignment deadline, we will use your latest commit as your
 final submission, and you will be marked late.
 
 ```
 cd assignment-introduction-yourGitHubName
-git add collaboration_policy.pdf safety_policy.pdf answers.txt
+git add collaboration_policy.pdf safety_policy.pdf answers.txt map.png
 git commit -a -m 'some commit message. maybe handin, maybe update'
 git push
 ```
