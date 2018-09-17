@@ -52,12 +52,12 @@ algorithm or functionality on the robot. An incorrect transform might be
 impossible to debug if you print out the matrix, but instantly obvious as soon
 as you draw it in a 3D visualizer.
 
-For each condition below: 
+For each condition below:
 1) Use the Javascript interface to visualize the state or output
 2) Describe a procedure to verify the output works as expected
 3) Carry out the procedure using your drone and describe the results
 
-*Submit the pictures as visualize_<condition number>.png and write the written
+*Submit the pictures as visualize_[INSERT CONDITION NUMBER].png and write the written
 responses in `answers.txt`.*
 
 1. Camera Output: How does it work on different lighting
@@ -112,7 +112,7 @@ programs that talk to the respective hardware module.
    how to talk directly to the controller without using ROS. The flight
    controller speaks [Multiwii Serial
    Protocol]("http://www.multiwii.com/wiki/index.php?title=Multiwii_Serial_Protocol).
-   *Submit your answer as `my_arm.py`*. 
+   *Submit your answer as `my_arm.py`*.
 
 2. Write a program to read a single frame from the camera, save it to a file,
    and return, without using ROS. Verify your program runs, and include your
