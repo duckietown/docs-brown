@@ -11,3 +11,7 @@ Date: 09/11/18
 ## Lecture 3: Hardware and Robot Design
 Date: 09/13/18  
 [Slides](https://drive.google.com/file/d/1--V2SgQcVP_049eY5QH8z6m51DQ1GLna/view?usp=sharing)
+
+## Lecture 4: Networking
+Date: 09/18/18  
+[Slides](https://drive.google.com/file/d/17K0ct18KCns6GYjNrkzmGY9yQulhiZtb/view?usp=sharing)
