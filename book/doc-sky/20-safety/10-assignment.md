@@ -82,7 +82,7 @@ questions.
 
 ## Handin
 
-Use this [link]() to access the assignment on Github classroom. Commit the
+Use this [link](https://classroom.github.com/a/Xk5mbPOk) to access the assignment on Github classroom. Commit the
 files to hand in, as you did in the Introduction assignment.
 
 Your handin should contain the following files:
