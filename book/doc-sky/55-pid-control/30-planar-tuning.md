@@ -1,4 +1,4 @@
-# Part 2: Planar Tuning {#pid-assignment status=ready}
+# Part 2: Planar Tuning {#pid-planar status=ready}
 
 In this portion of the project, you will be tuning the low rate integral terms of the PID controllers that we've provided.
 
