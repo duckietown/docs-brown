@@ -39,7 +39,7 @@ accelerometer for automatic leveling. You will be controlling the
 throttle and the angular velocities directly.  
 
 1. Use the throttle to take off.  Describe in words what this does to
-each of the four motors.  What affect does this action have on the
+each of the four motors.  What effect does this action have on the
 drone?  
 
 2. Now take off. Fly around a bit and try to land back on the target.
