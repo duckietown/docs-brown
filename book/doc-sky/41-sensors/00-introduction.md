@@ -1,4 +1,4 @@
-# Project 2: Sensor Interfacing {#sensors-project status=ready}
+# Sensors {#part:sensors status=ready}
 
 ## Introduction
 Sensors are necessary for a robot to perceive its environment. A Robots knowledge of its surroundings are, therefore, limited by the types and numbers of sensors which provide information to the robot. The information sensors provide is meaningless unless the data can be interpreted by the robot and converted into useful metrics.

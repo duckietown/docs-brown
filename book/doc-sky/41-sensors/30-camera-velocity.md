@@ -1,6 +1,5 @@
-# Project 2: Sensor Interfacing {#sensors-velocity status=draft}
+# Velocity Estimation via Optical Flow {#sensors-velocity status=draft}
 
-## Velocity Estimation via Optical Flow
 In this part of the project you will create a class that interfaces with the picamera to extract planar velocities from optical flow vectors.
 
 ## Camera Calibration
