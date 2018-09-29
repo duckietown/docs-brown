@@ -36,7 +36,7 @@ paper](https://cs.brown.edu/courses/cs1951r/assignments/motionplanning/rrtpaper.
 
 Use the RRT to find a motion plan for a 2d robot for the same point as above.
 The `r` key starts running the RRT to expand it, and then pressing `r` again
-stops it from expanding. 
+stops it from expanding.
 
 3.1. First run the RRT for a second or two. Describe in words what the RRT
      does, and submit four images showing its intermediate progress.
@@ -56,5 +56,6 @@ stops it from expanding.
 
 When you are done, use [this link]() to create your Motion Planning Github
 Repo. Commit and push the relevant files:
-- answers.txt
-- All images, named by question number and 
+
+- answers.md
+- All images, named by question number and

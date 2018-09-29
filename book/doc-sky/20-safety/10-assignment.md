@@ -4,7 +4,7 @@ The goal of this assignment is to ask you to think critically about how to
 ensure robots are operated safely, and to devise guidelines for operating your
 robot safely.
 
-## OSHAA Safety Analysis (50 points) 
+## OSHA Safety Analysis (50 points)
 
 *Write your answers in `answers.txt`*
 
@@ -14,7 +14,7 @@ Safety](https://www.osha.gov/dts/osta/otm/otm_iv/otm_iv_4.html).
 Perform a hazard analysis for the drone, based on the OSHA guidelines. Make
 sure you answer each of the following subquestions in a few sentences each.
 
-1. What tasks will the robot be programmed to perform? 
+1. What tasks will the robot be programmed to perform?
 
 2. What are the startup, command, or programming procedures?
 
@@ -86,4 +86,5 @@ Use this [link](https://classroom.github.com/a/Xk5mbPOk) to access the assignmen
 files to hand in, as you did in the Introduction assignment.
 
 Your handin should contain the following files:
+
 - answers.txt
