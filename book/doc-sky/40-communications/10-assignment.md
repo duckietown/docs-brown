@@ -8,27 +8,19 @@ repository and submit the ROS package you create.*
 1. Read [understanding
    nodes](http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes).
 
-2. Use `rosnode list` to display what nodes are running when you start the
+2. Start the `screen` session we use to fly the drone. Use `rosnode list` to display what nodes are running when you start the screen. If you wish, take a look at the [software architecture diagram](https://docs-brown.duckietown.org/opmanual_sky/out/software_architecture_assignment.html#sec:software-architecture-assignment) and look at all of the blue ROS topics to gain a visual understanding of all of the nodes that are running. Once again, do not worry about understanding everything now, or knowing what each topic is used for- you will learn this through experience as the course progresses.
 
-3. Use `rosnode info` to find out more about each node. What topics does
-   `/flow_pub` publish?
+3. Use `rosnode info` to find out more about as many nodes as you'd like. What topics does
+   `/pidrone/infrared` publish?
 
-4. Do the ROS tutorial to [create
-   a package](http://wiki.ros.org/ROS/Tutorials/CreatingPackage). Name your
-   package `ros_assignment_pkg`.
+4. Do the ROS tutorial to [create a package](http://wiki.ros.org/ROS/Tutorials/CreatingPackage). Name your package `ros_assignment_pkg`.
 
-5. Do the [building
-   packages](http://wiki.ros.org/ROS/Tutorials/BuildingPackages) tutorial.
+5. Do the [building packages](http://wiki.ros.org/ROS/Tutorials/BuildingPackages) tutorial.
 
 
-6. Follow the [ROS publisher/subscriber
-   tutorial](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29)
-   using the workspace and package you created above. *Hand in the entire
-   package.*
+6. Follow the [ROS publisher/subscriber tutorial](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29) using the workspace and package you created above. *Hand in the entire package.*
 
-7. Start the `screen` session we use to fly the drone. Use `rostopic echo` and
-   `rostopic hz` to examine the results of various topics. What is the frame
-   rate we are publishing images from the camera?
+7. Start the `screen` session we use to fly the drone. Use `rostopic echo` and `rostopic hz` to examine the results of various topics. What is the rate at which we are publishing the infrared range reading?
 
 ## Messages (5 points)
 
