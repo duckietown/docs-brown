@@ -1,4 +1,4 @@
-# Localization Assignment {#localization-slam-assignment status=ready}
+# Localization Assignment {#localization-slam-localization-assignment status=ready}
 
 ## Particle Filter
 First, you will complete a series of quick exercises which will guide you through implementing a simplified particle filter. You will be given two files:

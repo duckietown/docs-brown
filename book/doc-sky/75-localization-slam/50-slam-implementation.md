@@ -1,4 +1,4 @@
-# Our SLAM Implementation {#localization-slam-assignment status=ready}
+# Our SLAM Implementation {#localization-slam-slam-implementation status=ready}
 
 As mentioned before, each particle holds a complete estimate of the map. Altogether, our FastSLAM particles will consist of a pose (x,y), a list of landmark objects, and a weight. The landmark objects will each store a pose (x,y), a 2x2 covariance matrix, a descriptor, and a counter. We will discuss the descriptor and counter shortly.
 

@@ -1,4 +1,4 @@
-# Our Localization Implementation {#localization-slam-assignment status=ready}
+# Our Localization Implementation {#localization-slam-localization-implementation status=ready}
 
 To complete our understanding of how we will implement a particle filter on the drone for localization, we need to address specific state transition and measurement models.
 

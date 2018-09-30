@@ -1,4 +1,4 @@
-# Using your Infrared Range Finder {#sensors-assignment status=ready}
+# Using your Infrared Range Finder {#sensors-assignment-infrared status=ready}
 
 In this part of the project, you will learn how to estimate the drone's height using its infrared sensor. The drone is equipped with a [Sharp 2Y0A21YK0F Infrared Distance Sensor](https://www.digikey.com/product-detail/en/parallax-inc/28995/28995-ND/3523692), which is used for estimating the distance from the drone to the ground-plane. The sensor outputs an analog voltage signal (roughly 3.1V at
 
