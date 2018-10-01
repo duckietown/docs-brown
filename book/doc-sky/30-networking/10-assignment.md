@@ -251,6 +251,6 @@ that are run every time your shell starts, such as `.bashrc`.
 
 ## Handin
 
-When you are done, use [this link]() to create your Networking Github Repo.
+When you are done, use [this link](https://classroom.github.com/a/7YV_5r9E) to create your Networking Github Repo.
 Commit and push the relevant files (networking.pdf, and any scripts you wrote
 throughout the assignment) to this Github Repo before the deadline.
