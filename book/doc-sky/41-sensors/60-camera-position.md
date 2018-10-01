@@ -14,6 +14,7 @@ Before attempting to analyze the images, we should first check that the images a
 To estimate our position we will make use of OpenCV’s [<i>estimateRigidTransform</i>](https://docs.opencv.org/3.0-beta/modules/video/doc/motion_analysis_and_object_tracking.html#estimaterigidtransform) function. This will return an affine transformation between two images if the two images have enough in common to be matched, otherwise, it will return None.
 
 **Exercises**
+
 The first method you'll complete is `setup`, which will be called to initialize the instance variables.
 
   1. Fill in all of the `TODO`s in `setup`
@@ -32,6 +33,7 @@ The second method is `analyze`, which is called every time that the camera gets 
 Simply matching against the first frame is not quite sufficient for estimating position because as soon as the drone stops seeing the first frame it will be lost. Fortunately we have a fairly simple fix for this: compare the current frame with the previous frame to a get “position step”, and integrate these position steps to maintain a position estimate when not seeing the first frame. The framerate is high enough and the drone moves slow enough that the we will almost never fail to match on the previous frame.
 
 **Exercises**
+
 Modify your AnalyzePhase class to add the functionality described above.
 
 1. Store the previous frame. When estimateRigidTransform fails to match on the first frame, run estimateRigidTransform on the previous frame and the current frame.
@@ -59,7 +61,9 @@ Print out your position estimate in the write function and submit a video entitl
 Debugging position measurements can also be made easier through the use of a visualizer. A few things to look for are sign of the position, magnitude of the position, and the position staying steady when the drone isn't moving. Note again that these measurements are unfiltered and will thus be noisy; don't be alarmed if the position jumps when it goes from not seeing the first frame to seeing it again.
 
 **Exercises**
+
 Use the web interface to visualize your position estimates
+
 1. Connect to your drone and start a new screen
 2. Navigate to \`2 and quit the program
 3. Hold your drone up about .25m with your hand

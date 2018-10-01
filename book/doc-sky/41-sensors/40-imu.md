@@ -12,6 +12,7 @@ Before extracting data from the flight controller, we must understand what data 
 The flight controller board is also capable of reading the voltage and current of the battery. This is useful information for us because it allows us to shut down the drone if the battery voltage is too low (Lipo batteries are quickly ruined if discharged too low).
 
 ** Exercises **
+
 1. Take a look at Battery.msg in the ~/ws/src/pidrone_pkg/msg directory on your drone. This is a custom message we've created to communicate the battery values
 2. Fill in the `TODO`s in the `update_battery_message` method in `student_flight_controller_node.py`.
 3. Verify that the data is being published properly by running this node and echoing the topic ``/pidrone/battery`
@@ -23,6 +24,7 @@ Now we will extract linear accelerations and attitude (roll, pitch, heading<sup 
 TODO (TG note): I think yaw and heading would be defined the same way in our setup: the angle of the drone about the vertical axis, in the global frame. That global frame is a function of the conditions in which our drone starts up: if the drone is pointing in Earth's eastward direction at startup, then that will be the direction of the drone's northern direction, for example. The point is that this global frame (at least with our drone's current setup) can change between flights. (See, for example, [this article](http://www.chrobotics.com/library/heading-course-and-crab-angle), which defines yaw to be the same as heading, albeit without going into detail.)
 
 ** Exercises **
+
 1. Take a look at the [Imu ROS message type](http://docs.ros.org/api/sensor_msgs/html/msg/Imu.html) to get an understanding of the date you'll be collecting.
 2. Uncomment the `update_imu_message` method in `student_flight_controller_node.py`and fill in all of the `TODO`s
 3. Verify that the data is being published properly by running this node and echoing the topic ``/pidrone/imu`

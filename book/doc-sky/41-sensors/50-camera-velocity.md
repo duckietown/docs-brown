@@ -4,6 +4,7 @@ In this part of the project you will create a class that interfaces with the Ard
 
 ## Camera Calibration
 **Exercises**
+
   1. Describe the orientation of the camera relative to the drone using a [3d rotation matrix](https://en.wikipedia.org/wiki/Rotation_matrix)
 
 ## Code Structure
@@ -13,9 +14,11 @@ To interface with the camera, you will be using the picamera library. This libra
 On your drones, the chip on the Raspberry Pi dedicated to video processing from the camera calculates motion vectors ([optical flow](https://en.wikipedia.org/wiki/Optical_flow)) automatically for H.264 video encoding. [Click here to learn more](https://www.raspberrypi.org/blog/vectors-from-coarse-motion-estimation/). You will be analyzing these motion vectors in order to estimate the velocity of your drone.
 
 **Exercises**
+
 You will now implement your velocity estimation using optical flow by completing all of the `TODO`'s in student_analyze_flow.py. There are two methods you will be implementing.
 
 The first method is `setup`, which will be called to initialize the instance variables.
+
   1. Initialize the variables that you will use to scale the raw motion vectors from the camera
   2. Create a ROS publisher to publish the velocity values
 
@@ -30,7 +33,9 @@ The second method is `analyze`, which is called every time that the camera gets 
 You'll want to make sure that the values you're publishing make sense. To do this, you'll be echoing the values that you're publishing and empircally verifying that they are reasonable.
 
 **Exercises**
+
 Verify your velocity measurements
+
 1. Start up your drone and launch a screen
 2. Navigate to \`6 and quit the node that is running
 3. Run `python student_analyze_flow.py`
