@@ -4,7 +4,7 @@
 
 A translation can be represented as a tuple $<x, y, z>$ corresponding to the
 amount a point moves in each direction. *Write the answers to the following
-questions in `answers.txt`.*
+questions in `answers.md`.*
 
 1. The robot is at the origin, $\begin{bmatrix}0\\0\\0\end{bmatrix}$. It drives
    forward for 5 seconds at 2.5 meters per second. So its velocity is
@@ -19,7 +19,7 @@ questions in `answers.txt`.*
 3. To represent translation in a transformation matrix, we add $1$ to the
    vector representing the robots pose: $<x, y, z, 1>$. To see why this is
    necessary, consider multiplying a $3\times3$ matrix $T$ by a the vector $<0,
-   0, 0>$. Formally: 
+   0, 0>$. Formally:
 $$
    \begin{align}
     T \times \begin{bmatrix}0\\0\\0\\
@@ -41,21 +41,22 @@ $$
    0 & 0 & 1 & t_z\\
    0 & 0 & 0 & 1
    \end{bmatrix}
-$$
+   $$
+
    To translate the robot, one performs the following multiplication: $p'
    = T \times p$. Where $p'$ is the position at the next timestep and $p$ is
    the position at the current timestep.
 
    For this problem, the robot starts at the origin. It moves right $3$ meters
    in the $x$ direction, flies up in $z$ $0.5$ meters, and then moves backward
-   in the $y$ direction $-1$ meter. 
+   in the $y$ direction $-1$ meter.
 
    4.1. Draw the robot's trajectory. *Submit this picture as `trajectory.png`.*
 
    4.2. Write out the transformations as three separate transformation
-   matrices. 
+   matrices.
 
-   4.3. Multiply the matrices together to get one single transform. 
+   4.3. Multiply the matrices together to get one single transform.
 
    4.4. Multiply the matrix by the robot's position vector to get its new
    location.
@@ -93,7 +94,7 @@ A 2D linear robot has three joints as depicted below. The distance between the
 first and second joint is 1m, the second and third is 3m, and the third and end
 is 2m.
 
-6.1. Implement the transformations in the skeleton code(provided in the Github Classroom), so that the
+6.1. Implement the transformations in the skeleton code (provided in the GitHub Classroom), so that the
    arm joints move correctly and the base transformations are drawn. After you
    have implemented the transforms correctly, you should be able to see the
    arm's state as shown in the example image below. You should be able to move
@@ -112,9 +113,10 @@ is 2m.
 
 ## Handin
 
-When you are done, use [this link]() to create your Transforms Github Repo.
-Commit and push the relevant files: 
-- answers.txt
+When you are done, use [this link]() to create your Transforms GitHub Repo.
+Commit and push the relevant files:
+
+- answers.md
 - question_5_1.png
 - question_5_2.png
 - question_5_3.png
