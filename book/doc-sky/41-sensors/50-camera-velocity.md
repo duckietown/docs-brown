@@ -1,13 +1,13 @@
 # Velocity Estimation via Optical Flow {#sensors-velocity status=draft}
 
-In this part of the project you will create a class that interfaces with the picamera to extract planar velocities from optical flow vectors.
+In this part of the project you will create a class that interfaces with the Arducam to extract planar velocities from optical flow vectors.
 
 ## Camera Calibration
 **Exercises**
   1. Describe the orientation of the camera relative to the drone using a [3d rotation matrix](https://en.wikipedia.org/wiki/Rotation_matrix)
 
 ## Code Structure
-To interface with the camera, you will be using picamera library. This library allows you to use classes which inherit from [<i>picamera.array.PiMotionAnalysis</i>](https://picamera.readthedocs.io/en/release-1.10/api_array.html#pimotionanalysis) to receive and analyze frames from the video stream. In the sensors project repo, we've include a script called student_vision_flow_and_phase.py which instantiates objects of your analyze classes that inherit <i>picamera.array.PiMotionAnalysis</i> to allow the objects to receive and analyze frames from the video stream. This script creates what we call a <i>vision</i> node which is a ROS node we created that provides data from the camera. This node is called <i>vision_flow_and_phase</i> becuase it uses the two classes you'll be creating to analyze the camera data and provide velocity and position estimates. Later on in the course, you'll be creating a <i>vision_localization</i> node that uses localization to analyze the camera data and provide position estimates.
+To interface with the camera, you will be using the picamera library. This library allows you to use classes which inherit from [<i>picamera.array.PiMotionAnalysis</i>](https://picamera.readthedocs.io/en/release-1.10/api_array.html#pimotionanalysis) to receive and analyze frames from the video stream. In the sensors project repo, we've include a script called student_vision_flow_and_phase.py which instantiates objects of your analyze classes that inherit <i>picamera.array.PiMotionAnalysis</i> to allow the objects to receive and analyze frames from the video stream. This script creates what we call a <i>vision</i> node which is a ROS node we created that provides data from the camera. This node is called <i>vision_flow_and_phase</i> becuase it uses the two classes you'll be creating to analyze the camera data and provide velocity and position estimates. Later on in the course, you'll be creating a <i>vision_localization</i> node that uses localization to analyze the camera data and provide position estimates.
 
 ## Analyze and Publish the Sensor Data
 On your drones, the chip on the Raspberry Pi dedicated to video processing from the camera calculates motion vectors ([optical flow](https://en.wikipedia.org/wiki/Optical_flow)) automatically for H.264 video encoding. [Click here to learn more](https://www.raspberrypi.org/blog/vectors-from-coarse-motion-estimation/). You will be analyzing these motion vectors in order to estimate the velocity of your drone.

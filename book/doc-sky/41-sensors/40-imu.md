@@ -1,4 +1,4 @@
-# Interfacing with the IMU {#sensors-assignment-infrared status=ready}
+# Interfacing with the IMU {#sensors-assignment-infrared status=draft}
 
 Your drone is equipped with a [Skyline32 Flight Controller](https://hobbyking.com/en_us/skyline32-acro-flight-controller-w-baseflight-cleanflight.html) which has a built in IMU<sup id="a1">[1](#f1)</sup>. In this part of the project, you will learn how to interface with the flight controller board to extract the attitude, accelerations, angular rates of the drone from the built-in IMU. In addition, you will extract the battery levels from the flight controller so that you'll be able to tell when you're battery is too low.
 
@@ -18,7 +18,9 @@ The flight controller board is also capable of reading the voltage and current o
 
 
 ## Problem 2: Extracting IMU data
-Now we will extract linear accelerations and attitude (roll, pitch, heading<sup id="a2">[1](#f2)</sup>). In addition, we can discretely calculate the angular rates d/dt * (roll, pitch, heading) by calculating the change in values (dr, dp, and dh) and dividing by the change in time since the previous values were stored (dt).
+Now we will extract linear accelerations and attitude (roll, pitch, heading<sup id="a2">[2](#f2)</sup>). In addition, we can discretely calculate the angular rates d/dt * (roll, pitch, heading) by calculating the change in values (dr, dp, and dh) and dividing by the change in time since the previous values were stored (dt).
+
+TODO (TG note): I think yaw and heading would be defined the same way in our setup: the angle of the drone about the vertical axis, in the global frame. That global frame is a function of the conditions in which our drone starts up: if the drone is pointing in Earth's eastward direction at startup, then that will be the direction of the drone's northern direction, for example. The point is that this global frame (at least with our drone's current setup) can change between flights. (See, for example, [this article](http://www.chrobotics.com/library/heading-course-and-crab-angle), which defines yaw to be the same as heading, albeit without going into detail.)
 
 ** Exercises **
 1. Take a look at the [Imu ROS message type](http://docs.ros.org/api/sensor_msgs/html/msg/Imu.html) to get an understanding of the date you'll be collecting.
@@ -28,6 +30,6 @@ Now we will extract linear accelerations and attitude (roll, pitch, heading<sup 
 
 
 ###### Footnotes
-[<b id="f1">1</b>](#a1)We will note now that you will also interface with the flight controller to control the motors of the drone. The flight controller is the component that sends controls the actuators (the motors) by sending pwm values to the ESC's. What all of these terms mean will be discussed later on when we focus on controlling and actuating the robot; for now, we are only focussed on the the sensors on the flight controller.
+[<b id="f1">1</b>](#a1)We will note now that you will also interface with the flight controller to control the motors of the drone. The flight controller is the component that controls the actuators (the motors) by sending PWM values to the ESCs. What all of these terms mean will be discussed later on when we focus on controlling and actuating the robot; for now, we are only focused on the the sensors on the flight controller.
 
-[<b id="f2">1</b>](#a2) We refer to this here as 'heading' instead of 'yaw' because 'yaw' refers to the orientation of the drone in a global frame, but the yaw of the flight controller is relative to whatever direction the drone is facing when it starts up. Thus, we call this the heading of the drone becasue it measures what direction the drone is pointing relative to when it started up. (Think of this like a compass heading in which North is determined by the initial direction that the drone is facing)
+[<b id="f2">2</b>](#a2) We refer to this here as 'heading' instead of 'yaw' because 'yaw' refers to the orientation of the drone in a global frame, but the yaw of the flight controller is relative to whatever direction the drone is facing when it starts up. Thus, we call this the heading of the drone because it measures what direction the drone is pointing relative to when it started up. (Think of this like a compass heading in which North is determined by the initial direction that the drone is facing.)
