@@ -81,7 +81,7 @@ the terminal rather than buried in the input to the next program.
    of `sort`. *Submit the file containing the script as `my_sort_status.py`.*
 
 ## Networking (20 points)
- 
+
 The command `nc` is short for "netcat" and is similar to `cat` but works over
 network connections. It reads from standard input and writes its contents not
 to standard output, but to a specified server. *Write your answers in the
@@ -121,7 +121,7 @@ corresponding sections of `answers.txt`.*
 ## Talking to Your Robot (10 points)
 
 So far, this assignment has required access to `localhost`, the local machine
-you are connected to, and `google.com`. 
+you are connected to, and `google.com`.
 
 Most commonly, the base station and robot are connected over TCP/IP to the same
 local network. Then you can look up your machine's IP address (`ifconfig` in
@@ -141,14 +141,14 @@ your robot. List three different solutions.
    request an IP address from a server that manages the local network. At your
    house, it's likely to be your cable modem or home router. At Brown, CIS
    manages the routers that keep the network up. Once you have an IP address,
-   you are on the internet. 
+   you are on the internet.
 
    There are serious security concerns with giving direct access to the
    internet, without filtering connections. People could serve SPAM, or they
    could get hacked by bad actors who would use the connection to serve SPAM.
    It's safer to not give people public IP addresses and most organizations
    don't. There aren't a lot of them either - one of the things you pay your
-   home ISP for is a public IP address, and you usually only get one. 
+   home ISP for is a public IP address, and you usually only get one.
 
    To try out DHCP, connect to Brown, Brown_Guest, and RLAB. Report back your
    IP address each time using your operating system. Then connect again. Do you
@@ -186,8 +186,8 @@ your robot. List three different solutions.
    answer the following questions in `answers.txt`.*
 
    3.1. What IP address do you have on each network?
-   3.2. What is the router's IP? 
-   3.3. What ports are open on the router? 
+   3.2. What is the router's IP?
+   3.3. What ports are open on the router?
    3.4. Use `nmap` to identify the machines on each network. How many are
    there?
 
@@ -199,7 +199,7 @@ sattellite connections, but you can also tell your drone to act as a Wifi
 Hotspot. It can create a network and run a DHCP server. You can configure this
 on your drone using the file `/etc/hostapd/hostapd.conf`. Then you can connect
 your laptop's base station using the SSID and passphrase specified in that
-file, and connect to the drone. 
+file, and connect to the drone.
 
 Alternatively you can set up your laptop as the Wifi base station and configure
 the drone to connect to its network. The details will vary depending on your
@@ -214,7 +214,7 @@ your base station.
 
 3. What is the ping time between you and the Pi when you are close to the Pi
 
-4. How far away can you get from the Pi before it starts disconnecting? 
+4. How far away can you get from the Pi before it starts disconnecting?
 
 5. What is the ping time when you are far away from the Pi?
 
@@ -225,16 +225,16 @@ GNU/Linux uses environment variables to store configuration information about
 a variety of things. You can use `env` to view the environment variables in
 your shell on the Rasberry Pi. In bash (and most shells), environment variables
 are local to your bash session, so they are often set in configuration files
-that are run every time your shell starts, such as `.bashrc`. 
+that are run every time your shell starts, such as `.bashrc`.
 
 1. Log into your Rasperry Pi. Use `X=3` to set the value of an environment
    variable named `X` to the value `3`. Use `echo $X` to display the variable.
    Note that you must prepend `$` to the variable name when reading it, but not
-   when setting it. 
+   when setting it.
 
 2. Log into your drone again in a separate SSH session. Use `echo $X` to see
    the value of the environment variable `X`. What happens? Does this work? Why
-   or why not? 
+   or why not?
 
 3. Use `env` to see all the environment variables set in your shell. Pick one.
    Research the one that you picked. Describe 1) What program sets the
@@ -251,6 +251,6 @@ that are run every time your shell starts, such as `.bashrc`.
 
 ## Handin
 
-When you are done, use [this link]() to create your Networking Github Repo.
+When you are done, use [this link](https://classroom.github.com/a/7YV_5r9E) to create your Networking Github Repo.
 Commit and push the relevant files (networking.pdf, and any scripts you wrote
 throughout the assignment) to this Github Repo before the deadline.
