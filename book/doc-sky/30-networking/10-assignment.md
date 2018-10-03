@@ -43,7 +43,7 @@ First, `>` is used to redirect standard output to a file. For example, `echo "He
 1. Create files `one.txt`, `two.txt` and `three.txt` that contain the strings
    `1`, `2`, and `3`, respectively using `echo` and output redirect. *Write the
    commands you used to create these files in the corresponding section of
-   `answers.txt`.*
+   `networking.pdf`.*
 
 2. By convention, almost all shell programs read input from standard input, and
    write their output to standard output. Any error messages are printed to
@@ -52,14 +52,14 @@ First, `>` is used to redirect standard output to a file. For example, `echo "He
    output. The program `sort` reads from standard input, sorts what
    it reads, and writes the sorted content to standard output. So you can use
    `ls | sort` to print out a sorted directory list. Read the man page for sort
-   (`man sort`) to learn how to sort in reverse order. What is the bash script (using `|`) that prints the contents of a directory in reverse alphabetical order? *Write the script in the corresponding section of `answers.txt`.*
+   (`man sort`) to learn how to sort in reverse order. What is the bash script (using `|`) that prints the contents of a directory in reverse alphabetical order? *Write the script in the corresponding section of `networking.pdf`.*
 
 3. Use `cat`, `|` and `echo` to print `hello world.` Do not write to any files
-   and use both commands one time. *Write your answer in `answers.txt`.*
+   and use both commands one time. *Write your answer in `networking.pdf`.*
 
 4. This is not the simplest way to print hello world. Can you suggest
    a simpler way? (We asked you to do it the more complicated way to practice
-   with pipes.) *Write your answer in `answers.txt`.*
+   with pipes.) *Write your answer in `networking.pdf`.*
 
 5. Write a python script that reads from standard input, sorts lines in reverse
    alphabetical order, and prints the result. It should behave like `sort -r`.
@@ -85,7 +85,7 @@ the terminal rather than buried in the input to the next program.
 The command `nc` is short for "netcat" and is similar to `cat` but works over
 network connections. It reads from standard input and writes its contents not
 to standard output, but to a specified server. *Write your answers in the
-corresponding sections of `answers.txt`.*
+corresponding sections of `networking.pdf`.*
 
 1. Point `nc` to google.com as follows: `nc www.google.com 80` When you first
    connect, it will be silent. Then type any arbitrary text and press enter.
@@ -131,7 +131,7 @@ If you knew the IP address, you can connect to the robot and run `ifconfig` and
 find the IP address, but you don't know the IP address.
 
 What to do? There are several solutions. *Write the answers to the following
-questions in `answers.txt`.*
+questions in `networking.pdf`.*
 
 1. Brainstorm how you can solve the chicken-and-egg program to connect to
 your robot. List three different solutions.
@@ -154,7 +154,7 @@ your robot. List three different solutions.
    IP address each time using your operating system. Then connect again. Do you
    get the same address or a different address? *List the IP Addresses for each
    network, and whether or not you get the same address when re-connecting to
-   each network in `answers.txt`.*
+   each network in `networking.pdf`.*
 
 3. How can we have more than one device connected to the Internet? The usual
    answer is a protocol called Network Address Translation. This remaps the IP
@@ -183,7 +183,7 @@ your robot. List three different solutions.
    and server request using their local (192.168 or 10.0.0.\*) IP addresses.
 
    *Connect to the Brown_Guest, RLAB, and Brown networks. For each network,
-   answer the following questions in `answers.txt`.*
+   answer the following questions in `networking.pdf`.*
 
    3.1. What IP address do you have on each network?
    3.2. What is the router's IP?

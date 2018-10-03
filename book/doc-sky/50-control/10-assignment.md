@@ -1,5 +1,20 @@
 # Assignment {#rcflying-assignment status=ready}
 
+In this assignment, you'll briefly research control algorithms that are used on quadrotors, and then you will fly an airplane and a quadrotor in simulation to get a feel for what these control algorithms are doing.
+
+## Control Algorithms
+For the first part of this assigment, read up to 3.2 of [this article](https://arxiv.org/pdf/1602.02622.pdf), and then pick two other control algorithms to compare and contrast with a PID controller (what we use on our drones). Identify the major advantages and disadvantages of each algorithm. Do not worry about understanding all of the math derived in the article; we have asked you to read it once to be exposed to it, but such a model it is not required for the PID controller. If one wished to implement a more advanced algorithm, then a model such as the one described in the article would need to be created.
+
+
+## Fly with RC!
+In this part, you will fly an airplane and a quadcopter in simulation
+using an RC controller. Doing so will give you an intuitive sense for roll, pitch,
+and yaw, as well as how they affect the dynamics of aerial vehicles.
+
+You will be using the RealFlight 7.5 simulator along with the associated RC
+controller, which are the same controls used to fly a real physical
+aircraft over RC.
+
 Go to the 8th Floor SciLi RealFlight workstation and fly using the RC controller
 and the flight simulator! The workstation is located at the Collaboration Alcove
 (801C) at the end of the central study space area, right next to the
