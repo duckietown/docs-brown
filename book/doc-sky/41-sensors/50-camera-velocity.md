@@ -23,14 +23,14 @@ The first method is `setup`, which will be called to initialize the instance var
   2. Create a ROS publisher to publish the velocity values
 
 The perspicacious roboticist may have noticed that magnitude of the velocity in global coordinates is dependent on the height of the drone. Add a subscriber to the topic /pidrone/state to your AnalyzeFlow class and save the z position value to a class variable in the callback. Use this variable to scale the velocity measurements by the height of the drone (the distance the camera is from what it is perceiving).
-  3. Create a ROS subscriber to obtain the altitude (z-position) of the drone for scaling the motion vecotrs
+  3. Create a ROS subscriber to obtain the altitude (z-position) of the drone for scaling the motion vectors
 
 The second method is `analyze`, which is called every time that the camera gets an image, and is used to analyze the flow vectors to estimate the x and y velocities of your drone
   1. Estimate the velocities
   2. Publish the velocities
 
 ## Check your Measurements
-You'll want to make sure that the values you're publishing make sense. To do this, you'll be echoing the values that you're publishing and empircally verifying that they are reasonable.
+You'll want to make sure that the values you're publishing make sense. To do this, you'll be echoing the values that you're publishing and empirically verifying that they are reasonable.
 
 **Exercises**
 
@@ -38,7 +38,7 @@ Verify your velocity measurements
 
 1. Start up your drone and launch a screen
 2. Navigate to \`6 and quit the node that is running
-3. Run `python student_analyze_flow.py`
+3. Run `rosrun pidrone_project_sensors-yourGitHubName student_analyze_flow.py`
 4. Navigate to \`2 and quit the node that is running
 5. Enter `rostopic echo /pidrone/picamera/twist`
 6. Move the drone by hand to the left and right and forward and backward to verify that the measurements make sense

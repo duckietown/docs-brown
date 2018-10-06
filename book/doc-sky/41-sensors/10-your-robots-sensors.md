@@ -1,4 +1,4 @@
-# Your Robot's Sensors {#part:your-robots-sensors status=ready}
+# Your Robot's Sensors {#sensors-your-robot status=ready}
 
 Your drone is equipped with three sensors: an inertial measurement unit (IMU), an infrared sensor, and a downward facing camera. From these sensors, the drone is equipped with enough understanding of its environment to control its flight and fly autonomously. Each sensor is described below. By interfacing with each of these sensors, you will gain exposure to core robotics concepts including frame conversions, interpreting digital signals, and computer vision.
 
