@@ -1,4 +1,4 @@
-# Sensors {#part:introduction status=ready}
+# Sensors {#part:sensors status=ready}
 
 ## Introduction
 Sensors are necessary for a robot to perceive its environment. Each sensor allows the robot to know something more about the world around it based on the type of data that the sensor provides. This means that a robot's understanding of its surroundings is limited by the types and numbers of sensors which provide information to the robot. When designing a robot, a roboticist must make a proper selection of sensors that will allow the robot to perceive enough information to perform its intended task. Since multiple sensors can be used to provide the same data (at varying accuracies), the roboticist must take into account the level of precision required for the robot's intended task, as well as the cost limitations of the sensors, to name a few considerations. For example, when choosing the sensors for your drone, the goal was to achieve the lowest cost flying autonomous learning platform.
