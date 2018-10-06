@@ -7,7 +7,7 @@ In this project, you will be interfacing with your drone's sensors to extract da
 Take a look at the [software architecture diagram](https://docs-brown.duckietown.org/opmanual_sky/out/software_architecture_assignment.html) and notice the hardware components: <i>Flight Controller</i>, <i>Infrared Sensor</i>, and <i>Camera</i>. This is the hardware you'll be interfacing with in this project. Also notice the corresponding ROS nodes in the diagram. These are the ROS nodes you'll be creating to extract and publish sensor values.
 
 ## Handin
-Use this link to generate a GitHub repo for this project. Clone the directory to your computer `git clone https://github.com/h2r/project2sensors-yourGitHubName.git` This will create a new folder. The _README.md_ in your repo provides short descriptions of each project file.
+Use this link to generate a GitHub repo for this project. Clone the directory to your drone. Change directories to `~/ws/src` and then run `git clone https://github.com/h2r/pidrone_project_sensors-yourGitHubName.git` Then change directories back to `~/ws/` and run `catkin_make --pkg pidrone_project_sensors-yourGitHubName`. The _README.md_ in your repo provides short descriptions of each project file.
 
 When you submit your assignment, your folder should contain modified versions of the following files in addition to the other files that came with your repo:
 

@@ -5,7 +5,7 @@ In this part of the project, you will learn how to estimate the drone's height u
 0.08 meters to 0.4V at 0.8 meters), which is converted to digital by our [Analog to digital Converter (ADC)](https://www.digikey.com/product-detail/en/adafruit-industries-llc/1083/1528-1014-ND/4990763) and read in by the Raspberry Pi as a 12-bit integer. The voltage value corresponds to distance, but we are going to need to do some work to convert it to real-world units.  
 
 **Setup**  
-Change directories into `~/ws/src/pidrone_pkg` and modify _pi.screenrc_ to start up with your infrared node by changing `python infrared_pub.py\n` to `rosrun project2sensors-yourGitHubName student_infrared_pub.py\n`. You can test your script by starting up screen and navigating to \`7. You may stop _student_infrared_pub.py_ with ctrl-c, edit it within that tab, and then re-run `rosrun project2sensors-yourGitHubName student_infrared_pub.py` to test your changes.
+Change directories into `~/ws/src/pidrone_pkg` and modify _pi.screenrc_ to start up with your infrared node by changing `python infrared_pub.py\n` to `rosrun pidrone_project_sensors-yourGitHubName student_infrared_pub.py\n`. You can test your script by starting up screen and navigating to \`7. You may stop _student_infrared_pub.py_ with ctrl-c, edit it within that tab, and then re-run `rosrun pidrone_project_sensors-yourGitHubName student_infrared_pub.py` to test your changes.
 
 ## Problem 1: Calibrate your IR Sensor
 In _student_infrared_pub.py_, implement the method `calc_distance`, which takes in the 12-bit integer voltage from the ADC and calculates a distance **in meters**. Note that distance is **inversely proportional** to voltage:  
