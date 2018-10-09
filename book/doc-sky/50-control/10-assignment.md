@@ -107,5 +107,5 @@ some of the other aircraft.
 activity or feature that you found.
 
 ## Handin
-Use [this link]() to create your RC Flying Github Repo. After finishing the
+Use [this link](https://classroom.github.com/a/ZZYbHx_8) to create your RC Flying Github Repo. After finishing the
 assignment, commit and push `answers.md` to this repo before the deadline.
