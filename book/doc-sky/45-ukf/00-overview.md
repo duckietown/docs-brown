@@ -5,5 +5,5 @@ The fundamental issue of state estimation impacts widespread robotics applicatio
 In this project, we give an overview of the necessary foundations to understand the UKF algorithm. Then, you will implement a UKF with a simple one-dimensional model of the drone's motion to estimate its position and velocity along the vertical axis. Later on in the project, we will expand the model to three spatial dimensions.
 
 
-A useful reference on probability and uncertaint is
-\citet{jaynes2003probability}.
+A useful reference on probability and uncertainty is
+\cite{jaynes2003probability}.
