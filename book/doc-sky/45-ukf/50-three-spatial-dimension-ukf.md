@@ -61,13 +61,10 @@ We touched upon this in the **Measurement Function** section. To handle asynchro
 
 **Task:** Implement the predict-update loop. It might be useful to refer to the `rospy` documentation on setting loop rates and sleeping.
 
-TODO: Make sure such `rospy` rate-usage and sleeping works well
-
 ## Tune and Test the Filter
 It is now time to put your 7D UKF to the test.
 
 ### In Simulation
-TODO: Ensure that the 2D simulation works well and that the 7D UKF works well with it.
 
 To run your 7D UKF with simulated data, you need to run ROS on your Raspberry Pi and terminate certain nodes upon running the `pi.screenrc` file:
 

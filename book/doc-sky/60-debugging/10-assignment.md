@@ -33,7 +33,7 @@ For each of the below conditions:
    and describe what you changed to cause it to stop working
 4) Carry out your test again and describe the results
 
-*Write your answers in `answers.txt` for each condition.*
+*Write your answers in `answers.md` for each condition.*
 
 1. The motors are powering on.
 
@@ -52,13 +52,13 @@ algorithm or functionality on the robot. An incorrect transform might be
 impossible to debug if you print out the matrix, but instantly obvious as soon
 as you draw it in a 3D visualizer.
 
-For each condition below: 
+For each condition below:
 1) Use the Javascript interface to visualize the state or output
 2) Describe a procedure to verify the output works as expected
 3) Carry out the procedure using your drone and describe the results
 
-*Submit the pictures as visualize_<condition number>.png and write the written
-responses in `answers.txt`.*
+*Submit the pictures as visualize_[INSERT CONDITION NUMBER].png and write the written
+responses in `answers.md`.*
 
 1. Camera Output: How does it work on different lighting
    conditions?
@@ -83,7 +83,7 @@ the problem in some other module, even if you didn't write it.
 In embedded computing, often the LEDs give important information about the
 underlying components, as do audible beep codes. Note that the CleanFlight
 software and the ESCs spin the motor at high frequencies in order to generate
-audible beeps. *Write the answers to the following questions in `answers.txt`.*
+audible beeps. *Write the answers to the following questions in `answers.md`.*
 
 1. Find the LEDs on the Rasberry Pi. What does each LED mean? What do they
    mean? What happens to the LEDs if the SD card is not plugged into the Pi?
@@ -112,7 +112,7 @@ programs that talk to the respective hardware module.
    how to talk directly to the controller without using ROS. The flight
    controller speaks [Multiwii Serial
    Protocol]("http://www.multiwii.com/wiki/index.php?title=Multiwii_Serial_Protocol).
-   *Submit your answer as `my_arm.py`*. 
+   *Submit your answer as `my_arm.py`*.
 
 2. Write a program to read a single frame from the camera, save it to a file,
    and return, without using ROS. Verify your program runs, and include your
@@ -125,6 +125,7 @@ programs that talk to the respective hardware module.
 Create your github repo using [this link]().
 
 Handin the following files:
-- answers.txt
+
+- answers.md
 - my_arm.py
 - my_frame.py

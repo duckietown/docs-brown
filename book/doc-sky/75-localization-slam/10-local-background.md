@@ -1,4 +1,4 @@
-# Localization Background {#localization-slam-assignment status=ready}
+# Localization Background {#localization-slam-localization-background status=ready}
 
 ## Bayes Filter
 Monte Carlo Localization is a type of Bayes filter. You'll remember the general Bayes Filter algorithm from the UKF project earlier in the course, but an overview is reproduced here for your convenience.

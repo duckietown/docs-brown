@@ -1,4 +1,4 @@
-# Localization Assignment {#localization-slam-assignment status=ready}
+# Localization Assignment {#localization-slam-localization-assignment status=ready}
 
 ## Particle Filter
 First, you will complete a series of quick exercises which will guide you through implementing a simplified particle filter. You will be given two files:
@@ -14,13 +14,13 @@ Define a Particle class to represent the particles in the filter. Each particle 
 Define a ParticleFilter class to store the set of particles, the desired pose, and the methods which operate on the particle set.  Create an __init__ method which takes the number of particles as input and creates a set of particles at random positions.
 
 **Problem 2: Motion**
-Implement a method for the ParticleFilter class which adds some random Gaussian noise to the x and y positions of each particle in the filter. *Hint:* try numpy.random.normal.
+Implement a method for the ParticleFilter class which adds some random Gaussian noise to the x and y positions of each particle in the filter. Be sure that the noise is different for each particle. *Hint:* try numpy.random.normal.
 
 **Problem 3: Measurement Update**
 Implement a method for the ParticleFilter class which sets the weight of each particle inversely proportional to the particle's distance from the desired pose.
 
 **Problem 4: Resampling**
-Implement a method for the ParticleFilter class which uses the particle weights to resample the particles and create a new set of particles. The goal is for each particle to be resampled with a probability that corresponds to its weight, therefore the particle set converges on the desired pose (particles closest to the target pose are more likely to be resampled). You will want to use copy.deepcopy to create a copy of each re-sampled particle.
+Implement a method for the ParticleFilter class which uses the particle weights to resample the particles and create a new set. The goal is for each particle to be resampled with a probability that corresponds to its weight, therefore the particle set converges on the desired pose (particles closest to the target pose are more likely to be resampled). You will want to use copy.deepcopy to create a copy of each re-sampled particle.
 
 *Hint:* try using numpy.random.multinomial to generate the set of new samples.
 
@@ -28,9 +28,9 @@ Implement a method for the ParticleFilter class which uses the particle weights 
 Finally, implement a method for the ParticleFilter class which updates the filter by calling the motion method, the measurement method, and the resampling method. You may test your implementation by running particle_filter.py, then running animate_particle_filter.py to view the animation. You should see the set of particles converge to the desired point.
 
 **Problem 6: Optimization**
-Now that your filter is running, let's consider how we can optimize this process so that localization will run quickly in real time on the PiDrone.
+Now that your filter is running, let's consider how we can optimize this process so that localization will run quickly in real time on your drones.
 
-Python data structures and their operations are relatively slow compared to their Numpy counterparts because Numpy is written in C which is a fast language. You will use Numpy arrays to avoid storing the set of particle poses and their weights as lists of Python objects. Remove your Particle class, and replace it with two Numpy arrays which hold the sets of all particle poses and weights. Adjust the rest of your code accordingly.
+Python data structures and their operations are relatively slow compared to their Numpy counterparts because Numpy is written in C. You will use Numpy arrays to avoid storing the set of particle poses and their weights as lists of Python objects. Remove the pose and weight field in your Particle class, and replace them with Numpy arrays which hold the sets of all particle poses and weights. Adjust the rest of your code accordingly. Consider how each particle will "know" which is its pose and weight and how it might retrieve them.
 
 ## OpenCV
 

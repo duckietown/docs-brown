@@ -1,4 +1,4 @@
-# SLAM Background {#localization-slam-assignment status=ready}
+# SLAM Background {#localization-slam-slam-background status=ready}
 
 Congratulations! You have implemented a real-time localization algorithm for a flying drone.
 

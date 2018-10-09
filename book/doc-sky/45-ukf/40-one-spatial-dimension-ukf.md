@@ -182,8 +182,6 @@ Imagine a ground robot capable of moving in the $xy$-plane. Its body frame is or
 
 **Task:** Write up your solutions to the above bullet points in $\LaTeX$ in the file `ground_robot_ukf.tex`.
 
-TODO: Figure out a better way to frame what the state vector should be perhaps. In other words, work through this problem first and then make sure it's reasonable for students to do it.
-
 # Check-Off {#ukf-one-spatial-dimension-checkoff status=draft}
 Come to TA hours to get checked off when you have fulfilled the following:
 
