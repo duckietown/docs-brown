@@ -50,7 +50,7 @@ package*
 
 ## Handin
 
-Hand in your answers using [this link](). Make sure you hand in:
+Hand in your answers using [this link](https://classroom.github.com/a/KlzGtnH2). Make sure you hand in:
 - `answers.txt`
 - `my_echo.py`
 - `mean_and_variance.py`

@@ -122,7 +122,7 @@ programs that talk to the respective hardware module.
 
 ## Handin
 
-Create your github repo using [this link]().
+Create your github repo using [this link](https://classroom.github.com/a/YmNdQdha).
 
 Handin the following files:
 
