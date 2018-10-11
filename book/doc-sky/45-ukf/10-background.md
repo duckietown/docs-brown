@@ -62,7 +62,7 @@ $$
 \mathbf{\bar x} = g(\mathbf{x}, \mathbf{u}, \Delta t)
 $$
 
-The control input that you will use for this project is the linear acceleration along the z-axis $\ddot z$ being output by the IMU. While the distinction between this control input and other measurements might seem vague, we can think of these acceleration values as being commands that we set when we control the drone. Indeed, since we control the drone's throttle and thus the downward force of the propellers, we do control the drone's acceleration by Newton's Second Law of Motion.
+The control input that you will use for this project is the linear acceleration along the z-axis $\ddot z$ being output by the IMU. While the distinction between this control input and other measurements might seem vague, we can think of these acceleration values as being commands that we set when we control the drone. Indeed, since we control the drone's throttle and thus the downward force of the propellers, we do control the drone's acceleration by Newton's Second Law of Motion. That said, even though in practice people do successfully use IMU accelerations as control inputs, research [](#bib:imu_predict_vs_update) indicates that in certain cases it may be better to use IMU data in the measurement update step; this is an example of a design decision whose performance may depend on the system you are modeling. We choose to use the IMU's acceleration as the control input $\mathbf{u}$:
 
 $$
 \mathbf{u} = \begin{bmatrix} \ddot z \end{bmatrix}
