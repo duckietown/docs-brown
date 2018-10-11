@@ -8,7 +8,7 @@ Before attempting to analyze the images, we should first check that the images a
 **Exercises**
 
 1. Open `student_analyze_phase.py` and print the `data` argument in `AnalyzePhase`
-1. Navigate to \`6 and run `rosrun pidrone_project_sensors-yourGitHubName student_vision_flow_and_phase.py`. Verify that the images are being passed in by checking that values are printing out from where you told it to print `data`
+1. Navigate to \`6 and run `rosrun project-sensors-yourGithubName student_vision_flow_and_phase.py`. Verify that the images are being passed in by checking that values are printing out from where you told it to print `data`
 
 ## Analyze and Publish the Sensor Data
 To estimate our position we will make use of OpenCV’s [<i>estimateRigidTransform</i>](https://docs.opencv.org/3.0-beta/modules/video/doc/motion_analysis_and_object_tracking.html#estimaterigidtransform) function. This will return an affine transformation between two images if the two images have enough in common to be matched, otherwise, it will return None.

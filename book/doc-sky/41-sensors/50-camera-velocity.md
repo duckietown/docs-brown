@@ -38,7 +38,7 @@ Verify your velocity measurements
 
 1. Start up your drone and launch a screen
 2. Navigate to \`6 and quit the node that is running
-3. Run `rosrun pidrone_project_sensors-yourGitHubName student_analyze_flow.py`
+3. Run `rosrun project-sensors-yourGithubName student_analyze_flow.py`
 4. Navigate to \`2 and quit the node that is running
 5. Enter `rostopic echo /pidrone/picamera/twist`
 6. Move the drone by hand to the left and right and forward and backward to verify that the measurements make sense
