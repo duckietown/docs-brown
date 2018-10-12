@@ -8,15 +8,15 @@ Now that the planar PIDs are tuned, and you have found a value for `throttle_low
  To use your PID, you'll be running <i>student_pid_controller.py</i> instead of <i>pid_controller.py</i>. This will allow your PID to run alongside our planar PIDs, and on top of our throttle low-rate I-term which you found previously. Your PID will be responsible for keeping the drone flying steady vertically.  
 
 **Setup**  
-Change directories to `~/ws/src`. Run `git clone https://github.com/h2r/project3pid-yourGithubName.git`. Then change directories back to `~/ws/` and run `catkin_make --pkg project3pid-yourGitHubName`.
+Change directories to `~/ws/src`. Run `git clone https://github.com/h2r/project-pid-yourGithubName.git`. Then change directories back to `~/ws/` and run `catkin_make --pkg project-pid-yourGitHubName`.
 
-Change directories into `~/ws/src/pidrone_pkg` and modify _pi.screenrc_ to start up with your altitude pid by changing `python pid_controller.py\n` to `rosrun project3pid-yourGitHubName student_pid_controller.py\n`. Prepare your drone to fly and then navigate to \`4 of the screen. Press ctrl-c to quit student_pid_controller.
+Change directories into `~/ws/src/pidrone_pkg` and modify _pi.screenrc_ to start up with your altitude pid by changing `python pid_controller.py\n` to `rosrun project-pid-yourGitHubName student_pid_controller.py\n`. Prepare your drone to fly and then navigate to \`4 of the screen. Press ctrl-c to quit student_pid_controller.
 
-In this screen (\`4), modify `~/ws/src/project3pid-yourGitHubName/z_pid.yaml` by setting $K$ to 1250 and the rest of the gain constants to 0. Now run `rosrun project3pid-yourGitHubName student_pid_controller.py` to fly with your altitude PID.  
+In this screen (\`4), modify `~/ws/src/project-pid-yourGitHubName/z_pid.yaml` by setting $K$ to 1250 and the rest of the gain constants to 0. Now run `rosrun project-pid-yourGitHubName student_pid_controller.py` to fly with your altitude PID.  
 
 **Exercises**  
 
-Fly your drone and observe its flight. Tune $K_p$ by slowly increasing its value between flights until you can see the drone moving up and down with uniform oscillations. Each time you will need to quit the controller, edit `~/ws/src/project3pid-yourGitHubName/z_pid.yaml`, and then run `rosrun project3pid-yourGitHubName student_pid_controller.py` again to use the new PID gains.  
+Fly your drone and observe its flight. Tune $K_p$ by slowly increasing its value between flights until you can see the drone moving up and down with uniform oscillations. Each time you will need to quit the controller, edit `~/ws/src/project-pid-yourGitHubName/z_pid.yaml`, and then run `rosrun project-pid-yourGitHubName student_pid_controller.py` again to use the new PID gains.  
 
   1. Record your final $K_p$ value that causes uniform oscillations as $K_u$, the ultimate gain.  
   2. Fly your drone and pause the altitude graph on the web interface when you see two peaks. Find the time difference between these two peaks and record this value as $T_u$, the ultimate period.  
