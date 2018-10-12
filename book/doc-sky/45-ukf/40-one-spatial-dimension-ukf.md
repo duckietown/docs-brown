@@ -19,7 +19,7 @@ In addition to implementing the UKF in code, we want you to learn about the desi
 **Task:** From the `pidrone_project2_ukf` repository, open up the `ukf2d_written_solutions.tex` file in your favorite $\LaTeX$ editor. This could be in Overleaf, your Brown CS department account, or locally on your own computer. *Before submitting your document, please make sure your document compiles. If you are having trouble with $\LaTeX$, please seek out the help of a TA.*
 
 ## State Vector
-For this part of the project, as we have mentioned before in this project description, we are going to track the drone's position and velocity along the z-axis:
+For this part of the project, as we have mentioned before in this project description, we are going to track the drone's position and velocity along the $z$-axis:
 
 $$\mathbf{x}=\begin{bmatrix}
 z \\
@@ -27,11 +27,27 @@ z \\
 \end{bmatrix}$$
 
 ## State Transition Function
+
+For this UKF along the $z$-axis, your state transition function will take into account a control input $\mathbf{u}$ defined as follows:
+
+$$\mathbf{u}=\begin{bmatrix}
+\ddot z
+\end{bmatrix}$$
+
+$\ddot z$ is the linear acceleration reading along the $z$-axis provided by the IMU.
+
 **Task (Written Section 1.2.2):** Implement the state transition function $g(\mathbf{x}, \mathbf{u}, \Delta t)$ by filling in the template given in Section 1.2.2 of `ukf2d_written_solutions.tex` with the correct values to propagate the current state estimate forward in time. Remember that for the drone, this involves kinematics (hint: use the constant acceleration kinematics equations). Since there is a notion of transitioning the state from the previous time step, this function will involve the variable $\Delta t$.
 
 **Task:** Translate the state transition function into Python by filling in the `state_transition_function()` method in `StateEstimators/student_state_estimator_ukf_2d.py`. Follow the "TODO"s there. Note the function's type signature for the inputs and outputs.
 
 ## Measurement Function
+
+At this stage, we are only considering the range reading from the IR sensor for the measurement update step of the UKF, so your measurement vector $\mathbf{z}_t$ will be the following:
+
+$$\mathbf{z}_t = \begin{bmatrix}
+r
+\end{bmatrix}$$
+
 **Task (Written Section 1.3.2):** In `ukf2d_written_solutions.tex`, implement the measurement function $h(\mathbf{\bar x})$ to transform the prior state estimate into measurement space. For this model's state vector and measurement vector, $h(\mathbf{\bar x})$ can be implemented as a $1 \times 2$ matrix that is multiplied with the $2 \times 1$ state vector, outputting a $1 \times 1$ matrix: the same dimension as the measurement vector $\mathbf{z}_t$, which allows for the computation of the residual.
 
 **Task:** As before, translate the measurement function into code, this time by filling in the `measurement_function()` method. Follow the "TODO"s there. Note the function's type signature for the inputs and outputs.
