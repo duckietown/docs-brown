@@ -1,22 +1,27 @@
 # Our Implementation: UKF in One Spatial Dimension {#ukf-one-spatial-dimension status=draft}
 
+<figure id="ukf2d_web_interface_demo">
+    <figcaption>2D UKF Height Estimates Visualized in the JavaScript Web Interface</figcaption>
+    <img style='width:30em' src="ukf2d_web_interface_demo.gif"/>
+</figure>
+
+TODO: Get the above .gif to render
+
 Finally, it is time for you to design and implement a UKF specific to the PiDrone! We glossed over a lot of the mathematical details of the KF and UKF because we think it's more important that you understand the high-level workings of the Kalman Filter. Also, as a roboticist, the more difficult aspect of Kalman filtering is indeed the process of designing a filter for your robot's needs and capabilities. The underlying math mostly stays the same across UKF implementations, but the design (essentially, the seven steps described in [the previous section](#ukf-design-and-implementation-steps)) is tailored to the application.
 
 As a result, we will have you use the Python library FilterPy, which abstracts away most of the nitty-gritty math.
 
-This part of the project has **three deliverables** in the `pidrone_project2_ukf` repository, which are to be accessed and submitted via GitHub Classroom:
+This part of the project has **three deliverables** in the `project-ukf-yourGithubName` repository, which are to be accessed and submitted via GitHub Classroom:
 
 1. A $\LaTeX$ document `ukf2d_written_solutions.tex` with the answers to the UKF design and implementation questions.
-2. Your implementation of the UKF written in the `StateEstimators/student_state_estimator_ukf_2d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
+2. Your implementation of the UKF written in the `state_estimators/student_state_estimator_ukf_2d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
 3. A $\LaTeX$ document `ground_robot_ukf.tex` with the solutions to the problem on designing a UKF for an imaginary ground robot system.
-
-TODO: Include better description of how to download the code when it's set up on GitHub Classroom, and also how to submit the solution code
 
 ## Design and Implement the Filter
 
 In addition to implementing the UKF in code, we want you to learn about the design process, much of which occurs outside of the code that will run the UKF. Plus, we have some questions we want you to answer in writing to demonstrate your understanding of the UKF. Hence, you will be writing up some of your solutions in $\LaTeX$.
 
-**Task:** From the `pidrone_project2_ukf` repository, open up the `ukf2d_written_solutions.tex` file in your favorite $\LaTeX$ editor. This could be in Overleaf, your Brown CS department account, or locally on your own computer. *Before submitting your document, please make sure your document compiles. If you are having trouble with $\LaTeX$, please seek out the help of a TA.*
+**Task:** From the `project-ukf-yourGithubName` repository, open up the `ukf2d_written_solutions.tex` file in your favorite $\LaTeX$ editor. This could be in Overleaf, your Brown CS department account, or locally on your own computer. *Before submitting your document, please make sure your document compiles. If you are having trouble with $\LaTeX$, please seek out the help of a TA.*
 
 ## State Vector
 For this part of the project, as we have mentioned before in this project description, we are going to track the drone's position and velocity along the $z$-axis:
@@ -38,7 +43,7 @@ $\ddot z$ is the linear acceleration reading along the $z$-axis provided by the 
 
 **Task (Written Section 1.2.2):** Implement the state transition function $g(\mathbf{x}, \mathbf{u}, \Delta t)$ by filling in the template given in Section 1.2.2 of `ukf2d_written_solutions.tex` with the correct values to propagate the current state estimate forward in time. Remember that for the drone, this involves kinematics (hint: use the constant acceleration kinematics equations). Since there is a notion of transitioning the state from the previous time step, this function will involve the variable $\Delta t$.
 
-**Task:** Translate the state transition function into Python by filling in the `state_transition_function()` method in `StateEstimators/student_state_estimator_ukf_2d.py`. Follow the "TODO"s there. Note the function's type signature for the inputs and outputs.
+**Task:** Translate the state transition function into Python by filling in the `state_transition_function()` method in `state_estimators/student_state_estimator_ukf_2d.py`. Follow the "TODO"s there. Note the function's type signature for the inputs and outputs.
 
 ## Measurement Function
 
@@ -117,9 +122,11 @@ In this problem, you will be testing your UKF that you have implemented thus far
 
 ### In Simulation
 
-To run your UKF with simulated drone data, you first have to make sure that your `pidrone_project2_ukf` package is in the `~/ws/src` directory on your drone. Then, in `~/ws`, run `catkin_make` to build your package. By running this command, you will be able to run ROS and access nodes from your package. If you experience issues with `catkin`, please do not hesitate to reach out to the TAs.
+To run your UKF with simulated drone data, you first have to make sure that your `project-ukf-yourGithubName` package is in the `~/ws/src` directory on your drone. Then, in `~/ws`, run `catkin_make` to build your package. By running this command, you will be able to run ROS and access nodes from your package. If you experience issues with `catkin`, please do not hesitate to reach out to the TAs.
 
-Then, in `~/ws/src/pidrone_project2_ukf/StateEstimators`, run the command `chmod +x *`, which will make all of your state estimators executable and capable of being run with the `rosrun` command.
+<!-- Make sure you are working with the newest version of our `pidrone_pkg` by running the `git pull` command. -->
+
+In order to test your UKF within our software stack, navigate to the file in `pidrone_pkg/scripts` called `state_estimator.py` and edit the line that assigns a value to `student_project_pkg_dir`, instead inserting your project repo name `project-ukf-yourGithubName`.
 
 Next, run ROS as usual with the `pi.screenrc` file in `~/ws/src/pidrone_pkg`. Upon start-up, go ahead and terminate the IR and flight controller nodes, as these would conflict with the drone simulator's simulated sensors. In the `` `5`` state estimator screen, terminate the current process and then run the following command:
 

@@ -10,9 +10,11 @@ Before we dive into the UKF, there are some foundations that we should build up:
 
 Since the UKF is an adaptation of the standard Kalman Filter, a lot of our discussion will apply to Kalman Filters in general.
 
+TODO: More comprehensive background section and improved notation coming soon!
+
 ### The Bayes Filter
 
-TODO: Use some of Luke's description
+TODO
 
 ### Gaussians
 
