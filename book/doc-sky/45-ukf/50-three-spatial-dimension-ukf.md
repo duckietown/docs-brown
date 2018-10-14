@@ -4,7 +4,7 @@ While tracking the drone's $z$ position and velocity is helpful, it is a simplif
 
 This part of the project has **three deliverables** in your `project-ukf-yourGithubName` repository, which are to be accessed and submitted via GitHub Classroom:
 
-1. A $\LaTeX$ document `ukf7d_written_solutions.tex` with the answers to the UKF design and implementation questions.
+1. A $\LaTeX$ PDF document `ukf7d_written_solutions.pdf`, generated from `ukf7d_written_solutions.tex`, with the answers to the UKF design and implementation questions.
 2. Your implementation of the UKF written in the `state_estimators/student_state_estimator_ukf_7d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
 3. Videos demonstrating your testing of your 7D UKF.
 
@@ -145,13 +145,13 @@ Before the project deadline, you must ensure that final versions of your solutio
 
 **From the 2D UKF section:**
 
-- `ukf2d_written_solutions.tex`
+- `ukf2d_written_solutions.pdf` (compiled from `ukf2d_written_solutions.tex`)
 - `student_state_estimator_ukf_2d.py` in the `state_estimators` directory
-- `ground_robot_ukf.tex`
+- `ground_robot_ukf.pdf` (compiled from `ground_robot_ukf.tex`)
 
 **From the 7D UKF section:**
 
-- `ukf7d_written_solutions.tex`
+- `ukf7d_written_solutions.pdf` (compiled from `ukf7d_written_solutions.tex`)
 - `student_state_estimator_ukf_7d.py` in the `state_estimators` directory
 - Videos for the simulation, manual, and in-flight testing of your drone's UKF. To help us identify which video files correspond to which tests, please also include a `README` in your repository that describes the test(s) performed in each video file.
 
