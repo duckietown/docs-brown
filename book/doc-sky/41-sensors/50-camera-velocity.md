@@ -1,4 +1,4 @@
-# Velocity Estimation via Optical Flow {#sensors-velocity status=draft}
+# Velocity Estimation via Optical Flow {#sensors-velocity status=ready}
 
 In this part of the project you will create a class that interfaces with the Arducam to extract planar velocities from optical flow vectors.
 

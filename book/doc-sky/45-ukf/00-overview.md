@@ -6,4 +6,4 @@ In this project, we give an overview of the necessary foundations to understand 
 
 
 A useful reference on probability and uncertainty is
-\cite{jaynes2003probability}.
+\citet{jaynes2003probability}.
