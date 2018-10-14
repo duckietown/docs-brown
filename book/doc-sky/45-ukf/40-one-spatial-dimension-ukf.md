@@ -13,15 +13,17 @@ As a result, we will have you use the Python library FilterPy, which abstracts a
 
 This part of the project has **three deliverables** in the `project-ukf-yourGithubName` repository, which are to be accessed and submitted via GitHub Classroom:
 
-1. A $\LaTeX$ document `ukf2d_written_solutions.tex` with the answers to the UKF design and implementation questions.
+TODO: Provide a link for getting the repo via GitHub Classroom
+
+1. A $\LaTeX$ PDF document `ukf2d_written_solutions.pdf`, generated from `ukf2d_written_solutions.tex`, with the answers to the UKF design and implementation questions.
 2. Your implementation of the UKF written in the `state_estimators/student_state_estimator_ukf_2d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
-3. A $\LaTeX$ document `ground_robot_ukf.tex` with the solutions to the problem on designing a UKF for an imaginary ground robot system.
+3. A $\LaTeX$ PDF document `ground_robot_ukf.pdf`, generated from `ground_robot_ukf.tex`, with the solutions to the problem on designing a UKF for an imaginary ground robot system.
 
 ## Design and Implement the Filter
 
-In addition to implementing the UKF in code, we want you to learn about the design process, much of which occurs outside of the code that will run the UKF. Plus, we have some questions we want you to answer in writing to demonstrate your understanding of the UKF. Hence, you will be writing up some of your solutions in $\LaTeX$.
+In addition to implementing the UKF in code, we want you to learn about the design process, much of which occurs outside of the code that will run the UKF. Plus, we have some questions we want you to answer in writing to demonstrate your understanding of the UKF. Hence, you will be writing up some of your solutions in $\LaTeX$. We are having you write solutions in $\LaTeX$ because it will in particular enable you to write out some of the UKF math in a clear (and visually appealing!) format. In these documents, please try to follow our math notation wherever applicable.
 
-**Task:** From the `project-ukf-yourGithubName` repository, open up the `ukf2d_written_solutions.tex` file in your favorite $\LaTeX$ editor. This could be in Overleaf, your Brown CS department account, or locally on your own computer. *Before submitting your document, please make sure your document compiles. If you are having trouble with $\LaTeX$, please seek out the help of a TA.*
+**Task:** From the `project-ukf-yourGithubName` repository, open up the `ukf2d_written_solutions.tex` file in your favorite $\LaTeX$ editor. This could be in Overleaf, your Brown CS department account, or locally on your own computer. *Before submitting your document, please make sure it is compiled into a PDF. If you are having trouble with $\LaTeX$, please seek out the help of a TA.*
 
 ## State Vector
 For this part of the project, as we have mentioned before in this project description, we are going to track the drone's position and velocity along the $z$-axis:
@@ -208,11 +210,11 @@ Imagine a ground robot capable of moving in the $xy$-plane. Its body frame is or
 # Check-Off {#ukf-one-spatial-dimension-checkoff status=draft}
 Come to TA hours to get checked off when you have fulfilled the following:
 
-- Relevant solutions are written up in `ukf2d_written_solutions.tex`. $\LaTeX$ source is pushed to GitHub.
+- Relevant solutions are written up in `ukf2d_written_solutions.tex` and compiled into a PDF document `ukf2d_written_solutions.pdf`. Both the `.tex` source and the PDF document are pushed to GitHub. Note that we will be grading the PDF document, so make sure you compile your most recent `.tex` source.
 - UKF is implemented in code in `student_state_estimator_ukf_2d.py` and pushed to GitHub. Your UKF can run:
     1. On simulated data. You can quantify its performance relative to simulated ground truth (i.e., your UKF Analytics chart reports accurate altitude errors and standard deviations)
     2. On your drone while manually moving it up and down. You can see in the web interface Standard View of the Height Readings chart that it performs better than the EMA when moving the drone
     3. On your drone while it is in flight, with comparable or better performance than when running the EMA filter for state estimation along the $z$-axis
-- Relevant solutions are written up in `ground_robot_ukf.tex`.
+- Relevant solutions are written up in `ground_robot_ukf.tex` and compiled into a PDF document `ground_robot_ukf.pdf`. Note that we will be grading the PDF document, so make sure you compile your most recent `.tex` source.
 
 Now that you have derived the mathematical design for your 2D UKF and implemented it, come to TA hours with your $\LaTeX$ document and code pushed to GitHub to get checked off. In addition to these deliverables, we will be asking you to verbally describe some of the answers you wrote up in your $\LaTeX$ document, which will enable us to better assess your understanding of the work in the project so far and your readiness for the next stage of the project. Feel free to also ask the TAs questions about the next part of the project during your check-off.
