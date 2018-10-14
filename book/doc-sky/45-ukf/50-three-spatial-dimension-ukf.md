@@ -1,11 +1,11 @@
 # Our Implementation: UKF in Three Spatial Dimensions {#ukf-three-spatial-dimensions status=draft}
 
-While tracking the drone's $z$ position and velocity is helpful, it is a simplified model of the drone and does not encapsulate as many of the degrees of freedom of the drone as we might like. For this reason, you are now going to develop a UKF that tracks the drone in three spatial dimensions with a 7D state vector. A lot of your code from your 2D UKF will remain the same in the 7D UKF.
+While tracking the drone's $z$ position and velocity is helpful, it is a simplified model of the drone and does not encapsulate as many of the degrees of freedom of the drone as we might like. For this reason, you are now going to develop a UKF that tracks the drone in three spatial dimensions with a 7D state vector. Your code from the 2D UKF will be a useful reference, and many parts will be reusable for the 7D UKF.
 
-This part of the project has **three deliverables** in the `pidrone_project2_ukf` repository, which are to be accessed and submitted via GitHub Classroom:
+This part of the project has **three deliverables** in your `project-ukf-yourGithubName` repository, which are to be accessed and submitted via GitHub Classroom:
 
 1. A $\LaTeX$ document `ukf7d_written_solutions.tex` with the answers to the UKF design and implementation questions.
-2. Your implementation of the UKF written in the `StateEstimators/student_state_estimator_ukf_7d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
+2. Your implementation of the UKF written in the `state_estimators/student_state_estimator_ukf_7d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
 3. Videos demonstrating your testing of your 7D UKF.
 
 TODO: Should we have students hand in the video through GitHub Classroom?
@@ -41,7 +41,7 @@ As noted in [the background section](#ukf-background), one could treat these acc
 
 **Task (Written Section 1.2.2):** Implement the state transition function $g(\mathbf{x}, \mathbf{u}, \Delta t)$ in `ukf7d_written_solutions.tex`. Remember that for the drone, this involves kinematics, and since we are now tracking yaw, there will also be some trigonometry.
 
-**Task:** Translate the state transition function into Python by filling in the `state_transition_function()` method in `StateEstimators/student_state_estimator_ukf_7d.py`. Follow the "TODO"s there. Note the function's type signature for the inputs and outputs.
+**Task:** Translate the state transition function into Python by filling in the `state_transition_function()` method in `state_estimators/student_state_estimator_ukf_7d.py`. Follow the "TODO"s there. Note the function's type signature for the inputs and outputs.
 
 ## Measurement Function
 
@@ -81,6 +81,8 @@ As with the 2D UKF, we must initialize our filter before it can engage in its pr
 We touched upon this in the **Measurement Function** section. To handle asynchronous inputs, you should update instance variables with the most recent data collected and run a loop to form predictions and updates with these data.
 
 **Task:** Implement the predict-update loop. It might be useful to refer to the `rospy` documentation on setting loop rates and sleeping.
+
+**Task:** Complete any remaining "TODO"s in the 7D UKF source code.
 
 ## Tune and Test the Filter
 It is now time to put your 7D UKF to the test.
@@ -134,6 +136,8 @@ Now you are going to fly with your 7D UKF, using both velocity control and posit
 
 **Task:** Take a video (or two) demonstrating your drone's stability in position hold and velocity control 1) while running just the EMA filter for state estimation and 2) while running your 7D UKF. You can use the web interface to move your drone around and send it other commands. Ensure that the video clearly demonstrates the performance improvements provided by the 7D UKF that you worked hard to implement!
 
+TODO: Since students will not have created or tuned their own PID, we cannot really expect them to see much stability improvement in flight, can we? Should we just have them use the simulation and the manual movement?
+
 TODO: Should we have students hand in the video through GitHub Classroom?
 
 # Final Hand-In {#ukf-project-final-handin status=draft}
@@ -142,13 +146,13 @@ Before the project deadline, you must ensure that final versions of your solutio
 **From the 2D UKF section:**
 
 - `ukf2d_written_solutions.tex`
-- `student_state_estimator_ukf_2d.py` in the `StateEstimators` directory
+- `student_state_estimator_ukf_2d.py` in the `state_estimators` directory
 - `ground_robot_ukf.tex`
 
 **From the 7D UKF section:**
 
 - `ukf7d_written_solutions.tex`
-- `student_state_estimator_ukf_7d.py` in the `StateEstimators` directory
+- `student_state_estimator_ukf_7d.py` in the `state_estimators` directory
 - Videos for the simulation, manual, and in-flight testing of your drone's UKF. To help us identify which video files correspond to which tests, please also include a `README` in your repository that describes the test(s) performed in each video file.
 
 TODO: Include a grade breakdown / rubric?
