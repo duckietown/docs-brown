@@ -5,7 +5,7 @@
     <img style='width:30em' src="ukf2d_web_interface_demo.gif"/>
 </figure>
 
-TODO: Get the above .gif to render
+TODO: Get the above .gif to render (feature coming to Duckietown textbook within the next few days, hopefully)
 
 Finally, it is time for you to design and implement a UKF specific to the PiDrone! We glossed over a lot of the mathematical details of the KF and UKF because we think it's more important that you understand the high-level workings of the Kalman Filter. Also, as a roboticist, the more difficult aspect of Kalman filtering is indeed the process of designing a filter for your robot's needs and capabilities. The underlying math mostly stays the same across UKF implementations, but the design (essentially, the seven steps described in [the previous section](#ukf-design-and-implementation-steps)) is tailored to the application.
 
@@ -28,7 +28,7 @@ In addition to implementing the UKF in code, we want you to learn about the desi
 ## State Vector
 For this part of the project, as we have mentioned before in this project description, we are going to track the drone's position and velocity along the $z$-axis:
 
-$$\mathbf{x}=\begin{bmatrix}
+$$\mathbf{x}_t=\begin{bmatrix}
 z \\
 \dot z
 \end{bmatrix}$$
@@ -37,13 +37,13 @@ z \\
 
 For this UKF along the $z$-axis, your state transition function will take into account a control input $\mathbf{u}$ defined as follows:
 
-$$\mathbf{u}=\begin{bmatrix}
+$$\mathbf{u}_t=\begin{bmatrix}
 \ddot z
 \end{bmatrix}$$
 
 $\ddot z$ is the linear acceleration reading along the $z$-axis provided by the IMU.
 
-**Task (Written Section 1.2.2):** Implement the state transition function $g(\mathbf{x}, \mathbf{u}, \Delta t)$ by filling in the template given in Section 1.2.2 of `ukf2d_written_solutions.tex` with the correct values to propagate the current state estimate forward in time. Remember that for the drone, this involves kinematics (hint: use the constant acceleration kinematics equations). Since there is a notion of transitioning the state from the previous time step, this function will involve the variable $\Delta t$.
+**Task (Written Section 1.2.2):** Implement the state transition function $g(\mathbf{x}_{t-\Delta t}, \mathbf{u}_t, \Delta t)$ by filling in the template given in Section 1.2.2 of `ukf2d_written_solutions.tex` with the correct values to propagate the current state estimate forward in time. Remember that for the drone, this involves kinematics (hint: use the constant acceleration kinematics equations). Since there is a notion of transitioning the state from the previous time step, this function will involve the variable $\Delta t$.
 
 **Task:** Translate the state transition function into Python by filling in the `state_transition_function()` method in `state_estimators/student_state_estimator_ukf_2d.py`. Follow the "TODO"s there. Note the function's type signature for the inputs and outputs.
 
@@ -55,14 +55,16 @@ $$\mathbf{z}_t = \begin{bmatrix}
 r
 \end{bmatrix}$$
 
-**Task (Written Section 1.3.2):** In `ukf2d_written_solutions.tex`, implement the measurement function $h(\mathbf{\bar x})$ to transform the prior state estimate into measurement space. For this model's state vector and measurement vector, $h(\mathbf{\bar x})$ can be implemented as a $1 \times 2$ matrix that is multiplied with the $2 \times 1$ state vector, outputting a $1 \times 1$ matrix: the same dimension as the measurement vector $\mathbf{z}_t$, which allows for the computation of the residual.
+**Task (Written Section 1.3.2):** In `ukf2d_written_solutions.tex`, implement the measurement function $h(\mathbf{\bar x}_t)$ to transform the prior state estimate into measurement space. For this model's state vector and measurement vector, $h(\mathbf{\bar x}_t)$ can be implemented as a $1 \times 2$ matrix that is multiplied with the $2 \times 1$ state vector, outputting a $1 \times 1$ matrix: the same dimension as the measurement vector $\mathbf{z}_t$, which allows for the computation of the residual.
 
 **Task:** As before, translate the measurement function into code, this time by filling in the `measurement_function()` method. Follow the "TODO"s there. Note the function's type signature for the inputs and outputs.
 
 ## Process Noise and Measurement Covariance Matrices
-The process noise covariance matrix $\mathbf{Q}$ needs to be determined for the prediction step, but you do not need to determine this yourself, as this matrix can be notoriously difficult to ascertain. Feasible values for the elements of $\mathbf{Q}$ are provided in the code.
+The process noise covariance matrix $\mathbf{Q}_t$ represents how uncertain we are about our motion model. It needs to be determined for the prediction step, but you do not need to determine this yourself, as this matrix can be notoriously difficult to ascertain. Feasible values for the elements of $\mathbf{Q}_t$ are provided in the code.
 
-On the other hand, the measurement noise covariance matrix $\mathbf{R}$ has a more tangible meaning: it represents the variance in our sensor readings, along with covariances if sensor readings are correlated. For our 1D measurement vector, this matrix just contains the variance of the IR sensor.
+On the other hand, the measurement noise covariance matrix $\mathbf{R}_t$ has a more tangible meaning: it represents the variance in our sensor readings, along with covariances if sensor readings are correlated. For our 1D measurement vector, this matrix just contains the variance of the IR sensor.
+
+The interplay between $\mathbf{Q}_t$ and $\mathbf{R}_t$ dictates the value of the Kalman gain $\mathbf{K}_t$, which scales our estimate between the prediction and the measurement.
 
 **Task:** Characterize the noise in the IR sensor by experimentally collecting data from your drone in a stationary setup and computing its variance. To do so, prop the drone up so that it is stationary and its IR sensor is about 0.3 m from the ground, pointing down, unobstructed. To collect the range data, execute the following commands on your drone:
 
@@ -94,15 +96,15 @@ When running `ir_sample_variance_calculation.py`, you can pass in command-line a
 
 ## Initialize the Filter
 
-Before the UKF can begin its routine of predicting and updating state estimates, it must be initialized with values for the state estimate $\mathbf{x}$ and state covariance matrix $\mathbf{P}$, as the first prediction call will rely on propagating these estimates forward in time. There is no set way to initialize the filter, but one common approach is to simply take the first measurements that the system receives and treat them as the best estimate of the state until we have estimates for each variable.
+Before the UKF can begin its routine of predicting and updating state estimates, it must be initialized with values for the state estimate $\mathbf{x}_t$ and state covariance matrix $\mathbf{P}_t$, as the first prediction call will rely on propagating these estimates forward in time. There is no set way to initialize the filter, but one common approach is to simply take the first measurements that the system receives and treat them as the best estimate of the state until we have estimates for each variable.
 
 **Task:** For your drone, you want to wait until the first IR reading comes in and then set the corresponding $z$ position value equal to this measurement. This only accounts for one of the two state variables. For now, initialize $\dot z=0 \text{ m/s}$. Go ahead and implement this state estimate initialization in code in the `ir_data_callback()` method, which gets called each time this ROS node receives a message published by the IR sensor.
 
 **Task:** In addition to initializing the state estimate, you must initialize the time value corresponding to the state estimate. We provide a method `initialize_input_time()` that accomplishes this, but you must call it in the appropriate location.
 
-Another aspect of the filter that can be initialized upon the first receipt of a measurement is the state covariance matrix $\mathbf{P}$. How do we know what values to use for this initialization? Again, this is a design decision that can vary by application. We can directly use the variance of the IR sensor to estimate an initial variance for the height estimate. We won't worry about initializing the velocity variance or the covariances. If we always knew that we were going to start the filter while the drone is at rest, then we could confidently initialize velocity to 0 and assign a low variance to this estimate.
+Another aspect of the filter that can be initialized upon the first receipt of a measurement is the state covariance matrix $\mathbf{P}_t$. How do we know what values to use for this initialization? Again, this is a design decision that can vary by application. We can directly use the variance of the IR sensor to estimate an initial variance for the height estimate. We won't worry about initializing the velocity variance or the covariances. If we always knew that we were going to start the filter while the drone is at rest, then we could confidently initialize velocity to 0 and assign a low variance to this estimate.
 
-**Task:** Initialize the $\mathbf{P}$ matrix in the `ir_data_callback()` method with the variance of the IR sensor for the variance of the $z$ position estimate.
+**Task:** Initialize the $\mathbf{P}_t$ matrix in the `ir_data_callback()` method with the variance of the IR sensor for the variance of the $z$ position estimate.
 
 **Task (Written Section 2.1):** How else could you initialize the estimate for $\dot z$ given the raw range readings from the IR sensor? Describe in `ukf2d_written_solutions.tex` what you would do and the potential pros and cons of your approach. Do not implement this in code.
 
@@ -116,7 +118,7 @@ The traditional Kalman Filter is described as a loop alternating between predict
 
 **Task:** Implement the predicting and updating of your UKF, keeping in mind the issue of asynchronous inputs. These steps will occur in two ROS subscriber callbacks: 1) `imu_data_callback` when an IMU control input is received and 2) `ir_data_callback` when an IR measurement is received. Remember that we want to perform a prediction not only when we receive a new control input but also when we receive a new measurement in order to propagate the state estimate forward to the time of the measurement. One way to do this prediction without a new control input is to interpolate and assume that the control input remains the same as last time (which is what we suggest); another potential approach might be to not include a control input in those instances (i.e., set it to zeros). The method for our FilterPy UKF object that you want to use to perform the prediction is `self.ukf.predict()`, which takes in a keyword argument `dt` that is the time step since the last state estimate and a keyword argument `u`, corresponding to the argument `u` of `state_transition_function()`, that is a NumPy array with the control input(s). The method to do a measurement update is `self.ukf.update()`, which requires a positional argument consisting of a measurement vector as a NumPy array. Call `self.publish_current_state()` at the end of each callback to publish the new state estimate to a ROS topic.
 
-Note that these callbacks get called in new threads; therefore, there is the potential for collisions when, say, both IMU and IR data come in almost at the same time and one thread has not had the opportunity to finish its UKF computations. We don't want both threads trying to simultaneously alter the values of certain variables, such as the $\mathbf{P}$ matrix when doing a prediction, as this can cause the filter to output nonsensical results and break. Therefore, we have implemented a simple callback blocking scheme---using the `self.in_callback` variable---that ignores a new callback if another callback is going on, essentially dropping packets if there are collisions. While this may not be the optimal or most stable way to handle the issue (one could imagine the IMU callback, for example, always blocking the IR callback and hence preventing measurement updates), it at least gets rid of the errors that would occur with collisions. If you so desire, feel free to implement your own callback management system that perhaps balances the time allocated to different callbacks.
+Note that these callbacks get called in new threads; therefore, there is the potential for collisions when, say, both IMU and IR data come in almost at the same time and one thread has not had the opportunity to finish its UKF computations. We don't want both threads trying to simultaneously alter the values of certain variables, such as the $\mathbf{P}_t$ matrix when doing a prediction, as this can cause the filter to output nonsensical results and break. Therefore, we have implemented a simple callback blocking scheme---using the `self.in_callback` variable---that ignores a new callback if another callback is going on, essentially dropping packets if there are collisions. While this may not be the optimal or most stable way to handle the issue (one could imagine the IMU callback, for example, always blocking the IR callback and hence preventing measurement updates), it at least gets rid of the errors that would occur with collisions. If you so desire, feel free to implement your own callback management system that perhaps balances the time allocated to different callbacks.
 
 ## Tune and Test the Filter
 
@@ -134,7 +136,7 @@ Next, run ROS as usual with the `pi.screenrc` file in `~/ws/src/pidrone_pkg`. Up
 
     duckiebot $ python state_estimator.py --student --primary ukf2d --others simulator --ir_var IR_VARIANCE_ESTIMATE
 
-with your computed estimate of your IR sensor's variance that you used to determine the $\mathbf{R}$ matrix in your UKF in place of `IR_VARIANCE_ESTIMATE`. This command will automatically run your 2D UKF as the primary state estimator, along with the drone simulator. The EMA filter will also be run automatically with the 2D UKF, since the 2D UKF does not provide a very complete state vector in three-dimensional flight scenarios. This will also by default allow you to compare the output of your UKF to the EMA filter on altitude. Note the `--student` flag, which ensures that your UKF script is run.
+with your computed estimate of your IR sensor's variance that you used to determine the $\mathbf{R}_t$ matrix in your UKF in place of `IR_VARIANCE_ESTIMATE`. This command will automatically run your 2D UKF as the primary state estimator, along with the drone simulator. The EMA filter will also be run automatically with the 2D UKF, since the 2D UKF does not provide a very complete state vector in three-dimensional flight scenarios. This will also by default allow you to compare the output of your UKF to the EMA filter on altitude. Note the `--student` flag, which ensures that your UKF script is run.
 
 Now in the web interface, once you connect to your drone, you should see four curves in the **Standard View** of the Height Readings chart as in [](#height_readings_standard_view).
 
@@ -175,7 +177,7 @@ with the `--ir_throttled` and `--imu_throttled` flags as needed. You want to mak
 
     duckiebot $ rosrun calibrateAcc.py
 
-**Debugging Task:** Test out your UKF by moving your drone up and down and examining the Height Readings chart. Does it behave as you expect? Does the estimated height seem to have more or less noise than the raw IR sensor reading? If there are unexpected deviations or spikes from the measurements, consider why this might be, especially in comparison to the results you saw when running the UKF in simulation. A possible cause is that the prediction step without a measurement update is not being modeled well or is getting poor/noisy control inputs to the point where the process noise that we assigned was too low. Try tuning the scalar that multiplies the values of the $\mathbf{Q}$ matrix `self.ukf.Q` in the `initialize_ukf_matrices()` method to better reflect the variance of the process. You should see a greater standard deviation as well as smaller spikes in the estimates.
+**Debugging Task:** Test out your UKF by moving your drone up and down and examining the Height Readings chart. Does it behave as you expect? Does the estimated height seem to have more or less noise than the raw IR sensor reading? If there are unexpected deviations or spikes from the measurements, consider why this might be, especially in comparison to the results you saw when running the UKF in simulation. A possible cause is that the prediction step without a measurement update is not being modeled well or is getting poor/noisy control inputs to the point where the process noise that we assigned was too low. Try tuning the scalar that multiplies the values of the $\mathbf{Q}_t$ matrix `self.ukf.Q` in the `initialize_ukf_matrices()` method to better reflect the variance of the process. You should see a greater standard deviation as well as smaller spikes in the estimates.
 
 Another aspect that you should consider is the prediction that occurs in your IMU callback. Note that the unthrottled sample rate of the IR sensor is around 80 Hz, while the IMU only comes in at about 30 Hz. Therefore, the control input is being changed less frequently than the predictions and measurement updates occur in the IR callback. While in the Asynchronous Inputs section we indicated that you should do a prediction whenever you get a new control input, in this application, it might make sense to save computation and only do predictions right before measurement updates. Plus, the accelerometers are noisy, and it can be difficult in a discrete domain to integrate these accelerations and expect accurate position estimates reported before including the measurement update. To keep our estimates reasonable, we can wait for the measurement update step to fuse the noisy prior prediction with the new measurement---and since this step can actually occur more frequently than the control input, we can maintain good measurement-informed estimates while saving on prediction computation. To simplify the problem, we can move the prediction and update out of a sensor callback and in its own loop in the main thread of the program.
 

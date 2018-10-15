@@ -15,7 +15,7 @@ TODO: Should we have students hand in the video through GitHub Classroom?
 Just as you tracked position and velocity along one axis in the 2D UKF, now you will track position and velocity along three global-frame axes. You will also track the drone's yaw value $\psi$. Changes to the drone's orientation will cause nonlinearities that the UKF was designed to address.
 
 $$
-\mathbf{x} = \begin{bmatrix}
+\mathbf{x}_t = \begin{bmatrix}
 x \\
 y \\
 z \\
@@ -25,27 +25,29 @@ z \\
 \psi \end{bmatrix}
 $$
 
-We don't ask you to consider the drone's attitude (roll $\phi$ and pitch $\theta$), as that makes for an even larger state vector and adds complexity. You can assume that roll and pitch are zero. Also, the IMU incorporates its own filter to produce its estimates of roll and pitch. If you wish, you may attempt to use these roll and pitch values as strong estimates to inform the state transition and measurement functions; that said, this leads to more advanced computations that we would recommend attempting after developing the UKF with the assumption of zero degrees roll and pitch.
+We don't ask you to track the drone's attitude (roll $\phi$ and pitch $\theta$), as that makes for an even larger state vector and adds complexity. Also, the IMU incorporates its own filter to produce its estimates of roll and pitch, so there may not be much benefit to adding these variables to our UKF. As such, you will use these roll and pitch values as strong estimates to inform the state transition and measurement functions.
 
 ## State Transition Function
 
-We define a control input $\mathbf{u}$ populated by linear accelerations from the IMU:
+We define a control input $\mathbf{u}_t$ populated by linear accelerations from the IMU:
 
-$$\mathbf{u} = \begin{bmatrix}
+$$\mathbf{u}_t = \begin{bmatrix}
 \ddot x^b \\
 \ddot y^b \\
 \ddot z^b
 \end{bmatrix}$$
 
-As noted in [the background section](#ukf-background), one could treat these acceleration values as measurements instead of control inputs; for relative ease of implementation, we have chosen to use accelerations as control inputs. The linear accelerations are in the drone's body frame, denoted by the superscript $b$, so we need to rotate these vectors into the global frame based on the yaw variable that we are tracking (we assume 0 degrees pitch and roll in this model). This transformation will occur in the state transition function.
+As noted in [the background section](#ukf-background), one could treat these acceleration values as measurements instead of control inputs; for relative ease of implementation, we have chosen to use accelerations as control inputs. The linear accelerations are in the drone's body frame, denoted by the superscript $b$, so we need to rotate these vectors into the global frame based on the yaw variable that we are tracking and the IMU's roll and pitch values. This transformation will occur in the state transition function.
 
-**Task (Written Section 1.2.2):** Implement the state transition function $g(\mathbf{x}, \mathbf{u}, \Delta t)$ in `ukf7d_written_solutions.tex`. Remember that for the drone, this involves kinematics, and since we are now tracking yaw, there will also be some trigonometry.
+**Task (Written Section 1.2.2):** Implement the state transition function $g(\mathbf{x}, \mathbf{u}, \Delta t)$ in `ukf7d_written_solutions.tex`. Remember that for the drone, this involves kinematics, and since we are now tracking yaw and additionally considering the roll and pitch from the IMU, there will also be some trigonometry.
 
-**Task:** Translate the state transition function into Python by filling in the `state_transition_function()` method in `state_estimators/student_state_estimator_ukf_7d.py`. Follow the "TODO"s there. Note the function's type signature for the inputs and outputs.
+TODO: Should students write out the rotation matrix? Or just indicate its presence? In practice, we are having them use quaternion-vector rotation.
+
+**Task:** Translate the state transition function into Python by filling in the `state_transition_function()` method in `state_estimators/student_state_estimator_ukf_7d.py`. Follow the "TODO"s there. To carry out the rotation of the linear accelerations, we will have you implement a method called `apply_quaternion_vector_rotation()`. As usual, note the functions' type signatures for the inputs and outputs.
 
 ## Measurement Function
 
-The measurements $\mathbf{z}_t$ that are considered are the IR slant range reading $r$, $x$ and $y$ planar position estimates and yaw estimates $\psi_{\text{camera}}$ from the camera, and the velocities along the $x$- and $y$-axes provided by optical flow, which you learned about and implemented in [the sensors project](#sensors-velocity). Note that in the 2D UKF, we took the IR reading to be a direct measure of altitude; here, in three spatial dimensions, you can optionally use the roll and pitch values directly from the IMU (i.e., not estimated in our UKF) to convert between the slant range, which is what the IR sensor actually provides, and altitude in the measurement function.
+The measurements $\mathbf{z}_t$ that are considered are the IR slant range reading $r$, $x$ and $y$ planar position estimates and yaw estimates $\psi_{\text{camera}}$ from the camera, and the velocities along the $x$- and $y$-axes provided by optical flow, which you learned about and implemented in [the sensors project](#sensors-velocity). Note that in the 2D UKF, we took the IR reading to be a direct measure of altitude; here, in three spatial dimensions, you will use the roll and pitch values directly from the IMU (i.e., not estimated in our UKF) to convert between the slant range, which is what the IR sensor actually provides, and altitude in the measurement function.
 
 $$\mathbf{z}_t = \begin{bmatrix}
 r \\
@@ -60,7 +62,7 @@ At the start of your 2D UKF implementation, we asked you to take into account th
 
 The alternative solution to this issue that we have found works better and that you will implement is to reduce the amount of computation done with each sensor input. Instead of throttling the data as it comes in, you will essentially be throttling the predict-update loop---as you ended up doing in the 2D UKF---using the `-hz` flag. When new data come in, you should store these values as the most recent values for the relevant measurement variables. Then, in a single thread, a predict-update loop will be running and using these measurements. This approach suffers from the fact that the measurements will not be incorporated into the state estimate at the *exact* time at which the inputs were received, but the predict-update loop will be running at a fast rate anyway as it will only run in one thread, so the latency should be negligible. In addition, this approach should make the algorithm simpler to implement, as you will be following the standard predict-update loop model using a single measurement function and measurement noise covariance matrix. An asynchronous approach requires that specific versions of the measurement function and covariance matrix be used for each specific sensor update, as stated by Labbe in chapter 8.10.1 of [](#bib:labbe_kalman).
 
-**Task (Written Section 1.3.2):** In `ukf7d_written_solutions.tex`, implement the measurement function $h(\mathbf{\bar x})$ to transform the prior state estimate into measurement space for the given measurement vector.
+**Task (Written Section 1.3.2):** In `ukf7d_written_solutions.tex`, implement the measurement function $h(\mathbf{\bar x}_t)$ to transform the prior state estimate into measurement space for the given measurement vector. Be sure to convert altitude to IR slant range based on the drone's orientation in space. This requires some trigonometry with the roll and pitch angles.
 
 **Task:** Translate the measurement function into code by filling in the `measurement_function()` method. Follow the "TODO"s there. Note the function's type signature for the inputs and outputs.
 
@@ -75,7 +77,7 @@ As in the 2D UKF, we do not expect you to derive reasonable values for the proce
 ## Initialize the Filter
 As with the 2D UKF, we must initialize our filter before it can engage in its predicting and updating.
 
-**Task:** Initialize the state estimate $\mathbf{x}$ and the state covariance matrix $\mathbf{P}$ with values as sensor data come in.
+**Task:** Initialize the state estimate $\mathbf{x}_t$ and the state covariance matrix $\mathbf{P}_t$ with values as sensor data come in.
 
 ## Asynchronous Inputs
 We touched upon this in the **Measurement Function** section. To handle asynchronous inputs, you should update instance variables with the most recent data collected and run a loop to form predictions and updates with these data.
