@@ -32,8 +32,6 @@ The Kalman Filter's main goal is to fuse measurement readings with predicted sta
     <img style='width:30em' src="ukf_predict_update_diagram.png"/>
 </figure>
 
-TODO: Fix notation in the diagram
-
 ##### State Vector and Covariance Matrix
 
 The KF accomplishes its state estimate by tracking certain **state variables** in a state vector, such as position and velocity along an axis, and the **covariance matrix** corresponding to the state vector. In the first part of this project, your UKF's state vector will track the drone's position and velocity along the $z$-axis and will look like:
@@ -42,6 +40,10 @@ $$\mathbf{x}_t=\begin{bmatrix}
 z \\
 \dot z
 \end{bmatrix}$$
+
+TODO: Remove or modify "quick note on symbology"
+
+TODO: Go through example as in the scenario depicted in diagram? Then, in the 2D UKF section, introduce our 2D UKF specifics, e.g., z position and velocity in state vector, etc.?
 
 where $z$ and $\dot z$ are the position and velocity of the drone along the $z$-axis, respectively. A quick note on symbology: in [](#ukf_predict_update_diagram), we are demonstrating a simple example in which we only track one variable (vertical position), so instead of using boldface vectors, we chose to use scalars. Note that the variable $z$ in [](#ukf_predict_update_diagram) is different than the variable $z$ in this two-dimensional state vector tracking motion along the $z$ axis. In literature, the letter $z$ in some typeface and possibly with a subscript is typically used to denote the measurement (as in [](#ukf_predict_update_diagram)). We will go into more detail about the measurement vector later.
 
