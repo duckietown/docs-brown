@@ -1,4 +1,4 @@
-# The Unscented Kalman Filter: Nonlinear State Estimation {#ukf-specifics status=draft}
+# The Unscented Kalman Filter: Nonlinear State Estimation {#ukf-specifics status=ready}
 
 ### Limitations of the Standard (Linear) Kalman Filter
 
@@ -6,7 +6,7 @@ So far, we have discussed the standard Kalman Filter algorithm. However, we have
 
 The greater constraint, however, is the assumption that the system is linear. What we mean by this is that the state transition function and measurement function are linear functions, and as a result, when we pass Gaussian distributions through these functions, the output remains Gaussian or proportional to a Gaussian. An arbitrary nonlinear function, on the other hand, will not output another Gaussian or scaled Gaussian, which is a problem since so much of the Kalman Filter math depends on the state estimate being Gaussian. The Unscented Kalman Filter was expressly designed to robustly handle this issue of nonlinearity.
 
-In this project's z-axis UKF, the functions are linear, so indeed a standard Kalman Filter would suffice. However, for the second UKF that you will be implementing, there are nonlinearities due to the drone's orientation in space. To make the transition easier from the first part to the second part of this project, we are asking you to implement a UKF even for a linear system. The UKF estimates will be the same as a KF; the only downsides might be code complexity and computation time. That said, you will be using a Python library called FilterPy (written by Labbe, author of *Kalman and Bayesian Filters in Python* [](#bib:labbe_kalman)) that handles and hides most of the filtering math anyway.
+In this project's $z$-axis UKF, the functions are linear, so indeed a standard Kalman Filter would suffice. However, for the second UKF that you will be implementing, there are nonlinearities due to the drone's orientation in space. To make the transition easier from the first part to the second part of this project, we are asking you to implement a UKF even for a linear system. The UKF estimates will be the same as a KF; the only downsides might be code complexity and computation time. That said, you will be using a Python library called FilterPy (written by Labbe, author of *Kalman and Bayesian Filters in Python* [](#bib:labbe_kalman)) that handles and hides most of the filtering math anyway.
 
 You might also be wondering what the term "unscented" has to do with a Kalman Filter that applies to nonlinear systems. There is no greater technical meaning to the word; the inventor claims it is an arbitrary choice that resulted from his catching a glimpse of a coworker's deodorant while trying to come up with a name for his filter [](#bib:uhlmann).
 
@@ -16,12 +16,63 @@ To handle the nonlinearities, the UKF uses a sampling scheme. An alternative to 
 
 The UKF uses a function to compute so-called **sigma points**, which are the sample points to pass through the state transition and measurement functions. Each sigma point also has corresponding **weights** for the sample's mean and covariance. The sigma points are generated so that there are $2n+1$ of them, where $n$ is the size of the state vector. Imagine a one-dimensional state vector, for example, which we represent as a single-variable Gaussian. In this instance, $2(1)+1=3$ sigma points are chosen. One of these points is the mean of the Gaussian, and the two other points are symmetric about the mean on either side. The exact distance of these points from the mean sigma point will vary depending on parameters passed into the sigma point function, but we do not expect you to worry about these parameters. The idea, though, is that these $2(1)+1=3$ sigma points and their weights are sufficiently representative of the Gaussian distribution.
 
-The idea, then, is that these points that represent the Gaussian state estimate can be passed through a nonlinear function (i.e., the state transition or measurement functions), which can scatter the points arbitrarily. We then want to recover a Gaussian from these scattered points, and we do so by using the **unscented transform**, which computes a new mean and covariance matrix. To compute the new mean, the unscented transform calculates a weighted sum of each sigma point with its associated sample mean weight.
+Next, these points that represent the Gaussian state estimate are passed through a nonlinear function (i.e., the state transition or measurement functions), which can scatter the points arbitrarily. We then want to recover a Gaussian from these scattered points, and we do so by using the **unscented transform**, which computes a new mean and covariance matrix. To compute the new mean, the unscented transform calculates a weighted sum of each sigma point with its associated sample mean weight.
 
 ### UKF in the Prediction Step
 
-The UKF formulates the prior state estimate by specifying a set of sigma points $\boldsymbol{\mathcal{X}}$ according to the current state estimate and then propagating these points through the state transition function to yield a new set of sigma points $\boldsymbol{\mathcal{Y}}$, which are passed through the unscented transform to produce the prior state estimate.
+The UKF formulates the prior state estimate by specifying a set of sigma points $\boldsymbol{\mathcal{X}}_{t-\Delta t}$ according to the current state estimate and then propagating these points through the state transition function to yield a new set of sigma points $\boldsymbol{\mathcal{Y}}_t$, which are passed through the unscented transform to produce the prior state estimate.
 
 ### UKF in the Update Step
 
-For the update step, we pass the prior sigma points $\boldsymbol{\mathcal{Y}}$ through the measurement function to yield a set of measurement sigma points $\boldsymbol{\mathcal{Z}} = h(\boldsymbol{\mathcal{Y}})$. This set of points is then passed through the unscented transform, which computes the mean and covariance of these sample points. The mean is subtracted from the measurement to compute the residual. Labbe chapter 10.5.2 [](#bib:labbe_kalman) goes into more detail about this computation, as well as describing the computation of the Kalman gain specific to the UKF. Once we have a prior state estimate, a residual, and a Kalman gain, we can compute the posterior state estimate as usual with $\mathbf{x} = \mathbf{\bar x} + \mathbf{Ky}$.
+Below is the algorithm for the Unscented Kalman Filter [](#bib:tellex) [](#bib:labbe_kalman). Note that the sigma point weights denoted by $W_i^{(m)}$ and $W_i^{(c)}$ can be computed as part of a number of sigma point algorithms. We will use Van der Merwe's scaled sigma point algorithm to compute the sigma points and weights [](#bib:Merwe03sigma-pointkalman) [](#bib:labbe_kalman). The sigma points get computed at each prediction, whereas the weights can be computed just once upon filter initialization.
+
+&nbsp;
+
+$\hspace{5mm} \textbf{function}\text{ predict}( \mathbf{x}_{t-\Delta t},
+    \mathbf{P}_{t-\Delta t}, \mathbf{u}_t, \Delta t )$  
+$\hspace{10mm} \texttt{// Compute 2n+1 sigma points given the most recent state estimate}$  
+$\hspace{10mm} \boldsymbol{\mathcal{X}}_{t-\Delta t} = \text{compute_sigma_points}(\mathbf{x}_{t-\Delta t}, \mathbf{P}_{t-\Delta t})$  
+$\hspace{10mm} \texttt{// Propagate each sigma point through the state transition function}$  
+$\hspace{10mm} \text{for }(i = 0; i\leq 2n; i\texttt{++}):$  
+$\hspace{15mm} \boldsymbol{\mathcal{Y}}_{i,t} = g(\boldsymbol{\mathcal{X}}_{i,t-\Delta t}, \mathbf{u}_t, \Delta t)$  
+$\hspace{10mm} \texttt{// Compute the prior mean and covariance by passing the sigma}$  
+$\hspace{10mm} \texttt{// points through the unscented transform (the next two lines)}$  
+$\hspace{10mm} \mathbf{\bar x}_t = \sum_{i=0}^{2n} W_i^{(m)} \boldsymbol{\mathcal{Y}}_{i,t}$  
+$\hspace{10mm} \mathbf{\bar P}_t = \sum_{i=0}^{2n} W_i^{(c)} \left(\boldsymbol{\mathcal{Y}}_{i,t}-\mathbf{\bar x}_t \right)\left(\boldsymbol{\mathcal{Y}}_{i,t}-\mathbf{\bar x}_t \right)^\mathsf{T} + \mathbf{Q}_t$  
+$\hspace{10mm} \text{return } \mathbf{\bar x}_t, \mathbf{\bar P}_t$  
+
+&nbsp;
+
+$\hspace{5mm} \textbf{function}\text{ update}(\mathbf{\bar x}_t,
+    \mathbf{\bar P}_t, \mathbf{z}_t)$  
+$\hspace{10mm} \texttt{// Compute the measurement sigma points}$  
+$\hspace{10mm} \text{for }(i = 0; i\leq 2n; i\texttt{++}):$  
+$\hspace{15mm} \boldsymbol{\mathcal{Z}}_{i,t} = h(\boldsymbol{\mathcal{Y}}_{i,t})$  
+$\hspace{10mm} \texttt{// Compute the mean and covariance of the measurement}$  
+$\hspace{10mm} \texttt{// sigma points by passing them through the unscented}$  
+$\hspace{10mm} \texttt{// transform (the next two lines)}$  
+$\hspace{10mm} \boldsymbol{\mu}_z = \sum_{i=0}^{2n} W_i^{(m)} \boldsymbol{\mathcal{Z}}_{i,t}$  
+$\hspace{10mm} \mathbf{P}_z = \sum_{i=0}^{2n} W_i^{(c)} \left(\boldsymbol{\mathcal{Z}}_{i,t}-\boldsymbol{\mu}_z \right)\left(\boldsymbol{\mathcal{Z}}_{i,t}-\boldsymbol{\mu}_z \right)^\mathsf{T} + \mathbf{R}_t$  
+$\hspace{10mm} \mathbf{y}_t = \mathbf{z}_t - \boldsymbol{\mu}_z$  
+$\hspace{10mm} \texttt{// Compute the cross covariance between state and measurements}$  
+$\hspace{10mm} \mathbf{P}_{xz} = \sum_{i=0}^{2n} W_i^{(c)} \left(\boldsymbol{\mathcal{Y}}_{i,t}-\mathbf{\bar x}_t \right)\left(\boldsymbol{\mathcal{Z}}_{i,t}-\boldsymbol{\mu}_z \right)^\mathsf{T}$  
+$\hspace{10mm} \texttt{// Compute the Kalman gain}$  
+$\hspace{10mm} \mathbf{K}_t = \mathbf{P}_{xz}\mathbf{P}_z^{-1}$  
+$\hspace{10mm} \texttt{// Compute the mean of the posterior state estimate}$  
+$\hspace{10mm} \mathbf{x}_t = \mathbf{\bar x}_t + \mathbf{K}_t\mathbf{y}_t$  
+$\hspace{10mm} \texttt{// Compute the covariance of the posterior state estimate}$  
+$\hspace{10mm} \mathbf{P}_t = \mathbf{\bar P}_t - \mathbf{K}_t\mathbf{P}_z\mathbf{K}_t^\mathsf{T}$  
+$\hspace{10mm} \text{return } \mathbf{x}_t, \mathbf{P}_t$  
+
+&nbsp;
+
+$\hspace{5mm} \textbf{function}\text{ unscented_kalman_filter}( \mathbf{x}_{t-\Delta t},
+    \mathbf{P}_{t-\Delta t} )$  
+$\hspace{10mm} \mathbf{u}_t = \text{get_control_input}()$  
+$\hspace{10mm} \Delta t = \text{compute_time_step}()$  
+$\hspace{10mm} \mathbf{\bar x}_t, \mathbf{\bar P}_t = \text{predict}(
+    \mathbf{x}_{t-\Delta t}, \mathbf{P}_{t-\Delta t}, \mathbf{u}_t, \Delta t )$  
+$\hspace{10mm} \mathbf{z}_t = \text{get_sensor_data}()$  
+$\hspace{10mm} \mathbf{x}_t, \mathbf{P}_t = \text{update}(\mathbf{\bar x}_t,
+    \mathbf{\bar P}_t, \mathbf{z}_t)$  
+$\hspace{10mm} \text{return } \mathbf{x}_t, \mathbf{P}_t$  
