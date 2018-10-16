@@ -38,7 +38,7 @@ $\hspace{10mm} \texttt{// Compute 2n+1 sigma points given the most recent state 
 $\hspace{10mm} \boldsymbol{\mathcal{X}}_{t-\Delta t} = \text{compute_sigma_points}(\mathbf{x}_{t-\Delta t}, \mathbf{P}_{t-\Delta t})$  
 $\hspace{10mm} \texttt{// Propagate each sigma point through the state transition function}$  
 $\hspace{10mm} \text{for }(i = 0; i\leq 2n; i\texttt{++}):$  
-    $\hspace{15mm} \boldsymbol{\mathcal{Y}}_{i,t} = g(\boldsymbol{\mathcal{X}}_{i,t-\Delta t}, \mathbf{u}_t, \Delta t)$  
+$\hspace{15mm} \boldsymbol{\mathcal{Y}}_{i,t} = g(\boldsymbol{\mathcal{X}}_{i,t-\Delta t}, \mathbf{u}_t, \Delta t)$  
 $\hspace{10mm} \texttt{// Compute the prior mean and covariance by passing the sigma}$  
 $\hspace{10mm} \texttt{// points through the unscented transform (the next two lines)}$  
 $\hspace{10mm} \mathbf{\bar x}_t = \sum_{i=0}^{2n} W_i^{(m)} \boldsymbol{\mathcal{Y}}_{i,t}$  
@@ -51,7 +51,7 @@ $\hspace{5mm} \textbf{function}\text{ update}(\mathbf{\bar x}_t,
     \mathbf{\bar P}_t, \mathbf{z}_t)$  
 $\hspace{10mm} \texttt{// Compute the measurement sigma points}$  
 $\hspace{10mm} \text{for }(i = 0; i\leq 2n; i\texttt{++}):$  
-    $\hspace{15mm} \boldsymbol{\mathcal{Z}}_{i,t} = h(\boldsymbol{\mathcal{Y}}_{i,t})$  
+$\hspace{15mm} \boldsymbol{\mathcal{Z}}_{i,t} = h(\boldsymbol{\mathcal{Y}}_{i,t})$  
 $\hspace{10mm} \texttt{// Compute the mean and covariance of the measurement}$  
 $\hspace{10mm} \texttt{// sigma points by passing them through the unscented}$  
 $\hspace{10mm} \texttt{// transform (the next two lines)}$  
