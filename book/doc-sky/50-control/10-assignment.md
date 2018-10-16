@@ -16,9 +16,7 @@ controller, which are the same controls used to fly a real physical
 aircraft over RC.
 
 Go to the 8th Floor SciLi RealFlight workstation and fly using the RC controller
-and the flight simulator! The workstation is located at the Collaboration Alcove
-(801C) at the end of the central study space area, right next to the
-water fountain, and with a large window overlooking the scenic CIT.
+and the flight simulator! The workstation is located at the monitor next to the Baxter.
 We only have one workstation for the class, so you can reserve a time [here](https://calendar.google.com/calendar/selfsched?sstoken=UUlhN0JXdzRFM0RHfGRlZmF1bHR8NGNlMjk2ODA1NzJhZmRiOTNmMjcwNzUzMjQ4MTdiZWE) to use it.
 
 The simulator is installed on the computer at the workstation. If it is not open

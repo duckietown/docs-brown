@@ -1,4 +1,4 @@
-# Position Estimation via OpenCV's estimateRigidTransform {#sensors-position status=draft}
+# Position Estimation via OpenCV's estimateRigidTransform {#sensors-position status=ready}
 
 In this part of the project you will create a class that interfaces with the picamera to extract planar positions of the drone relative to the first image taken using OpenCV's estimateRigidTransform function.
 
@@ -8,7 +8,7 @@ Before attempting to analyze the images, we should first check that the images a
 **Exercises**
 
 1. Open `student_analyze_phase.py` and print the `data` argument in `AnalyzePhase`
-1. Navigate to \`6 and run `rosrun pidrone_project_sensors-yourGitHubName student_vision_flow_and_phase.py`. Verify that the images are being passed in by checking that values are printing out from where you told it to print `data`
+1. Navigate to \`6 and run `rosrun project-sensors-yourGithubName student_vision_flow_and_phase.py`. Verify that the images are being passed in by checking that values are printing out from where you told it to print `data`
 
 ## Analyze and Publish the Sensor Data
 To estimate our position we will make use of OpenCV’s [<i>estimateRigidTransform</i>](https://docs.opencv.org/3.0-beta/modules/video/doc/motion_analysis_and_object_tracking.html#estimaterigidtransform) function. This will return an affine transformation between two images if the two images have enough in common to be matched, otherwise, it will return None.
@@ -25,7 +25,7 @@ The second method is `analyze`, which is called every time that the camera gets 
   2. We’ll need to convert our image data into a more usable format:
     `np.reshape(np.fromstring(data, dtype=np.uint8), (240, 320, 3))`
   3. Save the first image and then compare subsequent images to it using cv2.estimateRigidTransform. (Note that the fullAffine argument should be set to False. Can you see why?)
-  4. If you print the output from estimateRigidTransform, you’ll see a 2x3 matrix when the camera sees what it saw in the first frame, and a None when it fails to match. This 2x3 matrix is an affine transform which maps pixel coordinates in the first image to pixel coordinates in the second image. Read [this article](https://picamera.readthedocs.io/en/release-1.10/api_array.html#pimotionanalysis) for details on how to extract useful information from this affine transform.
+  4. If you print the output from estimateRigidTransform, you’ll see a 2x3 matrix when the camera sees what it saw in the first frame, and a None when it fails to match. This 2x3 matrix is an affine transform which maps pixel coordinates in the first image to pixel coordinates in the second image. Read [this article](http://nghiaho.com/?p=2208) for details on how to extract useful information from this affine transform.
   5. Implement a method in your `AnalyzePhase` class which takes an affine transform and returns the x and y translations of the camera and the yaw. This is tricky!!! You will need to make use of camera_wh to normalize from pixel coordinates.
   6. As with velocity measurements, the magnitude of this translation in global coordinates is dependent on the height of the drone. Add a subscriber to the topic /pidrone/state and save the value to a class variable in the callback. Use this variable to compensate for the height of the camera in your method from step four which interprets your affineTransform
 
