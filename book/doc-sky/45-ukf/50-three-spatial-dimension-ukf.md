@@ -156,5 +156,3 @@ Before the project deadline, you must ensure that final versions of your solutio
 - `ukf7d_written_solutions.pdf` (compiled from `ukf7d_written_solutions.tex`)
 - `student_state_estimator_ukf_7d.py` in the `state_estimators` directory
 - Videos for the simulation, manual, and in-flight testing of your drone's UKF. To help us identify which video files correspond to which tests, please also include a `README` in your repository that describes the test(s) performed in each video file.
-
-TODO: Include a grade breakdown / rubric?

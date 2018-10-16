@@ -26,14 +26,14 @@ You may have noticed that each of the above steps required computing a probabili
 Now, let's take a look at the Bayes Filter:  
 $\hspace{5mm} \text{Bayes_Filter}(bel(x_{t-1}), u_{t}, z_{t}):$  
 $\hspace{10mm} \text{for all } x_t \text{ do}:$  
-$\hspace{15mm} \bar{bel}(x_t) = \int p(x_{t}|u_{t},x_{t-1})bel(x_{t-1})dx$  
+$\hspace{15mm} \bar{bel}(x_t) = \int p(x_{t}|u_{t},x_{t-1})bel(x_{t-1})\mathrm{d}x$  
 $\hspace{15mm} bel(x_t) = \eta p(z_{t}|x_{t})\bar{bel}(x_t)$  
 $\hspace{10mm} \text{endfor}$  
 $\hspace{10mm} \text{return } bel(x_{t})$  
 
 ie compute a belief by finding the probability of each possible new state. For each state, incorporate both the probability that the control transitions the previous state to this one and that the current measurements are observed in this state.
 
-The first step $\bar{bel}(x_t) = \int p(x_{t}|u_{t},x_{t-1})bel(x_{t-1})dx$  is the *motion prediction*. $\bar{bel}(x_t)$ represents the belief *before* the measurement is incorporated. The integral is computed discretely and becomes:
+The first step $\bar{bel}(x_t) = \int p(x_{t}|u_{t},x_{t-1})bel(x_{t-1})\mathrm{d}x$  is the *motion prediction*. $\bar{bel}(x_t)$ represents the belief *before* the measurement is incorporated. The integral is computed discretely and becomes:
 $\sum_x{p(x_t|u_t,x_{t-1})bel(x_{t-1})}$
 
 The second step $bel(x_t) = \eta p(z_{t}|x_{t})\bar{bel}(x_t)$ is the *measurement update*. This computation is straightforward, the normalizer $\eta$ is the reciprocal of the sum of $p(z_{t}|x_{t})\bar{bel}(x_t)$ over all $x_t$. This factor will normalize the sum.
