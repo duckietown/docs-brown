@@ -1,4 +1,4 @@
-# Background {#ukf-background status=draft}
+# Background {#ukf-background status=ready}
 
 Before we dive into the UKF, there are some foundations that we should build up:
 

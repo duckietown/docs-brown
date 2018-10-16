@@ -1,4 +1,4 @@
-# The Unscented Kalman Filter: Nonlinear State Estimation {#ukf-specifics status=draft}
+# The Unscented Kalman Filter: Nonlinear State Estimation {#ukf-specifics status=ready}
 
 ### Limitations of the Standard (Linear) Kalman Filter
 

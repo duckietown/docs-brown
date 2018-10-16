@@ -182,7 +182,7 @@ Imagine a ground robot capable of moving in the $xy$-plane. Its body frame is or
 
 **Task:** Write up your solutions to the above bullet points in $\LaTeX$ in the file `ground_robot_ukf.tex`.
 
-# Check-Off {#ukf-one-spatial-dimension-checkoff status=draft}
+# Check-Off {#ukf-one-spatial-dimension-checkoff status=ready}
 Come to TA hours to get checked off when you have fulfilled the following:
 
 - Relevant solutions are written up in `ukf2d_written_solutions.tex`. $\LaTeX$ source is pushed to GitHub.

@@ -1,4 +1,4 @@
-# Steps to Design and Implement a Kalman Filter on a Robot {#ukf-design-and-implementation-steps status=draft}
+# Steps to Design and Implement a Kalman Filter on a Robot {#ukf-design-and-implementation-steps status=ready}
 
 To apply a Kalman Filter (linear KF or UKF) to a specific robot, there are certain parts of the algorithm that we need to define.
 

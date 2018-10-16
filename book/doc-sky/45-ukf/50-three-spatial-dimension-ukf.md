@@ -115,7 +115,7 @@ Now you are going to fly with your 7D UKF, using both velocity control and posit
 
 TODO: Should we have students hand in the video through GitHub Classroom?
 
-# Final Hand-In {#ukf-project-final-handin status=draft}
+# Final Hand-In {#ukf-project-final-handin status=ready}
 Before the project deadline, you must ensure that final versions of your solution files and code are handed in via GitHub Classroom. These files are:
 
 **From the 2D UKF section:**
