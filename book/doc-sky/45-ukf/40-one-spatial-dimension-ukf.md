@@ -86,8 +86,6 @@ Your plot should look somewhat Gaussian, as in [](#ir_sample_distribution).
     <img style='width:30em' src="ir_sample_distribution.png"/>
 </figure>
 
-TODO: Make sure students get FilterPy and matplotlib packages, for example, on their drone (pip install). Perhaps see about getting these dependencies included in the image that students flash on their SD cards.
-
 When running `ir_sample_variance_calculation.py`, you can pass in command-line arguments of `-l` to plot a line chart instead of a bar chart and `-n` followed by a positive integer to indicate the number of intervals to use for the histogram (defaults to 100 intervals).
 
 **Task (Written Section 1.3.3):** Record the resulting sample variance value in `ukf2d_written_solutions.tex`. Also include an image of your histogram in `ukf2d_written_solutions.tex`.
