@@ -116,13 +116,12 @@ programs that talk to the respective hardware module.
 
 2. Write a program to read a single frame from the camera, save it to a file,
    and return, without using ROS. Verify your program runs, and include your
-   picture in the project write-up. You can use `flow_pub_transform.py` as
-   a model. *Submit your answer as `my_frame.py`.*
+   picture in the project write-up. *Submit your answer as `my_frame.py`.*
 
 
 ## Handin
 
-Create your github repo using [this link](https://classroom.github.com/a/YmNdQdha).
+Create your Github repo using [this link](https://classroom.github.com/a/YmNdQdha).
 
 Handin the following files:
 
