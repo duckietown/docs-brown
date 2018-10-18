@@ -9,11 +9,9 @@ TODO: Get the above .gif to render (feature coming to Duckietown textbook within
 
 Finally, it is time for you to design and implement a UKF specific to the PiDrone! We glossed over a lot of the mathematical details of the KF and UKF because we think it's more important that you understand the high-level workings of the Kalman Filter. Also, as a roboticist, the more difficult aspect of Kalman filtering is indeed the process of designing a filter for your robot's needs and capabilities. The underlying math mostly stays the same across UKF implementations, but the design (essentially, the seven steps described in [the previous section](#ukf-design-and-implementation-steps)) is tailored to the application.
 
-As a result, we will have you use the Python library FilterPy, which abstracts away most of the nitty-gritty math.
+As a result, we will have you use the Python library FilterPy, which abstracts away most of the nitty-gritty math. You can refer to the FilterPy documentation and source code [here](https://filterpy.readthedocs.io/en/latest/_modules/index.html).
 
-This part of the project has **three deliverables** in the `project-ukf-yourGithubName` repository, which are to be accessed and submitted via GitHub Classroom:
-
-TODO: Provide a link for getting the repo via GitHub Classroom
+This part of the project has **three deliverables** in the `project-ukf-yourGithubName` repository, which are to be accessed and submitted via [GitHub Classroom](https://classroom.github.com/a/ShEMEmXD):
 
 1. A $\LaTeX$ PDF document `ukf2d_written_solutions.pdf`, generated from `ukf2d_written_solutions.tex`, with the answers to the UKF design and implementation questions.
 2. Your implementation of the UKF written in the `state_estimators/student_state_estimator_ukf_2d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
@@ -102,7 +100,7 @@ Before the UKF can begin its routine of predicting and updating state estimates,
 
 Another aspect of the filter that can be initialized upon the first receipt of a measurement is the state covariance matrix $\mathbf{P}_t$. How do we know what values to use for this initialization? Again, this is a design decision that can vary by application. We can directly use the variance of the IR sensor to estimate an initial variance for the height estimate. We won't worry about initializing the velocity variance or the covariances. If we always knew that we were going to start the filter while the drone is at rest, then we could confidently initialize velocity to 0 and assign a low variance to this estimate.
 
-**Task:** Initialize the $\mathbf{P}_t$ matrix in the `ir_data_callback()` method with the variance of the IR sensor for the variance of the $z$ position estimate.
+**Task:** Initialize the $\mathbf{P}_t$ matrix in the `ir_data_callback()` method with the variance of the IR sensor for the variance of the $z$ position estimate. FilterPy initializes instance variables for you, but you should assign these variables initial values. You can refer to the [FilterPy documentation](https://filterpy.readthedocs.io/en/latest/_modules/index.html) to figure out what variable names to use.
 
 **Task (Written Section 2.1):** How else could you initialize the estimate for $\dot z$ given the raw range readings from the IR sensor? Describe in `ukf2d_written_solutions.tex` what you would do and the potential pros and cons of your approach. Do not implement this in code.
 
@@ -124,7 +122,7 @@ In this problem, you will be testing your UKF that you have implemented thus far
 
 ### In Simulation
 
-To run your UKF with simulated drone data, you first have to make sure that your `project-ukf-yourGithubName` package is in the `~/ws/src` directory on your drone. Then, in `~/ws`, run `catkin_make` to build your package. By running this command, you will be able to run ROS and access nodes from your package. If you experience issues with `catkin`, please do not hesitate to reach out to the TAs.
+To run your UKF with simulated drone data, you first have to make sure that your `project-ukf-yourGithubName` package is in the `~/ws/src` directory on your drone. Your package has a unique name, so you will need to modify some files. There are two places near the top of `package.xml` where you should replace `pidrone_project2_ukf` with your repo name, and similarly there is one place near the top of the `CMakeLists.txt` file where you should do the same. Then, in `~/ws`, run `catkin_make` to build your package. By running this command, you will be able to run ROS and access nodes from your package. If you experience issues with `catkin`, please do not hesitate to reach out to the TAs.
 
 <!-- Make sure you are working with the newest version of our `pidrone_pkg` by running the `git pull` command. -->
 
