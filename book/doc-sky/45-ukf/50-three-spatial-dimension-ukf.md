@@ -136,9 +136,7 @@ TODO: Should we have students hand in the video through GitHub Classroom?
 
 Now you are going to fly with your 7D UKF, using both velocity control and position hold.
 
-**Task:** Take a video (or two) demonstrating your drone's stability in position hold and velocity control 1) while running just the EMA filter for state estimation and 2) while running your 7D UKF. You can use the web interface to move your drone around and send it other commands. Ensure that the video clearly demonstrates the performance improvements provided by the 7D UKF that you worked hard to implement!
-
-TODO: Since students will not have created or tuned their own PID, we cannot really expect them to see much stability improvement in flight, can we? Should we just have them use the simulation and the manual movement?
+**Task:** Take a video (or two) demonstrating your drone's stability in position hold and velocity control 1) while running just the EMA filter for state estimation and 2) while running your 7D UKF. You can use the web interface to move your drone around and send it other commands. Ensure that the video clearly demonstrates the performance improvements provided by the 7D UKF that you worked hard to implement! (Also, fret not if your drone is not flying with much stability overall, as you have not yet created and tuned your PID controller.)
 
 TODO: Should we have students hand in the video through GitHub Classroom?
 
