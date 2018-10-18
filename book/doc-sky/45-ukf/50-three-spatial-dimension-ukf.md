@@ -8,8 +8,6 @@ This part of the project has **three deliverables** in your `project-ukf-yourGit
 2. Your implementation of the UKF written in the `state_estimators/student_state_estimator_ukf_7d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
 3. Videos demonstrating your testing of your 7D UKF.
 
-TODO: Should we have students hand in the video through GitHub Classroom?
-
 ## State Vector
 
 Just as you tracked position and velocity along one axis in the 2D UKF, now you will track position and velocity along three global-frame axes. You will also track the drone's yaw value $\psi$. Changes to the drone's orientation will cause nonlinearities that the UKF was designed to address.
@@ -39,11 +37,29 @@ $$\mathbf{u}_t = \begin{bmatrix}
 
 As noted in [the background section](#ukf-background), one could treat these acceleration values as measurements instead of control inputs; for relative ease of implementation, we have chosen to use accelerations as control inputs. The linear accelerations are in the drone's body frame, denoted by the superscript $b$, so we need to rotate these vectors into the global frame based on the yaw variable that we are tracking and the IMU's roll and pitch values. This transformation will occur in the state transition function.
 
-**Task (Written Section 1.2.2):** Implement the state transition function $g(\mathbf{x}, \mathbf{u}, \Delta t)$ in `ukf7d_written_solutions.tex`. Remember that for the drone, this involves kinematics, and since we are now tracking yaw and additionally considering the roll and pitch from the IMU, there will also be some trigonometry.
+To accomplish this rotation, you will use quaternion-vector multiplication (to be implemented in the stencil code in the `apply_quaternion_vector_rotation()` method). What does this operation look like, and why use this instead of Euler angles? For one, Euler angles are prone to gimbal lock, which is an issue we want to avoid in robotics. Therefore, many people in robotics and other fields such as computer graphics make use of the quaternion to avoid gimbal lock and (arguably) more elegantly encode an object's orientation or rotation. Even though your drone probably will not encounter gimbal lock in its relatively constrained envelope of operation (i.e., we are not doing flips---yet!), we want to introduce you to using quaternions in a practical calculation. Here is a [visualization](https://quaternions.online/) that might help you better grasp the admittedly unintuitive idea of the quaternion.
 
-TODO: Should students write out the rotation matrix? Or just indicate its presence? In practice, we are having them use quaternion-vector rotation.
+In particular, we are interested in rotating a vector described relative to the drone's body frame into the global frame. For example, as the drone yaws, its body-frame $x$-axis will rotate relative to the global frame, so a linear acceleration value sensed by the IMU along the drone's body-frame $x$-axis will not always correspond to the same direction in the global frame. You can imagine that roll and pitch only complicate this mapping between body and global frame.
 
-**Task:** Translate the state transition function into Python by filling in the `state_transition_function()` method in `state_estimators/student_state_estimator_ukf_7d.py`. Follow the "TODO"s there. To carry out the rotation of the linear accelerations, we will have you implement a method called `apply_quaternion_vector_rotation()`. As usual, note the functions' type signatures for the inputs and outputs.
+In the state transition function, you will be rotating the body-frame linear acceleration vector from the IMU into the global frame. The computation to do this with a quaternion is as follows:
+
+$$
+\mathbf{u}^g_t = \mathbf{q} \cdot \mathbf{u}_t \cdot \mathbf{q}^*
+$$
+
+where $\mathbf{u}^g_t$ is the linear acceleration control input in the global frame, $\mathbf{q}$ is the quaternion that rotates a vector from body to global frame, $\mathbf{u}_t$ is your body-frame control input that you get from the IMU, and $\mathbf{q}^*$ is $\mathbf{q}$. Note that, for correct dimensionality, $\mathbf{u}^g_t$ and $\mathbf{u}_t$ should be 4-element vectors to match the quaternion's $[x, y, z, w]$ components and should have the real component $w$ equal to $0$, making these vectors "pure" quaternions.
+
+The steps to implement this rotation in the `apply_quaternion_vector_rotation()` method, then, looks something like this:
+
+1. Create a quaternion from Euler angles using `tf.transformations.quaternion_from_euler(roll, pitch, yaw)`, with the appropriate values for roll, pitch, and yaw (radians). The output of this function is a quaternion expressed as an array of $[x, y, z, w]$. It represents the drone's orientation and can be thought of as the quaternion to rotate a vector or frame from the global frame to the body frame. We want a quaternion that does the opposite rotation.
+2. Invert the quaternion to get a quaternion that rotates a vector from the body frame to the global frame. To do this, simply negate the $w$ component (i.e., the fourth element of the first quaternion).
+3. Express the vector to be rotated as a "pure" quaternion, which means appending a zero to the vector.
+4. Carry out $\mathbf{q} \cdot \mathbf{u}_t \cdot \mathbf{q}^*$ by applying the following functions appropriately: `tf.transformations.quaternion_multiply` and `tf.transformations.quaternion_conjugate`.
+5. Drop the fourth element of the result of this computation, and return this 3-element array.
+
+**Task (Written Section 1.2.2):** Implement the state transition function $g(\mathbf{x}, \mathbf{u}, \Delta t)$ in `ukf7d_written_solutions.tex`. Remember that for the drone, this involves kinematics, and since we are now tracking yaw and additionally considering the roll and pitch from the IMU, a rotation will be necessary so that we track state variables in the global frame. Your implementation will use quaternion-vector multiplication as described above to accomplish this rotation. We do not expect you to write out the details of the transformation, but in your notation, you should be clear about the frame in which the control input is described (e.g., you could indicate global frame by notating the control input as $\mathbf{u}^g_t$).
+
+**Task:** Translate the state transition function into Python by filling in the `state_transition_function()` method in `state_estimators/student_state_estimator_ukf_7d.py`. Follow the "TODO"s there. Be sure to implement `apply_quaternion_vector_rotation()` as well. As usual, note the functions' type signatures for the inputs and outputs.
 
 ## Measurement Function
 
@@ -108,9 +124,7 @@ This command will run your 7D UKF as the primary state estimator, along with the
 
 **Task:** Make sure your UKF is producing reasonable outputs, especially in the **Top View** chart in which the simulation and its nonlinear behavior are occurring. You should qualitatively feel confident that your UKF marker (the blue marker) is more closely tracking the Ground Truth marker (black) with less noise than the Raw Pose Measurement marker (orange).
 
-**Task:** Take a video of the web interface to demonstrate your 7D UKF's capabilities in the 2D simulation.
-
-TODO: Should we have students hand in the video through GitHub Classroom?
+**Task:** Take a video of the web interface to demonstrate your 7D UKF's capabilities in the 2D simulation. Save it in your GitHub repository.
 
 ### Manually Moving the Drone
 
@@ -128,17 +142,13 @@ using the `-hz` flag as needed.
 
 **Task:** Use the web interface to verify visually that the height estimates and the $x$, $y$, and yaw estimates appear to have less noise than the sensor readings, and that these estimates appear to track your drone's actual pose in space. Compare your UKF to the EMA estimates for altitude and the raw camera pose data in the **Top View** chart.
 
-**Task:** Take a video of your drone and the web interface to demonstrate your 7D UKF's capabilities.
-
-TODO: Should we have students hand in the video through GitHub Classroom?
+**Task:** Take a video of your drone and the web interface to demonstrate your 7D UKF's capabilities. Save it in your GitHub repository.
 
 ### In Flight
 
 Now you are going to fly with your 7D UKF, using both velocity control and position hold.
 
-**Task:** Take a video (or two) demonstrating your drone's stability in position hold and velocity control 1) while running just the EMA filter for state estimation and 2) while running your 7D UKF. You can use the web interface to move your drone around and send it other commands. Ensure that the video clearly demonstrates the performance improvements provided by the 7D UKF that you worked hard to implement! (Also, fret not if your drone is not flying with much stability overall, as you have not yet created and tuned your PID controller.)
-
-TODO: Should we have students hand in the video through GitHub Classroom?
+**Task:** Take a video (or two) demonstrating your drone's stability in position hold and velocity control 1) while running just the EMA filter for state estimation and 2) while running your 7D UKF. You can use the web interface to move your drone around and send it other commands. Ensure that the video clearly demonstrates the performance improvements provided by the 7D UKF that you worked hard to implement! (Also, fret not if your drone is not flying with much stability overall, as you have not yet created and tuned your PID controller.) Save your video(s) in your GitHub repository.
 
 # Final Hand-In {#ukf-project-final-handin status=ready}
 Before the project deadline, you must ensure that final versions of your solution files and code are handed in via GitHub Classroom. These files are:

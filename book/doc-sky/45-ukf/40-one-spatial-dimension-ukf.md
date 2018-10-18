@@ -5,7 +5,7 @@
     <img style='width:30em' src="ukf2d_web_interface_demo.gif"/>
 </figure>
 
-TODO: Get the above .gif to render (feature coming to Duckietown textbook within the next few days, hopefully)
+NOTE: .gif rendering is a feature coming to the Duckietown textbook soon, hopefully.
 
 Finally, it is time for you to design and implement a UKF specific to the PiDrone! We glossed over a lot of the mathematical details of the KF and UKF because we think it's more important that you understand the high-level workings of the Kalman Filter. Also, as a roboticist, the more difficult aspect of Kalman filtering is indeed the process of designing a filter for your robot's needs and capabilities. The underlying math mostly stays the same across UKF implementations, but the design (essentially, the seven steps described in [the previous section](#ukf-design-and-implementation-steps)) is tailored to the application.
 
