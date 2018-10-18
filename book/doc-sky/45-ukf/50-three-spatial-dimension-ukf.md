@@ -1,4 +1,4 @@
-# Our Implementation: UKF in Three Spatial Dimensions {#ukf-three-spatial-dimensions status=draft}
+# Our Implementation: UKF in Three Spatial Dimensions {#ukf-three-spatial-dimensions status=ready}
 
 While tracking the drone's $z$ position and velocity is helpful, it is a simplified model of the drone and does not encapsulate as many of the degrees of freedom of the drone as we might like. For this reason, you are now going to develop a UKF that tracks the drone in three spatial dimensions with a 7D state vector. Your code from the 2D UKF will be a useful reference, and many parts will be reusable for the 7D UKF.
 
