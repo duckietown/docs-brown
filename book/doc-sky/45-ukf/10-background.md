@@ -16,6 +16,12 @@ Since the UKF is an adaptation of the standard Kalman Filter, a lot of our discu
 
 Imagine a simple one-dimensional system in which your drone moves along the $z$-axis by adjusting its thrust. The drone has a downward-pointing infrared (IR) range sensor that offers you a sense of the drone's altitude, albeit with noise, as the sensor is not perfect. You are aware of this noise and want to eliminate it: after all, you know by empirical observation that your drone does not oscillate as much as the noisy IR range readings suggest, and that the average value of a lot of IR readings gets you a close estimate of the actual height. What can you do? A simple solution is to average recent range readings so as to average out the noise and smooth your estimate. One way to implement this is with a **moving average** that computes a weighted sum of the previous average estimate and the newest measurement.
 
+$$
+\mathbf{\hat x}_t = \alpha \mathbf{\hat x}_{t - \Delta t} + (1 - \alpha)\mathbf{z}_t
+$$
+
+where $\mathbf{\hat x}_t$ is the weighted average of the drone's state (here, just its height) at time $t$ computed by weighting the previous average $\mathbf{\hat x}_{t - \Delta t}$ by a scalar $\alpha$ between $0$ and $1$ and the new measurement $\mathbf{z}_t$ (here, just the raw IR reading) by $(1 - \alpha)$. A higher $\alpha$ will result in a smoother estimate that gives more importance to the previous average than the new measurement; as such, a smoother estimate results in increased latency.
+
 This approach works for many applications, but for our drone, we want to be able to know right away when it makes a sudden movement. Averaging the newest sensor reading with past readings suffers from latency, as it takes time for the moving average to approach the new reading. Ideally we would be able to cut through the noise of the IR sensor and experience no latency. We will strive for this kind of state estimation.
 
 As a related thought experiment, imagine that you do not have control of the drone but are merely observing it from an outsider's perspective. In this scenario, there is one crucial bit of information that we lack: the **control input** that drives the drone. If we are controlling the drone, then presumably we are the ones sending it commands to, for example, accelerate up or down. This bit of information is useful (but not necessary) for the Bayes and Kalman Filters, as we will discuss shortly. Without this information, however, employing a moving average to estimate altitude is not a bad approach.
