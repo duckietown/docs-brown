@@ -6,7 +6,7 @@ sure transforms are correct. If you have an incorrect transform
 between a sensor and the robot's body, it is much harder to use the
 sensor information. Inaccurate transforms directly translates to less
 precise information from the sensor. A useful reference on this topic
-is \citet{diebel2006representing}.
+is [](#bib:diebel2006representing).
 
 The process of finding a transform between the robot's body and a sensor is
 called [extrinsic
