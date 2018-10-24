@@ -42,7 +42,7 @@ $$
 p(\mathbf{z}_t \mid \mathbf{x}_t)
 $$
 
-By Bayes' Theorem, we can then derive and equation for the probability of the drone being in its current state given information from the measurement:
+By Bayes' Theorem, we can then derive an equation for the probability of the drone being in its current state given information from the measurement:
 
 $$
 p(\mathbf{x}_t \mid \mathbf{z}_t) = \frac{p(\mathbf{z}_t \mid \mathbf{x}_t)p(\mathbf{x}_t)}{p(\mathbf{z}_t)}
