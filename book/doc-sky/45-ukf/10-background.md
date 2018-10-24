@@ -52,7 +52,7 @@ After a little more manipulation and combining of the predict and update steps, 
 
 $\hspace{5mm} \text{Bayes_Filter}(bel(\mathbf{x}_{t-\Delta t}), \mathbf{u}_t, \mathbf{z}_t):$  
 $\hspace{10mm} \text{for all } \mathbf{x}_t \text{ do}:$  
-$\hspace{15mm} \bar{bel}(\mathbf{x}_t) = \int p(\mathbf{x}_t \mid \mathbf{u}_t, \mathbf{x}_{t-\Delta t})bel(\mathbf{x}_{t-\Delta t})\mathrm{d}x$  
+$\hspace{15mm} \bar{bel}(\mathbf{x}_t) = \int p(\mathbf{x}_t \mid \mathbf{u}_t, \mathbf{x}_{t-\Delta t})bel(\mathbf{x}_{t-\Delta t})\mathrm{d}\mathbf{x}$  
 $\hspace{15mm} bel(\mathbf{x}_t) = \eta p(\mathbf{z}_t \mid \mathbf{x}_t)\bar{bel}(\mathbf{x}_t)$  
 $\hspace{10mm} \text{endfor}$  
 $\hspace{10mm} \text{return } bel(\mathbf{x}_t)$  
