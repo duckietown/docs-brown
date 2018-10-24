@@ -30,7 +30,7 @@ As a related thought experiment, imagine that you do not have control of the dro
 
 To be able to get noise-reduced estimates with less latency than a via an averaging scheme, we can look to a probabilistic method known as the Bayes Filter, which forms the basis for Kalman filtering and a number of other probabilistic robotics algorithms. The idea with a Bayes Filter is to employ **Bayes' Theorem** and the corresponding idea of conditional probability to form probability distributions representing our belief in the robot's state (in our one-dimensional example, its altitude), given additional information such as the robot's previous state, a control input, and the robot's predicted state.
 
-Say we know the drone's state at $\mathbf{x}_{t-\Delta t}$ the previous time step as well as the most recent control input $\mathbf{u}_t$, which, for example, could be a command to the motors to increase thrust. Then, we would like to find the probability of the drone being at a new state $\mathbf{x}_t$ given the previous state and the control input. We can express this with conditional probability as:
+Say we know the drone's state $\mathbf{x}_{t-\Delta t}$ at the previous time step as well as the most recent control input $\mathbf{u}_t$, which, for example, could be a command to the motors to increase thrust. Then, we would like to find the probability of the drone being at a new state $\mathbf{x}_t$ given the previous state and the control input. We can express this with conditional probability as:
 
 $$
 p(\mathbf{x}_t \mid \mathbf{u}_t, \mathbf{x}_{t-\Delta t})
