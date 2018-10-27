@@ -14,7 +14,7 @@ to try when you encounter a problem.
 
 Decomposing the problem means breaking it down to smaller components.
 
-For example) The robot doesn't work?
+For example, if your drone won't fly, try to decompose it into smaller problems.  
 - Have you verified that each part works? Does the Pi power on?
 - Is your flight controller talking to the motors?
 - Can it connect to your laptop via CleanFlight?
@@ -57,7 +57,7 @@ For each condition below:
 2) Describe a procedure to verify the output works as expected
 3) Carry out the procedure using your drone and describe the results
 
-*Submit the pictures as visualize_[INSERT CONDITION NUMBER].png and write the written
+*Submit screenshots from the Javascript interface as visualize_[INSERT CONDITION NUMBER].png and write the written
 responses in `answers.md`.*
 
 1. Camera Output: How does it work on different lighting
@@ -71,8 +71,8 @@ responses in `answers.md`.*
 
 ## Break the Abstraction Barriers
 
-Bugs don't respect abstraction barriers, and you shouldn't either! The Law of
-Leaky Abstractions applies here. As you decompose the problem, you might find
+Bugs don't respect abstraction barriers, and you shouldn't either! [The Law of
+Leaky Abstractions](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/) applies here. As you decompose the problem, you might find
 that all the code you wrote is correct, and the actual bug lies in some other
 module. In the course of developing the drone, we had to fix bugs caused by
 insufficient swap space on the Raspberry Pi, incorrect implementation of the
@@ -129,3 +129,6 @@ Handin the following files:
 - answers.md
 - my_arm.py
 - my_frame.py
+- visualize_1.png
+- visualize_2.png
+- visualize_3.png
