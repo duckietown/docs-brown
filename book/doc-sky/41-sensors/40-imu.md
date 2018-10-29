@@ -1,4 +1,4 @@
-# Interfacing with the IMU {#sensors-assignment-infrared status=ready}
+# Interfacing with the IMU {#sensors-assignment-imu status=ready}
 
 Your drone is equipped with a [Skyline32 Flight Controller](https://hobbyking.com/en_us/skyline32-acro-flight-controller-w-baseflight-cleanflight.html) which has a built in IMU<sup id="a1">[1](#f1)</sup>. In this part of the project, you will learn how to interface with the flight controller board to extract the attitude, accelerations, angular rates of the drone from the built-in IMU. In addition, you will extract the battery levels from the flight controller so that you'll be able to tell when you're battery is too low.
 
@@ -30,4 +30,4 @@ Now we will extract linear accelerations and attitude (roll, pitch, yaw). In add
 
 
 ###### Footnotes
-[<b id="f1">1</b>](#a1)We will note now that you will also interface with the flight controller to control the motors of the drone. The flight controller is the component that controls the actuators (the motors) by sending PWM values to the ESCs. What all of these terms mean will be discussed later on when we focus on controlling and actuating the robot; for now, we are only focused on the the sensors on the flight controller.
+[<b id="f1">1</b>](#a1) We will note now that you will also interface with the flight controller to control the motors of the drone. The flight controller is the component that controls the actuators (the motors) by sending PWM values to the ESCs. What all of these terms mean will be discussed later on when we focus on controlling and actuating the robot; for now, we are only focused on the the sensors on the flight controller.
