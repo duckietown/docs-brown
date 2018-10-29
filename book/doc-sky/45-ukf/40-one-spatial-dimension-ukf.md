@@ -197,7 +197,7 @@ with the `-hz` flag as needed. Evaluate its performance using the web interface 
 
 At this point, you should have a functioning 2D UKF on your drone---congratulations! Before you get checked off for your work thus far, we want to introduce you to designing a slightly more complicated UKF for a different robot system that includes nonlinearities in the state transition and measurement functions. Here is the scenario:
 
-Imagine a ground robot capable of moving in the $xy$-plane. Its body frame is oriented such that the origin is located at its center, the positive $x$-axis points to the right of the robot, the positive $y$-axis points forward, and the positive $z$-axis points up. The robot can control its forward acceleration $\ddot y^b$ in the body frame and its heading $\psi$ (rotation about its center). Its sensor suite consists of a forward-pointing range sensor. With this setup:
+Imagine a ground robot capable of moving in the $xy$-plane. Its body frame is oriented such that the origin is located at its center, the positive $x$-axis points to the right of the robot, the positive $y$-axis points forward, and the positive $z$-axis points up. The robot can control its forward acceleration $\ddot y^b$ in the body frame and its heading $\psi$ (rotation about its center). Its sensor suite consists of a forward-pointing range sensor. There is a wall located ahead of the robot, parallel to the $x$-axis at $y=y_{\text{wall}}$ in the global frame. The robot uses its forward-pointing range sensor to estimate distance to the wall. With this setup:
 
 - What is a reasonable state vector?
 - Define the state transition function (hint: there will be nonlinearities)
