@@ -18,7 +18,7 @@ Our controller is a dual I-term (integral term) PID controller. The high-rate I-
 The first step in the tuning process is finding an initial throttle value that allows your drone to have a smooth and controlled takeoff. To do this, you'll be adjusting the value of `throttle_low.init_i` in <i>pid_class.py</i>. This is the initial value of the low-rate (slow changing) integral term for the throttle, which controls altitude. The default value is 100. you will tune this value by having the drone take off, observing its behavior, and modifying the value accordingly. Each time you wish to change the value, you will need to restart <i>pid_controller.py</i> to use the new value.  
 
 **Setup**  
-1. Prepare your drone to fly over a highly textured planar surface<sup id="a1">[1](#f1)</sup>.  
+1. Prepare your drone to fly over a highly textured planar surface<sup id="a3">[1](#f3)</sup>.  
 2. Navigate to \`4 of the screen.  
 3. Quit the program by pressing ctrl-c.  
 **Exercises**  
@@ -53,3 +53,8 @@ While flying, the low-rate I-terms will change to account for the static flight 
   4. Pick up and move the drone by hand back to the center of the flying area.  
   5. Repeat steps 1-4 until the values that are printed out after disarming have converged (roughly when the change in magnitude is less than 1).  
   6. Once these values have converged, record these values in your answers.  
+
+
+
+###### Footnotes
+[<b id="f3">1</b>](#a3)A flat posterboard scribbled or written on with marker will work. 

@@ -16,6 +16,12 @@ Since the UKF is an adaptation of the standard Kalman Filter, a lot of our discu
 
 Imagine a simple one-dimensional system in which your drone moves along the $z$-axis by adjusting its thrust. The drone has a downward-pointing infrared (IR) range sensor that offers you a sense of the drone's altitude, albeit with noise, as the sensor is not perfect. You are aware of this noise and want to eliminate it: after all, you know by empirical observation that your drone does not oscillate as much as the noisy IR range readings suggest, and that the average value of a lot of IR readings gets you a close estimate of the actual height. What can you do? A simple solution is to average recent range readings so as to average out the noise and smooth your estimate. One way to implement this is with a **moving average** that computes a weighted sum of the previous average estimate and the newest measurement.
 
+$$
+\mathbf{\hat x}_t = \alpha \mathbf{\hat x}_{t - \Delta t} + (1 - \alpha)\mathbf{z}_t
+$$
+
+where $\mathbf{\hat x}_t$ is the weighted average of the drone's state (here, just its height) at time $t$ computed by weighting the previous average $\mathbf{\hat x}_{t - \Delta t}$ by a scalar $\alpha$ between $0$ and $1$ and the new measurement $\mathbf{z}_t$ (here, just the raw IR reading) by $(1 - \alpha)$. A higher $\alpha$ will result in a smoother estimate that gives more importance to the previous average than the new measurement; as such, a smoother estimate results in increased latency.
+
 This approach works for many applications, but for our drone, we want to be able to know right away when it makes a sudden movement. Averaging the newest sensor reading with past readings suffers from latency, as it takes time for the moving average to approach the new reading. Ideally we would be able to cut through the noise of the IR sensor and experience no latency. We will strive for this kind of state estimation.
 
 As a related thought experiment, imagine that you do not have control of the drone but are merely observing it from an outsider's perspective. In this scenario, there is one crucial bit of information that we lack: the **control input** that drives the drone. If we are controlling the drone, then presumably we are the ones sending it commands to, for example, accelerate up or down. This bit of information is useful (but not necessary) for the Bayes and Kalman Filters, as we will discuss shortly. Without this information, however, employing a moving average to estimate altitude is not a bad approach.
@@ -24,7 +30,7 @@ As a related thought experiment, imagine that you do not have control of the dro
 
 To be able to get noise-reduced estimates with less latency than a via an averaging scheme, we can look to a probabilistic method known as the Bayes Filter, which forms the basis for Kalman filtering and a number of other probabilistic robotics algorithms. The idea with a Bayes Filter is to employ **Bayes' Theorem** and the corresponding idea of conditional probability to form probability distributions representing our belief in the robot's state (in our one-dimensional example, its altitude), given additional information such as the robot's previous state, a control input, and the robot's predicted state.
 
-Say we know the drone's state at $\mathbf{x}_{t-\Delta t}$ the previous time step as well as the most recent control input $\mathbf{u}_t$, which, for example, could be a command to the motors to increase thrust. Then, we would like to find the probability of the drone being at a new state $\mathbf{x}_t$ given the previous state and the control input. We can express this with conditional probability as:
+Say we know the drone's state $\mathbf{x}_{t-\Delta t}$ at the previous time step as well as the most recent control input $\mathbf{u}_t$, which, for example, could be a command to the motors to increase thrust. Then, we would like to find the probability of the drone being at a new state $\mathbf{x}_t$ given the previous state and the control input. We can express this with conditional probability as:
 
 $$
 p(\mathbf{x}_t \mid \mathbf{u}_t, \mathbf{x}_{t-\Delta t})
@@ -36,7 +42,7 @@ $$
 p(\mathbf{z}_t \mid \mathbf{x}_t)
 $$
 
-By Bayes' Theorem, we can then derive and equation for the probability of the drone being in its current state given information from the measurement:
+By Bayes' Theorem, we can then derive an equation for the probability of the drone being in its current state given information from the measurement:
 
 $$
 p(\mathbf{x}_t \mid \mathbf{z}_t) = \frac{p(\mathbf{z}_t \mid \mathbf{x}_t)p(\mathbf{x}_t)}{p(\mathbf{z}_t)}
@@ -46,7 +52,7 @@ After a little more manipulation and combining of the predict and update steps, 
 
 $\hspace{5mm} \text{Bayes_Filter}(bel(\mathbf{x}_{t-\Delta t}), \mathbf{u}_t, \mathbf{z}_t):$  
 $\hspace{10mm} \text{for all } \mathbf{x}_t \text{ do}:$  
-$\hspace{15mm} \bar{bel}(\mathbf{x}_t) = \int p(\mathbf{x}_t \mid \mathbf{u}_t, \mathbf{x}_{t-\Delta t})bel(\mathbf{x}_{t-\Delta t})\mathrm{d}x$  
+$\hspace{15mm} \bar{bel}(\mathbf{x}_t) = \int p(\mathbf{x}_t \mid \mathbf{u}_t, \mathbf{x}_{t-\Delta t})bel(\mathbf{x}_{t-\Delta t})\mathrm{d}\mathbf{x}$  
 $\hspace{15mm} bel(\mathbf{x}_t) = \eta p(\mathbf{z}_t \mid \mathbf{x}_t)\bar{bel}(\mathbf{x}_t)$  
 $\hspace{10mm} \text{endfor}$  
 $\hspace{10mm} \text{return } bel(\mathbf{x}_t)$  
@@ -59,7 +65,7 @@ Bayes Filter is a useful concept, but often it is too difficult to compute the b
 
 We can represent the beliefs as Gaussian functions with a mean and a covariance matrix. Why? The state variables and measurements are random variables in that they can take on values in their respective sample spaces of all possible states and measurements. By the Central Limit Theorem, these random variables will be distributed normally (i.e., will form a Gaussian probability distribution) when you take a lot of samples. The Gaussian assumption is a strong one: think of a sensor whose reading fluctuates due to noise. If you take a lot of readings, most of the values should generally be concentrated in the center (the mean), with more distant readings occurring less frequently.
 
-We use Gaussians because they are a good representation of how noise is distributed and because of their favorable mathematical properties. For one, Gaussians can be described by a mean and a covariance, which require less bookkeeping. Furthermore, Gaussian probability density functions added together result in another Gaussian, and products of two Gaussians (i.e., a joint probability distribution of two Gaussian distributions) are proportional to Gaussians [](#bib:labbe_kalman), which makes for less computation than if we were to use many samples from an arbitrary probability distribution. The consequence of these properties is that we can pass a Gaussian through a linear function and recover a Gaussian on the other side. Similarly, we can compute Bayes' Theorem with Gaussians as the probability distributions, and we find that the resulting probability distribution will be Gaussian (#bib:labbe_kalman).
+We use Gaussians because they are a good representation of how noise is distributed and because of their favorable mathematical properties. For one, Gaussians can be described by a mean and a covariance, which require less bookkeeping. Furthermore, Gaussian probability density functions added together result in another Gaussian, and products of two Gaussians (i.e., a joint probability distribution of two Gaussian distributions) are proportional to Gaussians [](#bib:labbe_kalman), which makes for less computation than if we were to use many samples from an arbitrary probability distribution. The consequence of these properties is that we can pass a Gaussian through a linear function and recover a Gaussian on the other side. Similarly, we can compute Bayes' Theorem with Gaussians as the probability distributions, and we find that the resulting probability distribution will be Gaussian [](#bib:labbe_kalman).
 
 In the Bayes Filter, we talked about the predict and update steps. The prediction uses a **state transition function**, also known as a **motion model**, to propagate the state estimate (which we can represent as a Gaussian) forward in time to the next time step. If this function is linear, then the prior state estimate will also be Gaussian. Similarly, in the measurement update, we compute a new distribution using a measurement function to be able to compare the measurement and the state. If this function is linear, then we can get a Gaussian distribution for the resulting belief. We will elaborate on this constraint of linearity when we discuss the usefulness of the Unscented Kalman Filter, but for now you should be comfortable with the idea that using Gaussians to represent the drone's belief in its state is a helpful and important modeling assumption.
 

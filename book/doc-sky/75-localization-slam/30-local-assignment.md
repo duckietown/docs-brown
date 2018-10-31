@@ -55,7 +55,7 @@ vision_localization_onboard runs localization on the drone and is complete, you 
 localization_helper contains the particle filter class and its methods. Many of the methods are not implemented. The docstrings describe the intended functionality of each function, and the TODOs indicate tasks to be completed. Your assignment is to follow the TODOs and implement the missing functionality of the particle filter. Much of the code you just wrote can be used here!
 
 ## Testing
-To test the functionality of your localization code, you may fly the drone while running vision_localization_onboard in the vision window with your localization_helper code in the scripts folder. Follow the Pidrone Vision Instructions to see how to change the map. You should see poses printed out which correspond to the drone's position over the map.
+To test the functionality of your localization code, you may fly the drone while running vision_localization_onboard in the vision window with your localization_helper code in the scripts folder. Follow the Mapping and Localization instructions in the operations manual to see how to change the map. You should see poses printed out which correspond to the drone's position over the map.
 
 You may also use animate_particle_filter.py to view the animation of your particle filter. Print the (x,y) pose of each particle on separate lines in a text file to be read by animate_particle_filter, put x and y pose coordinates on separate lines. Make sure you adjust animate_particle_filter.py to reflect the number of particles you are using!
 
