@@ -40,7 +40,7 @@ The second step $bel(x_t) = \eta p(z_{t}|x_{t})\bar{bel}(x_t)$ is the *measureme
 
 The following diagrams illustrate how a robot uses a Bayes Filtering algorithm to compute a belief distribution over time:  
 
-LEGAL IMAGE FREM STEFANIE'S SLIDES HERE  
+*diagram missing due to copyright concerns*
 
 Each of the below steps correspond to one image in the diagram:
 
@@ -66,7 +66,7 @@ $E[X] = \sum_x{xp(X=x)}$
 
 The following diagram shows the operation of MC Localization:  
 
-LEGAL IMAGE FREM STEFANIE'S SLIDES HERE
+*image missing due to copyright concerns*
 
  a. Initialize a set of particles in random positions.  
  b. Weight the set of particles based on their nearness to the doors  
