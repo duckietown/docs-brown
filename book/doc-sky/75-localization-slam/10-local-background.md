@@ -64,6 +64,12 @@ To retrieve a position estimate of the drone at any time, we can take a simple i
 The expectation of a random variable X:  
 $E[X] = \sum_x{xp(X=x)}$
 
+$p(X=x)$ is the probability that the true pose of the drone is equal to a
+particle's estimate of the pose, ie, the weight of the particle.
+For example, if we wanted to retrieve the pose estimate for the drone along the
+x axis, we would take the weighted mean of each particle's x value, where the
+weight is the weight of each particle.
+
 The following diagram shows the operation of MC Localization:  
 
 *image missing due to copyright concerns*

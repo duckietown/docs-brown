@@ -29,11 +29,16 @@ With this insight, we can represent the map with many 2-dimensional Gaussians, o
 The basic steps of FastSLAM will closely resemble those of MC Localization: generate a set of particles and in each time step: update their positions with motion data, weight them based on their accuracy, and resample.
 
 The following animation shows FastSLAM running on the PiDrone:    
-MY ANIMATION GOES HERE
 
-<figure id="example-embed">
-    <figcaption>Cool Duckietown by night</figcaption>
-    <dtvideo src="vimeo:152825632"/>
-</figure>
+https://www.dropbox.com/s/ywwm24ax3dxfsjo/SLAM.mp4?dl=0
+
 In grey are all of the landmarks in the map, in blue are the features being observed by the drone during each
-moment in time, and in red are the poses of the FastSLAm particles.
+moment in time, and in red are the poses of the FastSLAm particles (our belief
+about the location of the **drone**).
+
+Notice that as the drone moves throughout the plane, newly observed features,
+marked in blue, are added to the map as grey particles. As areas of the map
+are revisited by the drone, the algorithm updates those areas with the new
+information, and you can see the landmarks shift. Remember that the pose of each
+landmark is filtered with an EKF, so as we revisit a landmark more times,
+we incorporate more information about it and our certainty about the map increases.

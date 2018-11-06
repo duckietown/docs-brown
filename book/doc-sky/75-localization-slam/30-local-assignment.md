@@ -1,5 +1,17 @@
 # Localization Assignment {#localization-slam-localization-assignment status=ready}
 
+## Dependencies
+In order to complete this project, we will make use of the following libraries: Numpy
+for computations,  OpenCV for computer vision, and MatPlotLib for creating
+plots and animations. You are welcome to run on your drone the parts which do
+not require visualization, ie the OpenCV assignment at the bottom of this page.
+However, the particle filter assignment will require you to view a MatPlotLib
+animation. To accommodate this, you may either install the required dependencies
+on your own computer (optional!) or work on a department machine which already
+has them. The easiest way to work on this project is probably to work over ssh on your
+laptops and use XQuartz (what the -Y is for when you
+type ssh -Y) which will allow you to view animations over ssh!
+
 ## Particle Filter
 First, you will complete a series of quick exercises which will guide you through implementing a simplified particle filter. You will be given two files:
 
