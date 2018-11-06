@@ -15,7 +15,7 @@ type ssh -Y) which will allow you to view animations over ssh!
 ## Particle Filter
 First, you will complete a series of quick exercises which will guide you through implementing a simplified particle filter. You will be given two files:
 
-    particle_filter.py
+    student_particle_filter.py
     animate_particle_filter.py
 
 In particle_filter you will implement a particle filter which causes a set of randomly generated points on a 2d plane to converge on a specific point. particle_filter will write the particles' poses to a text file, which animate_particle_filter will read and use to generate an animation.
@@ -48,9 +48,9 @@ Python data structures and their operations are relatively slow compared to thei
 
 Now we that know the basics of how a particle filter uses weights and resampling to converge on a target, we need to address how to use OpenCV to estimate the motion and global position of the flying drone. To do this, you will complete a short assignment using OpenCV functions to compute the translation in the plane between two drone poses, represented by two overlapping images taken on a real drone. You will be provided with the following files:
 
-    image_A.png
-    image_B.png
-    compute_displacement.py
+    image_A.jpg
+    image_B.jpg
+    student_compute_displacement.py
 
 compute_displacement.py will indicate the infrared reading taken by the drone at the time images A and B were taken. This is important because the real-world dimensions of a pixel in the image will vary based on the height of the drone. Why is this?
 

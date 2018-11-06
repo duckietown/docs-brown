@@ -17,7 +17,6 @@ We will provide you with the following files:
     slam_helper.py
     utils.py
     map_data.txt
-    slam_data.txt
     animate_slam.py
     animation.mp4
 
