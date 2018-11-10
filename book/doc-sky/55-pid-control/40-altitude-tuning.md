@@ -8,7 +8,7 @@ Now that the planar PIDs are tuned, and you have found a value for `throttle_low
  To use your PID, you'll be running <i>student_pid_controller.py</i> instead of <i>pid_controller.py</i>. This will allow your PID to run alongside our planar PIDs, and on top of our throttle low-rate I-term which you found previously. Your PID will be responsible for keeping the drone flying steady vertically.  
 
 **Setup**  
-Change directories to `~/ws/src`. Run `git clone https://github.com/h2r/project-pid-yourGithubName.git`. In your repo, change "<name>pidrone_project3_pid</name>" to "<name>project-pid-yourGithubName</name>" in _package.xml_ and "project(pidrone_project3_pid)" to "project(project-pid-yourGithubName)" in _CMakeLists.txt_. Then change directories back to `~/ws/` and run `catkin_make --pkg project-pid-yourGitHubName`.
+Change directories to `~/ws/src`. Run `git clone https://github.com/h2r/project-pid-yourGithubName.git`. In your repo, change "<name>pidrone_project3_pid</name>" to "<name>project-pid-yourGithubName</name>" in _package.xml_ and "project(pidrone_project3_pid)" to "project(project-pid-yourGithubName)" in _CMakeLists.txt_. Also remove the msg folder, and comment out "add_message_files" in _CMakeLists.txt_. Then change directories back to `~/ws/` and run `catkin_make --pkg project-pid-yourGitHubName`.
 
 _OR_
 
