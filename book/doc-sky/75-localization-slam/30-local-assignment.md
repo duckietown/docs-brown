@@ -18,7 +18,10 @@ First, you will complete a series of quick exercises which will guide you throug
     student_particle_filter.py
     animate_particle_filter.py
 
-In particle_filter you will implement a particle filter which causes a set of randomly generated points on a 2d plane to converge on a specific point. particle_filter will write the particles' poses to a text file, which animate_particle_filter will read and use to generate an animation.
+In student_particle_filter you will implement a particle filter which causes a set of randomly generated points on a 2d plane to converge on a specific point. student_particle_filter will write the particles' poses to a text file, which animate_particle_filter will read and use to generate an animation.
+
+Note that there are more detailed instructions for each step in the comments of
+student_particle_filter.
 
 **Problem 1: Setup**
 Define a Particle class to represent the particles in the filter. Each particle should store its position (x,y) and its weight.
@@ -31,15 +34,12 @@ Implement a method for the ParticleFilter class which adds some random Gaussian 
 **Problem 3: Measurement Update**
 Implement a method for the ParticleFilter class which sets the weight of each particle inversely proportional to the particle's distance from the desired pose.
 
-**Problem 4: Resampling**
-Implement a method for the ParticleFilter class which uses the particle weights to resample the particles and create a new set. The goal is for each particle to be resampled with a probability that corresponds to its weight, therefore the particle set converges on the desired pose (particles closest to the target pose are more likely to be resampled). You will want to use copy.deepcopy to create a copy of each re-sampled particle.
+**Problem 4: Test**
+Try running your code! If it works properly, the particle poses should be written to a file
+called "particle_filter_data.txt." You can then run the file "animate_particle_filter" to view
+an animation of your particle filter converging on the desired pose which you set.
 
-*Hint:* try using numpy.random.multinomial to generate the set of new samples.
-
-**Problem 5: Finishing Up**
-Finally, implement a method for the ParticleFilter class which updates the filter by calling the motion method, the measurement method, and the resampling method. You may test your implementation by running particle_filter.py, then running animate_particle_filter.py to view the animation. You should see the set of particles converge to the desired point.
-
-**Problem 6: Optimization**
+**Problem 5: Optimization**
 Now that your filter is running, let's consider how we can optimize this process so that localization will run quickly in real time on your drones.
 
 Python data structures and their operations are relatively slow compared to their Numpy counterparts because Numpy is written in C. You will use Numpy arrays to avoid storing the set of particle poses and their weights as lists of Python objects. Remove the pose and weight field in your Particle class, and replace them with Numpy arrays which hold the sets of all particle poses and weights. Adjust the rest of your code accordingly. Consider how each particle will "know" which is its pose and weight and how it might retrieve them.

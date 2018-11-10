@@ -8,11 +8,23 @@ The drone's primary sensor is its downward-facing camera. To process information
 
 When we extract features from the drone's camera feed, OpenCV will give us a **keypoint** and **descriptor** for each feature. The keypoint holds the (x,y) coordinate of the feature in the image frame. The descriptor holds information about the feature which can be used to uniquely identify it, commonly stored as a binary string.
 
+<figure id="features">
+    <figcaption>An image taken on the drone's camera, shown with and without plotting the coordinates of 200 features detected by ORB</figcaption>
+    <img style='width:30em' src="features.png"/>
+</figure>
+
+
 Using OpenCV, we are able to perform some powerful manipulations on features. For example, panoramic image stitching can be achieved by matching feature descriptors from many overlapping images, and using their corresponding keypoints to precisely line up the images and produce a single contiguous scene.
 
 We will use OpenCV features to implement both the motion (state transition) and measurement models for localization. We can find the movement of the drone for the motion update by measuring how far it moves between consecutive camera frames. This is done by matching the descriptors between two frames, then using their keypoint positions to compute a transformation between the frames. This transformation will give us an x, y, and yaw displacement between two frames. Note that this requires some overlap between two image frames.
 
 To find the probability for each particle, we would like to measure the accuracy of the particle's pose. We will do this by comparing the camera's current image to the map of the drone's environment. Remember, this is a localization algorithm, meaning that we have a map available beforehand. In our case, the map is an image of the area over which the drone will fly. We can match the descriptors from the current image to the descriptors in the map image, and compute the transformation between the sets of corresponding keypoints to obtain a global pose estimate. The probability that a given particle is the correct pose of the drone is proportional to the error between the global pose estimate and the particle's pose.
+
+<figure id="global">
+    <figcaption>Computing the transformation from the drone's current view to the map in order to determine global pose</figcaption>
+    <img style='width:30em' src="global.png"/>
+</figure>
+
 
 One final consideration for our implementation of MC Localization is how often to perform the motion and measurement updates. We ought to predict motion as often as possible to preserve the tracking of the drone as it flies. But the measurement update is more expensive than motion prediction, and doesn't need to happen quite so often.
 
