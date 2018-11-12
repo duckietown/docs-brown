@@ -12,8 +12,9 @@ not require visualization, ie the OpenCV assignment.
 However, the particle filter assignment will require you to view a MatPlotLib
 animation. To accommodate this, you may either install the required dependencies
 on your own computer (optional!) or work on a department machine which already
-has them. The easiest way to work on this project is to work over ssh on your
-laptops and use XQuartz (what the -Y is for when you type ssh -Y) which will
+has them. If you install OpenCV yourself, make sure the version is 2.4.9.
+The easiest way to work on this project is to work over ssh on your
+computer and use XQuartz (what the -Y is for when you type ssh -Y) which will
 allow you to view animations over ssh. As a reminder, to access
 your account on the department machines, open a terminal and run "ssh -Y your_login@ssh.cs.brown.edu."
 You may use cyberduck or your preferred method to transfer files from your computer to the
@@ -77,6 +78,14 @@ You will be given two files:
 student_run_localization runs localization on the drone and is complete, you will not need to implement any code in that file. However, you may adjust the NUM_PARTICLE and NUM_FEATURE values to experiment with the speed/accuracy tradeoff concerning the number of particles in the filter and the number of features extracted by OpenCV. You may also edit this file if you need to change the map over which you want to localize.
 
 student_localization_helper contains the particle filter class and its methods. Many of the methods are not implemented. The docstrings describe the intended functionality of each function, and the TODOs indicate tasks to be completed. Your assignment is to follow the TODOs and implement the missing functionality of the particle filter. Much of the code you just wrote can be used here!
+
+Tip: we recommend that you read through the parts of the code which we are not asking you to implement,
+as this will help you to understand what is going on with the code and will likely save you
+debugging time. For example, we are not asking you to implement "resample_particles" or "initialize_particles"
+for localization, but it might help you to understand how they work! The same goes for the SLAM project.
+
+Note that for both this part of the assignment and for SLAM, there is not any "correct" universal
+implementation of the code as long as your solutions work.
 
 ## Testing
 To test the functionality of your localization code, you may fly the drone while running "rosrun pidrone_project_your_github_name student_run_localization.py" in the vision window. Follow the Mapping and Localization instructions in the operations manual to see how to change the map. You should see poses printed out which correspond to the drone's position over the map.

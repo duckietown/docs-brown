@@ -46,8 +46,6 @@ $\hspace{10mm} \textbf{return q}$
 
 
 
-
-
 One final consideration for our implementation of MC Localization is how often to perform the motion and measurement updates. We ought to predict motion as often as possible to preserve the tracking of the drone as it flies. But the measurement update is more expensive than motion prediction, and doesn't need to happen quite so often.
 
 A naive solution is to perform updates after every set number of camera frames. But since we are already computing the distance between each frame, it is straightforward to implement a system which waits for the drone to move a certain distance before updating. This idea is known as a **keyframe** scheme and is useful in many scenarios when computations on every camera frame are not feasible. It will be useful later on in SLAM to have the threshold for distance between two keyframes equal to the length of the camera's field of view, so we will implement such a system here.
