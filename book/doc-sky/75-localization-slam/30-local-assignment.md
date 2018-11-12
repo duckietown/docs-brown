@@ -1,19 +1,26 @@
 # Localization Assignment {#localization-slam-localization-assignment status=ready}
 
+## Getting Set Up
+Please click on the following GitHub Classroom link where you will clone the
+repo in order to receive the deliverables for this project.
+
 ## Dependencies
 In order to complete this project, we will make use of the following libraries: Numpy
 for computations,  OpenCV for computer vision, and MatPlotLib for creating
 plots and animations. You are welcome to run on your drone the parts which do
-not require visualization, ie the OpenCV assignment at the bottom of this page.
+not require visualization, ie the OpenCV assignment.
 However, the particle filter assignment will require you to view a MatPlotLib
 animation. To accommodate this, you may either install the required dependencies
 on your own computer (optional!) or work on a department machine which already
-has them. The easiest way to work on this project is probably to work over ssh on your
-laptops and use XQuartz (what the -Y is for when you
-type ssh -Y) which will allow you to view animations over ssh!
+has them. The easiest way to work on this project is to work over ssh on your
+laptops and use XQuartz (what the -Y is for when you type ssh -Y) which will
+allow you to view animations over ssh. As a reminder, to access
+your account on the department machines, open a terminal and run "ssh -Y your_login@ssh.cs.brown.edu."
+You may use cyberduck or your preferred method to transfer files from your computer to the
+department machines.
 
 ## Particle Filter
-First, you will complete a series of quick exercises which will guide you through implementing a simplified particle filter. You will be given two files:
+First, you will complete a series of quick exercises which will guide you through implementing a simplified particle filter. This part of the assignment must be completed on a computer with matplotlib and numpy installed. You will be given two files:
 
     student_particle_filter.py
     animate_particle_filter.py
@@ -44,7 +51,10 @@ Now that your filter is running, let's consider how we can optimize this process
 
 Python data structures and their operations are relatively slow compared to their Numpy counterparts because Numpy is written in C. You will use Numpy arrays to avoid storing the set of particle poses and their weights as lists of Python objects. Remove the pose and weight field in your Particle class, and replace them with Numpy arrays which hold the sets of all particle poses and weights. Adjust the rest of your code accordingly. Consider how each particle will "know" which is its pose and weight and how it might retrieve them.
 
+You will implement the localization code with this optimization.
+
 ## OpenCV
+This part of the assignment may be completed on your drones, or any computer with OpenCv and NumPy.
 
 Now we that know the basics of how a particle filter uses weights and resampling to converge on a target, we need to address how to use OpenCV to estimate the motion and global position of the flying drone. To do this, you will complete a short assignment using OpenCV functions to compute the translation in the plane between two drone poses, represented by two overlapping images taken on a real drone. You will be provided with the following files:
 
@@ -52,29 +62,31 @@ Now we that know the basics of how a particle filter uses weights and resampling
     image_B.jpg
     student_compute_displacement.py
 
-compute_displacement.py will indicate the infrared reading taken by the drone at the time images A and B were taken. This is important because the real-world dimensions of a pixel in the image will vary based on the height of the drone. Why is this?
+student_compute_displacement.py will indicate the infrared reading taken by the drone at the time images A and B were taken. This is important because the real-world dimensions of a pixel in the image will vary based on the height of the drone. Why is this?
 
-Your job is to write code in compute_displacement.py that will extract features from both images and compute a transformation between them. Use this transformation to compute the x,y, and yaw displacement in *meters* between the two images. This is exactly how you will implement the motion model for localization: we consider the meter displacement between two drone images to be the motion of the drone between the poses at which the images were taken.
+Your job is to write code in student_compute_displacement.py that will extract features from both images and compute a transformation between them. Use this transformation to compute the x,y, and yaw displacement in *meters* between the two images. This is exactly how you will implement the motion model for localization: we consider the meter displacement between two drone images to be the motion of the drone between the poses at which the images were taken.
 
 ## Implement Localization on the PiDrone
+We are now ready to implement localization on the drone.
+
 You will be given two files:
 
-    vision_localization_onboard.py
-    localization_helper.py
+    student_run_localization.py
+    student_localization_helper.py
 
-vision_localization_onboard runs localization on the drone and is complete, you will not need to implement any code in that file. However, you may adjust the NUM_PARTICLE and NUM_FEATURE values to experiment with the speed/accuracy tradeoff concerning the number of particles in the filter and the number of features extracted by OpenCV. You may also edit this file if you need to change the map over which you want to localize.
+student_run_localization runs localization on the drone and is complete, you will not need to implement any code in that file. However, you may adjust the NUM_PARTICLE and NUM_FEATURE values to experiment with the speed/accuracy tradeoff concerning the number of particles in the filter and the number of features extracted by OpenCV. You may also edit this file if you need to change the map over which you want to localize.
 
-localization_helper contains the particle filter class and its methods. Many of the methods are not implemented. The docstrings describe the intended functionality of each function, and the TODOs indicate tasks to be completed. Your assignment is to follow the TODOs and implement the missing functionality of the particle filter. Much of the code you just wrote can be used here!
+student_localization_helper contains the particle filter class and its methods. Many of the methods are not implemented. The docstrings describe the intended functionality of each function, and the TODOs indicate tasks to be completed. Your assignment is to follow the TODOs and implement the missing functionality of the particle filter. Much of the code you just wrote can be used here!
 
 ## Testing
-To test the functionality of your localization code, you may fly the drone while running vision_localization_onboard in the vision window with your localization_helper code in the scripts folder. Follow the Mapping and Localization instructions in the operations manual to see how to change the map. You should see poses printed out which correspond to the drone's position over the map.
+To test the functionality of your localization code, you may fly the drone while running "rosrun pidrone_project_your_github_name student_run_localization.py" in the vision window. Follow the Mapping and Localization instructions in the operations manual to see how to change the map. You should see poses printed out which correspond to the drone's position over the map.
 
-You may also use animate_particle_filter.py to view the animation of your particle filter. Print the (x,y) pose of each particle on separate lines in a text file to be read by animate_particle_filter, put x and y pose coordinates on separate lines. Make sure you adjust animate_particle_filter.py to reflect the number of particles you are using!
+You may also use animate_particle_filter.py to view the animation of your particle filter. Print the (x,y) pose of each particle on separate lines in a text file to be read by animate_particle_filter, put x and y pose coordinates on separate lines. Make sure you adjust animate_particle_filter.py to reflect the number of particles you are using! (using the visualizer here is optional)
 
 ## Checkoff
-Before you come to TA hours to have your project graded, you should verify that your code has the following functionality:
+We will verify that your code has the following functionality:
 
- 1. You can run vision_localization_onboard.py and take off with your drone.
+ 1. You can run student_run_localization.py and take off with your drone.
  2. While flying, you can hit 'r' and the poses will begin printing to the terminal. You can hit 'r' again and localization will restart.
  3. While flying, you can hit 'p' to toggle position hold on and off.
- 4. Run picam_localization.py while holding the drone over a mapped area. Do not arm the drone. As you move the drone around, verify that the poses reflect the movement. Verify visually that the poses are close to the actual position of the drone in the map. For example, if you are holding the drone above the bottom left corner of the mapped area, the pose should be close to (0,0).
+ 4. Run student_run_localization.py while holding the drone over a mapped area. Do not arm the drone. As you move the drone around, verify that the poses reflect the movement. Verify visually that the poses are close to the actual position of the drone in the map. For example, if you are holding the drone above the bottom left corner of the mapped area, the pose should be close to (0,0).

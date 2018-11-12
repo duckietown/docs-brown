@@ -51,3 +51,12 @@ The checkoff for this project is simple, run your slam_helper.py implementation 
 To allow you to test your implementations onboard the drone, you will sequentially perform SLAM and localization. This involves flying the drone over the area you want to map and recording the data received by the camera (keypoints and descriptors) during the flight. The drone then lands and runs the collected data through FastSLAM to build a map. Finally, the drone flies and runs a modified version of localization which uses the map produced by SLAM to localize in real time. Detailed instructions
 for how to use MATL (the software which accomplishes this) can be found in the Mapping and Localization section
 of the Operations Manual.
+
+## Handin
+Please be sure to push your finished project directory to GitHub classroom to
+handin. For your final handin, you should have edited all of the following files:
+
+    student_slam_helper.py
+    student_localization_helper.py
+    student_compute_displacement.py
+    student_particle_filter.py
