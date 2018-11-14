@@ -51,15 +51,19 @@ $$
    in the $x$ direction, flies up in $z$ $0.5$ meters, and then moves backward
    in the $y$ direction $-1$ meter.
 
-   4.1. Draw the robot's trajectory. *Submit this picture as `trajectory.png`.*
+   4.1. Draw the robot's trajectory in three dimensions on a labeled
+   coordinate frame.  You can draw it by hand and take a picture or
+   scan it, or use an image editor or drawing program.  *Submit this
+   picture as `trajectory.png`.*
 
    4.2. Write out the transformations as three separate transformation
-   matrices.
+   matrices.  Write this answer in answers.md.
 
-   4.3. Multiply the matrices together to get one single transform.
+   4.3. Multiply the matrices together to get one single
+   transform. Write this answer in answers.md.
 
-   4.4. Multiply the matrix by the robot's position vector to get its new
-   location.
+   4.4. Multiply the matrix by the robot's position vector to get its
+   new location. Write this answer in answers.md.
 
    Show all of your work
 
