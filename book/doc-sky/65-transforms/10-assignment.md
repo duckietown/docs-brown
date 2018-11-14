@@ -6,27 +6,29 @@ A translation can be represented as a tuple $<x, y, z>$ corresponding to the
 amount a point moves in each direction. *Write the answers to the following
 questions in `answers.md`.*
 
-1. The robot is at the origin, $\begin{bmatrix}0\\0\\0\end{bmatrix}$. It drives
-   forward for 5 seconds at 2.5 meters per second. So its velocity is
-   $\begin{bmatrix}0\\2.5\\0\end{bmatrix}$. How many meters has the robot
-   driven, and what is its new pose? Represent its new pose as a 3-vector.
+1. The robot is at the origin,
+   $\begin{bmatrix}0\\0\\0\end{bmatrix}$. It drives forward for 5
+   seconds at 2.5 meters per second. So its velocity is
+   $\begin{bmatrix}0\\2.5\\0\end{bmatrix}$. How many meters has the
+   robot driven, and what is its new position? Represent its new position
+   as a 3-vector.
 
-2. Now the robot turns. (Ignore rotational pose for this problem.) It drives
-   forward at 1 m/s for 10 s, so its velocity is $\begin{bmatrix}\sqrt{2}, 1,
-   0\end{bmatrix}$. How many meters has the robot driven, and what is its new
-   pose? Represent its new pose as a 3-vector.
+2. Assume the robot is omnidirectoral; that is it can move in any
+   direction without turning.  This means we can ignore the rotation.
+   The robot drives at 1 m/s for 10 s, so its velocity is
+   $\begin{bmatrix}\sqrt{2}, 1, 0\end{bmatrix}$. How many meters has
+   the robot driven, and what is its new position? Represent its new
+   position as a 3-vector.
 
-3. To represent translation in a transformation matrix, we add $1$ to the
-   vector representing the robots pose: $<x, y, z, 1>$. To see why this is
-   necessary, consider multiplying a $3\times3$ matrix $T$ by a the vector $<0,
-   0, 0>$. Formally:
-$$
-   \begin{align}
-    T \times \begin{bmatrix}0\\0\\0\\
-   \end{bmatrix}\end{align}$$
+3. To represent translation in a transformation matrix, we add $1$ to
+   the vector representing the robots position: $<x, y, z, 1>$. To see
+   why this is necessary, consider multiplying a $3\times3$ matrix $T$
+   by a the vector $<0, 0, 0>$. Formally: $$ \begin{align} T \times
+   \begin{bmatrix}0\\0\\0\\ \end{bmatrix}\end{align}$$
 
-   What is the result? Is it possible to represent a translation in a $3\times3$
-   matrix? If so, provide an example. If not, explain why not.
+   What is the result? Is it possible to represent a translation in a
+   $3\times3$ matrix? If so, provide an example. If not, explain why
+   not.
 
 4. To fix this problem, we add an extra entry to the position vector which is
    always $1$. Position at the origin is represented with the vector:
@@ -70,12 +72,14 @@ $$
 ## Understanding a Point Cloud (33 points)
 
 The robot observes the following point cloud, denoted in the form $$<angle,
-distance>$$. For frame of reference, use $$0^{\circ}$$ is off to the robot's
-right, $$90^{\circ}$$ is straight ahead, and $$180^{\circ}$$ is to the robot's
-left:
+distance>$$:
 $$
 [(0, 1), (45, 5), (90, 2), (180, 4), (270, 3)].
 $$
+
+For frame of reference, use $$0^{\circ}$$ is off to the robot's
+right, $$90^{\circ}$$ is straight ahead, and $$180^{\circ}$$ is to the robot's
+left.
 
 For the following problems, assume this is all points the robot can see in the
 world, so do not worry about new things that might be out of frame.
