@@ -2,6 +2,8 @@
 
 To complete our understanding of how we will implement a particle filter on the drone for localization, we need to address specific state transition and measurement models.
 
+## OpenCV and Features
+
 The drone's primary sensor is its downward-facing camera. To process information from the camera, we will use a popular open source computer vision library called *OpenCV.* We can use opencv to extract *features* from an image. In computer vision, features are points in an image where we suspect there is something interesting going on. For a human, it is easy to identify corners, dots, textures, or whatever else might be interesting in an image. But a computer requires a precise definition of thing-ness in the image. A large body of literature in computer vision is dedicated to detecting and characterizing features, but in general, we define features as areas in an image where the pixel intensities change rapidly. In the following image, features are most likely to be extracted at the sharp corner in the line. Imagine looking at the scene through the red box as it moved around slightly in several directions starting in each of the three points shown below. Through which box would you see the scene change the most?
 
 ![enter image description here](harris.png "Detecting Features")
@@ -12,6 +14,8 @@ When we extract features from the drone's camera feed, OpenCV will give us a **k
     <figcaption>An image taken on the drone's camera, shown with and without plotting the coordinates of 200 features detected by ORB</figcaption>
     <img style='width:30em' src="features.png"/>
 </figure>
+
+The specific feature detector we will be using is called ORB, you may read more about it here: https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_feature2d/py_orb/py_orb.html.
 
 
 Using OpenCV, we are able to perform some powerful manipulations on features. For example, panoramic image stitching can be achieved by matching feature descriptors from many overlapping images, and using their corresponding keypoints to precisely line up the images and produce a single contiguous scene.
@@ -24,6 +28,22 @@ To find the probability for each particle, we would like to measure the accuracy
     <figcaption>Computing the transformation from the drone's current view to the map in order to determine global pose</figcaption>
     <img style='width:30em' src="global.png"/>
 </figure>
+
+The following algorithm formulates precisely how we will use the ability visualized above to compute the global pose to weight the particles in MC localization. We observe features and attempt to match them to the map. If there enough matches,
+we compute the global pose of the drone, and compute q, the probability of the particle. q is equal
+to the product of the probabilities of the error between the particle's pose and the computed global pose in x, y, and yaw.
+
+
+$\hspace{5mm} \textbf{Measure}(\mathbf{c_t, x_t, m}) \hspace{30mm}$
+$\hspace{10mm} \mathbf{c \gets match(c_t,m)} \hspace{40mm}$
+$\hspace{10mm} \textbf{If} \mathbf{|c| \geq n} \hspace{30mm}$
+$\hspace{15mm} \mathbf{x,y,yaw=compute(c)} \hspace{30mm}$
+$\hspace{15mm} \mathbf{q=prob(x-x_t[0],\sigma_x^2) \cdot prob(y-x_t[1],\sigma_y^2) \cdot prob(yaw-x_t[3],\sigma_{yaw}^2)}$
+$\hspace{10mm} \textbf{Else} \hspace{50mm}$
+$\hspace{15mm} \mathbf{$q=0$} \hspace{50mm}$
+$\hspace{10mm} \textbf{Endif} \hspace{100mm}$
+$\hspace{10mm} \textbf{return q}$
+
 
 
 One final consideration for our implementation of MC Localization is how often to perform the motion and measurement updates. We ought to predict motion as often as possible to preserve the tracking of the drone as it flies. But the measurement update is more expensive than motion prediction, and doesn't need to happen quite so often.

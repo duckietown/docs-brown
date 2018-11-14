@@ -23,7 +23,7 @@ ie. the probability that the current measurement $z_t$ is observed given the sta
 
 You may have noticed that each of the above steps required computing a probability stated like "the probability of x given y." Such a probability is denoted $p(X|Y)$ and may be calculated by the famous Bayes Theorem for conditional probabilities, hence the name of the algorithm.
 
-Now, let's take a look at the Bayes Filter:  
+Now, let's take a look at the Bayes Filter:
 $\hspace{5mm} \text{Bayes_Filter}(bel(x_{t-1}), u_{t}, z_{t}):$  
 $\hspace{10mm} \text{for all } x_t \text{ do}:$  
 $\hspace{15mm} \bar{bel}(x_t) = \int p(x_{t}|u_{t},x_{t-1})bel(x_{t-1})\mathrm{d}x$  
