@@ -15,7 +15,7 @@ questions in `answers.md`.*
 
 2. Assume the robot is omnidirectoral; that is it can move in any
    direction without turning.  This means we can ignore the rotation.
-   The robot drives at 1 m/s for 10 s, so its velocity is
+   The robot drives at $\sqrt{3}$ m/s for 10 s, so its velocity is
    $\begin{bmatrix}\sqrt{2}, 1, 0\end{bmatrix}$. How many meters has
    the robot driven, and what is its new position? Represent its new
    position as a 3-vector.
