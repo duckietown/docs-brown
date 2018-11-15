@@ -99,7 +99,7 @@ world, so do not worry about new things that might be out of frame.
 ## Robotic Arms (33 points)
 
 A 2D linear robot has three joints as depicted below. The distance between the
-first and second joint is 1m, the second and third is 3m, and the third and end
+first and second joint is 3m, the second and third is 5m, and the third and end
 is 2m.
 
 <img src="arm_mpl.png" width="200"/>
