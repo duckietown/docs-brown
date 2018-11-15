@@ -126,7 +126,9 @@ is 2m.
 When you are done, use [this link](https://classroom.github.com/a/yuBI1j7n) to create your Transforms GitHub Repo.
 Commit and push the relevant files:
 
+- arm.py
 - answers.md
+- trajectory.png
 - question_5_1.png
 - question_5_2.png
 - question_5_3.png
