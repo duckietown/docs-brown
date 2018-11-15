@@ -104,14 +104,17 @@ is 2m.
 
 <img src="arm_mpl.png" width="200"/>
 
-6.1. Implement the transformations in the skeleton code (provided in the GitHub Classroom), so that the
-   arm joints move correctly and the base transformations are drawn. After you
-   have implemented the transforms correctly, you should be able to see the
-   arm's state as shown in the example image below. You should be able to move
-   each joint with 'i', 'k', 'j', 'l', 'a', and 'd' and see the arm update its
-   state. We recommend drawing the trigonometry out on paper before
-   implementing! When the joint angles are $<0, 0, 0>$, the arm should be
-   pointed horizontally along the X axis.
+6.1. Implement the transformations in the skeleton code (provided in
+   the GitHub Classroom), so that the arm joints move correctly and
+   the base transformations are drawn. After you have implemented the
+   transforms correctly, you should be able to see the arm's state as
+   shown in the example image below. You should be able to move joint
+   one forward and backward with 'i' and 'k', and joint two forward
+   and backward with 'j' and 'l' and joint three forward and backward
+   with 'a' and 'd' and see the arm update its state. We recommend
+   drawing the trigonometry out on paper before implementing! When the
+   joint angles are $<0, 0, 0>$, the arm should be pointed
+   horizontally along the X axis.
 
 6.2. Where is the arm when the joint angles are $<0, 0, 0>$? Give the position of
    each joint in the base coordinate system.
