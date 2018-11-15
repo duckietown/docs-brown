@@ -15,7 +15,7 @@ questions in `answers.md`.*
 
 2. Assume the robot is omnidirectoral; that is it can move in any
    direction without turning.  This means we can ignore the rotation.
-   The robot drives at 1 m/s for 10 s, so its velocity is
+   The robot drives at $\sqrt{3}$ m/s for 10 s, so its velocity is
    $\begin{bmatrix}\sqrt{2}, 1, 0\end{bmatrix}$. How many meters has
    the robot driven, and what is its new position? Represent its new
    position as a 3-vector.
@@ -93,13 +93,13 @@ world, so do not worry about new things that might be out of frame.
      motion model. Draw them in a new version of the graph above. *Submit this
      graph as an image titled `question_5_2.png`.*
 
-5.3. Now assume the robot rotates in place by 30 degrees. Draw what it would
+5.3. Now assume the robot rotates in place by 30 degrees (clockwise). Draw what it would
      see. *Submit this graph as an image titled `question_5_3.png`.*
 
 ## Robotic Arms (33 points)
 
 A 2D linear robot has three joints as depicted below. The distance between the
-first and second joint is 1m, the second and third is 3m, and the third and end
+first and second joint is 3m, the second and third is 5m, and the third and end
 is 2m.
 
 <img src="arm_mpl.png" width="200"/>
@@ -129,7 +129,9 @@ is 2m.
 When you are done, use [this link](https://classroom.github.com/a/yuBI1j7n) to create your Transforms GitHub Repo.
 Commit and push the relevant files:
 
+- arm.py
 - answers.md
+- trajectory.png
 - question_5_1.png
 - question_5_2.png
 - question_5_3.png
