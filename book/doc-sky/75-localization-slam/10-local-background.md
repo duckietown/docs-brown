@@ -59,14 +59,14 @@ weight is the weight of each particle.
 The following diagram shows the operation of MC Localization. In the diagram, our friendly H2R robot is trying to localize himself relative to a long table with some nuts and bolts, which are very useful to a robot!
 
 <figure id="localization">
-    <figcaption>Monte Carlo Localization. Vertical lines represent particles whose height represents the weight of the particle. p(z|x) is the measurement function. </figcaption>
+    <figcaption>Monte Carlo Localization. Vertical lines represent particles whose height represents the weight of the particle. p(z|x) is the measurement function. Figure inspired by Probabilistic Robotics.</figcaption>
     <img style='width:30em' src="MClocal.png"/>
 </figure>
 
- a. The robot starts in front of the first bolt. A set of particles are intitialized in random positions throughout the state space. Notice that the particles have uniform intitial weights.   
- b. We weight the set of particles based on their nearness to the bolts using the measurement function. 
- c. The robots moves from the first bolt to the second one, the motion model causes all particles to shift to the right. In this step, we also resample a new set of particles around the most likely positions from step b.
- d. Again, we weight the particles based on their nearness to the bolts, we can now see a significant concentration of the probability mass around the second bolt, where the robot actually is. 
- e. The robot moves again and we resample particles around those highest weighted from part d. We can now see that the belief distribution is heavily concentrated around the true pose of the robot.
+- a. The robot starts in front of the first bolt. A set of particles are initialized in random positions throughout the state space. Notice that the particles have uniform initial weights.             
+- b. We weight the set of particles based on their nearness to the bolts using the measurement function.               
+- c. The robots moves from the first bolt to the second one, the motion model causes all particles to shift to the right. In this step, we also resample a new set of particles around the most likely positions from step b.              
+- d. Again, we weight the particles based on their nearness to the bolts, we can now see a significant concentration of the probability mass around the second bolt, where the robot actually is.               
+- e. The robot moves again and we resample particles around those highest weighted from part d. We can now see that the belief distribution is heavily concentrated around the true pose of the robot.            
 
- If you are feeling shaky about the MC localization algorithm, we reccomend studying the diagram above until things start to make sense!
+ If you are feeling shaky about the MC localization algorithm, we recommend studying the diagram above until things start to make sense!

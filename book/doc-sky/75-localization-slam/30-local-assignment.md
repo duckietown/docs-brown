@@ -1,8 +1,8 @@
 # Localization Assignment {#localization-slam-localization-assignment status=ready}
 
 ## Getting Set Up
-Please click on the following GitHub Classroom link where you will clone the
-repo in order to receive the deliverables for this project.
+You should have cloned the GitHub Classroom link to receive the deliverables
+for this project.
 
 You should receive a directory named "project-localization-yourGithubName." The only part
 of this assignment which you must run on the drone is localization (the last
