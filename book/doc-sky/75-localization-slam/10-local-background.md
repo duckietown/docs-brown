@@ -38,20 +38,6 @@ $\sum_x{p(x_t|u_t,x_{t-1})bel(x_{t-1})}$
 
 The second step $bel(x_t) = \eta p(z_{t}|x_{t})\bar{bel}(x_t)$ is the *measurement update*. This computation is straightforward, the normalizer $\eta$ is the reciprocal of the sum of $p(z_{t}|x_{t})\bar{bel}(x_t)$ over all $x_t$. This factor will normalize the sum.
 
-The following diagrams illustrate how a robot uses a Bayes Filtering algorithm to compute a belief distribution over time:  
-
-*diagram missing due to copyright concerns*
-
-Each of the below steps correspond to one image in the diagram:
-
-1. Start, the robot has a uniform belief distribution  
-2. The robot measures a door, and believes it is equally likely to be in each of three positions, note the non-zero probability everywhere else
-3. The robot moves, shifting the belief distribution and reducing certainty
-4. The robot measures a second door, and now is very certain of its position
-5. The belief distribution shifts again, and the certainty decreases
-
-The takeaway from the above? Motion *decreases* certainty and measurement *increases* certainty.
-
 ## Monte-Carlo Localization
 The phrase "Monte Carlo" refers to the principle of using random sampling to model a complicated deterministic process. MC localization has become a very popular algorithm in robotics. Rather than represent the belief as a probability distribution over the entire state space, MC localization randomly samples from the belief to save computational time. This method is well suited to our scenario since the Raspberry Pi is a rather weak computer.
 
@@ -70,12 +56,17 @@ For example, if we wanted to retrieve the pose estimate for the drone along the
 x axis, we would take the weighted mean of each particle's x value, where the
 weight is the weight of each particle.
 
-The following diagram shows the operation of MC Localization:  
+The following diagram shows the operation of MC Localization. In the diagram, our friendly H2R robot is trying to localize himself relative to a long table with some nuts and bolts, which are very useful to a robot!
 
-*image missing due to copyright concerns*
+<figure id="localization">
+    <figcaption>Monte Carlo Localization. Vertical lines represent particles whose height represents the weight of the particle. p(z|x) is the measurement function. </figcaption>
+    <img style='width:30em' src="MClocal.png"/>
+</figure>
 
- a. Initialize a set of particles in random positions.  
- b. Weight the set of particles based on their nearness to the doors  
- c. Resample a new set of particles around the most likely positions, apply motion prediction  
- d. Weight particles based on their nearness to the doors  
- e. Resample and motion prediction  
+ a. The robot starts in front of the first bolt. A set of particles are intitialized in random positions throughout the state space. Notice that the particles have uniform intitial weights.   
+ b. We weight the set of particles based on their nearness to the bolts using the measurement function. 
+ c. The robots moves from the first bolt to the second one, the motion model causes all particles to shift to the right. In this step, we also resample a new set of particles around the most likely positions from step b.
+ d. Again, we weight the particles based on their nearness to the bolts, we can now see a significant concentration of the probability mass around the second bolt, where the robot actually is. 
+ e. The robot moves again and we resample particles around those highest weighted from part d. We can now see that the belief distribution is heavily concentrated around the true pose of the robot.
+
+ If you are feeling shaky about the MC localization algorithm, we reccomend studying the diagram above until things start to make sense!

@@ -33,7 +33,7 @@ The following algorithm formulates precisely how we will use the ability visuali
 we compute the global pose of the drone, and compute q, the probability of the particle. q is equal
 to the product of the probabilities of the error between the particle's pose and the computed global pose in x, y, and yaw.
 
-
+$\hspace{5mm} \textbf{Landmark Model Known Correspondence} \hspace{30mm}$
 $\hspace{5mm} \textbf{Measure}(\mathbf{c_t, x_t, m}) \hspace{30mm}$
 $\hspace{10mm} \mathbf{c \gets match(c_t,m)} \hspace{40mm}$
 $\hspace{10mm} \textbf{If} \mathbf{|c| \geq n} \hspace{30mm}$

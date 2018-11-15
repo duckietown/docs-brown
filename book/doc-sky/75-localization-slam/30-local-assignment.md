@@ -4,6 +4,20 @@
 Please click on the following GitHub Classroom link where you will clone the
 repo in order to receive the deliverables for this project.
 
+You should receive a directory named "project-localization-yourGithubName." The only part
+of this assignment which you must run on the drone is localization (the last
+assignment on this page). To do this, place your directory in the /ws/src folder
+on your drone. You should find the "package.xml" and "CMakeLists.txt" files which you will need to modify
+to build the package. On line 3 of "package.xml" you should replace
+yourGithubName with your GitHub name so it matches the name of your directory. Do the same
+on line 2 of "CMakeLists.txt" Finally, you should navigate to the /ws folder and run
+
+    catkin_make --pkg project-localization-yourGithubName
+
+to build your package so it is ros-runnable from the pidrone_pkg. You should only need to
+do this step one time.
+
+
 ## Dependencies
 In order to complete this project, we will make use of the following libraries: Numpy
 for computations,  OpenCV for computer vision, and MatPlotLib for creating
@@ -88,7 +102,11 @@ Note that for both this part of the assignment and for SLAM, there is not any "c
 implementation of the code as long as your solutions work.
 
 ## Testing
-To test the functionality of your localization code, you may fly the drone while running "rosrun pidrone_project_your_github_name student_run_localization.py" in the vision window. Follow the Mapping and Localization instructions in the operations manual to see how to change the map. You should see poses printed out which correspond to the drone's position over the map.
+To test the functionality of your localization code, you may fly the drone while running
+
+    rosrun project_localization_yourGithubName student_run_localization.py
+
+in the vision window. Follow the Mapping and Localization instructions in the operations manual to see how to change the map. You should see poses printed out which correspond to the drone's position over the map.
 
 You may also use animate_particle_filter.py to view the animation of your particle filter. Print the (x,y) pose of each particle on separate lines in a text file to be read by animate_particle_filter, put x and y pose coordinates on separate lines. Make sure you adjust animate_particle_filter.py to reflect the number of particles you are using! (using the visualizer here is optional)
 
