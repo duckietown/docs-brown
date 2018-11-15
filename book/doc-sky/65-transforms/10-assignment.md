@@ -93,8 +93,9 @@ world, so do not worry about new things that might be out of frame.
      motion model. Draw them in a new version of the graph above. *Submit this
      graph as an image titled `question_5_2.png`.*
 
-5.3. Now assume the robot rotates in place by 30 degrees (clockwise). Draw what it would
-     see. *Submit this graph as an image titled `question_5_3.png`.*
+5.3. Now assume the robot rotates in place from its current location
+     by 30 degrees (clockwise). Draw what it would see. *Submit this
+     graph as an image titled `question_5_3.png`.*
 
 ## Robotic Arms (33 points)
 
