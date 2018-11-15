@@ -51,7 +51,7 @@ questions in `answers.md`.*
 
    For this problem, the robot starts at the origin. It moves right $3$ meters
    in the $x$ direction, flies up in $z$ $0.5$ meters, and then moves backward
-   in the $y$ direction $-1$ meter.
+   in the $y$ direction $1$ meter (for a net transform of $-1$ in $y$).
 
    4.1. Draw the robot's trajectory in three dimensions on a labeled
    coordinate frame.  You can draw it by hand and take a picture or
