@@ -60,14 +60,10 @@ For each condition below:
 *Submit screenshots from the Javascript interface as visualize_[INSERT CONDITION NUMBER].png and write the written
 responses in `answers.md`.*
 
-1. Camera Output: How does it work on different lighting
-   conditions?
+1. Camera Output: How accurate are the position estimates over different surfaces? 
 
 2. IR Sensor Readings: How does it work with different materials? What are
    the minimum and maximum distances?
-
-3. IMU: How does it behave when you move the drone? Can you detect
-   a difference before and after calibration?
 
 ## Break the Abstraction Barriers
 
