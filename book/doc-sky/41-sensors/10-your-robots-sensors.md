@@ -10,6 +10,23 @@ A range sensor is any sensor that measures the distance to an object. There are 
 ### Inertial Measurement Unit (IMU)
 An IMU is a device that uses accelerometers and gyroscopes to measure forces (via accelerations) and angular rates acting on a body. The IMU on the PiDrone is a built-in component of the flight controller. Data provided by the IMU are used by the state estimator, which you will be implementing in the next project, to better understand its motion in flight. In addition, the flight controller board uses the IMU data to stabilize the drone from small perturbations.
 
+The IMU can be used to measure global orientation of roll and pitch
+(but not yaw).  This measurement is because it measures accelleration
+due to gravity, so it can measure the downward pointing gravity
+vector.  However it does not have a global yaw measurement.  Many
+drones additionally include a magnetomitor to measure global yaw
+according to the Earth's magnetic frame, although our drone does not
+have this sensor.
+
+Note that IMU does NOT measure position or linear velocity.  The
+acceleration measurements can be integrated (added up over time) to
+measure linear velocity, and these velocity estimates can be
+integrated again to measure position.  However without some absolute
+measurement of position or velocity, these estimates will quickly
+diverge.  To measures these properties of the drone, we need to use
+the camera as described below.
+
 
 ### Camera
 Each drone is equipped with a single Arducam 5 megapixel 1080p camera. The camera is used to measure motion in the planar directions. We face this camera down at the ground to measure  x, y, and yaw velocities of the drone using optical flow vectors that are extracted from the camera images. This is a lightweight task, meaning that it does not require much added computation, because these vectors are already calculated by the Pi's image processor for h264 video encoding. We also use the camera to estimate the relative position of the drone by estimating the rigid transformations between two images.
+
