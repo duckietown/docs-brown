@@ -61,12 +61,10 @@ Try running your code! If it works properly, the particle poses should be writte
 called "particle_filter_data.txt." You can then run the file "animate_particle_filter" to view
 an animation of your particle filter converging on the desired pose which you set.
 
-**Problem 5: Optimization**
-Now that your filter is running, let's consider how we can optimize this process so that localization will run quickly in real time on your drones.
+**Problem 5: Optimization OPTIONAL STEP**
+Now that your filter is running, let's consider how we can optimize this process so that the localization particle filter will run quickly in real time on your drones.
 
-Python data structures and their operations are relatively slow compared to their Numpy counterparts because Numpy is written in C. You will use Numpy arrays to avoid storing the set of particle poses and their weights as lists of Python objects. Remove the pose and weight field in your Particle class, and replace them with Numpy arrays which hold the sets of all particle poses and weights. Adjust the rest of your code accordingly. Consider how each particle will "know" which is its pose and weight and how it might retrieve them.
-
-You will implement the localization code with this optimization.
+Python data structures and their operations are relatively slow compared to their Numpy counterparts because Numpy is written in C. You will use Numpy arrays to avoid storing the set of particle poses and their weights as lists of Python objects. You may comment out the Particle class entirely and replace the list of particle objects with two Numpy arrays for poses and weights stored in the ParticleSet class. Adjust the rest of the code accordingly. This step is meant to help you understand the optimizations (which are done in the same way) in the localization code.
 
 ## OpenCV
 This part of the assignment may be completed on your drones, or any computer with OpenCv and NumPy.
