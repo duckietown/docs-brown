@@ -30,16 +30,28 @@ sure you answer each of the following subquestions in a few sentences each.
 
 8. What is the normal mode of operation?
 
-## FAA Rules (10 points)
+## FAA Rules (20 points)
+*Write the answers to these questions in the corresponding sections in `answers.txt`*
 
-*Write your answers in `answers.txt`.*
+In the United States, the Federal Aviation Administration regulates
+outdoor flight.  (It does not regulate flight indoors.)  Read the [FAA
+website](https://www.faa.gov/uas/) on Unmanned Aircraft Systems.
+Provide short answers to the following questions.
 
-Read the FAA page on [Unmanned Aircraft Systems](https://www.faa.gov/uas/). We
-will be flying in accordance with the FAA Special Rule for Model Aircraft.
 
-1. Do you need to register your drone?
+1. What procedures should you follow when flying your drone outside
+   the CIT?  (You might find it easiest to use the [B4UFLY Smartphone
+   App](https://www.faa.gov/uas/where_to_fly/b4ufly/).
 
-2. When do you need to report an accident to the FAA?
+2. What is the closest airport to the CIT? Hint: Make sure to check for
+   heliports as well.
+
+3. What are some risks of drone flight? How could people get hurt with the
+   robot?
+
+4. Do you need to register your drone?
+
+5. When do you need to report an accident to the FAA?
 
 ## Thanksgiving Break (10 points)
 
@@ -65,20 +77,6 @@ Answer the following questions about flying in the CIT lobby.
 2. What should you do to plan?
 
 3. What safety precautions should you take before you fly?
-
-## NTSA Report  (20 points)
-
-*Write your answers in `answers.txt`.*
-
-Read the [NTSB accident
-report](https://www.ntsb.gov/investigations/AccidentReports/Pages/AAR1005.aspx)
-about the Midair Collision Over Hudson River, that we discussed in class. Click
-the `Related Report` link to download the 54-page PDF. Answer the follwing
-questions.
-
-1. What can you learn from this incident about safe flying?
-
-2. What additional precautions does it suggest for safely operating your drone?
 
 ## Handin
 
