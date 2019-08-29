@@ -80,52 +80,6 @@ prerequisite material for the class.
    in _answers.txt_. Then draw your answer on a map and add it to your repo as
    _map.png_.
 
-## FAA Rules (20 points)
-*Write the answers to these questions in the corresponding sections in `answers.txt`*
-
-In the United States, the Federal Aviation Administration regulates
-outdoor flight.  (It does not regulate flight indoors.)  Read the [FAA
-website](https://www.faa.gov/uas/) on Unmanned Aircraft Systems.
-Provide short answers to the following questions.
-
-
-1. What procedures should you follow when flying your drone outside
-   the CIT?  (You might find it easiest to use the [B4UFLY Smartphone
-   App](https://www.faa.gov/uas/where_to_fly/b4ufly/).
-
-2. What is the closest airport to the CIT? Hint: Make sure to check for
-   heliports as well.
-
-3. What are some risks of drone flight? How could people get hurt with the
-   robot?
-
-## Case Study (20 points)
-
-*Write your answers in the corresponding section in `answers.txt`*
-
-Pick one of these robots that was used to solve a real-world problem and answer
-the questions below.
-- [Baxter](https://www.rethinkrobotics.com/baxter/)
-- [Curiosity](https://en.wikipedia.org/wiki/Curiosity_(rover))
-- [Waymo](https://waymo.com)
-
-1. What problem is the robot solving? Your answer should be focused on the
-   problem people had, why it was hard, and why it was important to solve.
-
-2. What sensors does the robot use to solve the problem? What does it need to
-   know about its environment, and how does it find out?
-
-3. What actuators does the robot use to solve the problem? What does it need to
-   alter about its environment, and how does it do so?
-
-4. How well does the robot work? How is its performance quantitatively measured
-   or qualitatively evaluated?
-
-5. How does the robot fail? What happens when it fails?
-
-6. How much does the robot cost? If you find a price, cite your source. If you
-   cannot find a direct source, give an estimate and some reasoning.
-
 ## Law of Leaky Abstractions (20 points)
 
 *Write your answers in the corresponding section of `answers.txt`*
