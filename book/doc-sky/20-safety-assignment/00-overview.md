@@ -14,11 +14,7 @@ everyone's responsibility!
 Please read:
 ## NTSB Report
 
-Read the [NTSB accident
-report](https://www.ntsb.gov/investigations/AccidentReports/Pages/AAR1005.aspx)
-about the Midair Collision Over Hudson River, that we discussed in class. Click
-the `Related Report` link to download the 54-page PDF. Answer the follwing
-questions.
+Read the [NTSB accident report](https://www.ntsb.gov/investigations/AccidentReports/Pages/AAR1005.aspx) about the Midair Collision Over Hudson River, that we discussed in class. Click the `Related Report` link to download the 54-page PDF. Answer the following questions.
 
 1. What can you learn from this incident about safe flying?
 
