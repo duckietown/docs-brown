@@ -55,11 +55,11 @@ because they are warmup questions designed to remind you of some of the
 prerequisite material for the class.
 
 1. Multiply the matrix by the following vector:
-  $$\begin{bmatrix}1 & 0 & 1\\
+    $$\begin{bmatrix}1 & 0 & 1\\
                  0 & 1 & 2\\
                  0 & 0 & 1\end{bmatrix}
-  \times
-  \begin{bmatrix}0\\
+    \times
+    \begin{bmatrix}0\\
                  0\\
                  1\end{bmatrix}$$
 
@@ -98,7 +98,7 @@ link](https://github.com). We will be using git repos throughout the course for
 versioning, moving code around, and submitting assignments.
 
 Once you have a github account, click on [this
-link](https://classroom.github.com/a/5D9_VZJ8) to join our Github classroom.
+link](https://classroom.github.com/a/Kx6uuWcO) to join our Github classroom.
 This should ask you to select your name from the list and create a repository
 for you. Clone the directory to your computer
 
