@@ -1,11 +1,10 @@
 # Assignment {#introduction-assignment status=ready}
 
-This BLAH assignment gives an introduction to our course and reviews some basic
+This assignment gives an introduction to our course and reviews some basic
 material you will need. *Hand ins will be noted in italics. Create an
 `answers.txt` file in your Github repository (see handin instructions at the
 bottom of this page) in which to write your answers.*
 
-TEST2
 
 ## Course Form
 
@@ -144,7 +143,7 @@ link](https://github.com). We will be using git repos throughout the course for
 versioning, moving code around, and submitting assignments.
 
 Once you have a github account, click on [this
-link](https://classroom.github.com/a/5D9_VZJ8) to join our Github classroom.
+link](https://classroom.github.com/a/Kx6uuWcO) to join our Github classroom.
 This should ask you to select your name from the list and create a repository
 for you. Clone the directory to your computer
 
