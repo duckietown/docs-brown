@@ -18,7 +18,7 @@ Please read and sign the [safety policy for CS1951R](https://cs.brown.edu/course
 
 *Submit the answers to these questions in answers.txt*
 
-Before you start putting a lot of time into this course, it is important to figure out what you will get out of the course. Think about what you expect to learn from this course and why it is worth investing a lot of time. What do you hope to learn that you can take away for the next ten or twenty years of your career?
+Before you start putting a lot of time into this course, it is important to figure out what you will get out of the course. Think about what you expect to learn from this course and why it is worth investing a lot of time. 
 
 1. What is a robot?
 2. If I can fly a drone by remote, what can I get out of programming it?
