@@ -41,7 +41,7 @@ For this problem we strongly recommend you do these calculations by hand, becaus
 
 Read [The Law of Leaky Abstractions](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/). How might this be especially relevant to robotics? Make sure you address:
 
-1. How might implemented systems not be true to their modeled behavior?
+1. Give an example of a system that you have worked with that had an abstraction that "leaked."  Describe the abstraction, what it was hiding, and what went wrong so that the abstraction broke down. 
 2. How can we use abstractions in light of these challenges?
 
 ## Handin
