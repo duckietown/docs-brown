@@ -27,7 +27,7 @@ Before you start putting a lot of time into this course, it is important to figu
 
 *Write the answers to these questions in the corresponding section of answers.txt.*
 
-Transformation matrices are fundamental to reasoning about sensors and actuators. For example, the robot might detect a landmark with its camera, and we might want to know the location of the landmark relative to the robot's base. Or we might want to know where we can expect the landmark to be located after the robot has moved forward. We will cover this in detail but for know are asking you to do a warmup on these topics.
+Transformation matrices are fundamental to reasoning about sensors and actuators. For example, the robot might detect a landmark with its camera, and we might want to know the location of the landmark relative to the robot's base. Or we might want to know where we can expect the landmark to be located after the robot has moved forward. We will cover this in detail but for now are asking you to do a warmup on these topics.
 
 For this problem we strongly recommend you do these calculations by hand, because they are warmup questions designed to remind you of some of the prerequisite material for the class.
 
