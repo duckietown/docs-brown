@@ -41,7 +41,7 @@ Provide short answers to the following questions.
 
 1. What procedures should you follow when flying your drone outside
    the CIT?  (You might find it easiest to use the [B4UFLY Smartphone
-   App](https://www.faa.gov/uas/where_to_fly/b4ufly/).
+   App](https://www.faa.gov/uas/where_to_fly/b4ufly/)).
 
 2. What is the closest airport to the CIT? Hint: Make sure to check for
    heliports as well.
