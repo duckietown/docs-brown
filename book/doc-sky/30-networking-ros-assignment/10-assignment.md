@@ -1,5 +1,7 @@
 # Assignment {#networking-ros-assignment status=ready}
 
+This assignment is comprised of three parts: Introduction to Linux (Part 1), Networking (Part 2), and ROS (Part 3). Please complete all parts of this assignment. 
+
 # Part 1: Introduction to Linux
 
 ## Background Information
