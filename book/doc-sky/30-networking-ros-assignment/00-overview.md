@@ -1,4 +1,4 @@
-# Networking {#part:networking status=ready}
+# Networking and Middleware {#part:networking status=ready}
 
 This unit asks you to think and learn about fundamentals of communication in robotics, namely networking and ROS. We also cover some helpful linux commands.
 
