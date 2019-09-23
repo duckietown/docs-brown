@@ -185,7 +185,7 @@ your base station. *Write the answers to the following questions in `networking.
 
 ## Handin
 
-When you are done, use [this link](TODO) to create your assignment Github Repo.
+When you are done, use [this link](https://classroom.github.com/a/NAGxz1QJ) to create your assignment Github Repo.
 
 - `hello1.py`, `hello2.py`, `hello.sh`, `my_cat.py`, `my_reverse_sort.py`, `my_sort_status.py`, `my_echo.py`, `mean_and_variance.py`
 - `shell.pdf`, `networking.pdf`, `ros.pdf`	
