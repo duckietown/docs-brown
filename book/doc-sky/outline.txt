@@ -1,6 +1,8 @@
 <!-- # Building {#part:building status=ready} -->
 
-<!-- # Networking and Middleware {#part:networking-ros-assignment status=ready} -->
+<!-- # Linux and Networking {#part:linux-and-networking status=ready} -->
+
+<!-- # Middleware {#part:middleware status=ready} -->
 
 <!-- # Physics {#part:physics status=ready} -->
 
