@@ -1,5 +1,10 @@
 # PID Controllers {#part:pid status=ready}
 
+
+# PID Controllers generalities {#pid-chapter status=ready}
+
+<minitoc/>
+
 ## Introduction
 A PID (proportional, integral, derivative) controller is a control algorithm extensively used in industrial control systems to generate a control signal based on error. The error is calculated by the difference between a desired setpoint value, and a measured process variable. The goal of the controller is to minimize this error by applying a correction to the system through adjustment of a control variable. The value of the control variable is determined by three control terms: a proportional term, integral term, and derivative term.
 
@@ -52,7 +57,7 @@ The figure below summarizes the inclusion of a PID controller within a basic con
 
 <figure>
     <figcaption>PID Controller Block Diagram</figcaption>
-    <img style='width:35em' src="pid_controller_block_diagram.png"/>
+    <img alt='block diagram' style='width:35em' src="pid_controller_block_diagram.png"/>
 </figure>
 
 ### Tuning

@@ -1,5 +1,22 @@
 # Duckiesky Learning Materials {#book:duckiesky status=ready}
 
+
+<div id="logo-container">
+    <img alt="logo duckietown" id="logo" src="Mack-and-duckietown.png"/>
+</div>
+
+<style>
+    img#logo {
+        width: 15em;
+        margin-top: 4em;
+        margin-bottom: 4em;
+    }
+    
+    #logo-container {
+    text-align: center;
+    }
+</style>
+
 Flight has fascinated humans for millenia.
 
 The aim of this course is to empower people to build robots. Students
@@ -26,5 +43,15 @@ taking this course, students will be able to:
 We assume you have seen some Python before, as well as some linear
 algebra.  This book contains text, assignments, projects, and slides
 for the course.
+
+
+<div style='page-break-before: always'>
+</div>
+
+
+<!-- show a TOC of the book -->
+
+<minitoc levels="2"/>
+
 
 
