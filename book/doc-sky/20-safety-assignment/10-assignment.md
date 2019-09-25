@@ -12,7 +12,7 @@ Read the OSHA Technical Manual on [Industrial Robots and Robot System
 Safety](https://www.osha.gov/dts/osta/otm/otm_iv/otm_iv_4.html).
 
 Perform a hazard analysis for the drone, based on the OSHA guidelines. Make
-sure you answer each of the following subquestions in a few sentences each.
+sure you answer each of the following subquestions in a few sentences.
 
 1. What tasks will the robot be programmed to perform?
 
@@ -41,7 +41,7 @@ Provide short answers to the following questions.
 
 1. What procedures should you follow when flying your drone outside
    the CIT?  (You might find it easiest to use the [B4UFLY Smartphone
-   App](https://www.faa.gov/uas/where_to_fly/b4ufly/).
+   App](https://www.faa.gov/uas/where_to_fly/b4ufly/)).
 
 2. What is the closest airport to the CIT? Hint: Make sure to check for
    heliports as well.
@@ -80,7 +80,7 @@ Answer the following questions about flying in the CIT lobby.
 
 ## Handin
 
-Use this [link](https://classroom.github.com/a/Xk5mbPOk) to access the assignment on Github classroom. Commit the
+Use this [link](https://classroom.github.com/a/uJlsyv4y) to access the assignment on Github classroom. Commit the
 files to hand in, as you did in the Introduction assignment.
 
 Your handin should contain the following files:

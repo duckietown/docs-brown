@@ -1,4 +1,4 @@
-# Networking {#part:networking status=ready}
+# Networking and Middleware {#part:networking-ros-assignment status=ready}
 
 This unit asks you to think and learn about fundamentals of communication in robotics, namely networking and ROS. We also cover some helpful linux commands.
 
@@ -8,6 +8,6 @@ The ROS component of this assignment will help you understand how the different 
 
 
 
-Before you begin the ROS component of this assignment, read through the [ROS section of the Software Architecture portion of the Operations Manual](https://docs-brown.duckietown.org/opmanual_sky/out/software_architecture_assignment_duplicate_140573629966480.html#sec:software-architecture-assignment-duplicate-140573629965776). This document provides a general overview of ROS. Do not worry about understanding everything in this section; we are asking you to read it only to expose you to the material you will be covering in the assignment and throughout the course. 
+Before you begin the ROS component of this assignment, read through the [ROS section of the Software Architecture portion of the Operations Manual](https://docs.duckietown.org/daffy/opmanual_sky/out/software_architecture_assignment.html). This document provides a general overview of ROS. Do not worry about understanding everything in this section; we are asking you to read it only to expose you to the material you will be covering in the assignment and throughout the course. 
 
  

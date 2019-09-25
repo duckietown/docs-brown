@@ -1,6 +1,6 @@
 <!-- # Building {#part:building status=ready} -->
 
-<!-- # Networking {#part:networking status=ready} -->
+<!-- # Networking and Middleware {#part:networking-ros-assignment status=ready} -->
 
 <!-- # Physics {#part:physics status=ready} -->
 
@@ -35,7 +35,6 @@ Write the answers there in sections with ID.
 Then use the syntax:
 
 <pre><code>&lt;move-here src='#ID'/&gt;</code></pre>
-
 to move the content where it should appear.
 
 If the repository is not present then the answer will not be included.
