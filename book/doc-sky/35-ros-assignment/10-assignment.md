@@ -35,7 +35,7 @@
 
 ## Handin
 
-When you are done, use [this link](TODO) to create your assignment Github Repo.
+When you are done, use [this link](https://classroom.github.com/a/K6YAGyXq) to create your assignment Github Repo.
 
 - `my_echo.py`, `mean_and_variance.py`
 - `ros.pdf`	
