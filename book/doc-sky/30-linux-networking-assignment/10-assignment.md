@@ -77,8 +77,7 @@ the terminal rather than buried in the input to the next program.
    a directory sorted in alphabetical order into the file `sorted.txt`. If you
    modify the command to be `ls -a -hippo | sort > sorted.txt`, what text is in
    `sorted.txt`, what is outputted as standard error, and why? *Answer this question in `shell.pdf`. Submit this file.*
-2. Create a python script that, in addition printing sorted inputs to standard
-   out, prints status reports to standard error. Use it to sort `ls -a` instead
+2. Create a python script that prints reversed sorted output to standard error. Use it to sort `ls -a` instead
    of `sort`. *Submit the file containing the script as `my_sort_status.py`.*
 
 # Part 2: Networking
