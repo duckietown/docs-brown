@@ -8,8 +8,7 @@ Change directories into `~/ws/src/pidrone_pkg` and modify _pi.screenrc_ to start
 ## Problem 1: Extracting the Battery Data
 The flight controller is capable of reading the voltage and current of the power source plugged into the drone. This is possible because of the red and brown wire pair (i.e. _battery monitor_ wire pair) plugged into the FC. The power information is useful because it allows us to programmatically shut down the drone if the voltage is too low (e.g. Lipo batteries are quickly ruined if discharged too low).
 
-** Exercises **
-
+**TODO**:    
 1. Take a look at Battery.msg in the ~/ws/src/pidrone_pkg/msg directory on your drone. This is a custom message we've created to communicate the battery values.
 2. In `student_flight_controller_node.py`, do the following:    
     - Fill in each `TODO` regarding the `battery_message` in the `__init__` method.
@@ -19,8 +18,7 @@ The flight controller is capable of reading the voltage and current of the power
 ## Problem 2: Extracting IMU data
 Linear accelerations and attitude (i.e. roll, pitch, yaw) can also be extracted from the FC, thanks to the accelerometer and gyroscope. In addition, the angular rates (e.g. change in roll over change in time) can be calculated by using the attitude measurements.
 
-** Exercises **
-
+**TODO**:    
 1. Take a look at the [Imu ROS message type](http://docs.ros.org/api/sensor_msgs/html/msg/Imu.html) to get an understanding of the data you'll be collecting.
 2. In `student_flight_controller_node.py`, do the following:    
     - Fill in each `TODO` regarding the `imu_message` in the `__init__` method.
