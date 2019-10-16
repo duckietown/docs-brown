@@ -1,6 +1,6 @@
 # Interfacing with the IMU {#sensors-assignment-imu status=ready}
 
-Your drone is equipped with a [Skyline32 Flight Controller](https://hobbyking.com/en_us/skyline32-acro-flight-controller-w-baseflight-cleanflight.html) which has a built in IMU<sup id="a1">[1](#f1)</sup>. In this part of the project, you will learn how to interface with the flight controller board to extract the attitude, accelerations, angular rates of the drone from the built-in IMU. In addition, you will extract the battery levels from the flight controller so that you'll be able to tell when you're battery is too low.
+Your drone is equipped with a [Skyline32 Flight Controller](https://hobbyking.com/en_us/skyline32-acro-flight-controller-w-baseflight-cleanflight.html) which has a built in IMU. In this part of the project, you will learn how to interface with the flight controller board to extract the attitude, accelerations, angular rates of the drone from the built-in IMU. In addition, you will extract the battery levels from the flight controller so that you'll be able to tell when you're battery is too low.
 
 **Setup**
 Change directories into `~/ws/src/pidrone_pkg` and modify _pi.screenrc_ to start up with your flight controller node by changing `python flight_controller_node.py\n` to `rosrun project-sensors-yourGithubName student_flight_controller_node.py\n` (or, alternatively, `python \path\to\student_flight_controller_node.py\n`).
