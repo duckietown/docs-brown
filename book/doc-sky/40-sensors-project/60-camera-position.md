@@ -7,8 +7,8 @@ Before attempting to analyze the images, we should first check that the images a
 
 **Exercises**
 
-1. Open `student_analyze_phase.py` and print the `data` argument in the method `write`
-1. Navigate to \`4 and run `rosrun project-sensors-yourGithubName student_vision_flow_and_phase.py`. Verify that the images are being passed in by checking that values are printing out from where you told it to print `data`
+1. Open `student_analyze_phase.py` and print the `data` argument in the method `write`.
+2. Navigate to \`4 and run `rosrun project-sensors-yourGithubName student_vision_flow_and_phase.py`. Verify that the images are being passed in by checking that values are printing out from where you told it to print `data`.
 
 ## Analyze and Publish the Sensor Data
 To estimate our position we will make use of OpenCV’s [<i>estimateRigidTransform</i>](https://docs.opencv.org/3.0-beta/modules/video/doc/motion_analysis_and_object_tracking.html#estimaterigidtransform) function. This will return an affine transformation between two images if the two images have enough in common to be matched, otherwise, it will return None.
@@ -19,12 +19,12 @@ The first method you'll complete is `setup`, which will be called to initialize 
 
   1. Fill in all of the `TODO`s in `setup`
 
-The second method is `write`, which is called every time that the camera gets an image, and is used to analyze two images to estimate the x and y translations of your drone
+The second method is `write`, which is called every time that the camera gets an image, and is used to analyze two images to estimate the x and y translations of your drone.
 
-  1. Save the first image and then compare subsequent images to it using cv2.estimateRigidTransform. (Note that the fullAffine argument should be set to False.)
-  2. If you print the output from estimateRigidTransform, you’ll see a 2x3 matrix when the camera sees what it saw in the first frame, and a None when it fails to match. This 2x3 matrix is an affine transform which maps pixel coordinates in the first image to pixel coordinates in the second image. 
-  3. Implement the method `translation_and_yaw`, which takes an affine transform and returns the x and y translations of the camera and the yaw.
-  4. As with velocity measurements, the magnitude of this translation in global coordinates is dependent on the height of the drone. Add a subscriber to the topic /pidrone/state and save the value to a class variable in the callback. Use this variable to compensate for the height of the camera in your method from step four which interprets your affineTransform.
+  2. Save the first image and then compare subsequent images to it using cv2.estimateRigidTransform. (Note that the fullAffine argument should be set to False.)
+  3. If you print the output from estimateRigidTransform, you’ll see a 2x3 matrix when the camera sees what it saw in the first frame, and a None when it fails to match. This 2x3 matrix is an affine transform which maps pixel coordinates in the first image to pixel coordinates in the second image. 
+  4. Implement the method `translation_and_yaw`, which takes an affine transform and returns the x and y translations of the camera and the yaw.
+  5. As with velocity measurements, the magnitude of this translation in global coordinates is dependent on the height of the drone. Add a subscriber to the topic /pidrone/state and save the value to a `self.altitude` in the callback. Use this variable to compensate for the height of the camera in your method from step 4 which interprets your affineTransform.
 
 ## Account for the case in which the first frame is not found
 Simply matching against the first frame is not quite sufficient for estimating position because as soon as the drone stops seeing the first frame it will be lost. Fortunately we have a fairly simple fix for this: compare the current frame with the previous frame to get the displacement, and add the displacement to the position the drone was in in the previous frame. The framerate is high enough and the drone moves slow enough that the we will almost never fail to match on the previous frame.
