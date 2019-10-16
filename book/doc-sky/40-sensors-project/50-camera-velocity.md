@@ -17,10 +17,11 @@ The first method is `setup`, which will be called to initialize the instance var
   1. Create a ROS publisher to publish the velocity values
 
 The perspicacious roboticist may have noticed that magnitude of the velocity in global coordinates is dependent on the height of the drone. Add a subscriber to the topic /pidrone/state to your AnalyzeFlow class and save the z position value to a class variable in the callback. Use this variable to scale the velocity measurements by the height of the drone (the distance the camera is from what it is perceiving).
+
   2. Create a ROS subscriber to obtain the altitude (z-position) of the drone for scaling the motion vectors
 
 The second method is `analyze`, which is called every time that the camera gets an image, and is used to analyze the flow vectors to estimate the x and y velocities of your drone
-  1. Estimate the velocities, using the TODOs as a guide
+  1. Estimate the velocities, using the `TODO`'s as a guide
   2. Publish the velocities
 
 ## Check your Measurements
