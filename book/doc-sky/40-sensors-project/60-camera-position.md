@@ -24,7 +24,7 @@ The second method is `write`, which is called every time that the camera gets an
   2. Save the first image and then compare subsequent images to it using cv2.estimateRigidTransform. (Note that the fullAffine argument should be set to False.)
   3. If you print the output from estimateRigidTransform, you’ll see a 2x3 matrix when the camera sees what it saw in the first frame, and a None when it fails to match. This 2x3 matrix is an affine transform which maps pixel coordinates in the first image to pixel coordinates in the second image. 
   4. Implement the method `translation_and_yaw`, which takes an affine transform and returns the x and y translations of the camera and the yaw.
-  5. As with velocity measurements, the magnitude of this translation in global coordinates is dependent on the height of the drone. Add a subscriber to the topic /pidrone/state and save the value to a `self.altitude` in the callback. Use this variable to compensate for the height of the camera in your method from step 4 which interprets your affineTransform.
+  5. As with velocity measurements, the magnitude of this translation in global coordinates is dependent on the height of the drone. Add a subscriber to the topic /pidrone/state and save the value to `self.altitude` in the callback. Use this variable to compensate for the height of the camera in your method from step 4 which interprets your affineTransform.
 
 ## Account for the case in which the first frame is not found
 Simply matching against the first frame is not quite sufficient for estimating position because as soon as the drone stops seeing the first frame it will be lost. Fortunately we have a fairly simple fix for this: compare the current frame with the previous frame to get the displacement, and add the displacement to the position the drone was in in the previous frame. The framerate is high enough and the drone moves slow enough that the we will almost never fail to match on the previous frame.
@@ -52,12 +52,12 @@ Debugging position measurements can also be made easier through the use of a vis
 Use the web interface to visualize your position estimates
 
 1. Connect to your drone and start a new screen
-2. Navigate to \`2 and quit the program
+2. Run `rosrun project-sensors-yourGithubName student_vision_flow_and_phase.py` in \`4.
 3. Hold your drone up about .25m with your hand
 4. In the web interface, press `r` and the `p` to engage position hold.
 5. Use `rostopic echo /pidrone/picamera/pose` to view the output of your <i>student_analyze_phase</i> class
 6. Move your drone around by hand to verify that the values make sense.
-7. Look at the web interface and see if it tracks your drone. Pressing `r` should set the drone drone visualizer back to the origin
+7. Look at the web interface and see if it tracks your drone. Pressing `r` should set the drone drone visualizer back to the origin.
 
 ## Checkoff 
 1. Verify that the position values are reasonable (roughly in the range of -1m to 1m) and have the correct sign (positive when the drone is moving to the right or up, and negative to the left or down).
