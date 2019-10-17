@@ -6,8 +6,11 @@ In this project, you will be interfacing with your drone's sensors to extract da
 ## How this project fits into software stack
 Take a look at the [software architecture diagram](https://docs-brown.duckietown.org/opmanual_sky/out/software_architecture_assignment.html) and notice the hardware components: <i>Flight Controller</i>, <i>Infrared Sensor</i>, and <i>Camera</i>. This is the hardware you'll be interfacing with in this project. Also notice the corresponding ROS nodes in the diagram. These are the ROS nodes you'll be creating to extract and publish sensor values.
 
+## A note about how to approach this project
+These docs give a high-level overview of the project. You will find more detailed directions in the stencil code. If you are unsure about what you have to do after reading these docs, the stencil code should give you a clearer idea.
+
 ## Handin
-Use [this link](https://classroom.github.com/a/HVPoepoy) to generate a GitHub repo for this project. Clone the directory to your computer with `git clone https://github.com/h2r/project-sensors-yourGithubName.git`. This will create a new folder. The _README.md_ in your repo provides short descriptions of each project file.
+Use [this link](https://classroom.github.com/a/FvtacdCi) to generate a GitHub repo for this project. Clone the directory to your computer with `git clone https://github.com/h2r/project-sensors-yourGithubName.git`. This will create a new folder. The _README.md_ in your repo provides short descriptions of each project file.
 
 When you submit your assignment, your folder should contain modified versions of the following files in addition to the other files that came with your repo:
 

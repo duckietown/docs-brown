@@ -144,8 +144,8 @@ your base station. *Write the answers to the following questions in `networking.
 
 1. Which machine is acting as the DHCP server?
 2. What is the Pi's IP address? What is yours?
-3. What other devices on the network could be Wireless AP Master? What other devices on the network could act as the DHCP server? 
-4. Describe three network configurations for a network allowing a basestation and PiDrone to communicate with each other. 
+3. Describe another network configuration for the wifi, other than the Pi being a Wireless AP Master.  
+4. Describe three network configurations for a network allowing a basestation and PiDrone to communicate with each other.   Feel free to add additional devices, such as a cell phone performing internet connection sharing. 
 
 ## Handin
 
