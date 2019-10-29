@@ -1,6 +1,6 @@
 # Appendix A: Planar Tuning {#pid-planar status=ready}
 
-In this portion of the project, you will be tuning the low rate integral terms of the PID controllers that we've provided.
+In this section, we provide you with information for tuning the low rate integral terms of the PID controllers of the pidrone.
 
 ## Trimming your Drone
 Due to differences in the weight distribution and other factors that cause asymmetries, the drone will tend to initially drift in a particular direction. In order to tune your altitude PID, the planar motion of the drone needs to be controlled. This is important so that the drone does not fly uncontrollably across the room while you're trying to tune its altitude controller. To control the drone's planar motion while you're tuning the altitude, we've created and tuned PIDs to do this for you, but you will need to tune the initial low-rate integral terms to account for the uneven weight distribution specific to your drone. You will first use the provided altitude PID to tune the planar controllers, and then you will tune your altitude PID with the tuned planar controllers.
