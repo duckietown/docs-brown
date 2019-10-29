@@ -26,13 +26,13 @@ Write brief answers to all exercises in <i>answers_pid.md</i>.
 
 **Exercises**
 
-  1. Implement the step method to return the constant $K$. At what value of
-  $K$ does the drone takeoff? What could happen if $K$ were set too high on a real drone? Set $K$ to 1300 for the remainder of the questions.
-  2. Implement the P term. What happens when the absolute value of $K_p$ is very large? What happens when its absolute value is very small? Can you tune the P term to stop oscillations? Why or why not?  
+  1. Implement the `step` method to return the constant $K$. At what value of
+  $K$ does the drone takeoff? Set $K$ to 1300 for the remainder of the questions.
+  2. Implement the P term. What happens when $K_p$ is 50? 500? 5000?  
   3. Implement the D term. Set $K_p$ to zero. What happens when $K_d$ is 50? 500? 5000?  
-  4. Now tune $K_p$ and $K_d$ so that the drone comes to a steady hover. Describe the trade-off as you change the ratio of $K_p$ to $K_d$. Can the drone stabilize at its target (zero steady-state error)? Why or why not?  
+  4. Now tune $K_p$ and $K_d$ so that the drone comes to a steady hover. Describe the trade-off as you change the ratio of $K_p$ to $K_d$.
   5. Implement the I term and observe the difference between PD and PID control. What role does the I term play in this system? What happens when $K_p$ and $K_d$ are set to zero?  
-  6. Implement the reset method and test its behavior. If implemented incorrectly, what problems can you anticipate reset causing?  
+  6. Implement the `reset` method and test its behavior. If implemented incorrectly, what problems can you anticipate reset causing?  
   7. Finally, tune the constants in your PID controller to the best of your abilities. When the setpoint is moving, the drone should chase the setpoint very closely. When the setpoint is still, the drone should converge exactly at the setpoint and not oscillate. Report your tuning values.
 
 ## Problem 2: Tuning a PID with Latency
