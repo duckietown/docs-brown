@@ -1,7 +1,9 @@
 # Project 3: Implementing an Altitude PID Controller {#pid-overview status=ready}
 
 ## Overview
-For this project, you will be implementing a one-dimensional PID controller to control the drone's altitude (movement along the drone's z-axis). In part one, you will write your PID class and test it using a drone simulator. In part two, you will tune the drone's planar motion using the PIDs we've created. In part 3, you will transfer the altitude PID controller you wrote in part 1 to your drone and tune it to achieve stable flight. In part 4, you will use your tuned PIDs to control the position of the drone.
+For this project, you will be implementing a one-dimensional PID controller to control the drone's altitude (movement along the drone's z-axis). In part one, you will write your PID class and test it using a drone simulator. In part two, you will answer questions about control. 
+
+There are three sections that are not required for this project. In Appendix A, we describe how to steady the drone's planar motion using the planar PIDs. In Appendix B, we explain how to transfer the altitude PID controller you wrote in part 1 to your drone and tune it to achieve stable flight. In Appendix C, we show how to use your tuned PIDs to control the position of the drone.
 
 ## Handin
 Use this [link](https://classroom.github.com/a/zIURx-ph) to generate a Github repo for this project. Clone the directory to your computer `git clone https://github.com/h2r/project-pid-yourGithubName.git` This will create a new folder. The _README.md_ in your repo provides short descriptions of each project file.
