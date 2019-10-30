@@ -16,9 +16,8 @@ Imagine you are flying your drone and observing its flight for tuning it. Ideall
    1. Given $K_u$ = 500, $T_u$ = 10. Use your $K_u$ and $T_u$ values to compute $K_p$, $K_i$, and $K_d$ using Ziegler-Nichols Method. 
    
 
-## Problem 3: Flying with Velocity Control and Position Control
-In velocity control, we use planar velocity measure from the camera as the process variable. The keyboard keys are used to set the setpoints. While for position control, the process variable is the global x,y position and the setpoint is the particular position we want the drone to fly directly over.
+## Problem 3: Flying with Velocity Control 
+In velocity control, we use planar velocity measure from the camera as the process variable. The keyboard keys are used to set the setpoints.
 
   **Exercises** 
-  1. Now suppose you are flying in velocity mode over a blank white poster board. How do you expect the drone to behave and how will it behave this way?
-  2. Now if you engage the drone in a position control mode(disengaging from the velocity control). What do you expect to observe?
+  1. Now suppose you are flying in velocity mode over a blank white poster board. How do you expect the drone to behave and why will it behave this way? Hint: think about why we fly over a highly textured planar surface.
