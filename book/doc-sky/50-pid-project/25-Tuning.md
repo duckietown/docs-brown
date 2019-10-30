@@ -10,10 +10,10 @@ Our controller is a dual I-term (integral term) PID controller. The high-rate I-
   2. Name two sources of dynamic error that the high-rate I term can correct for.  
   
 ## Problem 2: Ziegler-Nichols Method
-Imagine you are flying your drone and observing its flight for tuning it. Ideally, you will tune the $K_p$ by slowly increasing its value between flights until you can see the drone moving up and down with uniform oscillations. The final $K_p$ value that causes uniform oscillations is termed as $K_u$, the ultimate gain. While, the time difference between these two peaks during osciallations is termed as $T_u$, the ultimate period.
+Imagine you are flying your drone and observing its flight for tuning it. Ideally, you would tune the $K_p$ by slowly increasing its value between flights until you can see the drone moving up and down with uniform oscillations. The final $K_p$ value that causes uniform oscillations is termed as $K_u$, the ultimate gain. While, the time difference between these two peaks during osciallations is termed as $T_u$, the ultimate period.
   
   **Exercises** 
-   1. Given $K_u$ = 500, $T_u$ = 10. Use your $K_u$ and $T_u$ values to compute $K_p$, $K_i$, and $K_d$ using Ziegler-Nichols Method.  Note that the Ziegler-Nichols method should enable safe flight, but will probably not control your drone's altitude very well!  
+   1. Given $K_u$ = 500, $T_u$ = 10. Use your $K_u$ and $T_u$ values to compute $K_p$, $K_i$, and $K_d$ using Ziegler-Nichols Method. 
    
 
 ## Problem 3: Flying with Velocity Control and Position Control
