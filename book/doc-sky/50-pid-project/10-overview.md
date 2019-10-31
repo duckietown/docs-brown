@@ -17,7 +17,7 @@ When you submit your assignment, your folder should contain the following files 
 Commit and push your changes before the assignment is due. This will allow us to access the files you pushed to Github and grade them accordingly. If you commit and push after the assignment deadline, we will use your latest commit as your final submission, and you will be marked late.
 
 ```
-cd project-pid-yourGitHubName
+cd project-pid-implementation-yourGitHubName
 git add -A
 git commit -a -m 'some commit message. maybe handin, maybe update'
 git push
