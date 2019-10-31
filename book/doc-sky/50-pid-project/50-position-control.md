@@ -1,4 +1,4 @@
-# Part 4: Position Control {#pid-position status=ready}
+# Appendix C: Position Control {#pid-position status=ready}
 
 Thus far, the planar PIDs have been used to control the velocity of the drone; now, you will use cascaded PIDs to control the position of the drone. The cascaded PIDs are set up so that the position controller forms the outer loop which uses the position error to provide setpoint velocities for the inner loop velocity controller.
 
@@ -12,7 +12,7 @@ This [video](https://www.youtube.com/embed/WTohnsKs7dU) demonstrates the drone d
 
 Then we turn off the position hold so you can see it drift again, and then turn it on again at the end and land. You can tell when it is turned on because we move the drone back to the center of the flight area before each hold.
 
-## Problem 1: Flying with Velocity Control
+## Flying with Velocity Control
 First, you are going to experiment with flying your drone in velocity control and controlling its motion with the keyboard keys. Based on observations and knowledge of the controllers, you will then explain the inner workings of the velocity PIDs in your own words.  
 
 **Setup**  
@@ -24,7 +24,7 @@ Fly your drone in velocity control (the default control) and make sure there is 
 2. Try flying in velocity mode over a blank white poster board. Be careful! What do you notice about the drone's behavior, and what do you suspect causes this?  
 
 
-## Problem 2: Flying with Position Control
+## Flying with Position Control
 Now you are going to fly your drone in position control and experiment with controlling its motion with the keyboard keys. Based on observations and knowledge of the controllers, you will then explain the inner workings of the position PIDs in your own words.  
 **Setup**  
 Prepare your drone to fly over a highly textured planar surface. Make sure there is space for the drone to fly around.  
@@ -33,5 +33,3 @@ Prepare your drone to fly over a highly textured planar surface. Make sure there
 2. How long are you able to hold position? Ideally you should be able to do this in one spot for an entire battery. If not, try re-tuning your I-term preloads above. If you're flying on the power supply instead of a battery, the drone should stay in place indefinitely, but you can stop it after 5 minutes.  
 3. While flying in position control, make sure there is room for the drone to fly to the right and then take note of the desired position in \`4 of the screen. Now press the 'L' key in the user interface and note the new desired x-position of the drone; it should be 0.1m to the right of the drone's last position. Explain what the following key terms are in the outer loop position controller, and how they change to cause the drone to move and stop 0.1m to the right after you press 'L' in position control: setpoint, error, control variable, process variable, proportional term, integral term, derivative term. We are looking only for a higher level description to demonstrate understanding of cascaded PID controllers.  
 4. Try flying in position control over a uniform surface such as the floor in 121, or un-patterned carpet. Echo the state of the drone by typing `rostopic echo /pidrone/state` into an empty window in the screen. Note the position data, and explain your observations of how well the drone is able to estimate its position. How long is it able to hold position? Does the drone move correctly when you use the arrow keys?
-
-Take a one minute video of your drone flying in velocity control, and then engage position control. *Submit this video in Github Classroom as 'postion_control'*
