@@ -204,15 +204,3 @@ Imagine a ground robot capable of moving in the $xy$-plane. Its body frame is or
 - Define the measurement function (hint: there will be nonlinearities)
 
 **Task:** Write up your solutions to the above bullet points in $\LaTeX$ in the file `ground_robot_ukf.tex`.
-
-# Check-Off {#ukf-one-spatial-dimension-checkoff status=ready}
-Come to TA hours to get checked off when you have fulfilled the following:
-
-- Relevant solutions are written up in `ukf2d_written_solutions.tex` and compiled into a PDF document `ukf2d_written_solutions.pdf`. Both the `.tex` source and the PDF document are pushed to GitHub. Note that we will be grading the PDF document, so make sure you compile your most recent `.tex` source.
-- UKF is implemented in code in `student_state_estimator_ukf_2d.py` and pushed to GitHub. Your UKF can run:
-    1. On simulated data. You can quantify its performance relative to simulated ground truth (i.e., your UKF Analytics chart reports accurate altitude errors and standard deviations)
-    2. On your drone while manually moving it up and down. You can see in the web interface Standard View of the Height Readings chart that it performs better than the EMA when moving the drone
-    3. On your drone while it is in flight, with comparable or better performance than when running the EMA filter for state estimation along the $z$-axis
-- Relevant solutions are written up in `ground_robot_ukf.tex` and compiled into a PDF document `ground_robot_ukf.pdf`. Note that we will be grading the PDF document, so make sure you compile your most recent `.tex` source.
-
-Now that you have derived the mathematical design for your 2D UKF and implemented it, come to TA hours with your $\LaTeX$ document and code pushed to GitHub to get checked off. In addition to these deliverables, we will be asking you to verbally describe some of the answers you wrote up in your $\LaTeX$ document, which will enable us to better assess your understanding of the work in the project so far and your readiness for the next stage of the project. Feel free to also ask the TAs questions about the next part of the project during your check-off.
