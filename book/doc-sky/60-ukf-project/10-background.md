@@ -1,11 +1,151 @@
 # Background {#ukf-background status=ready}
 
+## Motivation
+
+Recall that control systems abstract away lower-level control and can be leveraged to build autonomous systems, in which $y(t)$ is the process variable, i.e. the measurement of behavior we care about controlling. For example, $y(t)$ would be the altitude of a drone in an altitude controller. [](#system_overview) shows an example feedback control system of the form.
+
+<figure id="system_overview">
+    <figcaption>A feedback control system</figcaption>
+    <img style='width:400px' src="system_overview.png"/>
+</figure>
+
+So far, we have naively been using raw sensor data as our $y(t)$ measurement. More specifically, we’ve been using the range reported by the drone’s downward facing IR sensor as the “ground truth” measurement of altitude.     
+
+However, there are a **few problems** with this:    
+
+- In the real world, actual sensor hardware is not perfect – there’s noise in sensor readings. For example, a &#36;10 IR sensor might report a range of 0.3m in altitude, when in reality the drone is at 0.25m. While a more expensive sensor would be less susceptible to noise, it would still not be perfect.    
+
+- The sensor readings may not really represent the behavior we wish to control. For example, it might seem like a downward facing IR would be a good representation of a drone’s altitude, but suppose the drone rolls a non-trivial amount $\theta$ (See [](#ir_reading_example)).
+
+- No one sensor may be enough to measure the $y(t)$ we really care about. For example, two 2D cameras would be needed to measure depth for a depth controller.    
+
+<figure id="ir_reading_example">
+    <figcaption>An example of inaccurate sensor reading</figcaption>
+    <img style='width:300px' src="ir_reading_example.png"/>
+</figure>
+
+These problems imply that we need a higher-level abstraction for our $y(t)$, namely one that accounts for: noise, robot motion, and sensor data. Let $\mathbf{x}_{t}$ be such an abstraction called state. For example, $\mathbf{x}_{t} = [\textit{altitude at time t}]$ for the purposes of altitude control. To account for noise, we should consider the distribution of possible states at time t:    
+
+\[
+    P(\mathbf{x}_{t})
+\]
+
+Furthermore, let $\mathbf{z}_{1:t}$ represent readings from all sensors from time 1 to $t$. Likewise, let $\mathbf{u}_{1:t}$  represent all robot motions from time 1 to $t$. Then we can account for robot motion and sensor data on our distribution via conditioning:    
+
+\[
+    P(\mathbf{x}_{t}|\mathbf{z}_{1:t}, \mathbf{u}_{1:t})
+\]
+
+Let this distribution be known as $bel(\mathbf{x}_{t})$, i.e. the belief of the state of our dynamic system at time $t$. Suppose, hypothetically, that we knew the distribution $bel(\mathbf{x}_{t})$ (though we haven’t discussed how to determine it yet). Then we could change $y(t)$ in our control system from a naïve sensor reading to:
+
+\[
+    \mathbb{E}_{x_{t}\sim P(x_{t}|\mathbf{z}_{1:t}, \mathbf{u}_{1:t}) }[x_{t}]
+\]
+
+For a specific $x_{t}$ in the state vector $\mathbf{x}_{t}$ (e.g. the altitude element in $\mathbf{x}_{t}$). Consequently, this would make $e(t)$ in a feedback control system:    
+
+\[
+    e(t) = r(t)-y(t)=r(t)-\mathbb{E}_{P}[x_{t}]=desired-\textbf{expected }actual
+\]
+
+## Understand $bel(\mathbf{x}_{t})$    
+
+Although $bel(\mathbf{x}_{t})$ seems to solve all our problems, it is unclear how to determine it explicitly. One way to do so is to decompose it into quantities that are easier to determine. Furthermore, it may prove helpful to make a few reasonable assumptions that will simplify the decomposition. In this vain, consider instead the distribution:   
+
+\[
+    P(\mathbf{z}_{t}|\mathbf{x}_{0:t}, \mathbf{u}_{1:t}, \mathbf{z}_{1:t-1})
+\]
+
+which is called the **measurement model**. It is probably reasonable to assume that knowing the state at time $t$ is enough to determine the distribution of our sensor data; knowing all previous states, motions, and sensor data probably won’t add any new info. So our first simplification is a _Markov_ assumption about the measurement model:    
+
+\[
+    P(\mathbf{z}_{t}|\mathbf{x}_{0:t}, \mathbf{u}_{1:t}, \mathbf{z}_{1:t-1}) := P(\mathbf{z}_{t}|\mathbf{x}_{t})
+\]
+
+Likewise, consider the distribution:
+
+\[
+    P(\mathbf{x}_{t}|\mathbf{x}_{0:t-1}, \mathbf{u}_{1:t}, \mathbf{z}_{1:t})
+\]
+
+Which is called the **motion model**. It is probably reasonable to assume that the state at time t only depends on the previous state and the motion that happened since. So another simplification is the _Markov_ assumption about the motion model:
+
+\[
+    P(\mathbf{x}_{t}|\mathbf{x}_{0:t-1}, \mathbf{u}_{1:t}, \mathbf{z}_{1:t}) = P(\mathbf{x}_{t}|\mathbf{x}_{t-1}, \mathbf{u}_{t})
+\]
+
+Why did we bother with an aside about these distributions and assumptions? Because they allow us to decompose $bel(\mathbf{x}_{t})$ as follows:
+
+\[
+    bel(\mathbf{x}_{t}) = P(\mathbf{x}_{t}|\mathbf{z}_{1:t}, \mathbf{u}_{1:t}) = \eta P(\mathbf{z}_{t}|\mathbf{x}_{t})\int P(\mathbf{x}_{t}|\mathbf{x}_{t-1}, \mathbf{u}_{t})bel(\mathbf{x}_{t})d\mathbf{x}_{t-1}
+\]
+
+where 
+
+\[
+    bel(\mathbf{x}_{t-1}) = P(\mathbf{x}_{t-1}|\mathbf{z}_{1:t-1}, \mathbf{u}_{1:t-1}) 
+\]
+
+and $\eta$ is a constant. This decomposition gives rise to the **Bayes Filter algorithm** (see sections below). So effectively, it has reduced the challenge of determining the unknown (and difficult to figure out) distribution $P(\mathbf{x}_{t}|\mathbf{z}_{1:t}, \mathbf{u}_{1:t})$ into figuring out the distributions $P(z_{t}|x_{t})$ and $P(\mathbf{x}_{t}|\mathbf{x}_{t-1}, \mathbf{u}_{t})$, i.e. measurement and motion models respectively.    
+
+Fortunately, these distributions are easier to figure out than $bel(\mathbf{x}_{t})$; we can either determine these distributions experimentally for a robot or we can make assumptions about the PDF class of these functions (see next section).
+
+## Baye's Filter Extension    
+
+So far we’ve reduced the challenge of determining $bel(\mathbf{x}_{t})$ explicitly to instead determining $P(z_{t}|x_{t})$ and $P(\mathbf{x}_{t}|\mathbf{x}_{t-1}, \mathbf{u}_{t})$. One way to “determine” these is to purposefully assume they are distributions from well known parameterized PDF classes. A popular choice would the class of Gaussians, i.e. $\mathcal{N}(\mu,\,\sigma^{2})\,$, which is a class parameterized by mean $\mu$ and variance $\sigma^{2}$; each $(\mu, \sigma^{2})$ pair gives a different-shaped bell curve.
+
+So we assume:
+
+\[
+    P(\mathbf{x}_{t}|\mathbf{x}_{t-1}, \mathbf{u}_{t}) = \mathcal{N}(\mathbf{x}_{t}|\mu=f(\mathbf{x}_{t-1}, \mathbf{u}_{t}), \sigma^{2}=k_{1})\\
+    P(\mathbf{z}_{t}|\mathbf{x}_{t}) = \mathcal{N}(\mathbf{z}_{t}|\mu=g(\mathbf{x}_{t}), \sigma^{2}=k_{2})\\
+    bel(\mathbf{x}_{0}) = \mathcal{N}(\mathbf{x}_{0}|\mu=\mu_{0}, \sigma^{2}=\sigma^{2}_{0})
+\]
+
+where $f$ and $g$ are linear functions, $k_{1}$ and $k_{2}$ are some pre-determined variances. Together, these assumptions lead to $bel(\mathbf{x}_{t})$ being a Gaussian as well:
+
+\[
+    bel(\mathbf{x}_{t}) = \mathcal{N}(\mathbf{x}_{t}|\mu=\mu_{t}, \sigma^{2}=\sigma^{2}_{t})
+\]
+
+Which gives rise to the Kalman Filter algorithm (see sections below). Note that the KF algorithm has the same form as the Baye’s Filter algorithm (since the base derivation is the same), but the KF algorithm only needs to find $\mu_{t}$ and $\sigma^{2}_{t}$ at each time step $t$. 
+
+Practically, using a Kalman Filter means providing linear functions $f$ and $g$ as input. What are $f$ and $g$?
+
+- $f$ is a function that captures the motion dynamics of a system. Simply put, $f$ can be thought of as calculating the “predicted” $\mathbf{x}_{t}$ after motion. For example, suppose we have a drone that moves only horizontally. Let state $\mathbf{x}_{t}$ be the horizontal position $x\_pos$ at time t, $\mathbf{u}_{t}$ be the horizontal velocity $v_{t}$ (i.e. the control signal we send the drone), and $\mathbf{\widehat{x}}_{t}$ is the predicted state due to motion. Then:    
+
+\[
+    \mathbf{\widehat{x}}_{t} = f(\mathbf{x}_{t-1}, \mathbf{u}_{t}) = x\_pos_{t-1}+v_{t}\Delta t = [1]\mathbf{x}_{t-1}+[\Delta t]\mathbf{u}_{t}
+\]
+
+- $g$ is a function that transforms the state into something that can be compared to the sensor data $\mathbf{z}_{t}$. Simply put, $g(\mathbf{x}_{t})=\mathbf{\widehat{z}}_{t}$, i.e. a “predicted” sensor reading based on the current state. For example: suppose a drone is rolled by $\theta$, $\mathbf{z}_{t} = [r]$ for a range $r$ reported by an IR sensor, and $\mathbf{x}_{t}$ is $[d, \theta]$ for an altitude of $d$ and roll of $\theta$:
+
+<figure>
+    <figcaption>An example of ir measurement calculation</figcaption>
+    <img style='width:300px' src="calculate_ir.png"/>
+</figure>
+
+Then a **non-linear** $g$ woould be:
+
+\[
+    g(\mathbf{x}_{t}) = \mathbf{\widehat{z}}_{t} = \left [\frac{d}{\cos \theta}  \right ]
+\]
+
+Speaking of non-linear functions, a key requirement of the Kalman Filter algorithm is that $f$ and $g$ need to be linear functions. This is necessary in order for the various Gaussians to multiply such that $bel(\mathbf{x}_{t})$ is still a Gaussian.    
+
+For systems which have non-linearities, consider using the Extended Kalman Filter(EKF) algorithm instead. The EKF handles non-linear functions by basically doing a first-order Taylor expansion (to create a linear approximation) on $f$ and $g$, then passing them to the Kalman Filter algorithm.    
+
+Finally, another alternative is the Unscented Kalman Filter(UKF) algorithm, which is a sampling-based variant of the Kalman Filter. Like the EKF, the UKF can handle non-linear $f$ and $g$.
+
+
+## Background before UKF
+
 Before we dive into the UKF, there are some foundations that we should build up:
 
-1. Estimating by averaging
-2. The Bayes Filter
-3. Gaussians
-4. The Kalman Filter
+- Estimating by averaging
+- The Bayes Filter
+- Gaussians
+- The Kalman Filter
 
 The basis for the Kalman Filter lies in probability; as such, if you want to better understand some of these probabilistic algorithms, you may find it helpful to brush up on probability. A useful reference on probability and uncertainty is [](#bib:jaynes2003probability).
 
