@@ -1,30 +1,34 @@
-# Our Implementation: UKF in One Spatial Dimension {#ukf-one-spatial-dimension status=ready}
+# 2D UKF Design and Implementation {#ukf-one-spatial-dimension status=ready}
 
 <figure id="ukf2d_web_interface_demo">
     <figcaption>2D UKF Height Estimates Visualized in the JavaScript Web Interface</figcaption>
     <img style='width:30em' src="ukf2d_web_interface_demo.gif"/>
 </figure>
 
-NOTE: .gif rendering is a feature coming to the Duckietown textbook soon, hopefully.
+It is time for you to design and implement a 2D UKF specific to the PiDrone! For the implementation, we will have you use the Python library FilterPy, which abstracts away most of the nitty-gritty math. If needed, you can refer to the FilterPy documentation and source code [here](https://filterpy.readthedocs.io/en/latest/_modules/index.html).
 
-Finally, it is time for you to design and implement a UKF specific to the PiDrone! We glossed over a lot of the mathematical details of the KF and UKF because we think it's more important that you understand the high-level workings of the Kalman Filter. Also, as a roboticist, the more difficult aspect of Kalman filtering is indeed the process of designing a filter for your robot's needs and capabilities. The underlying math mostly stays the same across UKF implementations, but the design (essentially, the seven steps described in [the previous section](#ukf-design-and-implementation-steps)) is tailored to the application.
+## Handin
+Use this [link](https://classroom.github.com/a/ShEMEmXD) to generate a Github repo for this project. Clone the directory to your computer `git clone https://github.com/h2r/project-ukf-yourGithubName.git` This will create a new folder.
 
-As a result, we will have you use the Python library FilterPy, which abstracts away most of the nitty-gritty math. You can refer to the FilterPy documentation and source code [here](https://filterpy.readthedocs.io/en/latest/_modules/index.html).
+Commit and push your changes before the assignment is due. This will allow us to access the files you pushed to Github and grade them accordingly. If you commit and push after the assignment deadline, we will use your latest commit as your final submission, and you will be marked late.
 
-This part of the project has **three deliverables** in the `project-ukf-yourGithubName` repository, which are to be accessed and submitted via [GitHub Classroom](https://classroom.github.com/a/ShEMEmXD):
+```
+cd project-ukf-yourGithubName
+git add -A
+git commit -a -m 'some commit message. maybe handin, maybe update'
+git push
+```
 
-1. A $\LaTeX$ PDF document `ukf2d_written_solutions.pdf`, generated from `ukf2d_written_solutions.tex`, with the answers to the UKF design and implementation questions.
-2. Your implementation of the UKF written in the `state_estimators/student_state_estimator_ukf_2d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
-3. A $\LaTeX$ PDF document `ground_robot_ukf.pdf`, generated from `ground_robot_ukf.tex`, with the solutions to the problem on designing a UKF for an imaginary ground robot system.
+Note that assignments will be graded anonymously, so please don't put your name or any other identifying information on the files you hand in.
 
-## Design and Implement the Filter
+## Design and Implement the 2D Filter
 
 In addition to implementing the UKF in code, we want you to learn about the design process, much of which occurs outside of the code that will run the UKF. Plus, we have some questions we want you to answer in writing to demonstrate your understanding of the UKF. Hence, you will be writing up some of your solutions in $\LaTeX$. We are having you write solutions in $\LaTeX$ because it will in particular enable you to write out some of the UKF math in a clear (and visually appealing!) format. In these documents, please try to follow our math notation wherever applicable.
 
 **Task:** From the `project-ukf-yourGithubName` repository, open up the `ukf2d_written_solutions.tex` file in your favorite $\LaTeX$ editor. This could be in Overleaf, your Brown CS department account, or locally on your own computer. *Before submitting your document, please make sure it is compiled into a PDF. If you are having trouble with $\LaTeX$, please seek out the help of a TA.*
 
 ## State Vector
-For this part of the project, as we have mentioned before in this project description, we are going to track the drone's position and velocity along the $z$-axis:
+For this part of the project, we are going to track the drone's position and velocity along the $z$-axis:
 
 $$\mathbf{x}_t=\begin{bmatrix}
 z \\
@@ -66,16 +70,16 @@ The interplay between $\mathbf{Q}_t$ and $\mathbf{R}_t$ dictates the value of th
 
 **Task:** Characterize the noise in the IR sensor by experimentally collecting data from your drone in a stationary setup and computing its variance. To do so, prop the drone up so that it is stationary and its IR sensor is about 0.3 m from the ground, pointing down, unobstructed. To collect the range data, execute the following commands on your drone:
 
-Navigate to pidrone_pkg and run ROS:
+Navigate to pidrone_pkg and start the code:
 
-    duckiebot $ roscd pidrone_pkg
-    $ screen -c pi.screenrc
+    $ roscd pidrone_pkg
+    $ ./start_pidrone_code.sh
 
 After navigating to a free screen, echo the infrared ROS topic and extract just the range value. To automatically log a lot of IR range readings, you must redirect standard output to a file like so:
 
-    duckiebot $ rostopic echo /pidrone/infrared/range > ir_data.txt
+    $ rostopic echo /pidrone/infrared/range > ir_data.txt
 
-We have provided a script `ir_sample_variance_calculation.py` that reads in the range readings from the file (so make sure this file is named `ir_data.txt` and is in the same directory as `ir_sample_variance_calculation.py`), computes the sample variance, and plots the distribution of readings using `matplotlib`. If you want to run this on your drone, then you will have to ensure that your `ssh` client has the capability to view pop-up GUI windows in order to view the plot. If you have XQuartz installed on your base station, for example, then this should allow you to run `ssh -Y pi@defaultdrone` (substituting your drone's hostname for `defaultdrone`, of course). Otherwise, you can run this script on a computer that has Python, `matplotlib`, and `numpy` installed.
+We have provided a script `ir_sample_variance_calculation.py` that reads in the range readings from the file (so make sure this file is named `ir_data.txt` and is in the same directory as `ir_sample_variance_calculation.py`), computes the sample variance, and plots the distribution of readings using `matplotlib`. If you want to run this on your drone, then you will have to ensure that your `ssh` client has the capability to view pop-up GUI windows in order to view the plot. If you have XQuartz installed on your base station, for example, then this should allow you to run `ssh -Y pi@192.168.42.1`. Otherwise, you can run this script on a computer that has Python, `matplotlib`, and `numpy` installed.
 
 Your plot should look somewhat Gaussian, as in [](#ir_sample_distribution).
 
@@ -128,9 +132,9 @@ To run your UKF with simulated drone data, you first have to make sure that your
 
 In order to test your UKF within our software stack, navigate to the file in `pidrone_pkg/scripts` called `state_estimator.py` and edit the line that assigns a value to `student_project_pkg_dir`, instead inserting your project repo name `project-ukf-yourGithubName`.
 
-Next, run ROS as usual with the `pi.screenrc` file in `~/ws/src/pidrone_pkg`. Upon start-up, go ahead and terminate the IR and flight controller nodes, as these would conflict with the drone simulator's simulated sensors. In the `` `5`` state estimator screen, terminate the current process and then run the following command:
+Next, run ROS as usual with the `./staart_pidrone_code.sh` file in the `pidrone_pkg`. Upon start-up, go ahead and terminate the IR and flight controller nodes, as these would conflict with the drone simulator's simulated sensors. In the state estimator screen, terminate the current process and then run the following command:
 
-    duckiebot $ python state_estimator.py --student --primary ukf2d --others simulator --ir_var IR_VARIANCE_ESTIMATE
+    $ python state_estimator.py --student --primary ukf2d --others simulator --ir_var IR_VARIANCE_ESTIMATE
 
 with your computed estimate of your IR sensor's variance that you used to determine the $\mathbf{R}_t$ matrix in your UKF in place of `IR_VARIANCE_ESTIMATE`. This command will automatically run your 2D UKF as the primary state estimator, along with the drone simulator. The EMA filter will also be run automatically with the 2D UKF, since the 2D UKF does not provide a very complete state vector in three-dimensional flight scenarios. This will also by default allow you to compare the output of your UKF to the EMA filter on altitude. Note the `--student` flag, which ensures that your UKF script is run.
 
@@ -157,21 +161,22 @@ With this chart, we can analyze the performance of the UKF. The orange curve rep
 
 If you are seeing that your UKF altitude estimates are lagging significantly behind the simulated data in the Height Readings chart, then this is likely due to computation overhead. The UKF takes time to compute, and if it tries to compute a prediction and/or update for each sensor value that it receives, it can sometimes fall behind real time. In this case, you should run the state estimator with the IR and IMU data streams throttled:
 
-    duckiebot $ python state_estimator.py --student --primary ukf2d --others simulator --ir_var IR_VARIANCE_ESTIMATE --ir_throttled --imu_throttled
+    $ python state_estimator.py --student --primary ukf2d --others simulator --ir_var IR_VARIANCE_ESTIMATE --ir_throttled --imu_throttled
 
-**Task:** Make sure your UKF is producing reasonable outputs that seem to track ground truth pretty well. In the UKF Analytics view of the chart, you should see about two-thirds of the points in the error dataset lying within one standard deviation, based on your UKF's state covariance, relative to ground truth.
+Make sure your UKF is producing reasonable outputs that seem to track ground truth pretty well. In the UKF Analytics view of the chart, you should see about two-thirds of the points in the error dataset lying within one standard deviation, based on your UKF's state covariance, relative to ground truth.
 
-**Task:** To test out your UKF's robustness in the face of poor initialization, compare how long it takes the state estimates to converge to accurate values with good initial conditions and with poor initial conditions. You do not have to report or hand in anything for this task; it is just for your understanding of the capabilities of the UKF.
+To test out your UKF's robustness in the face of poor initialization, you can compare how long it takes the state estimates to converge to accurate values with good initial conditions and with poor initial conditions. You do not have to report or hand in anything for this task; it is just for your understanding of the capabilities of the UKF.
 
 ### Manually Moving the Drone Up and Down
 
 Next, you will step out of the realm of simulation and test your UKF on your drone, manually moving it along the vertical axis to test out the response you get with your IR sensor. For this step, the command you want to use is:
 
-    duckiebot $ python state_estimator.py --student --primary ukf2d
+    $ python state_estimator.py --student --primary ukf2d
 
-with the `--ir_throttled` and `--imu_throttled` flags as needed. You want to make sure your IR sensor and flight controller nodes are actually running. First, though, you should calibrate your accelerometer with:
+with the `--ir_throttled` and `--imu_throttled` flags as needed. You want to make sure your IR sensor and flight controller nodes are actually running. First, quit any existing screens, then calibrate your accelerometer with:
 
-    duckiebot $ rosrun calibrateAcc.py
+    $ roscd pidrone_pkg
+    $ python scripts/calibrateAcc.py
 
 **Debugging Task:** Test out your UKF by moving your drone up and down and examining the Height Readings chart. Does it behave as you expect? Does the estimated height seem to have more or less noise than the raw IR sensor reading? If there are unexpected deviations or spikes from the measurements, consider why this might be, especially in comparison to the results you saw when running the UKF in simulation. A possible cause is that the prediction step without a measurement update is not being modeled well or is getting poor/noisy control inputs to the point where the process noise that we assigned was too low. Try tuning the scalar that multiplies the values of the $\mathbf{Q}_t$ matrix `self.ukf.Q` in the `initialize_ukf_matrices()` method to better reflect the variance of the process. You should see a greater standard deviation as well as smaller spikes in the estimates.
 
@@ -189,18 +194,6 @@ It's time to fly your drone with the UKF providing it with real-time filtered es
 
 **Task:** Fly your drone while running:
 
-    duckiebot $ python state_estimator.py --student --primary ukf2d
+    $ python state_estimator.py --student --primary ukf2d
 
 with the `-hz` flag as needed. Evaluate its performance using the web interface as you did for the manual motion testing.
-
-## Exercise: Designing a UKF for a Ground Robot
-
-At this point, you should have a functioning 2D UKF on your drone---congratulations! Before you get checked off for your work thus far, we want to introduce you to designing a slightly more complicated UKF for a different robot system that includes nonlinearities in the state transition and measurement functions. Here is the scenario:
-
-Imagine a ground robot capable of moving in the $xy$-plane. Its body frame is oriented such that the origin is located at its center, the positive $x$-axis points to the right of the robot, the positive $y$-axis points forward, and the positive $z$-axis points up. The robot can control its forward acceleration $\ddot y^b$ in the body frame and its heading $\psi$ (rotation about its center). Its sensor suite consists of a forward-pointing range sensor. There is a wall located ahead of the robot, parallel to the $x$-axis at $y=y_{\text{wall}}$ in the global frame. The robot uses its forward-pointing range sensor to estimate distance to the wall. With this setup:
-
-- What is a reasonable state vector?
-- Define the state transition function (hint: there will be nonlinearities)
-- Define the measurement function (hint: there will be nonlinearities)
-
-**Task:** Write up your solutions to the above bullet points in $\LaTeX$ in the file `ground_robot_ukf.tex`.
