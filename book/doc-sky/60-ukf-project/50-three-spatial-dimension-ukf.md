@@ -2,7 +2,7 @@
 
 While tracking the drone's $z$ position and velocity is helpful, it is a simplified model of the drone and does not encapsulate as many of the degrees of freedom of the drone as we might like. For this reason, you are now going to develop a UKF that tracks the drone in three spatial dimensions with a 7D state vector. Your code from the 2D UKF will be a useful reference, and many parts will be reusable for the 7D UKF.
 
-This part of the project has **two deliverables** in your `project-ukf-yourGithubName` repository, which are to be accessed and submitted via GitHub Classroom:
+This part of the project has **two deliverables** in your `project-ukf-2019-yourGithubName` repository, which are to be accessed and submitted via GitHub Classroom:
 
 1. A $\LaTeX$ PDF document `ukf7d_written_solutions.pdf`, generated from `ukf7d_written_solutions.tex`, with the answers to the UKF design and implementation questions.
 2. Your implementation of the UKF written in the `state_estimators/student_state_estimator_ukf_7d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
