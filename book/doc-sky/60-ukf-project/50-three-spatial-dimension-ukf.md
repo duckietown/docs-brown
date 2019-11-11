@@ -2,7 +2,7 @@
 
 While tracking the drone's $z$ position and velocity is helpful, it is a simplified model of the drone and does not encapsulate as many of the degrees of freedom of the drone as we might like. For this reason, you are now going to develop a UKF that tracks the drone in three spatial dimensions with a 7D state vector. Your code from the 2D UKF will be a useful reference, and many parts will be reusable for the 7D UKF.
 
-This part of the project has **two deliverables** in your `project-ukf-yourGithubName` repository, which are to be accessed and submitted via GitHub Classroom:
+This part of the project has **two deliverables** in your `project-ukf-2019-yourGithubName` repository, which are to be accessed and submitted via GitHub Classroom:
 
 1. A $\LaTeX$ PDF document `ukf7d_written_solutions.pdf`, generated from `ukf7d_written_solutions.tex`, with the answers to the UKF design and implementation questions.
 2. Your implementation of the UKF written in the `state_estimators/student_state_estimator_ukf_7d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
@@ -90,70 +90,4 @@ As in the 2D UKF, we do not expect you to derive reasonable values for the proce
 **Task:** Enter these sample variance values into the code for `self.ukf.R` in the `initialize_ukf_matrices()` method.
 
 ## Initialize the Filter
-As with the 2D UKF, we must initialize our filter before it can engage in its predicting and updating.
-
-**Task:** Initialize the state estimate $\mathbf{x}_t$ and the state covariance matrix $\mathbf{P}_t$ with values as sensor data come in.
-
-## Asynchronous Inputs
-We touched upon this in the **Measurement Function** section. To handle asynchronous inputs, you should update instance variables with the most recent data collected and run a loop to form predictions and updates with these data.
-
-**Task:** Implement the predict-update loop. It might be useful to refer to the `rospy` documentation on setting loop rates and sleeping.
-
-**Task:** Complete any remaining "TODO"s in the 7D UKF source code.
-
-## Tune and Test the Filter
-It is now time to put your 7D UKF to the test.
-
-### In Simulation
-
-To run your 7D UKF with simulated data, you need to run ROS on your Raspberry Pi and terminate certain nodes upon running the screen:
-
-- `flight_controller_node.py`
-- `vision_flow_and_phase.py`
-
-The simulation is only in two dimensions in the $xy$-plane, so to also test $z$ position estimates, you should keep the `infrared_pub.py` node running to see your filter work on real IR data.
-
-Next, in the state estimator screen, terminate the current process and then run the following command:
-
-    $ python state_estimator.py --student -p ukf7d -o simulator ema --sdim 2
-
-If performance is clearly sub-optimal, consider using the `-hz` flag.
-
-This command will run your 7D UKF as the primary state estimator, along with the 2D drone simulator and the EMA filter for comparison. If you do not want to run the EMA filter, simply omit the `ema` argument when running the `state_estimator.py` script.
-
-**Task:** Make sure your UKF is producing reasonable outputs, especially in the **Top View** chart in which the simulation and its nonlinear behavior are occurring. You should qualitatively feel confident that your UKF marker (the blue marker) is more closely tracking the Ground Truth marker (black) with less noise than the Raw Pose Measurement marker (orange).
-
-### Manually Moving the Drone
-
-In this part of the project, you will move your drone around with your hand, holding it above a highly-textured planar surface so that the downward-facing camera can use its optical flow and position estimation to provide information about the drone's pose and twist in space. You should ensure that the following nodes are running:
-
-- `flight_controller_node.py`
-- `infrared_pub.py`
-- `vision_flow_and_phase.py`
-
-Then, you should run your UKF with this command:
-
-    $ python state_estimator.py --student -p ukf7d -o ema
-
-using the `-hz` flag as needed.
-
-**Task:** Use the web interface to verify visually that the height estimates and the $x$, $y$, and yaw estimates appear to have less noise than the sensor readings, and that these estimates appear to track your drone's actual pose in space. Compare your UKF to the EMA estimates for altitude and the raw camera pose data in the **Top View** chart.
-
-### In Flight
-
-Now you are going to fly with your 7D UKF, using both velocity control and position hold.
-
-**Task:** Test your drone's stability in position hold and velocity control 1) while running just the EMA filter for state estimation and 2) while running your 7D UKF. You can use the web interface to move your drone around and send it other commands.
-
-# Final Hand-In {#ukf-project-final-handin status=ready}
-Before the project deadline, you must ensure that final versions of your solution files and code are handed in via GitHub Classroom. These files are:
-
-**From the 2D UKF section:**
-
-- `ukf2d_written_solutions.pdf` (compiled from `ukf2d_written_solutions.tex`)
-- `student_state_estimator_ukf_2d.py` in the `state_estimators` directory
-
-**From the 7D UKF section:**
-
-- `ukf7d_written_solutions.pdf` (compiled from `ukf7d_written_solutions.tex`)
-- `student_state_estimator_ukf_7d.py` in the `state_estimators` directory
+As with the 
