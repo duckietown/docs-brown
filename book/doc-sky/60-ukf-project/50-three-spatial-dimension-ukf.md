@@ -157,3 +157,5 @@ Before the project deadline, you must ensure that final versions of your solutio
 
 - `ukf7d_written_solutions.pdf` (compiled from `ukf7d_written_solutions.tex`)
 - `student_state_estimator_ukf_7d.py` in the `state_estimators` directory
+
+Then come to TA hours to show us your working UKF code. Note that we will ask you to explain one random TODO section that you filled out.
