@@ -8,12 +8,12 @@
 It is time for you to design and implement a 2D UKF specific to the PiDrone! For the implementation, we will have you use the Python library FilterPy, which abstracts away most of the nitty-gritty math. If needed, you can refer to the FilterPy documentation and source code [here](https://filterpy.readthedocs.io/en/latest/_modules/index.html).
 
 ## Handin
-Use this [link](https://classroom.github.com/a/ShEMEmXD) to generate a Github repo for this project. Clone the directory to your computer `git clone https://github.com/h2r/project-ukf-yourGithubName.git` This will create a new folder.
+Use this [link](https://classroom.github.com/a/Bq1pZLi8) to generate a Github repo for this project. Clone the directory to your computer `git clone https://github.com/h2r/project-ukf-2019-yourGithubName.git` This will create a new folder.
 
 Commit and push your changes before the assignment is due. This will allow us to access the files you pushed to Github and grade them accordingly. If you commit and push after the assignment deadline, we will use your latest commit as your final submission, and you will be marked late.
 
 ```
-cd project-ukf-yourGithubName
+cd project-ukf-2019-yourGithubName
 git add -A
 git commit -a -m 'some commit message. maybe handin, maybe update'
 git push
@@ -23,14 +23,14 @@ Note that assignments will be graded anonymously, so please don't put your name 
 
 ## Design and Implement the 2D Filter
 
-This part of the project has **two deliverables** in your `project-ukf-yourGithubName` repository, which are to be accessed and submitted via GitHub Classroom:
+This part of the project has **two deliverables** in your repository, which are to be accessed and submitted via GitHub Classroom:
 
 1. A $\LaTeX$ PDF document `ukf2d_written_solutions.pdf`, generated from `ukf2d_written_solutions.tex`, with the answers to the UKF design and implementation questions.
 2. Your implementation of the UKF written in the `state_estimators/student_state_estimator_ukf_2d.py` stencil code. In this stencil code file, we have placed "TODO" tags describing where you should write your solution code to the relevant problems.
 
 In addition to implementing the UKF in code, we want you to learn about the design process, much of which occurs outside of the code that will run the UKF. Plus, we have some questions we want you to answer in writing to demonstrate your understanding of the UKF. Hence, you will be writing up some of your solutions in $\LaTeX$. We are having you write solutions in $\LaTeX$ because it will in particular enable you to write out some of the UKF math in a clear (and visually appealing!) format. In these documents, please try to follow our math notation wherever applicable.
 
-**Task:** From the `project-ukf-yourGithubName` repository, open up the `ukf2d_written_solutions.tex` file in your favorite $\LaTeX$ editor. This could be in Overleaf, your Brown CS department account, or locally on your own computer. *Before submitting your document, please make sure it is compiled into a PDF. If you are having trouble with $\LaTeX$, please seek out the help of a TA.*
+**Task:** From your repository, open up the `ukf2d_written_solutions.tex` file in your favorite $\LaTeX$ editor. This could be in Overleaf, your Brown CS department account, or locally on your own computer. *Before submitting your document, please make sure it is compiled into a PDF. If you are having trouble with $\LaTeX$, please seek out the help of a TA.*
 
 ## State Vector
 For this part of the project, we are going to track the drone's position and velocity along the $z$-axis:
@@ -131,11 +131,11 @@ In this problem, you will be testing your UKF that you have implemented thus far
 
 ### In Simulation
 
-To run your UKF with simulated drone data, you first have to make sure that your `project-ukf-yourGithubName` package is in the `~/ws/src` directory on your drone. Your package has a unique name, so you will need to modify some files. There are two places near the top of `package.xml` where you should replace `pidrone_project2_ukf` with your repo name, and similarly there is one place near the top of the `CMakeLists.txt` file where you should do the same. Then, in `~/ws`, run `catkin_make` to build your package. By running this command, you will be able to run ROS and access nodes from your package. If you experience issues with `catkin`, please do not hesitate to reach out to the TAs.
+To run your UKF with simulated drone data, you first have to make sure that your package is in the `~/ws/src` directory on your drone. Your package has a unique name, so you will need to modify some files. There are two places near the top of `package.xml` where you should replace `pidrone_project2_ukf` with your repo name, and similarly there is one place near the top of the `CMakeLists.txt` file where you should do the same. Then, in `~/ws`, run `catkin_make` to build your package. By running this command, you will be able to run ROS and access nodes from your package. If you experience issues with `catkin`, please do not hesitate to reach out to the TAs.
 
 <!-- Make sure you are working with the newest version of our `pidrone_pkg` by running the `git pull` command. -->
 
-In order to test your UKF within our software stack, navigate to the file in `pidrone_pkg/scripts` called `state_estimator.py` and edit the line that assigns a value to `student_project_pkg_dir`, instead inserting your project repo name `project-ukf-yourGithubName`.
+In order to test your UKF within our software stack, navigate to the file in `pidrone_pkg/scripts` called `state_estimator.py` and edit the line that assigns a value to `student_project_pkg_dir`, instead inserting your project repo name `project-ukf-2019-yourGithubName`.
 
 Next, run ROS as usual with the `./staart_pidrone_code.sh` file in the `pidrone_pkg`. Upon start-up, go ahead and terminate the IR and flight controller nodes, as these would conflict with the drone simulator's simulated sensors. In the state estimator screen, terminate the current process and then run the following command:
 
