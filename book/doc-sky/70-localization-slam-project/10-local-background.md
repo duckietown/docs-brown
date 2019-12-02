@@ -75,5 +75,6 @@ The following diagram shows the operation of MC Localization. In the diagram, ou
 In answers.md provide answers to the following questions
 
 ## Problem 1 - Localization Theory Questions
-Q1- How does particle filter algorithm play a role in Monte Carlo Localization?
+Q1- How does the particle filter algorithm play a role in Monte Carlo Localization? 
+
 Q2- Can Monte Carlo Localization approximate any distribution? If no, explain why? If yes, describe what controls the nature of approximation?
