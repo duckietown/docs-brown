@@ -8,4 +8,4 @@ These algorithms cover two important cases: one in which the robot has a map of 
 
 ## Github Repository {notoc=1}
 
-Please use [this link](https://classroom.github.com/a/nS7a7Rg4) to generate your Github classroom repository and pull the stencil code. Use the Github repo created to handin your assignment and backup any changes you make.
+Please use [this link](https://classroom.github.com/a/HF1mpBKW) to generate your Github classroom repository and pull the stencil code. Use the Github repo created to handin your assignment and backup any changes you make.
