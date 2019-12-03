@@ -87,7 +87,7 @@ Then the measurement model for each feature is:
 $$
   h(i, x_t, m) = \left[ \begin{array}{c}
       \sqrt{(m_{i,x} - x)^2 + (m_{i,y} - y )^2}\\
-      atan2(m_{i,y} - y, m_{i,x} - x) - \psi)\\
+      \text{atan2}(m_{i,y} - y, m_{i,x} - x) - \psi)\\
       s_i
       \end{array}
       \right]
@@ -101,6 +101,6 @@ Number of features, the feature detection and computation method (currently ORB,
 </figure>
 
 This math follows:
-Hugh Durrant-Whyte and Tim Bailey. Simultaneous localization and mapping:part i. *IEEE robotics & automation magazine*, 13(2):99110, 2006.
+Hugh Durrant-Whyte and Tim Bailey. Simultaneous localization and mapping:part i. *IEEE robotics and automation magazine*, 13(2):99110, 2006.
 
 Sebastian Thrun, Wolfram Burgard, and Dieter Fox. *Probabilistic robotics.* MITpress, 2005.
