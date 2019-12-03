@@ -87,7 +87,7 @@ Then the measurement model for each feature is:
 $$
   h(i, x_t, m) = \left[ \begin{array}{c}
       \sqrt{(m_{i,x} - x)^2 + (m_{i,y} - y )^2}\\
-      \mathrm{atan2}(m_{i,y} - y, m_{i,x} - x) - \psi)\\
+      \text{atan2}(m_{i,y} - y, m_{i,x} - x) - \psi)\\
       s_i
       \end{array}
       \right]
