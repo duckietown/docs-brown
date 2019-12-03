@@ -48,5 +48,4 @@ Please provide answers to the following questions in answers.md
 ## Problem 2 - FASTSLAM questions
 Q1- Why is the property of the landmark positions being conditionally independent important for FasTSLAM?
 
-Q2- IS FasTSLAM an online or offline algorithm or somehow both?
-
+Q2- Does FASTSLAM include EKF's? If yes, how are they part of the algorithm?
