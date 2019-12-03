@@ -70,3 +70,11 @@ The following diagram shows the operation of MC Localization. In the diagram, ou
 - e. The robot moves again and we resample particles around those highest weighted from part d. We can now see that the belief distribution is heavily concentrated around the true pose of the robot.            
 
  If you are feeling shaky about the MC localization algorithm, we recommend studying the diagram above until things start to make sense!
+
+ 
+In answers.md provide answers to the following questions
+
+## Problem 1 - Localization Theory Questions
+Q1- What is the importance of particle filters in Monte Carlo Localization? 
+
+Q2- Can Monte Carlo Localization approximate any distribution? If no, explain why? If yes, describe what controls the nature of approximation?

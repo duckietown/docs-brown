@@ -23,3 +23,103 @@ The last part of the implementation we have not covered is the process of settin
     add_landmark
     update_landmark
 which will take care of all of the EKF linear algebra for you.
+
+
+## More Formally:
+
+The state is the drone's position and yaw, assuming we are mostly horizontal:
+$$
+\begin{align}
+x_t = \left[\begin{array}{c}l
+x\\
+y\\
+z\\
+\psi
+\end{array}\right]
+\end{align}
+$$
+
+We assume velocity control, so we move in the plane, up and down, and
+yaw.  This is set with the {\tt Mode} messages in {\tt pidrone\_pkg}.
+(Note that the $z$ in the {\tt Mode} message is a position and not a
+velocity.  However I want to change this, and propose we ignore $z$
+for now anyway - just keep a constant height.)
+
+$$
+\begin{align}
+u_t = \left[\begin{array}{c}
+\dot{x}\\
+\dot{y}\\
+\dot{z}\\
+\dot{\psi}
+\end{array}\right]
+\end{align}
+$$
+
+Then the transition function is: 
+$$
+\begin{align}
+g(x_t, u_t, \Delta t) = \left[
+\begin{array}{c}
+x_{t,x} + u_{t,\dot{x}\Delta t}\\
+x_{t,y} + u_{t,\dot{y}\Delta t}\\
+x_{t,z} + u_{t,\dot{z}\Delta t}\\
+x_{t,\psi} + u_{t,\dot{\psi}\Delta t}\\
+\end{array}
+\right]
+\end{align}
+$$
+
+
+
+Following \citet{thrun2005probabilistic}, we assume that we can
+process a camera image and localize each feature in the image, if it
+is present.  We will then obtain a range, $r$ and bearing, $\phi$ for
+the features in the image.
+We assume access to a map, $$ $m = \left\{m_1,m_2,\dots,m_n\right\}$ $$ the
+set of all landmarks.  Each $m_i$ is the location $x,y,z$ consisting
+of the location of the $i$th landmark.
+
+$$
+\begin{align}
+  f(z_t) = {f_t^1,f_t^2,...,}
+\end{align}
+$$
+
+We assume each feature is an independent measurement:
+$$
+\begin{align}
+  p(f(z_t) | x_t, m) = \prod_i p(r_t^i,\phi_t^i,s_t^i| x_t,m)
+\end{align}
+$$
+
+Then the measurement model for each feature is: 
+$$
+\begin{align}
+  h(i, x_t, m) = \left[ \begin{array}{c}
+      \sqrt{(m_{i,x} - x)^2 + (m_{i,y} - y )^2}\\
+      \atantwo(m_{i,y} - y, m_{i,x} - x) - \psi)\\
+      s_i
+      \end{array}
+      \right]
+\end{align}
+$$
+Number of features, the feature detection and computation method (currently ORB, can be sift or surf), number of particles, could be changed for better performance.
+
+$$
+\begin{algorithm}
+\caption{landmark model known correspondence (x, y, yaw)}\label{euclid}
+\begin{algorithmic}[1]
+\Procedure{Measure}{$c_t, x_t, m$}\Comment{$c_t$ is all features we currently observed}
+\State $c \gets match(c_t, m)$\Comment{find matched features in global pose}
+\If{$|c|\geq$ n}\Comment{$n$ is a constant, $n=10$}
+\State {$x,y,yaw=compute(c)$}\Comment{compute current observed pose}
+\State {$q=prob(x-x_t[0],\sigma_x^2) \cdot prob(y-x_t[1],\sigma_y^2) \cdot prob(yaw-x_t[3],\sigma_{yaw}^2)$}
+\Else
+\State{$q=0$}\Comment{cannot find $n$ matched features}
+\EndIf
+\Return{$q$}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+$$
