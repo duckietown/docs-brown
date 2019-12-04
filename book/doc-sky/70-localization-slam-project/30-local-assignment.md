@@ -102,7 +102,7 @@ implementation of the code as long as your solutions work.
 ## Testing
 To test the functionality of your localization code, you may fly the drone while running
 
-    rosrun project_localization_slam_yourGithubName student_run_localization.py
+    rosrun project_localization_slam_2019_yourGithubName student_run_localization.py
 
 in the vision window. Follow the Mapping and Localization instructions in the operations manual to see how to change the map. You should see poses printed out which correspond to the drone's position over the map.
 
