@@ -12,7 +12,7 @@ to build the package. On line 3 of "package.xml" you should replace
 yourGithubName with your GitHub name so it matches the name of your directory. Do the same
 on line 2 of "CMakeLists.txt" Finally, you should navigate to the /ws folder and run
 
-    catkin_make --pkg project-localization-yourGithubName
+    catkin_make --pkg project-localization-slam-2019-yourGithubName
 
 to build your package so it is ros-runnable from the pidrone_pkg. You should only need to
 do this step one time.
@@ -102,7 +102,7 @@ implementation of the code as long as your solutions work.
 ## Testing
 To test the functionality of your localization code, you may fly the drone while running
 
-    rosrun project_localization_yourGithubName student_run_localization.py
+    rosrun project_localization_slam_yourGithubName student_run_localization.py
 
 in the vision window. Follow the Mapping and Localization instructions in the operations manual to see how to change the map. You should see poses printed out which correspond to the drone's position over the map.
 
