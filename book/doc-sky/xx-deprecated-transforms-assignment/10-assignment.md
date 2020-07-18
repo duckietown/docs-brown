@@ -2,7 +2,7 @@
 
 ## Translations (33 points)
 
-A translation can be represented as a tuple $<x, y, z>$ corresponding to the
+A translation can be represented as a tuple $\langle x, y, z\rangle$ corresponding to the
 amount a point moves in each direction. *Write the answers to the following
 questions in `answers.md`.*
 
@@ -21,9 +21,9 @@ questions in `answers.md`.*
    position as a 3-vector.
 
 3. To represent translation in a transformation matrix, we add $1$ to
-   the vector representing the robots position: $<x, y, z, 1>$. To see
+   the vector representing the robots position: $\langle x, y, z, 1\rangle$. To see
    why this is necessary, consider multiplying a $3\times3$ matrix $T$
-   by a the vector $<0, 0, 0>$. Formally: $$ \begin{align} T \times
+   by a the vector $\langle 0, 0, 0\rangle$. Formally: $$ \begin{align} T \times
    \begin{bmatrix}0\\0\\0\\ \end{bmatrix}\end{align}$$
 
    What is the result? Is it possible to represent a translation in a
@@ -71,8 +71,8 @@ questions in `answers.md`.*
 
 ## Understanding a Point Cloud (33 points)
 
-The robot observes the following point cloud, denoted in the form $$<angle,
-distance>$$:
+The robot observes the following point cloud, denoted in the form $$\langle angle,
+distance\rangle$$:
 $$
 [(0, 1), (45, 5), (90, 2), (180, 4), (270, 3)].
 $$
@@ -114,14 +114,14 @@ is 2m.
    and backward with 'j' and 'l' and joint three forward and backward
    with 'a' and 'd' and see the arm update its state. We recommend
    drawing the trigonometry out on paper before implementing! When the
-   joint angles are $<0, 0, 0>$, the arm should be pointed
+   joint angles are $\langle 0, 0, 0\rangle$, the arm should be pointed
    horizontally along the X axis.
 
-6.2. Where is the arm when the joint angles are $<0, 0, 0>$? Give the position of
+6.2. Where is the arm when the joint angles are $\langle 0, 0, 0\rangle$? Give the position of
    each joint in the base coordinate system.
 
 6.3. Provide joint angles that result in the end effector of the arm being at
-   location $<-1, -1>$.
+   location $\langle -1, -1\rangle$.
 
 6.4. Is the positioning in question 6.3. possible in real life? Why or why not?
 

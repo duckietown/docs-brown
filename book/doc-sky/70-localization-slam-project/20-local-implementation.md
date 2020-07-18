@@ -10,7 +10,7 @@ The drone's primary sensor is its downward-facing camera. To process information
 
 When we extract features from the drone's camera feed, OpenCV will give us a **keypoint** and **descriptor** for each feature. The keypoint holds the (x,y) coordinate of the feature in the image frame. The descriptor holds information about the feature which can be used to uniquely identify it, commonly stored as a binary string.
 
-<figure id="features">
+<figure id="drone-camera-features">
     <figcaption>An image taken on the drone's camera, shown with and without plotting the coordinates of 200 features detected by ORB</figcaption>
     <img style='width:30em' src="features.png"/>
 </figure>
