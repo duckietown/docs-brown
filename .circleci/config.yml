@@ -1,47 +1,44 @@
-version: 2
+version: 3
 jobs:
-    build:
-        docker:
-        - image: andreacensi/mcdp_books:daffy
-          environment:
-              COLUMNS: 160
-              TERM: xterm-256color
-              EXTRA_MCDP_RENDER_OPTIONS: --ignore_ref_errors
+  build:
+    docker:
+      - image: duckietown/docs-build:daffy
+        environment:
+          COLUMNS: 160
+          TERM: xterm-256color
+          COMPMAKE_COMMAND: "rparmake n=3"
 
-        resource_class: large
-        steps:
-        - checkout
-        - run:
-            name: Download resources
-            command: |
-              git submodule sync --recursive
-              git submodule update --init --recursive
+    resource_class: large
+    steps:
+      - run:
+          name: "Adjust ssh settings for github"
+          command: |
+            mkdir -p ~/.ssh/
+            echo -e "\nHost github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
-        - run:
-            name: Compile
-            command: make compile-native-ci
+      - checkout
 
-        - run:
-            name: Link check
-            command: |
-                . /project/deploy/bin/activate && make linkcheck || true
+      - run:
+          name: Compile
+          command: |
+            make -f /docs-build/Makefile.build
 
-        - run:
-            when: always
-            name: Package artifacts
-            command:  |
-                find duckuments-dist -name '*.old' -delete
-                make package-artifacts
+      - run:
+          when: always
+          name: Package artifacts
+          command:  |
+            find duckuments-dist -name '*.old' -delete
+            make  -f /docs-build/Makefile.build package-artifacts
 
-        - store_artifacts:
-              path: out/package.tgz
-              destination: out/package.tgz
+      - store_artifacts:
+          path: out/package.tgz
+          destination: out/package.tgz
 
-
-        - store_artifacts:
-              path: duckuments-dist
-              destination: duckuments-dist
-
-
-        - test-results-store:
-            path: duckuments-dist/junit
+      - store_artifacts:
+          path: duckuments-dist
+          destination: duckuments-dist
+      - store_artifacts:
+          path: out/build-stats
+          destination: build-stats
+      - test-results-store:
+          path: duckuments-dist/junit

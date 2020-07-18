@@ -1,8 +1,9 @@
-BASE:=book
-BOOKNAME:=$(shell ls -1 $(BASE) | head -n 1)
-SRC:=book/$(BOOKNAME)
-
 all:
 	cat README.md
 
-include resources/makefiles/setup.Makefile
+clean:
+	rm -rf duckuments-dist out
+
+build:
+	docker run -it  -v $(PWD):/pwd:delegated --workdir /pwd  -e COMPMAKE_COMMAND=rparmake duckietown/docs-build:daffy
+
