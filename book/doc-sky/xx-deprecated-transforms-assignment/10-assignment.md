@@ -23,8 +23,12 @@ questions in `answers.md`.*
 3. To represent translation in a transformation matrix, we add $1$ to
    the vector representing the robots position: $\langle x, y, z, 1\rangle$. To see
    why this is necessary, consider multiplying a $3\times3$ matrix $T$
-   by a the vector $\langle 0, 0, 0\rangle$. Formally: $$ \begin{align} T \times
-   \begin{bmatrix}0\\0\\0\\ \end{bmatrix}\end{align}$$
+   by a the vector $\langle 0, 0, 0\rangle$. Formally:
+
+   $$
+   \begin{align} T \times
+   \begin{bmatrix}0\\0\\0\\ \end{bmatrix}\end{align}
+   $$
 
    What is the result? Is it possible to represent a translation in a
    $3\times3$ matrix? If so, provide an example. If not, explain why
@@ -45,8 +49,8 @@ questions in `answers.md`.*
    \end{bmatrix}
    $$
 
-   To translate the robot, one performs the following multiplication: $p'
-   = T \times p$. Where $p'$ is the position at the next timestep and $p$ is
+   To translate the robot, one performs the following multiplication:
+   $p'= T \times p$. Where $p'$ is the position at the next timestep and $p$ is
    the position at the current timestep.
 
    For this problem, the robot starts at the origin. It moves right $3$ meters
