@@ -42,3 +42,10 @@ are revisited by the drone, the algorithm updates those areas with the new
 information, and you can see the landmarks shift. Remember that the pose of each
 landmark is filtered with an EKF, so as we revisit a landmark more times,
 we incorporate more information about it and our certainty about the map increases.
+
+Please provide answers to the following questions in answers.md
+
+## Problem 2 - FASTSLAM questions
+Q1- Why is the property of the landmark positions being conditionally independent important for FasTSLAM?
+
+Q2- Does FASTSLAM include EKF's? If yes, how are they part of the algorithm?

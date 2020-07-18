@@ -23,3 +23,84 @@ The last part of the implementation we have not covered is the process of settin
     add_landmark
     update_landmark
 which will take care of all of the EKF linear algebra for you.
+
+
+## More Formally:
+
+The state is the drone's position and yaw, assuming we are mostly horizontal:
+$$
+x_t = \left[\begin{array}{c}l
+x\\
+y\\
+z\\
+\psi
+\end{array}\right]
+$$
+
+We assume velocity control, so we move in the plane, up and down, and
+yaw.  This is set with the *Mode* messages in *pidrone_pkg*.
+(Note that the $z$ in the *Mode* message is a position and not a
+velocity.  However I want to change this, and propose we ignore $z$
+for now anyway - just keep a constant height.)
+
+$$
+u_t = \left[\begin{array}{c}
+\dot{x}\\
+\dot{y}\\
+\dot{z}\\
+\dot{\psi}
+\end{array}\right]
+$$
+
+Then the transition function is: 
+$$
+g(x_t, u_t, \Delta t) = \left[
+\begin{array}{c}
+x_{t,x} + u_{t,\dot{x}\Delta t}\\
+x_{t,y} + u_{t,\dot{y}\Delta t}\\
+x_{t,z} + u_{t,\dot{z}\Delta t}\\
+x_{t,\psi} + u_{t,\dot{\psi}\Delta t}\\
+\end{array}
+\right]
+$$
+
+
+
+Following Thrun 2005, we assume that we can
+process a camera image and localize each feature in the image, if it
+is present.  We will then obtain a range, $r$ and bearing, $\phi$ for
+the features in the image.
+We assume access to a map,  $$m = \left\{m_1,m_2,\dots,m_n\right\}$$ the
+set of all landmarks.  Each $m_i$ is the location $x,y,z$ consisting
+of the location of the $i$th landmark.
+
+$$
+  f(z_t) = {f_t^1,f_t^2,...,}
+$$
+
+We assume each feature is an independent measurement:
+$$
+  p(f(z_t) | x_t, m) = \prod_i p(r_t^i,\phi_t^i,s_t^i| x_t,m)
+$$
+
+Then the measurement model for each feature is: 
+$$
+  h(i, x_t, m) = \left[ \begin{array}{c}
+      \sqrt{(m_{i,x} - x)^2 + (m_{i,y} - y )^2}\\
+      \text{atan2}(m_{i,y} - y, m_{i,x} - x) - \psi)\\
+      s_i
+      \end{array}
+      \right]
+$$
+Number of features, the feature detection and computation method (currently ORB, can be sift or surf), number of particles, could be changed for better performance.
+
+
+<figure id="features">
+    <figcaption>Algorithm 1: Landmark model known correspondence (x, y, yaw)</figcaption>
+    <img style='width:30em' src="SLAM.png"/>
+</figure>
+
+This math follows:
+Hugh Durrant-Whyte and Tim Bailey. Simultaneous localization and mapping:part i. *IEEE robotics and automation magazine*, 13(2):99110, 2006.
+
+Sebastian Thrun, Wolfram Burgard, and Dieter Fox. *Probabilistic robotics.* MITpress, 2005.
