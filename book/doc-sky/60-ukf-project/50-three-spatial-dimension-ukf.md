@@ -62,7 +62,7 @@ The steps to implement this rotation in the `apply_quaternion_vector_rotation()`
 
 ## Measurement Function
 
-The measurements $\mathbf{z}_t$ that are considered are the IR slant range reading $r$, $x$ and $y$ planar position estimates and yaw estimates $\psi_{\text{camera}}$ from the camera, and the velocities along the $x$- and $y$-axes provided by optical flow, which you learned about and implemented in [the sensors project](#sensors-velocity). Note that in the 2D UKF, we took the IR reading to be a direct measure of altitude; here, in three spatial dimensions, you will use the roll and pitch values directly from the IMU (i.e., not estimated in our UKF) to convert between the slant range, which is what the IR sensor actually provides, and altitude in the measurement function.
+The measurements $\mathbf{z}_t$ that are considered are the IR slant range reading $r$, $x$ and $y$ planar position estimates and yaw estimates $\psi_{\text{camera}}$ from the camera, and the velocities along the $x$- and $y$-axes provided by optical flow, which you learned about and implemented in [the sensors project](#sensors-project). Note that in the 2D UKF, we took the IR reading to be a direct measure of altitude; here, in three spatial dimensions, you will use the roll and pitch values directly from the IMU (i.e., not estimated in our UKF) to convert between the slant range, which is what the IR sensor actually provides, and altitude in the measurement function.
 
 $$\mathbf{z}_t = \begin{bmatrix}
 r \\
