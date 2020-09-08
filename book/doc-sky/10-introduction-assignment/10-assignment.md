@@ -2,9 +2,9 @@
 
 This assignment gives an introduction to our course and reviews some basic material you will need. *Hand ins will be noted in italics. Create an answers.txt file in your Github repository (see handin instructions at the bottom of this page) in which to write your answers.*
 
-## Course Form
+<!--## Course Form
 
-Fill out the [form](https://docs.google.com/forms/d/1H9RmjkpoRjVK3JAbkEogyKDuwZQWIR6a7M4KQng4Tf0/viewform?edit_requested=true) in order to apply for admission to the course.
+Fill out the [form](https://docs.google.com/forms/d/1H9RmjkpoRjVK3JAbkEogyKDuwZQWIR6a7M4KQng4Tf0/viewform?edit_requested=true) in order to apply for admission to the course. -->
 
 ## Collaboration Policy
 
@@ -48,7 +48,7 @@ Read [The Law of Leaky Abstractions](https://www.joelonsoftware.com/2002/11/11/t
 
 If you do not have a Github account, please create one at [this link](https://github.com/). We will be using git repos throughout the course for versioning, moving code around, and submitting assignments.
 
-Once you have a github account, click on [this link](https://classroom.github.com/a/Kx6uuWcO) to join our Github classroom. This should ask you to select your name from the list and create a repository for you. Clone the directory to your computer
+Once you have a github account, click on [this link](https://github.com) to join our Github classroom. This should ask you to select your name from the list and create a repository for you. Clone the directory to your computer
 
 ```
 git clone https://github.com/h2r/assignment-introduction-yourGithubName.git
@@ -72,4 +72,4 @@ git push
 
 Note that assignments will be graded anonymously, so don't put your name or any other identifying information on the files you hand in.
 
-If your name is not in the list of names, please email [cs1951rheadtas@lists.brown.edu](mailto:cs1951rheadtas@lists.brown.edu) and we will make sure your name is added to the list.
+<!--If your name is not in the list of names, please email [cs1951rheadtas@lists.brown.edu](mailto:cs1951rheadtas@lists.brown.edu) and we will make sure your name is added to the list. -->

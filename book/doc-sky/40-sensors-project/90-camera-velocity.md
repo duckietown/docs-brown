@@ -39,3 +39,4 @@ Verify your velocity measurements
 
 ## Checkoff
 1. Verify that the velocity values are reasonable (roughly in the range of -1m/s to 1m/s) and have the correct sign (positive when the drone is moving to the right or up, and negative to the left or down).
+
