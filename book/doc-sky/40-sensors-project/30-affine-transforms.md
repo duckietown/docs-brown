@@ -143,9 +143,9 @@ As a final note, we need to modify our scale and rotation matrices slightly in o
 Now that we know how rotation, scale, and translation are represented as matrices, let's look at how you will be using these matrices in the sensors project. 
 
 To estimate your drone's position, you will be using a function from OpenCV called\\
-\texttt{esimateRigidTransform}. This function takes in two images $I_1$ and $I_2$ and a boolean $B$. The function returns a matrix estimating the affine transform that would turn the first image into the second image. The boolean $B$ indicates whether you want to estimate the affect of shearing on the image, which is another affine transform. We don't want this, so we set $B$ to \texttt{False}.
+<code>esimateRigidTransform</code>. This function takes in two images $I_1$ and $I_2$ and a boolean $B$. The function returns a matrix estimating the affine transform that would turn the first image into the second image. The boolean $B$ indicates whether you want to estimate the affect of shearing on the image, which is another affine transform. We don't want this, so we set $B$ to <code>False</code>.
 
-\texttt{esimateRigidTransform} returns a matrix in the form of:
+<code>estimateRigidTransform</code> returns a matrix in the form of:
 
 \[  E = 
   \begin{bmatrix}
@@ -159,7 +159,7 @@ This matrix should look familiar, but it is slightly different from the matrices
 Wow that was a lot of reading! Now on to the questions...
 
 ## Questions
-1. Your PiDrone is flying over a highly textured planar surface. The PiDrone's current $x$ position is $x_0$, its current $y$ position is $y_0$, and its current yaw is $\phi_0$. Using the PiCamera, you take a picture of the highly textured planar surface with the PiDrone in this state. You move the PiDrone to a different state ($x_1$ is your $x$ position, $y_1$ is your $y$ position, and $\phi_1$ is your yaw) and then take a picture of the highly textured planar surface using the PiCamera. You give these pictures to \texttt{esimateRigidTransform} and it returns a matrix $E$ in the form shown above. 
+1. Your PiDrone is flying over a highly textured planar surface. The PiDrone's current $x$ position is $x_0$, its current $y$ position is $y_0$, and its current yaw is $\phi_0$. Using the PiCamera, you take a picture of the highly textured planar surface with the PiDrone in this state. You move the PiDrone to a different state ($x_1$ is your $x$ position, $y_1$ is your $y$ position, and $\phi_1$ is your yaw) and then take a picture of the highly textured planar surface using the PiCamera. You give these pictures to <code>esimateRigidTransform</code> and it returns a matrix $E$ in the form shown above. 
     
     Write expressions for $x_1$, $y_1$, and $\phi_1$. Your answers should be in terms of $x_0$, $y_0$, $\phi_0$, and the elements of $E$.
 
