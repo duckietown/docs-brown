@@ -51,7 +51,9 @@ Ideally, we would hope that the parameters $(\alpha, \beta, \gamma)$ are enough 
 However, this intuition is a bit off. If any one parameter is held fixed, it may be impossible for $\mathbf{p}$ to be rotated to some other $\mathbf{p'}$ by varying the remaining two parameters. Moreover, if a certain parameter is set to a certain problematic value, then varying the remaining two parameters will either sweep out a circle (not a sphere!), or not affect $\mathbf{p}$ at all, depending on what $\mathbf{p}$ is. This result is way different from what we expected! The name for this degenerate case is gimbal lock. 
 
 ## Questions
-1.  Suppose an airplane increases its pitch to $\pi / 2$ (i.e. $90 \degree$):
+<ol>
+<li>
+Suppose an airplane increases its pitch to $\pi / 2$ (i.e. $90 \degree$):
 
 <figure>
   <figcaption>Airplane</figcaption>
@@ -72,29 +74,43 @@ However, this intuition is a bit off. If any one parameter is held fixed, it may
   -\cos(\alpha + \gamma) & \sin(\alpha + \gamma) & 0 \\
     \end{bmatrix}
  \] 
-
-2. Consider the point $\mathbf{p} = [0 \quad 1 \quad 0]^T$ on the pitched airplane, i.e. the tip of the wing. Does there exist any $\alpha, \gamma$ such that:
+</li>
+<li>
+Consider the point $\mathbf{p} = [0 \quad 1 \quad 0]^T$ on the pitched airplane, i.e. the tip of the wing. Does there exist any $\alpha, \gamma$ such that:
+<br/>
  \[
     \mathbf{p'} = R_{\text{gim} \beta} \mathbf{p}
  \]
+<br/>
  For $\mathbf{p'} = [1 \quad 0 \quad 0]^T$?
- 
+<br/>
  Show your work and briefly explain your reasoning (1-2 sentences). 
-
-3.  Consider the point $\mathbf{p} = [0 \quad 1 \quad 0]^T$ on the pitched airplane, i.e. the tip of the wing. Can we set $\alpha, \gamma$ such that:
+</li>
+<li>
+Consider the point $\mathbf{p} = [0 \quad 1 \quad 0]^T$ on the pitched airplane, i.e. the tip of the wing. Can we set $\alpha, \gamma$ such that:
+<br/> 
  \[
     \mathbf{p'} = R_{\text{gim} \beta} \mathbf{p}
  \]
+<br/> 
  For some $\mathbf{p'}$ on the XY unit circle (e.g. $[\frac{\sqrt 2}{2} \quad \frac{\sqrt 2}{2} \quad 0]^T$)?
+<br/> 
  
  You do not have to show any work, but briefly explain your reasoning (1-2 sentences). 
-
-4.   Consider the point $\mathbf{p} = [0 \quad 1 \quad 0]^T$ on the pitched airplane, i.e. the tip of the wing. Can we set $\alpha, \gamma$ such that:
+</li>
+<li>
+Consider the point $\mathbf{p} = [0 \quad 1 \quad 0]^T$ on the pitched airplane, i.e. the tip of the wing. Can we set $\alpha, \gamma$ such that:
+<br/> 
  \[
     \mathbf{p'} = R_{\text{gim} \beta} \mathbf{p}
  \]
+<br/> 
  For some $\mathbf{p'}$ on the YZ unit circle (e.g. $[0 \quad \frac{\sqrt 2}{2} \quad \frac{\sqrt 2}{2}]^T$)?
+<br/> 
  
 You do not have to show any work, but briefly explain your reasoning (1-2 sentences). 
-
-5. Reflect on your answers to the previous 4 questions. What are the questions trying to portray? Why are the answers different? Why is $\pi / 2$ (i.e. $90 \deg)$ a "certain problematic value"? What would happen to an airplane that pitched that much? Could a pilot recover from such a situation? Are 3 parameters enough to allow for rotations in all situations? 
+</li>
+<li>
+Reflect on your answers to the previous 4 questions. What are the questions trying to portray? Why are the answers different? Why is $\pi / 2$ (i.e. $90 \deg)$ a "certain problematic value"? What would happen to an airplane that pitched that much? Could a pilot recover from such a situation? Are 3 parameters enough to allow for rotations in all situations? 
+</li>
+</ol>
