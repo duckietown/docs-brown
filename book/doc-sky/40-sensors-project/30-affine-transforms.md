@@ -1,4 +1,4 @@
-# Affine Transformations {#sensors-assignment-affine-transforms status=draft}
+# Affine Transformations {#sensors-assignment-affine status=draft}
 
 ## Background Information
 
