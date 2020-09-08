@@ -161,6 +161,6 @@ Wow that was a lot of reading! Now on to the questions...
 ## Questions
 1. Your PiDrone is flying over a highly textured planar surface. The PiDrone's current $x$ position is $x_0$, its current $y$ position is $y_0$, and its current yaw is $\phi_0$. Using the PiCamera, you take a picture of the highly textured planar surface with the PiDrone in this state. You move the PiDrone to a different state ($x_1$ is your $x$ position, $y_1$ is your $y$ position, and $\phi_1$ is your yaw) and then take a picture of the highly textured planar surface using the PiCamera. You give these pictures to <code>esimateRigidTransform</code> and it returns a matrix $E$ in the form shown above. 
     
-    Write expressions for $x_1$, $y_1$, and $\phi_1$. Your answers should be in terms of $x_0$, $y_0$, $\phi_0$, and the elements of $E$.
+    Write expressions for $x_1$, $y_1$, and $\phi_1$. Your answers should be in terms of $x_0$, $y_0$, $\phi_0$, and the elements of $E$. Assume that the PiDrone is initially aligned with the axes with the global coordinate system.
 
 (Hint 1: Your solution does not have to involve matrix multiplication or other matrix operations. Feel free to pick out specific elements of the matrix using normal 0-indexing, i.e. $E[0][2]$. Hint 2: Use the function arctan2 in some way to compute the yaw.) 
