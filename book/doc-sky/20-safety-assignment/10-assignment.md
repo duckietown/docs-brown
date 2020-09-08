@@ -12,8 +12,7 @@ Read the OSHA Technical Manual on [Industrial Robots and Robot System
 Safety](https://www.osha.gov/dts/osta/otm/otm_iv/otm_iv_4.html).
 
 Perform a hazard analysis for the drone, based on the OSHA guidelines. Make
-sure you answer each of the following subquestions in a few sentences. Answers
-must be made in your own words.
+sure you answer each of the following subquestions in a few sentences (in your own words).
 
 1. What tasks will the robot be programmed to perform?
 
