@@ -48,7 +48,7 @@ Read [The Law of Leaky Abstractions](https://www.joelonsoftware.com/2002/11/11/t
 
 If you do not have a Github account, please create one at [this link](https://github.com/). We will be using git repos throughout the course for versioning, moving code around, and submitting assignments.
 
-Once you have a github account, click on [this link](https://github.com) to join our Github classroom. This should ask you to select your name from the list and create a repository for you. Clone the directory to your computer
+Once you have a github account, click on [this link](https://classroom.github.com/a/6jGIbXxb) to join our Github classroom. This should ask you to select your name from the list and create a repository for you. Clone the directory to your computer
 
 ```
 git clone https://github.com/h2r/assignment-introduction-yourGithubName.git
