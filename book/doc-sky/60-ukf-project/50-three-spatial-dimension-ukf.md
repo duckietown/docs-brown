@@ -1,4 +1,4 @@
-# 7D UKF Design and Implementation {#ukf-three-spatial-dimensions status=ready}
+# 7D UKF Design and Implementation {#ukf-three-spatial-dimensions status=draft}
 
 While tracking the drone's $z$ position and velocity is helpful, it is a simplified model of the drone and does not encapsulate as many of the degrees of freedom of the drone as we might like. For this reason, you are now going to develop a UKF that tracks the drone in three spatial dimensions with a 7D state vector. Your code from the 2D UKF will be a useful reference, and many parts will be reusable for the 7D UKF.
 
@@ -145,7 +145,7 @@ Now you are going to fly with your 7D UKF, using both velocity control and posit
 
 **Task:** Test your drone's stability in position hold and velocity control 1) while running just the EMA filter for state estimation and 2) while running your 7D UKF. You can use the web interface to move your drone around and send it other commands.
 
-# Final Hand-In {#ukf-project-final-handin status=ready}
+# Final Hand-In {#ukf-project-final-handin status=draft}
 Before the project deadline, you must ensure that final versions of your solution files and code are handed in via GitHub Classroom. These files are:
 
 **From the 2D UKF section:**

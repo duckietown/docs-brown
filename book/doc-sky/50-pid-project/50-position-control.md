@@ -1,4 +1,4 @@
-# Appendix C: Position Control {#pid-position status=ready}
+# Appendix C: Position Control {#pid-position status=draft}
 
 Thus far, the planar PIDs have been used to control the velocity of the drone; now, you will use cascaded PIDs to control the position of the drone. The cascaded PIDs are set up so that the position controller forms the outer loop which uses the position error to provide setpoint velocities for the inner loop velocity controller.
 

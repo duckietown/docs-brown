@@ -1,4 +1,4 @@
-# Assignment {#safety-assignment status=ready}
+# Assignment {#safety-assignment status=draft}
 
 The goal of this assignment is to ask you to think critically about how to
 ensure robots are operated safely, and to devise guidelines for operating your

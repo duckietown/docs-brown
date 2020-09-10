@@ -1,4 +1,4 @@
-# Interfacing with the IMU {#sensors-assignment-imu status=ready}
+# Interfacing with the IMU {#sensors-assignment-imu status=draft}
 
 Your drone is equipped with a [Skyline32 Flight Controller](https://hobbyking.com/en_us/skyline32-acro-flight-controller-w-baseflight-cleanflight.html) which has a built in IMU. In this part of the project, you will learn how to interface with the flight controller board to extract the attitude, accelerations, angular rates of the drone from the built-in IMU. In addition, you will extract the battery levels from the flight controller so that you'll be able to tell when you're battery is too low.
 

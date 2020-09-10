@@ -1,4 +1,4 @@
-# Position Estimation via OpenCV's estimateRigidTransform {#sensors-position status=ready}
+# Position Estimation via OpenCV's estimateRigidTransform {#sensors-position status=draft}
 
 In this part of the project you will create a class that interfaces with the picamera to extract planar positions of the drone relative to the first image taken using OpenCV's estimateRigidTransform function.
 

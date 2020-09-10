@@ -1,4 +1,4 @@
-# Project Checkoff  {#sensors-assignment-checkoff status=ready}
+# Project Checkoff  {#sensors-assignment-checkoff status=draft}
 
 ## Functionality Check
 

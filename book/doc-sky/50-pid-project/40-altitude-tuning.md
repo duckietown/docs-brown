@@ -1,4 +1,4 @@
-# Appendix B: Altitude Tuning {#pid-altitude status=ready}
+# Appendix B: Altitude Tuning {#pid-altitude status=draft}
 
 In this part, you will be transferring the altitude PID you created in part 1 onto your drone. You will then tune the PID gains on your drone as you did in the simulator.
 
