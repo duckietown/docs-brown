@@ -1,4 +1,4 @@
-# 2D UKF Design and Implementation {#ukf-one-spatial-dimension status=ready}
+# 2D UKF Design and Implementation {#ukf-one-spatial-dimension status=draft}
 
 <figure id="ukf2d_web_interface_demo">
     <figcaption>2D UKF Height Estimates Visualized in the JavaScript Web Interface</figcaption>

@@ -1,4 +1,4 @@
-# Appendix A: Planar Tuning {#pid-planar status=ready}
+# Appendix A: Planar Tuning {#pid-planar status=draft}
 
 In this section, we provide you with information for tuning the low rate integral terms of the PID controllers of the pidrone.
 

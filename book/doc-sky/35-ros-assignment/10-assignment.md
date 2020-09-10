@@ -1,4 +1,4 @@
-# Assignment {#ros-assignment status=ready}
+# Assignment {#ros-assignment status=draft}
 
 ## Creating a Publisher and Subscriber (50 points)
 
