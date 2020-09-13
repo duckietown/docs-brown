@@ -53,11 +53,11 @@ Provide short answers to the following questions.
 
 5. When do you need to report an accident to the FAA?
 
-## Thanksgiving Break (10 points)
+## Flying at Home (10 points)
 
 *Write your answers in `answers.txt`.*
 
-Answer the following questions about flying at home over Thanksgiving break.
+Answer the following questions about flying at home over the duration of this semester.
 
 1. What are the risks?
 
@@ -65,18 +65,37 @@ Answer the following questions about flying at home over Thanksgiving break.
 
 3. What safety precautions should you take before you fly?
 
+4. Are there any regional-specific rules in your area of residence that differs from the FAA rules?
 
-## CIT Lobby (10 points)
+## Soldering Station (10 points)
 
-*Write your answers in `answers.txt`.*
+*Submit a photo with the filename `solder_station.jpg`.*
 
-Answer the following questions about flying in the CIT lobby.
+It is important for you to have a safe, well-ventilated area where you will be able to solder your electronics.
 
-1. What are the risks?
+Look for a designated area in your place of residence for you to soldier, and take a picture of that area clearly showing the following:
 
-2. What should you do to plan?
+1. Nearby a window or a ventilation fan that can suck away the smoke from the soldering iron.
 
-3. What safety precautions should you take before you fly?
+2. A fire extinguisher in the vicinity; safety first!
+
+3. A wall plug or an extension cord with surge protection, to plug in the soldering iron and fan.
+
+4. A table to solder on! If it has a cover, make sure it is non-flammable.
+
+## Fly Area (10 points)
+
+*Submit a photo with the filename `fly_area.jpg`.*
+
+In order to fly your drone (of which you definitely will in this course!), you will to think about where to fly your drone in your house. You may lose control of the drone and it might hit the ceiling or the wall; it is best to plan for those possible failiure modes, and get a large open space if possible.
+
+Look for a designated area in your place of residence, and take a picture of that area clearly showing the following:
+
+1. A ceiling that does not have a lot of attatchments (like dangling lights, chandeliers etc that may fall and hurt you in cases of ceiling strikes).
+
+2. A spacious area, at least 5ft by 5ft (or 1.5m by 1.5m).
+
+3. An area where you can instruct people to keep a safe distance while flying your drone. For example, an area right in the middle of a pedestrian street is not fit for this as young kids from your neighborhood could come running in at any time.
 
 ## Handin
 
@@ -86,3 +105,7 @@ files to hand in, as you did in the Introduction assignment.
 Your handin should contain the following files:
 
 - answers.txt
+- solder_station.jpg
+- fly_area.jpg
+
+If you are uncomfortable with submitting photos of your place of residence, please reach out to the TAs so that we can confirm that you will be working in a safe, non-hazardous environment for the duration of our course.
