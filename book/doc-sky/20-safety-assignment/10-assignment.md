@@ -59,13 +59,15 @@ Provide short answers to the following questions.
 
 Answer the following questions about flying at home over the duration of this semester.
 
-1. What are the risks?
+We understand that students may have different circumstances regarding local rules of flying one's drone. We would like you to look into the local rules of flying your drone.
 
-2. What should you do to plan?
+1. Are there any regional-specific rules in your area of residence that differs from the FAA rules? Can you fly indoors in your place of residence? Is there an area nearby that you may be able to fly outside? If so, does it need pre-approval?
 
-3. What safety precautions should you take before you fly?
+2. What are the risks?
 
-4. Are there any regional-specific rules in your area of residence that differs from the FAA rules?
+3. What should you do to plan?
+
+4. What safety precautions should you take before you fly?
 
 ## Soldering Station (10 points)
 
