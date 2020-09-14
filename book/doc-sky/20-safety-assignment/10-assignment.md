@@ -59,9 +59,9 @@ Provide short answers to the following questions.
 
 Answer the following questions about flying at home over the duration of this semester.
 
-We understand that students may have different circumstances regarding local rules of flying one's drone. We would like you to look into the local rules of flying your drone.
+We understand that students may be subject to different laws pertaining to how they fly their drone, depending on where they live. We would like you to look into the local laws so you can fly your drone legally.
 
-1. Are there any regional-specific rules in your area of residence that differs from the FAA rules? Can you fly indoors in your place of residence? Is there an area nearby that you may be able to fly outside? If so, does it need pre-approval?
+1. Are there any region-specific rules in your area of residence that differs from the FAA rules? Can you fly indoors in your place of residence? Is there an area nearby that you may be able to fly outside? If so, does it need pre-approval?
 
 2. What are the risks?
 
@@ -85,7 +85,7 @@ Look for a designated area in your place of residence for you to soldier, and ta
 
 4. A table to solder on! If it has a cover, make sure it is non-flammable.
 
-## Fly Area (10 points)
+## Flight Area (10 points)
 
 *Submit a photo with the filename `fly_area.jpg`.*
 
@@ -97,11 +97,11 @@ Look for a designated area in your place of residence, and take a picture of tha
 
 2. A spacious area, at least 5ft by 5ft (or 1.5m by 1.5m).
 
-3. An area where you can instruct people to keep a safe distance while flying your drone. For example, an area right in the middle of a pedestrian street is not fit for this as young kids from your neighborhood could come running in at any time.
+3. An area where you can instruct people to keep a safe distance while flying your drone. For example, an area right in the middle of a pedestrian street may not be a good fit since young kids from your neighborhood may come running in at any time.
 
 ## Handin
 
-Use this [link](https://classroom.github.com/a/uJlsyv4y) to access the assignment on Github classroom. Commit the
+Use this [link](https://classroom.github.com/a/p1OGBNg3) to access the assignment on Github classroom. Commit the
 files to hand in, as you did in the Introduction assignment.
 
 Your handin should contain the following files:
