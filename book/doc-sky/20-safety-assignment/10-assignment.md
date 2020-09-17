@@ -89,11 +89,11 @@ Look for a designated area in your place of residence for you to soldier, and ta
 
 *Submit a photo with the filename `fly_area.jpg`.*
 
-In order to fly your drone (of which you definitely will in this course!), you will to think about where to fly your drone in your house. You may lose control of the drone and it might hit the ceiling or the wall; it is best to plan for those possible failiure modes, and get a large open space if possible.
+In order to fly your drone (and you definitely will in this course!), you will to think about where to fly it safely. You may lose control of the drone and it might hit the ceiling or the wall, so it is best to plan for those possible failiure modes and get a large open space if possible.
 
 Look for a designated area in your place of residence, and take a picture of that area clearly showing the following:
 
-1. A ceiling that does not have a lot of attatchments (like dangling lights, chandeliers etc that may fall and hurt you in cases of ceiling strikes).
+1. A ceiling that does not have a lot of attachments (like dangling lights, chandeliers etc that may fall and hurt you in cases of ceiling strikes).
 
 2. A spacious area, at least 5ft by 5ft (or 1.5m by 1.5m).
 
