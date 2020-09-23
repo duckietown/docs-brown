@@ -1,4 +1,4 @@
-# Assignment {#safety-assignment status=draft}
+# Assignment {#safety-assignment status=ready}
 
 The goal of this assignment is to ask you to think critically about how to
 ensure robots are operated safely, and to devise guidelines for operating your
@@ -53,36 +53,61 @@ Provide short answers to the following questions.
 
 5. When do you need to report an accident to the FAA?
 
-## Thanksgiving Break (10 points)
+## Flying at Home (10 points)
 
 *Write your answers in `answers.txt`.*
 
-Answer the following questions about flying at home over Thanksgiving break.
+Answer the following questions about flying at home over the duration of this semester.
 
-1. What are the risks?
+We understand that students may be subject to different laws pertaining to how they fly their drone, depending on where they live. We would like you to look into the local laws so you can fly your drone legally.
 
-2. What should you do to plan?
+1. Are there any region-specific rules in your area of residence that differs from the FAA rules? Can you fly indoors in your place of residence? Is there an area nearby that you may be able to fly outside? If so, does it need pre-approval?
 
-3. What safety precautions should you take before you fly?
+2. What are the risks?
 
+3. What should you do to plan?
 
-## CIT Lobby (10 points)
+4. What safety precautions should you take before you fly?
 
-*Write your answers in `answers.txt`.*
+## Soldering Station (10 points)
 
-Answer the following questions about flying in the CIT lobby.
+*Submit a photo with the filename `solder_station.jpg`.*
 
-1. What are the risks?
+It is important for you to have a safe, well-ventilated area where you will be able to solder your electronics.
 
-2. What should you do to plan?
+Look for a designated area in your place of residence for you to soldier, and take a picture of that area clearly showing the following:
 
-3. What safety precautions should you take before you fly?
+1. Nearby a window or a ventilation fan that can suck away the smoke from the soldering iron.
+
+2. A fire extinguisher in the vicinity; safety first!
+
+3. A wall plug or an extension cord with surge protection, to plug in the soldering iron and fan.
+
+4. A table to solder on! If it has a cover, make sure it is non-flammable.
+
+## Flight Area (10 points)
+
+*Submit a photo with the filename `fly_area.jpg`.*
+
+In order to fly your drone (and you definitely will in this course!), you will to think about where to fly it safely. You may lose control of the drone and it might hit the ceiling or the wall, so it is best to plan for those possible failiure modes and get a large open space if possible.
+
+Look for a designated area in your place of residence, and take a picture of that area clearly showing the following:
+
+1. A ceiling that does not have a lot of attachments (like dangling lights, chandeliers etc that may fall and hurt you in cases of ceiling strikes).
+
+2. A spacious area, at least 5ft by 5ft (or 1.5m by 1.5m).
+
+3. An area where you can instruct people to keep a safe distance while flying your drone. For example, an area right in the middle of a pedestrian street may not be a good fit since young kids from your neighborhood may come running in at any time.
 
 ## Handin
 
-Use this [link](https://classroom.github.com/a/uJlsyv4y) to access the assignment on Github classroom. Commit the
+Use this [link](https://classroom.github.com/a/p1OGBNg3) to access the assignment on Github classroom. Commit the
 files to hand in, as you did in the Introduction assignment.
 
 Your handin should contain the following files:
 
 - answers.txt
+- solder_station.jpg
+- fly_area.jpg
+
+If you are uncomfortable with submitting photos of your place of residence, please reach out to the TAs so that we can confirm that you will be working in a safe, non-hazardous environment for the duration of our course.
