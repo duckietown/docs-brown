@@ -1,4 +1,4 @@
-# PID Theory Questions    {#pid-theory status=ready}
+# Assignment: PID Theory    {#pid-theory status=ready}
 
 <minitoc/>
 
@@ -74,3 +74,15 @@ Suppose you are implementing a velocity PID controller for your drone. In this c
 2. How do these key terms change to cause the drone to move when you press ‘L’?
 
 **Note:** We are looking only for a higher level description to demonstrate understanding of the PID controllers.
+
+
+## Handin
+
+Use this [link](https://classroom.github.com/a/AQdgEuGT) to access the assignment on Github classroom. Commit the
+files to hand in, as you did in the Introduction assignment. You'll find a template 'answers.tex' files for your answers.
+
+Your handin should contain the following files:
+<ul>
+    <li>answers.tex</li>
+    <li>answers.pdf</li>
+</ul>
