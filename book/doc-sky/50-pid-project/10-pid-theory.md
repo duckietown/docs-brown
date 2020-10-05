@@ -67,10 +67,9 @@ Suppose you are implementing an altitude PID controller for your drone (i.e. up/
 **Note:** We are looking only for a higher level description to demonstrate understanding of the PID controllers.
 
 ### Velocity Control
-Suppose you are implementing a velocity PID controller for your drone. In this case, the drone only moves forward/backward and left/right. For example, fly your drone in velocity control mode (the default) and observe the following behavior: 1) press and hold ‘L’ for a few seconds, then 2) release ‘L’ to stop the drone from moving.
+Suppose you are implementing a velocity PID controller for your drone. In this case, the drone only moves forward/backward and left/right. Your (hypothetical) controller is implemented so that when 'L' is pressed, the drone moves left at a constant velocity, and when 'L' is released, the drone stops moving.
 
-
-1. What is the *setpoint*, *process variable*, *error* and *control variable* for the veloity PID controller?
+1. What is the *setpoint*, *process variable*, *error* and *control variable* for the velocity PID controller?
 2. How do these key terms change to cause the drone to move when you press ‘L’?
 
 **Note:** We are looking only for a higher level description to demonstrate understanding of the PID controllers.
