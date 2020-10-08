@@ -2,7 +2,7 @@
 
 ## Creating a Publisher and Subscriber (50 points)
 
-*Answer these questions in `ros.pdf`  and submit the ROS package you create.*
+*Answer these questions in `ros.txt`  and submit the ROS package you create.*
 
 1. Read [understanding nodes](http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes).
 2. Start the `screen` session we use to fly the drone. Use `rosnode list` to display what nodes are running when you start the screen. If you wish, take a look at the [software architecture diagram](https://docs-brown.duckietown.org/opmanual_sky/out/software_architecture_assignment.html#sec:software-architecture-assignment) and look at all of the blue ROS topics to gain a visual understanding of all of the nodes that are running. Once again, do not worry about understanding everything now, or knowing what each topic is used for- you will learn this through experience as the course progresses. *No answer is required for this question*
@@ -35,8 +35,8 @@
 
 ## Handin
 
-When you are done, use [this link](https://classroom.github.com/a/K6YAGyXq) to create your assignment Github Repo.
+When you are done, use [this link](https://classroom.github.com/a/aOpoHGtd) to create your assignment Github Repo.
 
 - `my_echo.py`, `mean_and_variance.py`
-- `ros.pdf`
+- `ros.txt`
 - `ros_assignment_pkg`
