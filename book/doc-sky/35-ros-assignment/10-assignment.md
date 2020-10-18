@@ -7,7 +7,7 @@
 1. Read [understanding nodes](http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes).
 2. Start the `screen` session we use to fly the drone. Use `rosnode list` to display what nodes are running when you start the screen. If you wish, take a look at the [software architecture diagram](https://docs-brown.duckietown.org/opmanual_sky/out/software_architecture_assignment.html#sec:software-architecture-assignment) and look at all of the blue ROS topics to gain a visual understanding of all of the nodes that are running. Once again, do not worry about understanding everything now, or knowing what each topic is used for- you will learn this through experience as the course progresses. *No answer is required for this question*
 3. Use `rosnode info` to find out more about as many nodes as you'd like. What topics does the node
-   `/pidrone/infrared_pub` publish?
+   `/infrared_pub` publish?
 4. Do the ROS tutorial to [create a package](http://wiki.ros.org/ROS/Tutorials/CreatingPackage). Name your package `ros_assignment_pkg`.
 5. Do the [building packages](http://wiki.ros.org/ROS/Tutorials/BuildingPackages) tutorial.
 
