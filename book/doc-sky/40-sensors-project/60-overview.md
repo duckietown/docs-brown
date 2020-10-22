@@ -1,4 +1,4 @@
-# Project 2: Sensor Interfacing {#sensors-project status=draft}
+# Project 2: Sensor Interfacing {#sensors-project status=ready}
 
 ## Overview
 In this project, you will be interfacing with your drone's sensors to extract data, parse it into useful values, and publish the data on ROS topics. First, you will interface with the infrared range sensor, thus providing the drone with knowledge of its height relative to the ground. Then, you will interface with the IMU through the flight controller to extract the attitude of the drone (roll, pitch, and yaw), linear accelerations, and calculate the angular rates. Finally, you will interface with the camera to extract velocities using optical flow, and positions using rigid transforms. Woah, that's a lot of data! This is because you are in fact obtaining all of the information from each sensor that you will need for the drone to fly autonomously. In the next project, you will write a state estimator which fuses all of this sensor data to estimate the state of the drone.

@@ -1,4 +1,4 @@
-# Part 2: Affine Transformations {#sensors-assignment-affine status=draft}
+# Part 2: Affine Transformations {#sensors-assignment-affine status=ready}
 
 ## Background Information
 
