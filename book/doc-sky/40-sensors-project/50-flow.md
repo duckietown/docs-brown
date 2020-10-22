@@ -1,4 +1,4 @@
-# Part 4: Estimating Velocity by Summing Optical Flow Vectors {#sensors-assignment-optical-flow status=draft}
+# Part 4: Estimating Velocity by Summing Optical Flow Vectors {#sensors-assignment-optical-flow status=ready}
 
 We want to estimate our $x$ and $y$ velocity using the PiDrone's camera. Thankfully, optical flow from the PiCamera is calculated on board the Raspberry Pi. All we have to do is process the optical flow vectors that have already been calculated for us!
 

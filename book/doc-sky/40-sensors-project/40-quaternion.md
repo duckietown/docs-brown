@@ -1,4 +1,4 @@
-# Part 3: Gimbal Lock {#sensor-assignment-quaternion  status=draft}
+# Part 3: Gimbal Lock {#sensor-assignment-quaternion  status=ready}
 
 The orientation of an object in 3D space can be described by a set of three values: $(\alpha, \beta, \gamma)$, where $\alpha$ is roll, $\beta$ is pitch, and $\gamma$ is yaw. 
 

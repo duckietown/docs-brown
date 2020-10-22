@@ -1,4 +1,4 @@
-# Part 1: Estimating Height with the Infrared Sensor {#sensors-assignment-infrared-theory status=draft}
+# Part 1: Estimating Height with the Infrared Sensor {#sensors-assignment-infrared-theory status=ready}
 
 The infrared (IR) sensor on your PiDrone outputs a voltage $V$. This voltage has a inverse relationship with your drone's height $h$ (when $h$ is between .1 and .6 meters). So, we can say that 
 
