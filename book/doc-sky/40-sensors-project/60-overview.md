@@ -10,7 +10,7 @@ Take a look at the [software architecture diagram](https://docs.duckietown.org/d
 These docs give a high-level overview of the project. You will find more detailed directions in the stencil code. If you are unsure about what you have to do after reading these docs, the stencil code should give you a clearer idea.
 
 ## Handin
-Use [this link](https://classroom.github.com/a/hjzlRyNm) to generate a GitHub repo for this project. Clone the directory to your computer with `git clone https://github.com/h2r/project-sensors-yourGithubName.git`. This will create a new folder. The _README.md_ in your repo provides short descriptions of each project file.
+Use [this link](https://classroom.github.com/a/hjzlRyNm) to generate a GitHub repo for this project. Clone the directory to your computer with `git clone https://github.com/h2r/project-sensors-implementation-yourGithubName.git`. This will create a new folder. The _README.md_ in your repo provides short descriptions of each project file.
 
 When you submit your assignment, your folder should contain modified versions of the following files in addition to the other files that came with your repo:
 
@@ -22,7 +22,7 @@ When you submit your assignment, your folder should contain modified versions of
 Commit and push your changes before the assignment is due. This will allow us to access the files you pushed to GitHub and grade them accordingly. If you commit and push after the assignment deadline, we will use your latest commit as your final submission, and you will be marked late.
 
 ```
-cd project-sensors-yourGithubName
+cd project-sensors-implementation-yourGithubName
 git add -A
 git commit -a -m 'some commit message. maybe hand-in, maybe update'
 git push
