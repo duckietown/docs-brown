@@ -1,8 +1,8 @@
-# Assignment {#linux-networking-assignment status=draft}
+# Assignment {#linux-networking-assignment status=ready}
 
-This assignment is comprised of two parts: Introduction to Linux (Part 1) and Networking (Part 2). Please complete all parts of this assignment. 
+This assignment is comprised of three parts: Introduction to Linux (Part 1), Networking (Part 2), and Middleware/ROS (Part 3). Please complete all parts of this assignment. 
 
-# Part 1: Introduction to Linux {status=draft}
+# Part 1: Introduction to Linux {status=ready}
 
 ## Background Information
 
@@ -29,7 +29,7 @@ and writes the result to standard output.
 
 ## Standard Input (10 points)
 
-*Write answers to questions 1-2 in`shell.pdf`. Submit this file.*
+*Write answers to questions 1-2 in`shell.txt`. Submit this file.*
 
 1. Run `cat` with no arguments. Why does `cat` seem like it is hanging?
 
@@ -43,7 +43,7 @@ and writes the result to standard output.
 ## Pipes (20 points)
 
 Pipes are used to redirect standard input, standard output, and standard error.
-First, `>` is used to redirect standard output to a file. For example, `echo "Hello World" > test.txt` will write the string `Hello World` to `test.txt`. *Write answers to questions 1-4 in `shell.pdf`. Submit this file.*
+First, `>` is used to redirect standard output to a file. For example, `echo "Hello World" > test.txt` will write the string `Hello World` to `test.txt`. *Write answers to questions 1-4 in `shell.txt`. Submit this file.*
 
 1. Create files `one.txt`, `two.txt` and `three.txt` that contain the strings
    `1`, `2`, and `3`, respectively using `echo` and output redirect. 
@@ -65,7 +65,7 @@ First, `>` is used to redirect standard output to a file. For example, `echo "He
    with pipes.) 
 5. Write a python script that reads from standard input, sorts lines in reverse
       alphabetical order, and prints the result. It should behave like `sort -r`.
-      *Submit your script in a file called `my_reverse_sort.py`. Do not submit this script in `shell.pdf`*
+      *Submit your script in a file called `my_reverse_sort.py`. Do not submit this script in `shell.txt`*
 
 ## Standard Error (10 points)
 
@@ -76,18 +76,18 @@ the terminal rather than buried in the input to the next program.
 1. Recall that `ls -a | sort > sorted.txt` puts all the names of files in
    a directory sorted in alphabetical order into the file `sorted.txt`. If you
    modify the command to be `ls -a -hippo | sort > sorted.txt`, what text is in
-   `sorted.txt`, what is outputted as standard error, and why? *Answer this question in `shell.pdf`. Submit this file.*
+   `sorted.txt`, what is outputted as standard error, and why? *Answer this question in `shell.txt`. Submit this file.*
 2. Create a python script that prints reversed sorted output to standard error. Use it to sort `ls -a` instead
    of `sort`. *Submit the file containing the script as `my_sort_status.py`.*
 
-# Part 2: Networking {status=draft}
+# Part 2: Networking {status=ready}
 
 ## Netcat (20 points)
 
 The command `nc` is short for "netcat" and is similar to `cat` but works over
 network connections. It reads from standard input and writes its contents not
 to standard output, but to a specified server. *Write your answers in the
-corresponding sections of `networking.pdf`.*
+corresponding sections of `networking.txt`.*
 
 1. Point `nc` to google.com as follows: `nc www.google.com 80` When you first
    connect, it will be silent. Then type any arbitrary text and press enter.
@@ -104,7 +104,7 @@ corresponding sections of `networking.pdf`.*
 
 4. By convention, `roscore` listens on port 11311. Try using `nc` to connect to
    port 11311 on a machine where `roscore` is running, such as the Pi on your
-   drone. What protocol is roscore using to communicate?
+   drone. What protocol is roscore using to communicate (think transport layer)?
 
 
 ## Talking to Your Robot (10 points)
@@ -120,7 +120,7 @@ If you knew the IP address, you can connect to the robot and run `ifconfig` and
 find the IP address, but you don't know the IP address.
 
 What to do? There are several solutions. *Write the answers to the following
-questions in `networking.pdf`.*
+questions in `networking.txt`.*
 
 1. Brainstorm how you can solve the chicken-and-egg program to connect to
 your robot. List three different solutions. 
@@ -140,7 +140,7 @@ the drone to connect to its network. The details will vary depending on your
 laptop OS and settings. 
 
 Your Pi is configured to be a Wireless AP Master by default. Connect to it with
-your base station. *Write the answers to the following questions in `networking.pdf`.*
+your base station. *Write the answers to the following questions in `networking.txt`.*
 
 1. Which machine is acting as the DHCP server?
 2. What is the Pi's IP address? What is yours?
@@ -149,9 +149,9 @@ your base station. *Write the answers to the following questions in `networking.
 
 ## Handin
 
-When you are done, use [this link](https://classroom.github.com/a/NAGxz1QJ) to create your assignment Github Repo.
+When you are done, use [this link](https://classroom.github.com/a/i0KBPRjv) to create your assignment Github Repo.
 
 Repo should include:
 
 - `hello1.py`, `hello2.py`, `hello.sh`, `my_cat.py`, `my_reverse_sort.py`, `my_sort_status.py`
-- `shell.pdf`, `networking.pdf` 
+- `shell.txt`, `networking.txt` 

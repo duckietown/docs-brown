@@ -1,11 +1,13 @@
-# Using your Infrared Range Finder {#sensors-assignment-infrared status=draft}
+# Using your Infrared Range Finder {#sensors-assignment-infrared status=ready}
 
 In this part of the project, you will learn how to estimate the drone's height using its infrared sensor. The drone is equipped with a [Sharp 2Y0A21YK0F Infrared Distance Sensor](https://www.digikey.com/product-detail/en/parallax-inc/28995/28995-ND/3523692), which is used for estimating the distance from the drone to the ground-plane. The sensor outputs an analog voltage signal (roughly 3.1V at
 
 0.08 meters to 0.4V at 0.8 meters), which is converted to digital by our [Analog to digital Converter (ADC)](https://www.digikey.com/product-detail/en/adafruit-industries-llc/1083/1528-1014-ND/4990763) and read in by the Raspberry Pi as a 12-bit integer. The voltage value corresponds to distance, but we are going to need to do some work to convert it to real-world units.
 
 **Setup**
-Change directories into `~/ws/src/pidrone_pkg` and modify _pi.screenrc_ to start up with your infrared node by changing `python infrared_pub.py\n` to `rosrun project-sensors-yourGithubName student_infrared_pub.py\n`. You can test your script by starting up screen and navigating to \`7. You may stop _student_infrared_pub.py_ with ctrl-c, edit it within that tab, and then re-run `rosrun project-sensors-yourGithubName student_infrared_pub.py` to test your changes.
+Create a package for your sensors implementation and name it `project-sensors-yourGithubName`. Place it into the `ws` directory. Then make a `project-sensors-yourGithubName/scripts` directory, and then copy the template files there. Source the `setup.bash` file so that ROS can see it. Note: you may have to rebuild your package and re-`source` if ROS cannot find your package or file.
+
+Change directories into `~/ws/src/pidrone_pkg` and modify _pi.screenrc_ to start up with your infrared node by changing `python infrared_pub.py\n` to `rosrun project-sensors-yourGithubName student_infrared_pub.py\n`. You can test your script by starting up screen and navigating to \`8. You may stop _student_infrared_pub.py_ with ctrl-c, edit it within that tab, and then re-run `rosrun project-sensors-yourGithubName student_infrared_pub.py` to test your changes.
 
 ## Problem 1: Calibrate your IR Sensor
 In _student_infrared_pub.py_, implement the method `calc_distance`, which takes in the 12-bit integer voltage from the ADC and calculates a distance **in meters**. Note that distance is **inversely proportional** to voltage:

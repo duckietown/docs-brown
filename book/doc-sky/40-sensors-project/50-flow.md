@@ -1,4 +1,4 @@
-# Estimating Velocity by Summing Optical Flow Vectors {#sensors-assignment-optical-flow status=draft}
+# Part 4: Estimating Velocity by Summing Optical Flow Vectors {#sensors-assignment-optical-flow status=ready}
 
 We want to estimate our $x$ and $y$ velocity using the PiDrone's camera. Thankfully, optical flow from the PiCamera is calculated on board the Raspberry Pi. All we have to do is process the optical flow vectors that have already been calculated for us!
 
@@ -10,3 +10,14 @@ In summary, to calculate the $x$ velocity, we have to sum the $x$ components of 
 
 ## Questions
 1.  The Pi calculates that the optical flow vectors are [5 4], [1, 2], and [3, 2]. The flow vectors are in the form [$x$-component, $y$-component]. What are your $x$ and $y$ velocities $\dot{x}$ and $\dot{y}$? You solution will be in terms of $a$, the altitude, and $b$, the flow coefficient.
+
+
+## Handin
+
+Use this [link](https://classroom.github.com/a/QKoUdfRa) to access the assignment on Github classroom. Commit the
+files to hand in, as you did in the Introduction assignment.
+
+Your handin should contain the following files:
+
+- solutions.tex 
+- solutions.pdf 
