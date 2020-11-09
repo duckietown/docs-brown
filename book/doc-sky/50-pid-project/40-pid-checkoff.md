@@ -1,4 +1,4 @@
-# Project Checkoff  {#pid-checkoff status=draft}
+# Project Checkoff  {#pid-checkoff status=ready}
 
 ## Functionality Check
 
