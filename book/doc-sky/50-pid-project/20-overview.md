@@ -6,7 +6,7 @@ For this project, you will be implementing a one-dimensional PID controller to c
 There is one section that is not required for this project. In Appendix A, we explain how to transfer the altitude PID controller you wrote in part 1 to your drone and tune it to achieve stable flight.
 
 ## Handin
-Use this [link](https://classroom.github.com/a/DU3P2-w1) to generate a Github repo for this project. Clone the directory to your computer `git clone https://github.com/h2r/project-pid-implementation-yourGithubName.git` This will create a new folder. The _README.md_ in your repo provides short descriptions of each project file.
+Use this [link](https://classroom.github.com/a/ruiWJMsA) to generate a Github repo for this project. Clone the directory to your computer `git clone https://github.com/h2r/project-pid-implementation-yourGithubName.git` This will create a new folder. The _README.md_ in your repo provides short descriptions of each project file.
 
 When you submit your assignment, your folder should contain the following files (that you modified) in addition to all of the other files that came with your repo:
 
