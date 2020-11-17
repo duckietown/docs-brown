@@ -77,7 +77,7 @@ Which is called the **motion model**. It is probably reasonable to assume that t
 Why did we bother with an aside about these distributions and assumptions? Because they allow us to decompose $bel(\mathbf{x}_{t})$ as follows:
 
 \[
-    bel(\mathbf{x}_{t}) = P(\mathbf{x}_{t}|\mathbf{z}_{1:t}, \mathbf{u}_{1:t}) = \eta P(\mathbf{z}_{t}|\mathbf{x}_{t})\int P(\mathbf{x}_{t}|\mathbf{x}_{t-1}, \mathbf{u}_{t})bel(\mathbf{x}_{t})d\mathbf{x}_{t-1}
+    bel(\mathbf{x}_{t}) = P(\mathbf{x}_{t}|\mathbf{z}_{1:t}, \mathbf{u}_{1:t}) = \eta P(\mathbf{z}_{t}|\mathbf{x}_{t})\int P(\mathbf{x}_{t}|\mathbf{x}_{t-1}, \mathbf{u}_{t})bel(\mathbf{x}_{t-1})d\mathbf{x}_{t-1}
 \]
 
 where 
