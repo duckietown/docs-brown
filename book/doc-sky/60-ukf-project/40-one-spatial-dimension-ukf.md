@@ -8,12 +8,12 @@
 It is time for you to design and implement a 2D UKF specific to the PiDrone! For the implementation, we will have you use the Python library FilterPy, which abstracts away most of the nitty-gritty math. If needed, you can refer to the FilterPy documentation and source code [here](https://filterpy.readthedocs.io/en/latest/_modules/index.html).
 
 ## Handin
-Use this [link](https://classroom.github.com/a/Bq1pZLi8) to generate a Github repo for this project. Clone the directory to your computer `git clone https://github.com/h2r/project-ukf-2019-yourGithubName.git` This will create a new folder.
+Use this [link](https://classroom.github.com/a/9CaMl5yD) to generate a Github repo for this project. Clone the directory to your computer `git clone https://github.com/h2r/project-ukf-2020-yourGithubName.git` This will create a new folder.
 
 Commit and push your changes before the assignment is due. This will allow us to access the files you pushed to Github and grade them accordingly. If you commit and push after the assignment deadline, we will use your latest commit as your final submission, and you will be marked late.
 
 ```
-cd project-ukf-2019-yourGithubName
+cd project-ukf-2020-yourGithubName
 git add -A
 git commit -a -m 'some commit message. maybe handin, maybe update'
 git push
@@ -135,7 +135,7 @@ To run your UKF with simulated drone data, you first have to make sure that your
 
 <!-- Make sure you are working with the newest version of our `pidrone_pkg` by running the `git pull` command. -->
 
-In order to test your UKF within our software stack, navigate to the file in `pidrone_pkg/scripts` called `state_estimator.py` and edit the line that assigns a value to `student_project_pkg_dir`, instead inserting your project repo name `project-ukf-2019-yourGithubName`.
+In order to test your UKF within our software stack, navigate to the file in `pidrone_pkg/scripts` called `state_estimator.py` and edit the line that assigns a value to `student_project_pkg_dir`, instead inserting your project repo name `project-ukf-2020-yourGithubName`.
 
 Next, run ROS as usual with the `./staart_pidrone_code.sh` file in the `pidrone_pkg`. Upon start-up, go ahead and terminate the IR and flight controller nodes, as these would conflict with the drone simulator's simulated sensors. In the state estimator screen, terminate the current process and then run the following command:
 
