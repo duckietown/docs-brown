@@ -78,7 +78,7 @@ The interplay between $\mathbf{Q}_t$ and $\mathbf{R}_t$ dictates the value of th
 Navigate to pidrone_pkg and start the code:
 
     $ roscd pidrone_pkg
-    $ ./start_pidrone_code.sh
+    $ ./start.sh
 
 After navigating to a free screen, echo the infrared ROS topic and extract just the range value. To automatically log a lot of IR range readings, you must redirect standard output to a file like so:
 
