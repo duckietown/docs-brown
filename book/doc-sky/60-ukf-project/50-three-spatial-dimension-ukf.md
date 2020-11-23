@@ -29,7 +29,7 @@ We define a control input $\mathbf{u}_t$ populated by linear accelerations from 
 $$\mathbf{u}_t = \begin{bmatrix}
 \ddot x^b \\
 \ddot y^b \\
-\ddot z^b
+\ddot z^b \\
 \end{bmatrix}$$
 
 As noted in [the background section](#ukf-background), one could treat these acceleration values as measurements instead of control inputs; for relative ease of implementation, we have chosen to use accelerations as control inputs. The linear accelerations are in the drone's body frame, denoted by the superscript $b$, so we need to rotate these vectors into the global frame based on the yaw variable that we are tracking and the IMU's roll and pitch values. This transformation will occur in the state transition function.
@@ -70,6 +70,7 @@ y \\
 \dot y \\
 \psi_{\text{camera}}
 \end{bmatrix}$$
+
 
 At the start of your 2D UKF implementation, we asked you to take into account the notion of asynchronous inputs and to do predictions and updates when these values came in. As you later found out, this approach might not yield the best results in our particular application, due to computation limitations and also poor estimates when doing dead reckoning (i.e., predicting based on the current state estimate and motion of the drone) alone in a time step. In this 7D UKF, a similar issue can arise if trying to do a prediction and update cycle in each callback. The sporadic updates, although theoretically feasible, impose the added burden of CPU load inherent in the UKF predict and update steps. A possible solution to this issue is to drop packets of data by throttling down the sensor inputs to the UKF, which will degrade our estimates across the board. Also, by implementing callbacks that block one another, there is the potential that important updates are not being executed as often as they should be, and the system can become unreliable.
 
