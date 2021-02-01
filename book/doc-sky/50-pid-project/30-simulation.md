@@ -6,11 +6,11 @@ set the drone's throttle.
 
 You should implement the discretized version of the PID control function in <i>student_pid_class.py</i>:
 
-$$u(t) = K_pe(t_k) + K_i\sum_{i=0}^k e(t_i)\Delta t + K_d\frac{e(t_k)-e(t_{k-1})}{\Delta t} + K$$
+$$u(t) = K_pe(t_k) + K_i\sum_{i=0}^k e(t_i)\Delta t_i + K_d\frac{e(t_k)-e(t_{k-1})}{\Delta t_k} + K$$
 
 $$K_p, K_i, K_d, K = Constants \; and \; Offset \; Term$$
 $$e(t_k) = Error \; at \; Time \; t_k$$
-$$\Delta t = Time \; Elapsed \; from \; Previous \; Iteration$$
+$$\Delta t_j = Time \; Elapsed \; Between \; Iterations \; j-1 \; and \; j$$
 
 Notice that there is an extra offset term $K$ added to the control function. This is the base PWM value/throttle command before the three control terms are applied to correct the error in the system.
 
