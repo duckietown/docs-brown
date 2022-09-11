@@ -54,7 +54,12 @@ Provide short answers to the following questions.
 
 
 
-## Flying at Home (10 points)
+## Brown Rules/Community Guidelines (5 points)
+
+Brown University has an [Unmanned Aircraft System (UAS) Policy](https://www.brown.edu/health-safety/droneunmanned-aircraft-system-uas-policy) that we must follow to fly on campus.    Flying is already approved in our lab space, but must be approved to fly in your dorm room or other places on campus.  
+
+
+## Flying at Home (5 points)
 
 *Write your answers in `answers.txt`.*
 
@@ -72,11 +77,16 @@ We understand that students may be subject to different laws pertaining to how t
 
 ## Soldering Station (10 points)
 
+We added this question when running the class remotely.  Even though
+we are now providing soldering space, it is still important to know
+the rules for soldering safely.  Submit a photo of the lab if you will
+solder there, or the BDW, or wherever you will be building your drone.  
+
 *Submit a photo with the filename `solder_station.jpg`.*
 
 It is important for you to have a safe, well-ventilated area where you will be able to solder your electronics.
 
-Look for a designated area in your place of residence for you to soldier, and take a picture of that area clearly showing the following:
+Look for a designated area in your place of residence, or in the lab for you to soldier, and take a picture of that area clearly showing the following:
 
 1. Nearby a window or a ventilation fan that can suck away the smoke from the soldering iron.
 
