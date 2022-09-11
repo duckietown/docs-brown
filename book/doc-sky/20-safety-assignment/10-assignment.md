@@ -36,8 +36,9 @@ sure you answer each of the following subquestions in a few sentences (in your o
 In the United States, the Federal Aviation Administration regulates
 outdoor flight.  (It does not regulate flight indoors.)  Read the [FAA
 website](https://www.faa.gov/uas/) on Unmanned Aircraft Systems.
-Provide short answers to the following questions.
+Take the [TRUST](https://www.faa.gov/uas/recreational_flyers/knowledge_test_updates) test from any of the providers listed on the website.  If you wish to fly your drone outside, you may also register your drone with the FAA for \$5 (not covered by us).  You do not need to fly outside for this class; if you only fly inside, you do not need to register your drone.
 
+Provide short answers to the following questions.
 
 1. What procedures should you follow when flying your drone outside
    the CIT?  (You might find it easiest to use the [B4UFLY Smartphone
@@ -49,9 +50,9 @@ Provide short answers to the following questions.
 3. What are some risks of drone flight? How could people get hurt with the
    robot?
 
-4. Do you need to register your drone?
+4. When do you need to report an accident to the FAA?
 
-5. When do you need to report an accident to the FAA?
+
 
 ## Flying at Home (10 points)
 
