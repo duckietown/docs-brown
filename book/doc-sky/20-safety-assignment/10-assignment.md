@@ -56,7 +56,20 @@ Provide short answers to the following questions.
 
 ## Brown Rules/Community Guidelines (5 points)
 
-Brown University has an [Unmanned Aircraft System (UAS) Policy](https://www.brown.edu/health-safety/droneunmanned-aircraft-system-uas-policy) that we must follow to fly on campus.    Flying is already approved in our lab space, but must be approved to fly in your dorm room or other places on campus.  
+The FAA requires you to follow all community guidelines for flying
+drones.  Brown University has an [Unmanned Aircraft System (UAS)
+Policy](https://www.brown.edu/health-safety/droneunmanned-aircraft-system-uas-policy)
+that we must follow to fly on campus.  Flying is already approved in
+our lab space, but must be approved to fly in your dorm room or other
+places on campus.
+
+Provide short answers to the following question:
+
+If you want to fly a drone outside the CIT in the quad, what
+procedures should you follow, with respect to Brown's community
+guidelines?
+
+
 
 
 ## Flying at Home (5 points)
