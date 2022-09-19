@@ -1,8 +1,10 @@
-# Assignment {#linux-networking-assignment status=ready}
-
-This assignment is comprised of three parts: Introduction to Linux (Part 1), Networking (Part 2), and Middleware/ROS (Part 3). Please complete all parts of this assignment. 
-
 # Part 1: Introduction to Linux {status=ready}
+
+The learning objectives of this assignment are to familiarize you with
+basic Linux shell commands, standard input, standard output, standard
+error, and pipes.  You will use these ideas when interacting with the
+Linux shell to operate your drone.  Additionally you will use these
+ideas in the next section when working on the networking exercises.  
 
 ## Background Information
 
@@ -81,6 +83,13 @@ the terminal rather than buried in the input to the next program.
    of `sort`. *Submit the file containing the script as `my_sort_status.py`.*
 
 # Part 2: Networking {status=ready}
+
+The learning objectives of this section are to familiarize you with
+how a TCP/IP server works and how to explore a network to find what
+computers (and robots!) are around, and then how to connect to them.
+We will use tools at a lower level than the robot programming
+interface you will use in the rest of the course, in order to focus on
+the general networking ideas. 
 
 ## Netcat (20 points)
 
