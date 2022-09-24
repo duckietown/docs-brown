@@ -39,8 +39,10 @@ and writes the result to standard output.
    `Control-D`. Describe what `cat` does. Make sure to include which streams
    are being used, and for what purpose.
 
-3. Write a python program `my_cat.py` that reads a message from standard input
-   and prints to standard output, just as `cat` does. *Submit this file.*
+3. Write a python program `my_cat.py` that reads a message from
+   standard input and prints to standard output, just as `cat` does.
+   You only need to reproduce the behavior of `cat` when run with no
+   arguments.  *Submit this file.*
 
 ## Pipes (20 points)
 
@@ -66,7 +68,7 @@ First, `>` is used to redirect standard output to a file. For example, `echo "He
    a simpler way? (We asked you to do it the more complicated way to practice
    with pipes.) 
 5. Write a python script that reads from standard input, sorts lines in reverse
-      alphabetical order, and prints the result. It should behave like `sort -r`.
+      alphabetical order, and prints the result. It should behave like `sort -r`.  It does not need to process any command line arguments.
       *Submit your script in a file called `my_reverse_sort.py`. Do not submit this script in `shell.txt`*
 
 ## Standard Error (10 points)
