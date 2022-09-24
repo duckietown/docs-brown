@@ -4,13 +4,13 @@ Sensors are necessary for a robot to perceive its environment. Each sensor allow
 
 ## Learning Objectives
 
-After taking this module, students should be able to describe the
+After finishing this project, students should be able to describe the
 sensors used on the drone, how they work, and their function.
-Specifically, we will cover the IR sensor, which is used to estimate
-height, how it works, and how to calibrate it.  Then we will cover the
-Inertial Measurement Unit (IMU), which is used to measure angular
-velocity and linear accelleration.  Finally we will interface with the
-camera, which is used to measure planar velocity and global position.
-This module focuses on the interfacing necessary to obtain raw sensor
-readings, calibrate them into metric units (if necessary), and publish
-the readings on the appropriate ROS topics.
+Specifically, we will cover the time of flight sensor sensor, which is
+used to estimate height, how it works, and how to calibrate it.  Then
+we will cover the Inertial Measurement Unit (IMU), which is used to
+measure angular velocity and linear accelleration.  Finally we will
+interface with the camera, which is used to measure planar velocity
+and global position.  This module focuses on the interfacing necessary
+to obtain process sensor readings, calibrate them into metric units (if
+necessary), and publish the readings on the appropriate ROS topics.
