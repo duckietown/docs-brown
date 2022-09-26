@@ -48,3 +48,5 @@ When using this container, you will want to bring down all the other
 containers.  We recommend doing this from the Portainer page, stopping
 all the running containers.  Note that you will need to do this each
 time you reboot the drone.
+
+You can read how to fly your drone in this mode [here](https://docs.duckietown.org/daffy/opmanual_sky/out/flight.html).  
