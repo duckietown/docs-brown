@@ -44,3 +44,7 @@ screen -c pi.screenrc
 This will start a screen session with each of the ros nodes needed to
 run the drone and make it fly. 
 
+When using this container, you will want to bring down all the other
+containers.  We recommend doing this from the Portainer page, stopping
+all the running containers.  Note that you will need to do this each
+time you reboot the drone.
