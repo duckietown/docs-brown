@@ -1,4 +1,4 @@
-# Part 5: Set up Docker
+# Part 5: Set up Docker {#docker status=ready}
 
 To make it possible for you to develop your own code on the drone, you
 need to set up a docker workspace with our source code, pidrone_pkg.
