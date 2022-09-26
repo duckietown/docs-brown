@@ -7,22 +7,17 @@ Before attempting to analyze the images, we should first check that the images a
 
 **Exercises**
 
-1. Open `student_analyze_phase.py` and print the `data` argument in the method `write`.
-2. Navigate to \`4 and run `rosrun project-sensors-yourGithubName/student_vision_flow_and_phase.py`. Verify that the images are being passed in by checking that values are printing out from where you told it to print `data`.
+1. Open `student_rigid_transform_node.py` and print the `data` argument in the method `image_callback`.  Verify you are receiving images from the camera. 
 
 ## Analyze and Publish the Sensor Data
-To estimate our position we will make use of OpenCV’s [<i>estimateRigidTransform</i>](https://docs.opencv.org/3.0-beta/modules/video/doc/motion_analysis_and_object_tracking.html#estimaterigidtransform) function. This will return an affine transformation between two images if the two images have enough in common to be matched, otherwise, it will return None.
+To estimate our position we will make use of OpenCV’s [<i>estimateAffinePartial2D</i>](https://docs.opencv.org/3.4/d9/d0c/group__calib3d.html#ga27865b1d26bac9ce91efaee83e94d4dd) function. This will return an affine transformation between two images if the two images have enough in common to be matched, otherwise, it will return None.
 
 **Exercises**
 
-The first method you'll complete is `setup`, which will be called to initialize the instance variables.
+Complete the TODOs in `image_callback`, which is called every time that the camera gets an image, and is used to analyze two images to estimate the x and y translations of your drone.
 
-  1. Fill in all of the `TODO`s in `setup`
-
-The second method is `write`, which is called every time that the camera gets an image, and is used to analyze two images to estimate the x and y translations of your drone.
-
-  2. Save the first image and then compare subsequent images to it using cv2.estimateRigidTransform. (Note that the fullAffine argument should be set to False.)
-  3. If you print the output from estimateRigidTransform, you’ll see a 2x3 matrix when the camera sees what it saw in the first frame, and a None when it fails to match. This 2x3 matrix is an affine transform which maps pixel coordinates in the first image to pixel coordinates in the second image. 
+  2. Save the first image and then compare subsequent images to it using cv2.estimateAffinePartial2D. (Note that the fullAffine argument should be set to False.)
+  3. If you print the output from `estimateAffinePartial2D`, you’ll see a 2x3 matrix when the camera sees what it saw in the first frame, and a None when it fails to match. This 2x3 matrix is an affine transform which maps pixel coordinates in the first image to pixel coordinates in the second image. 
   4. Implement the method `translation_and_yaw`, which takes an affine transform and returns the x and y translations of the camera and the yaw.
   5. As with velocity measurements, the magnitude of this translation in global coordinates is dependent on the height of the drone. Add a subscriber to the topic /pidrone/state and save the value to `self.altitude` in the callback. Use this variable to compensate for the height of the camera in your method from step 4 which interprets your affineTransform.
 
@@ -31,9 +26,9 @@ Simply matching against the first frame is not quite sufficient for estimating p
 
 **Exercises**
 
-Modify your AnalyzePhase class to add the functionality described above.
+Modify your RigidTransformNode class to add the functionality described above.
 
-1. Store the previous frame. When estimateRigidTransform fails to match on the first frame, run estimateRigidTransform on the previous frame and the current frame.
+1. Store the previous frame. When estimateAffinePartial2D fails to match on the first frame, run estimateAffinePartial2D on the previous frame and the current frame.
 2. When you fail to match on the first frame, add the displacement to the position in the previous frame. You should use `self.x_position_from_state` and `self.y_position_from_state` (the position taken from the `pidrone/state` topic) as the previous coordinates.
 
 **Note** The naive implementation simply sets the position of the drone when we see the first frame, and integrates it when we don’t. What happens when we haven’t seen the first frame in a while so we’ve been integrating, and then we see the first frame again? There may be some disagreement between our integrated position and the one we find from matching with our first frame due to accumulated error in the integral, so simply setting the position would cause a jump in our position estimate. The drone itself didn’t actually jump, just our estimate, so this will wreak havoc on whatever control algorithm we write based on our position estimate. To mitigate these jumps, you should use a filter to blend your integrated estimate and your new first-frame estimate. Since this project is only focused on publishing the measurements, worrying about these discrepancies is unnecessary. In the UKF project, you will address this problem.

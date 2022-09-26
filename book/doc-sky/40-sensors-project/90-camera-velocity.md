@@ -3,14 +3,14 @@
 In this part of the project you will create a class that interfaces with the Arducam to extract planar velocities from optical flow vectors.
 
 ## Code Structure
-To interface with the camera, you will be using the picamera library. This library allows you to use classes which inherit from [<i>picamera.array.PiMotionAnalysis</i>](https://picamera.readthedocs.io/en/release-1.10/api_array.html#pimotionanalysis) to receive and analyze frames from the video stream. In the sensors project repo, we've include a script called student_vision_flow_and_phase.py which instantiates objects of your analyze classes that inherit <i>picamera.array.PiMotionAnalysis</i> to allow the objects to receive and analyze frames from the video stream. This script creates what we call a <i>vision</i> node which is a ROS node we created that provides data from the camera. This node is called <i>vision_flow_and_phase</i> because it uses the two classes you'll be creating to analyze the camera data and provide velocity and position estimates. Later on in the course, you'll be creating a <i>vision_localization</i> node that uses localization to analyze the camera data and provide position estimates.
+To interface with the camera, you will be using the raspicam_node library. This library publishes both images and optical flow vectors to ROS topics.    You will estimate velocity using the flow vectors, and estimate small changes in position by extracting features from pairs of frames.   In the sensors project repo, we've included  a script called `student_optical_flow.py` which you will edit so it publishes the estimated velocity from the flow vectors.    Similarly a second script is `student_rigid_transform.py` which you will edit so it subscribes to the image topic and publishes position estimates. 
 
 ## Analyze and Publish the Sensor Data
 On your drones, the chip on the Raspberry Pi dedicated to video processing from the camera calculates motion vectors ([optical flow](https://en.wikipedia.org/wiki/Optical_flow)) automatically for H.264 video encoding. [Click here to learn more](https://www.raspberrypi.org/blog/vectors-from-coarse-motion-estimation/). You will be analyzing these motion vectors in order to estimate the velocity of your drone.
 
 **Exercises**
 
-You will now implement your velocity estimation using optical flow by completing all of the `TODO`'s in student_analyze_flow.py. There are two methods you will be implementing.
+You will now implement your velocity estimation using optical flow by completing all of the `TODO`'s in student_optical_flow.py. There are two methods you will be implementing.
 
 The first method is `setup`, which will be called to initialize the instance variables.
 
@@ -20,7 +20,7 @@ The perspicacious roboticist may have noticed that magnitude of the velocity in 
 
   2. Create a ROS subscriber to obtain the altitude (z-position) of the drone for scaling the motion vectors.
 
-The second method is `analyze`, which is called every time that the camera gets an image, and is used to analyze the flow vectors to estimate the x and y velocities of your drone.
+The second method is `motion_cb`, which is called every time that the camera gets a set of flow vectors, and is used to analyze the flow vectors to estimate the x and y velocities of your drone.
 
   1. Estimate the velocities, using the `TODO`'s as a guide.
 
