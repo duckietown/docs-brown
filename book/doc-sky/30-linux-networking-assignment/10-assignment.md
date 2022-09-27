@@ -115,7 +115,7 @@ corresponding sections of `networking.txt`.*
 
 4. By convention, `roscore` listens on port 11311. Try using `nc` to connect to
    port 11311 on a machine where `roscore` is running, such as the Pi on your
-   drone. What protocol is roscore using to communicate (think transport layer)?
+   drone. What protocol is roscore using to communicate (think application layer)?
 
 
 ## Talking to Your Robot (10 points)
