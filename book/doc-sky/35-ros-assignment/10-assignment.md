@@ -15,7 +15,7 @@ First set up the docker image following [these instructions](docker.html).
 5. Do the [building packages](http://wiki.ros.org/ROS/Tutorials/BuildingPackages) tutorial.
 
 6. Follow the [ROS publisher/subscriber tutorial](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29) using the workspace and package you created above. *Hand in the entire package.*
-7. Start the `screen` session we use to fly the drone. Use `rostopic echo` and `rostopic hz` to examine the results of various topics. What is the rate at which we are publishing the infrared range reading?
+7. Start the `screen` session we use to fly the drone. Use `rostopic echo` and `rostopic hz` to examine the results of various topics. What is the rate at which we are publishing the range reading?
 
 ## Messages (5 points)
 
