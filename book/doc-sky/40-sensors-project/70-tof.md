@@ -14,7 +14,7 @@ Change directories into `~/catkin_ws/src/project-sensors-implementation-yourGith
 In _student_tof_pub.py_, fill in the minimum range, maximum range, and current range read from the sensor into the ROS message.  When you run this node,  You will be publishing a [ROS Range message](http://docs.ros.org/api/sensor_msgs/html/msg/Range.html) which is a standard message included with ROS.
 
 ## Checkoff:
-Using `rostopic echo /pidrone/tof` or the height graph on the web interface, verify that:
+Using `rostopic echo /pidrone/range` or the height graph on the web interface, verify that:
 
   * The TOF node is publishing a message with all of the fields you want
   * The range field of the message is a roughly accurate measure of the drone's altitude
