@@ -2,6 +2,46 @@
 
 In this part, you will be transferring the altitude PID you created in part 1 onto your drone. You will then tune the PID gains on your drone as you did in the simulator.
 
+## Flying with Our PID
+
+When you first flew the drone, in the Duckietown stack, you were
+directly setting the PWM "stick" levels with the keyboard and mouse.
+This translates to moving the throttle, roll, and pitch sticks on an
+RC receiver to fly the drone.  There is a PID running on the flight
+controller that interprets these stick commands as desired rolls,
+pitches, and yaws, and then controls the motor spinning to achieve
+this.
+
+Now, you will instead fly with a higher level of autonomy and use our
+PID controller to fly with velocity and height control.  You will use
+the camera to estimate velocity with Optical Flow, and the range
+sensor to estimate height.  Then the PID controller will set the PWMs
+to achieve these targets: either a fixed velocity of 0 m/s in X and Y,
+or a fixed velocity based on what keys are pressed on the keyboard.
+We are doing positio control for the height, so it adjusts the
+throttle to maintain a target height above the ground using an
+altitude sensor.
+
+
+### Bring Down the Containers
+
+First, bring down all the containers.  Run `docker ps -a` and the `docker stop` on each container.  Then reboot, and run `docker update --restart=no my-container` for each container that automatically restarts.  Reboot again.  When you are done, `docker ps -a` should show no containers running.
+
+### Update pidrone_pkg
+
+Now update and rebuild the pidrone_pkg container.  Run `git pull` in
+pidrone_pkg and then `rake build`, `rake create` and `rake start`.
+The build this time will be much faster, because it will not have to
+download everything from scratch.
+
+### Fly!
+
+Follow the instructions in the operations manual in order to fly: 
+https://docs.duckietown.org/daffy/opmanual_sky/out/flight.html
+
+Make sure this works before trying to tune your own PID. 
+
+
 ## Flying with Your Altitude PID!
 You will now be using your altitude PID to control the height of the drone. To tune your altitude PID, you will first use the Ziegler-Nichols tuning method to generate an initial set of tuning parameters. You will then fine tune these parameters similar to how you tuned the drone in simulation.
 
