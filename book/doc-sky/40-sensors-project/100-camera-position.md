@@ -47,7 +47,7 @@ Debugging position measurements can also be made easier through the use of a vis
 Use the web interface to visualize your position estimates
 
 1. Connect to your drone and start a new screen
-2. Run `rosrun project-sensors-yourGithubName student_vision_flow_and_phase.py` in \`4.
+2. Run `rosrun project-sensors-yourGithubName student_rigid_transform_node.py` in \`4.
 3. Hold your drone up about .25m with your hand
 4. In the web interface, press `r` and the `p` to engage position hold.
 5. Use `rostopic echo /pidrone/picamera/pose` to view the output of your <i>student_analyze_phase</i> class
