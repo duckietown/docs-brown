@@ -34,7 +34,14 @@ Modify your RigidTransformNode class to add the functionality described above.
 **Note** The naive implementation simply sets the position of the drone when we see the first frame, and integrates it when we don’t. What happens when we haven’t seen the first frame in a while so we’ve been integrating, and then we see the first frame again? There may be some disagreement between our integrated position and the one we find from matching with our first frame due to accumulated error in the integral, so simply setting the position would cause a jump in our position estimate. The drone itself didn’t actually jump, just our estimate, so this will wreak havoc on whatever control algorithm we write based on our position estimate. To mitigate these jumps, you should use a filter to blend your integrated estimate and your new first-frame estimate. Since this project is only focused on publishing the measurements, worrying about these discrepancies is unnecessary. In the UKF project, you will address this problem.
 
 ## Connect to the JavaScript Interface
-Now that we’ve got a position estimate, let’s begin hooking our code up to the rest of the flight stack.
+
+Now that we’ve got a position estimate, let’s begin hooking our code
+up to the rest of the flight stack.
+
+To connect to the JavaScript interface, clone `pidrone_pkg` on your
+base station machine.  Point any web browser at the web/index.html
+directory.  This will open up the web interface that we will be using
+the rest of the semester.
 
   1. Create a subscriber (in the setup function) to the topic `/pidrone/reset_transform` and a callback owned by the class to handle messages. [ROS Empty messages](http://docs.ros.org/lunar/api/std_msgs/html/msg/Empty.html) are published on this topic when the user presses r for reset on the JavaScript interface. When you receive a reset message, you should take a new first frame, and set your position estimate to the origin again.
   2. Create a subscriber to the topic `/pidrone/position_control`. [ROS Bool messages](http://docs.ros.org/lunar/api/std_msgs/html/msg/Bool.html) are published on this topic when the user presses `p` or `v` on the JavaScript interface. When we’re not doing position hold we don’t need to be running this resource-intensive computer vision, so when you receive a message you should enable or disable your position estimation code.
