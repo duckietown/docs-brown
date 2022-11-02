@@ -42,7 +42,17 @@ Follow the instructions in the operations manual in order to fly
 Make sure this works before trying to tune your own PID. 
 
 
-## Flying with Your Altitude PID!
+
+
+
+
+## STOP HERE
+
+Please stop here for now.  These instructions have not been tested
+with the new version of the drone.
+
+
+
 You will now be using your altitude PID to control the height of the drone. To tune your altitude PID, you will first use the Ziegler-Nichols tuning method to generate an initial set of tuning parameters. You will then fine tune these parameters similar to how you tuned the drone in simulation.
 
  To use your PID, you'll be running <i>student_pid_controller.py</i> instead of <i>pid_controller.py</i>. This will allow your PID to run alongside our planar PIDs; your PID will be responsible for keeping the drone flying steady vertically.  
