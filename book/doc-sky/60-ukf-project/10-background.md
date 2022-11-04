@@ -13,9 +13,9 @@ So far, we have naively been using raw sensor data as our $y(t)$ measurement. Mo
 
 However, there are a **few problems** with this:    
 
-- In the real world, actual sensor hardware is not perfect – there’s noise in sensor readings. For example, a &#36;10 IR sensor might report a range of 0.3m in altitude, when in reality the drone is at 0.25m. While a more expensive sensor would be less susceptible to noise, it would still not be perfect.    
+- In the real world, actual sensor hardware is not perfect – there's noise in sensor readings. For example, a &#36;10 TOF sensor might report a range of 0.3m in altitude, when in reality the drone is at 0.25m. While a more expensive sensor would be less susceptible to noise, it would still not be perfect.    
 
-- The sensor readings may not really represent the behavior we wish to control. For example, it might seem like a downward facing IR would be a good representation of a drone’s altitude, but suppose the drone rolls a non-trivial amount $\theta$ (See [](#ir_reading_example)).
+- The sensor readings may not really represent the behavior we wish to control. For example, it might seem like a downward facing TOF would be a good representation of a drone's altitude, but suppose the drone rolls a non-trivial amount $\theta or flies over a reflective surface$ (See [](#ir_reading_example)).
 
 - No one sensor may be enough to measure the $y(t)$ we really care about. For example, two 2D cameras would be needed to measure depth for a depth controller.    
 
@@ -131,11 +131,11 @@ Then a **non-linear** $g$ woould be:
     g(\mathbf{x}_{t}) = \mathbf{\widehat{z}}_{t} = \left [\frac{d}{\cos \theta}  \right ]
 \]
 
-Speaking of non-linear functions, a key requirement of the Kalman Filter algorithm is that $f$ and $g$ need to be linear functions. This is necessary in order for the various Gaussians to multiply such that $bel(\mathbf{x}_{t})$ is still a Gaussian.    
+A key requirement of the Kalman Filter algorithm is that $f$ and $g$ need to be linear functions. This is necessary in order for the various Gaussians to multiply such that $bel(\mathbf{x}_{t})$ is still a Gaussian.      Under the assumption of linearity, the Kalman Filter is provably optimal. 
 
-For systems which have non-linearities, consider using the Extended Kalman Filter(EKF) algorithm instead. The EKF handles non-linear functions by basically doing a first-order Taylor expansion (to create a linear approximation) on $f$ and $g$, then passing them to the Kalman Filter algorithm.    
+However, most systems which have non-linearities.  For example, the drone's update function involves nonlinear trigonometric functions like sin and cosine.  Many people use the Extended Kalman Filter(EKF) algorithm instead. The EKF handles non-linear functions by basically doing a first-order Taylor expansion (to create a linear approximation) on $f$ and $g$, then passing them to the Kalman Filter algorithm.   To perform this approximation, the Jacobian matrix of $f$ and $g$ must be computed (e.g., the deriviative with respect to every input variable.)   This Jacobian matrix must be derived and then implemented in code, an non-trivial effort. 
 
-Finally, another alternative is the Unscented Kalman Filter(UKF) algorithm, which is a sampling-based variant of the Kalman Filter. Like the EKF, the UKF can handle non-linear $f$ and $g$.
+Fortunately, another alternative is the Unscented Kalman Filter(UKF) algorithm, which is a sampling-based variant of the Kalman Filter. Like the EKF, the UKF can handle non-linear $f$ and $g$.  The UKF is not only simpler to implement than the EKF, it also performs better, although it is not provably optimal. 
 
 
 ## Background before UKF
