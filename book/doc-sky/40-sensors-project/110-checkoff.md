@@ -2,8 +2,8 @@
 
 ## Functionality Check
 
-1. Run `student_infrared_pub.py` and open up the web interface. Move the drone up and down and ensure that the height readings are reasonable.
-2. Run `student_vision_flow_and_phase.py` and open up the web interface. Turn on velocity control (enabled by default). Slowly move the drone around over a highly textured planar surface and ensure that the raw velocity readings are reasonable.
+1. Run `student_tof_pub.py` and open up the web interface. Move the drone up and down and ensure that the height readings are reasonable.
+2. Run `student_optical_flow_node.py` and `student_rigid_transform_node.py` and open up the web interface. Turn on velocity control (enabled by default). Slowly move the drone around over a highly textured planar surface and ensure that the raw velocity readings are reasonable.
 
 <!-- this 2. is provisional since we have a bug where drones cannot be set to position mode. Currently working on fixing this, and then should be switched back -->
 

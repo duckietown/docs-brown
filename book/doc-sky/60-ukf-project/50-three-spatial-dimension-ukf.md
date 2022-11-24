@@ -1,5 +1,4 @@
 # 7D UKF Design and Implementation {#ukf-three-spatial-dimensions status=ready}
-
 While tracking the drone's $z$ position and velocity is helpful, it is a simplified model of the drone and does not encapsulate as many of the degrees of freedom of the drone as we might like. For this reason, you are now going to develop a UKF that tracks the drone in three spatial dimensions with a 7D state vector. Your code from the 2D UKF will be a useful reference, and many parts will be reusable for the 7D UKF.
 
 This part of the project has **two deliverables** in your `project-ukf-2020-yourGithubName` repository, which are to be accessed and submitted via GitHub Classroom:
@@ -11,6 +10,7 @@ This part of the project has **two deliverables** in your `project-ukf-2020-your
 
 Just as you tracked position and velocity along one axis in the 2D UKF, now you will track position and velocity along three global-frame axes. You will also track the drone's yaw value $\psi$. Changes to the drone's orientation will cause nonlinearities that the UKF was designed to address.
 
+
 $$\mathbf{x}_t = \begin{bmatrix}
 x \\
 y \\
@@ -19,7 +19,6 @@ z \\
 \dot y \\
 \dot z \\
 \psi \end{bmatrix}$$
-
 We don't ask you to track the drone's attitude (roll $\phi$ and pitch $\theta$), as that makes for an even larger state vector and adds complexity. Also, the IMU incorporates its own filter to produce its estimates of roll and pitch, so there may not be much benefit to adding these variables to our UKF. As such, you will use these roll and pitch values as strong estimates to inform the state transition and measurement functions.
 
 ## State Transition Function
@@ -138,13 +137,16 @@ using the `-hz` flag as needed.
 
 **Task:** Use the web interface to verify visually that the height estimates and the $x$, $y$, and yaw estimates appear to have less noise than the sensor readings, and that these estimates appear to track your drone's actual pose in space. Compare your UKF to the EMA estimates for altitude and the raw camera pose data in the **Top View** chart.
 
+
+
+
 ### In Flight
 
 Now you are going to fly with your 7D UKF, using both velocity control and position hold.
 
 **Task:** Test your drone's stability in position hold and velocity control 1) while running just the EMA filter for state estimation and 2) while running your 7D UKF. You can use the web interface to move your drone around and send it other commands.
 
-# Final Hand-In {#ukf-project-final-handin status=ready}
+## Final Hand-In
 Before the project deadline, you must ensure that final versions of your solution files and code are handed in via GitHub Classroom. These files are:
 
 **From the 2D UKF section:**

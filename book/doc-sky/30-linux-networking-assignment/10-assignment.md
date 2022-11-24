@@ -1,8 +1,10 @@
-# Assignment {#linux-networking-assignment status=ready}
-
-This assignment is comprised of three parts: Introduction to Linux (Part 1), Networking (Part 2), and Middleware/ROS (Part 3). Please complete all parts of this assignment. 
-
 # Part 1: Introduction to Linux {status=ready}
+
+The learning objectives of this assignment are to familiarize you with
+basic Linux shell commands, standard input, standard output, standard
+error, and pipes.  You will use these ideas when interacting with the
+Linux shell to operate your drone.  Additionally you will use these
+ideas in the next section when working on the networking exercises.  
 
 ## Background Information
 
@@ -37,8 +39,10 @@ and writes the result to standard output.
    `Control-D`. Describe what `cat` does. Make sure to include which streams
    are being used, and for what purpose.
 
-3. Write a python program `my_cat.py` that reads a message from standard input
-   and prints to standard output, just as `cat` does. *Submit this file.*
+3. Write a python program `my_cat.py` that reads a message from
+   standard input and prints to standard output, just as `cat` does.
+   You only need to reproduce the behavior of `cat` when run with no
+   arguments.  *Submit this file.*
 
 ## Pipes (20 points)
 
@@ -64,7 +68,7 @@ First, `>` is used to redirect standard output to a file. For example, `echo "He
    a simpler way? (We asked you to do it the more complicated way to practice
    with pipes.) 
 5. Write a python script that reads from standard input, sorts lines in reverse
-      alphabetical order, and prints the result. It should behave like `sort -r`.
+      alphabetical order, and prints the result. It should behave like `sort -r`.  It does not need to process any command line arguments.
       *Submit your script in a file called `my_reverse_sort.py`. Do not submit this script in `shell.txt`*
 
 ## Standard Error (10 points)
@@ -81,6 +85,13 @@ the terminal rather than buried in the input to the next program.
    of `sort`. *Submit the file containing the script as `my_sort_status.py`.*
 
 # Part 2: Networking {status=ready}
+
+The learning objectives of this section are to familiarize you with
+how a TCP/IP server works and how to explore a network to find what
+computers (and robots!) are around, and then how to connect to them.
+We will use tools at a lower level than the robot programming
+interface you will use in the rest of the course, in order to focus on
+the general networking ideas. 
 
 ## Netcat (20 points)
 
@@ -104,7 +115,7 @@ corresponding sections of `networking.txt`.*
 
 4. By convention, `roscore` listens on port 11311. Try using `nc` to connect to
    port 11311 on a machine where `roscore` is running, such as the Pi on your
-   drone. What protocol is roscore using to communicate (think transport layer)?
+   drone. What protocol is roscore using to communicate (think application layer)?
 
 
 ## Talking to Your Robot (10 points)

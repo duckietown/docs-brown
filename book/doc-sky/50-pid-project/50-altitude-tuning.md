@@ -2,25 +2,75 @@
 
 In this part, you will be transferring the altitude PID you created in part 1 onto your drone. You will then tune the PID gains on your drone as you did in the simulator.
 
-## Flying with Your Altitude PID!
+## Flying with Our PID
+
+When you first flew the drone, in the Duckietown stack, you were
+directly setting the PWM "stick" levels with the keyboard and mouse.
+This translates to moving the throttle, roll, and pitch sticks on an
+RC receiver to fly the drone.  There is a PID running on the flight
+controller that interprets these stick commands as desired rolls,
+pitches, and yaws, and then controls the motor spinning to achieve
+this.
+
+Now, you will instead fly with a higher level of autonomy and use our
+PID controller to fly with velocity and height control.  You will use
+the camera to estimate velocity with Optical Flow, and the range
+sensor to estimate height.  Then the PID controller will set the PWMs
+to achieve these targets: either a fixed velocity of 0 m/s in X and Y,
+or a fixed velocity based on what keys are pressed on the keyboard.
+We are doing positio control for the height, so it adjusts the
+throttle to maintain a target height above the ground using an
+altitude sensor.
+
+
+### Bring Down the Containers
+
+First, bring down all the containers.  Run `docker ps -a` and the `docker stop` on each container.  Then reboot, and run `docker update --restart=no my-container` for each container that automatically restarts.  Reboot again.  When you are done, `docker ps -a` should show no containers running.
+
+### Update pidrone_pkg
+
+Now update and rebuild the pidrone_pkg container.  Run `git pull` in
+pidrone_pkg and then `rake build`, `rake create` and `rake start`.
+The build this time will be much faster, because it will not have to
+download everything from scratch.
+
+### Fly!
+
+Follow the instructions in the operations manual in order to fly 
+[here](https://docs.duckietown.org/daffy/opmanual_sky/out/flight.html).
+
+Make sure this works before trying to tune your own PID. 
+
+
+
+
+
+
+## STOP HERE
+
+Please stop here for now.  These instructions have not been tested
+with the new version of the drone.
+
+
+
 You will now be using your altitude PID to control the height of the drone. To tune your altitude PID, you will first use the Ziegler-Nichols tuning method to generate an initial set of tuning parameters. You will then fine tune these parameters similar to how you tuned the drone in simulation.
 
  To use your PID, you'll be running <i>student_pid_controller.py</i> instead of <i>pid_controller.py</i>. This will allow your PID to run alongside our planar PIDs; your PID will be responsible for keeping the drone flying steady vertically.  
 
 **Setup**  
-Change directories to `~/ws/src`. Run `git clone https://github.com/h2r/project-pid-implementation-yourGithubName.git`. In your repo, change "<name>pidrone_project3_pid</name>" to "<name>project-pid-implementation-yourGithubName</name>" in _package.xml_ and "project(pidrone_project3_pid)" to "project(project-pid-implementation-yourGithubName)" in _CMakeLists.txt_. Also remove the msg folder, and comment out "add_message_files" in _CMakeLists.txt_. Then change directories back to `~/ws/` and run `catkin_make --pkg project-pid-implementation-yourGitHubName`.
+Change directories to `~/catkin_ws/src`. Run `git clone https://github.com/h2r/project-pid-implementation-yourGithubName.git`. In your repo, change "<name>pidrone_project3_pid</name>" to "<name>project-pid-implementation-yourGithubName</name>" in _package.xml_ and "project(pidrone_project3_pid)" to "project(project-pid-implementation-yourGithubName)" in _CMakeLists.txt_. Also remove the msg folder, and comment out "add_message_files" in _CMakeLists.txt_. Then change directories back to `~/ws/` and run `catkin_make --pkg project-pid-implementation-yourGitHubName`.
 
 _OR_
 
-Use the `scp` command to transfer <i>student_pid_class.py</i>, <i>student_pid_controller.py</i>, and <i>z_pid.yaml</i> from the repo on your base station to the scripts folder of your drone (`~/ws/src/pidrone_pkg/scripts/`). In the instructions below, instead of using `rosrun`, you may use `python` to execute your scripts.
+Use the `scp` command to transfer <i>student_pid_class.py</i>, <i>student_pid_controller.py</i>, and <i>z_pid.yaml</i> from the repo on your base station to the scripts folder of your drone (`~/catkin_ws/src/pidrone_pkg/scripts/`). In the instructions below, instead of using `rosrun`, you may use `python` to execute your scripts.
 
-Change directories into `~/ws/src/pidrone_pkg` and modify _pi.screenrc_ to start up with your altitude pid by changing `python pid_controller.py\n` to `rosrun project-pid-implementation-yourGitHubName student_pid_controller.py\n`. Prepare your drone to fly and then navigate to \`4 of the screen. Press ctrl-c to quit student_pid_controller.
+Change directories into `~/catkin_ws/src/pidrone_pkg` and modify _pi.screenrc_ to start up with your altitude pid by changing `python pid_controller.py\n` to `rosrun project-pid-implementation-yourGitHubName student_pid_controller.py\n`. Prepare your drone to fly and then navigate to \`4 of the screen. Press ctrl-c to quit student_pid_controller.
 
-In this screen (\`4), modify `~/ws/src/project-pid-implementation-yourGitHubName/z_pid.yaml` by setting $K$ to 1250 and the rest of the gain constants to 0. Now run `rosrun project-pid-implementation-yourGitHubName student_pid_controller.py` to fly with your altitude PID.  
+In this screen (\`4), modify `~/catkin_ws/src/project-pid-implementation-yourGitHubName/z_pid.yaml` by setting $K$ to 1250 and the rest of the gain constants to 0. Now run `rosrun project-pid-implementation-yourGitHubName student_pid_controller.py` to fly with your altitude PID.  
 
 **Exercises**  
 
-Fly your drone and observe its flight. Tune $K_p$ by slowly increasing its value between flights until you can see the drone moving up and down with uniform oscillations. Each time you will need to quit the controller, edit `~/ws/src/project-pid-implementation-yourGitHubName/z_pid.yaml`, and then run `rosrun project-pid-implementation-yourGitHubName student_pid_controller.py` again to use the new PID gains.  
+Fly your drone and observe its flight. Tune $K_p$ by slowly increasing its value between flights until you can see the drone moving up and down with uniform oscillations. Each time you will need to quit the controller, edit `~/catkin_ws/src/project-pid-implementation-yourGitHubName/z_pid.yaml`, and then run `rosrun project-pid-implementation-yourGitHubName student_pid_controller.py` again to use the new PID gains.  
 
   1. Record your final $K_p$ value that causes uniform oscillations as $K_u$, the ultimate gain.  
   2. Fly your drone and pause the altitude graph on the web interface when you see two peaks. Find the time difference between these two peaks and record this value as $T_u$, the ultimate period.  

@@ -36,8 +36,9 @@ sure you answer each of the following subquestions in a few sentences (in your o
 In the United States, the Federal Aviation Administration regulates
 outdoor flight.  (It does not regulate flight indoors.)  Read the [FAA
 website](https://www.faa.gov/uas/) on Unmanned Aircraft Systems.
-Provide short answers to the following questions.
+Take the [TRUST](https://www.faa.gov/uas/recreational_flyers/knowledge_test_updates) test from any of the providers listed on the website.  If you wish to fly your drone outside, you may also register your drone with the FAA for \$5 (not covered by us).  You do not need to fly outside for this class; if you only fly inside, you do not need to register your drone.
 
+Provide short answers to the following questions.
 
 1. What procedures should you follow when flying your drone outside
    the CIT?  (You might find it easiest to use the [B4UFLY Smartphone
@@ -49,11 +50,29 @@ Provide short answers to the following questions.
 3. What are some risks of drone flight? How could people get hurt with the
    robot?
 
-4. Do you need to register your drone?
+4. When do you need to report an accident to the FAA?
 
-5. When do you need to report an accident to the FAA?
 
-## Flying at Home (10 points)
+
+## Brown Rules/Community Guidelines (5 points)
+
+The FAA requires you to follow all community guidelines for flying
+drones.  Brown University has an [Unmanned Aircraft System (UAS)
+Policy](https://www.brown.edu/health-safety/droneunmanned-aircraft-system-uas-policy)
+that we must follow to fly on campus.  Flying is already approved in
+our lab space, but must be approved to fly in your dorm room or other
+places on campus.
+
+Provide short answers to the following question:
+
+If you want to fly a drone outside the CIT in the quad, what
+procedures should you follow, with respect to Brown's community
+guidelines?
+
+
+
+
+## Flying at Home (5 points)
 
 *Write your answers in `answers.txt`.*
 
@@ -71,11 +90,16 @@ We understand that students may be subject to different laws pertaining to how t
 
 ## Soldering Station (10 points)
 
+We added this question when running the class remotely.  Even though
+we are now providing soldering space, it is still important to know
+the rules for soldering safely.  Submit a photo of the lab if you will
+solder there, or the BDW, or wherever you will be building your drone.  
+
 *Submit a photo with the filename `solder_station.jpg`.*
 
 It is important for you to have a safe, well-ventilated area where you will be able to solder your electronics.
 
-Look for a designated area in your place of residence for you to soldier, and take a picture of that area clearly showing the following:
+Look for a designated area in your place of residence, or in the lab for you to soldier, and take a picture of that area clearly showing the following:
 
 1. Nearby a window or a ventilation fan that can suck away the smoke from the soldering iron.
 
