@@ -43,7 +43,7 @@ $$
 \mathbf{u}^g_t = \mathbf{q} \cdot \mathbf{u}_t \cdot \mathbf{q}^*
 $$
 
-where $\mathbf{u}^g_t$ is the linear acceleration control input in the global frame, $\mathbf{q}$ is the quaternion that rotates a vector from body to global frame, $\mathbf{u}_t$ is your body-frame control input that you get from the IMU, and $\mathbf{q}^*$ is $\mathbf{q}$. Note that, for correct dimensionality, $\mathbf{u}^g_t$ and $\mathbf{u}_t$ should be 4-element vectors to match the quaternion's $[x, y, z, w]$ components and should have the real component $w$ equal to $0$, making these vectors "pure" quaternions.
+where $\mathbf{u}^g_t$ is the linear acceleration control input in the global frame, $\mathbf{q}$ is the quaternion that rotates a vector from body to global frame, $\mathbf{u}_t$ is your body-frame control input that you get from the IMU, and $\mathbf{q}^*$ is the conjugate of $\mathbf{q}$. Note that, for correct dimensionality, $\mathbf{u}^g_t$ and $\mathbf{u}_t$ should be 4-element vectors to match the quaternion's $[x, y, z, w]$ components and should have the real component $w$ equal to $0$, making these vectors "pure" quaternions.
 
 The steps to implement this rotation in the `apply_quaternion_vector_rotation()` method, then, looks something like this:
 
