@@ -46,6 +46,13 @@ You should develop your SLAM implementation, on the department machines or your 
 
 The checkoff for this project is simple, run your slam_helper.py implementation on the sample data for a TA. Show the TA the corresponding animation. An easy way to do this is to login to your account on the department machines with "ssh -Y" and if you have xquartz installed on your computer, you can run your animation from the terminal over ssh.
 
+## On-Board Offline on the Drone
+
+SLAM can run but it is quite slow on the Raspberry Pi.  We have gotten
+it to work on board the pi, but offline.  So you fly, record data,
+land, and then make a map and localize.  Details are in the operation
+manual, and there are a lot of rough edges.
+
 
 ## Handin
 Please be sure to push your finished project directory to GitHub classroom to

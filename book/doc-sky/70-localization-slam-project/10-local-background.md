@@ -1,7 +1,7 @@
 # Localization Background {#localization-slam-localization-background status=ready}
 
 ## Bayes Filter
-Monte Carlo Localization is a type of Bayes filter. You'll remember the general Bayes Filter algorithm from the UKF project earlier in the course, but an overview is reproduced here for your convenience.
+Monte Carlo Localization is a type of Bayes filter. You'll remember the general Bayes Filter algorithm from the UKF project earlier in the course.   This material is also covered in the EdX lectures for the class, which also contains mathematical derivations for the filter.   
 
 The Bayes Filter incorporates information available to the robot at each point in time to produce an accurate estimate of the robot's position. Its core idea is to take advantage of data from two sources: the controls given to the robot and the measurements detected by the robot's sensors.
 
@@ -39,11 +39,12 @@ $\sum_x{p(x_t|u_t,x_{t-1})bel(x_{t-1})}$
 The second step $bel(x_t) = \eta p(z_{t}|x_{t})\bar{bel}(x_t)$ is the *measurement update*. This computation is straightforward, the normalizer $\eta$ is the reciprocal of the sum of $p(z_{t}|x_{t})\bar{bel}(x_t)$ over all $x_t$. This factor will normalize the sum.
 
 ## Monte-Carlo Localization
-The phrase "Monte Carlo" refers to the principle of using random sampling to model a complicated deterministic process. MC localization has become a very popular algorithm in robotics. Rather than represent the belief as a probability distribution over the entire state space, MC localization randomly samples from the belief to save computational time. This method is well suited to our scenario since the Raspberry Pi is a rather weak computer.
+
+The phrase "Monte Carlo" refers to the principle of using random sampling to model a complicated deterministic process. Rather than represent the belief as a probability distribution over the entire state space, MC localization randomly samples from the belief to save computational time.  Because it represents the belief as samples, it is capable of representing multimodal distributions.  For example when localizing, if the robot is teleported (i.e., turned off, and moved, and then turned on), its initial believe is uniform over the entire map.  The Gaussian distribution has a hard time representing this, because its weight is centered on the mean (although you could approximate it with a very very large covariance).  Another example is if the robot is experiencing aliasing.  For example, if it is going down a long corridor, its observations at different points down the corridor will be exactly the same, until it reaches a distinguishing point, such as an intersection or the end of the corridor.    Particle filters can represent this by having particles all along the corridor; whereas a Gaussian distribution will struggle because of the need to pick one place to center the distribution with the mean. 
 
 MC localization is a *particle filter* algorithm. In our implementation, we will use several **particles** which each represent a possible position of the drone. In each time step (for us defined as a new frame captured by the drone's camera) we will apply a *motion prediction* to adjust the poses of the particles, as well as a *measurement update* to assign a probability or *weight* to each particle. This process is analogous to Bayes Filtering.
 
-Finally, at each time step we *resample* the particles. Each particle has a probability of being resampled that is proportional to its weight. Over time, particles with less accurate positions are weeded out, and the particles should converge on the true location of the drone!
+Finally, at each time step we *resample* the particles. Each particle has a probability of being resampled that is proportional to its weight. Over time, particles with less accurate positions are weeded out, and the particles should converge on the true location of the drone! 
 
 To retrieve a position estimate of the drone at any time, we can take a simple idea from probability and compute the *expectation* of the belief distribution: the sum over each particle in the filter of its pose times its weight.
 
@@ -75,6 +76,7 @@ The following diagram shows the operation of MC Localization. In the diagram, ou
 In answers.md provide answers to the following questions
 
 ## Problem 1 - Localization Theory Questions
-Q1- What is the importance of particle filters in Monte Carlo Localization? 
+
+Q1- What is the advantage of particle filters relative to the Gaussian representation used by the Kalman filter?
 
 Q2- Can Monte Carlo Localization approximate any distribution? If no, explain why? If yes, describe what controls the nature of approximation?

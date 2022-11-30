@@ -79,7 +79,10 @@ student_compute_displacement.py will indicate the infrared reading taken by the 
 
 Your job is to write code in student_compute_displacement.py that will extract features from both images and compute a transformation between them. Use this transformation to compute the x,y, and yaw displacement in *meters* between the two images. This is exactly how you will implement the motion model for localization: we consider the meter displacement between two drone images to be the motion of the drone between the poses at which the images were taken.
 
-## Implement Localization on the PiDrone
+## Appendix: Implement Localization on the PiDrone
+
+Feel free to give this a try; we haven't worked through the bugs and this part of the assignment is optional.
+
 We are now ready to implement localization on the drone.
 
 You will be given two files:
@@ -99,7 +102,7 @@ for localization, but it might help you to understand how they work! The same go
 Note that for both this part of the assignment and for SLAM, there is not any "correct" universal
 implementation of the code as long as your solutions work.
 
-## Testing
+### Testing
 To test the functionality of your localization code, you may fly the drone while running
 
     rosrun project_localization_slam_2019_yourGithubName student_run_localization.py
@@ -108,7 +111,7 @@ in the vision window. Follow the Mapping and Localization instructions in the op
 
 You may also use animate_particle_filter.py to view the animation of your particle filter. Print the (x,y) pose of each particle on separate lines in a text file to be read by animate_particle_filter, put x and y pose coordinates on separate lines. Make sure you adjust animate_particle_filter.py to reflect the number of particles you are using! (using the visualizer here is optional)
 
-## Checkoff
+### Checkoff
 We will verify that your code has the following functionality:
 
  1. You can run student_run_localization.py and take off with your drone.
